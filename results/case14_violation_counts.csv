@@ -1,0 +1,10 @@
+,all,test split,test subset 1000
+vm_outside_0.94_1.06,6599,691,28
+vm_outside_own_limits,6599,691,28
+vm_low,209,25,1
+vm_high,6390,666,27
+line_overload,9607,974,37
+qg_limit,125797,12407,583
+pg_limit,302,23,1
+any_voltage_or_overload,16067,1651,64
+n_scenarios,219606,21946,1000

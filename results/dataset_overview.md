@@ -87,7 +87,61 @@ min Vm = **0.857** (< 0.94), branches 2 and 10 at **109% and 128%** of `rate_a`.
 `min_vm_pu/max_vm_pu` (bus), `in_service` (gen). So voltage and overload labels are computable (verified in Phase 3).
 Datakit also **rejects islanded topologies** (`check_single_connected_component()` in `topology_perturbation.py`).
 
-## 4. Does PFΔ alone cover the anomaly labeling we need?
+## 4. Other grids in `gridfm/genco-pf-datakit` (for a later zero-shot cross-topology test)
+
+Listed with `HfApi().list_repo_tree("gridfm/genco-pf-datakit", recursive=True)`. **Nothing downloaded.**
+Every run folder has `best_model_state_dict.pt`, `normalizer_stats.pt`, `metrics.csv` and the training YAML
+(case10000 also has `last.pt`). Each is trained on the matching `gridfm/pf_small_<grid>` dataset.
+
+| Grid | Buses | Sizes available | Seeds | Weights (base / small / tiny) |
+|---|---|---|---|---|
+| case14_ieee | 14 | base, small, tiny | 0, 1, 42 | 80.5 / 20.4 / 5.3 MB (seed0 of each downloaded) |
+| case30_ieee | 30 | base, small, tiny | 0, 1, 42 | 80.5 / 20.4 / 5.3 MB |
+| case57_ieee | 57 | base, small, tiny | 0, 1, 42 | 80.5 / 20.4 / 5.3 MB |
+| case118_ieee | 118 | base, small, tiny | 0, 1, 42 | 80.5 / 20.4 / 5.3 MB |
+| case500_goc | 500 | base, small, tiny | 0, 1, 42 | 80.5 / 20.4 / 5.3 MB |
+| case2000_goc | 2000 | small, tiny | 0, 42 | – / 20.3 / 5.3 MB |
+| case10000_goc | 10000 | small, tiny | 0, 1 | – / 20.3 / 5.3 MB |
+
+**The weight file size is identical across grids.** The GNS has no grid-size-dependent parameters (all layers act
+per node / per edge), so a checkpoint trained on one grid can be run on another grid's graph as-is. That is what a
+zero-shot cross-topology test needs. Things to handle when doing it:
+- `normalizer_stats.pt` is keyed by network name (e.g. only `case30_ieee`) and stores a fitted `baseMVA`. Running a
+  case30 model on case14 data needs either the case30 baseMVA reused under the `case14_ieee` key (the model's
+  "expected" scale) or a refit on case14 (the data's scale). This is a design choice to make and report.
+- The same config/version conversion as for case14 (`--config_conversion auto_inline`) will apply.
+- Related: `gridfm/genco-pf-transfer` has a checkpoint **pretrained on many subgrids** (no normalizer stats), plus
+  case118 fine-tuned vs from-scratch models. It could be a more "foundation-model-like" starting point than a single-grid model.
+
+## 5. Source paper of the genco checkpoints
+
+All six `gridfm/genco-*` model repos are the artifacts of the GENCO paper. The model cards name the sections
+(e.g. `genco-pf-datakit` = §5.4.2 "PF on datakit", `genco-pfdelta` = §5.1).
+
+> A. Puech, M. Mazzonelli, T. R. Govindasamy, M. Mngomezulu, H. Maeso-García, T. Tolhurst, J. Bayazi, A. Moeini,
+> N. Simumba, C. Cintas, D. Nelischer, R. Kienzler, J. Weiss, A. Varbella, F. Dörfler, G. Hug, M. Mevissen,
+> J. Bernabé-Moreno, F. Mirallès, H. F. Hamann, E. Vos, T. Brunschwiler.
+> **"GENCO - A Unified Neural Solver Embedded in a Development Framework for Steady-State Grid Analysis."**
+> arXiv:2608.09921 [cs.AI], submitted 10 Aug 2026, v2 20 Aug 2026. https://arxiv.org/abs/2608.09921
+
+```bibtex
+@article{puech2026gencounifiedneural,
+  title   = {GENCO - A Unified Neural Solver Embedded in a Development Framework for Steady-State Grid Analysis},
+  author  = {Alban Puech and Matteo Mazzonelli and Tamara R. Govindasamy and Mangaliso Mngomezulu and H{\'e}ctor Maeso-Garc{\'i}a and Thomas Tolhurst and Javad Bayazi and Ali Moeini and Naomi Simumba and Celia Cintas and David Nelischer and Romeo Kienzler and Jonas Weiss and Anna Varbella and Florian D{\"o}rfler and Gabriela Hug and Martin Mevissen and Juan Bernab{\'e}-Moreno and Fran{\c{c}}ois Mirall{\`e}s and Hendrik F. Hamann and Etienne Vos and Thomas Brunschwiler},
+  journal = {arXiv preprint arXiv:2608.09921},
+  year    = {2026},
+  url     = {https://arxiv.org/abs/2608.09921}
+}
+```
+
+This is **not** the course's core paper ("Foundation Models for the Electric Power Grid", arXiv 2407.09434, 2024),
+which is the earlier GridFM position/vision paper. GENCO is the concrete model and toolkit the checkpoints come from.
+Data sources to cite as well:
+- gridfm-datakit: Puech et al., arXiv:2512.14658 (2025). Generated `pf_small_case14_ieee`.
+- PFΔ: Rivera et al., "PFΔ: A Benchmark Dataset for Power Flow under Load, Generation, and Topology Variations",
+  NeurIPS 2025 Datasets & Benchmarks, arXiv:2510.22048.
+
+## 6. Does PFΔ alone cover the anomaly labeling we need?
 
 | Label | Covered by PFΔ case14? | How |
 |---|---|---|

@@ -251,3 +251,51 @@ Source repos cloned read-only (in the scratchpad, not in this project) to read c
 - `MOSSLab-MIT/pfdelta` main @ `6fcdf2b`
 
 See `results/dataset_overview.md` for the full dataset comparison.
+
+```bash
+git add -A && git commit -m "Document Phase 2: case14 checkpoint and dataset survey" && git push   # 1aae92b
+```
+
+---
+
+## Phase 3: Data format exploration (2026-09-27)
+
+### 3.1 Extra listings (no downloads)
+
+```python
+from huggingface_hub import HfApi
+HfApi().list_repo_tree("gridfm/genco-pf-datakit", path_in_repo="<grid>", recursive=True)
+```
+(The raw `/api/models/.../tree` endpoint started returning non-JSON after many calls, likely rate limiting, so the
+Python API was used instead.) GENCO paper metadata verified at https://arxiv.org/abs/2608.09921. The course paper
+2407.09434 was verified to be the 2024 GridFM position paper. Both are in `results/dataset_overview.md` §4–5.
+
+### 3.2 Test subset (1000 scenarios)
+
+```bash
+./venv/Scripts/python.exe scripts/make_test_subset.py --n 1000 --seed 42    # ~30 s
+```
+- Samples 1000 of the checkpoint's 21,946 test scenario ids with `numpy.random.default_rng(42)`, renumbers them 0..999
+  and writes flat parquet to `data/case14_test1000/case14_ieee/raw/`, split files `data/case14_test1000/splits/{train,val,test}.pt`
+  (train/val empty, test = all 1000), and `results/test_subset_1000.csv` (original id, load scenario, outage type/element).
+- Loaded successfully through `LitGridHeteroDataModule` with the base checkpoint config (setup 13 s, 1000 test samples,
+  normalizer restored from `normalizer_stats.pt`, baseMVA 84.596). Two config overrides are **required**:
+  `data.split_from_existing_files: data/case14_test1000/splits` **and** `data.split_by_load_scenario_idx: false`
+  (graphkit asserts that only one split mode is set).
+- First load creates `data/case14_test1000/case14_ieee/processed/` (1000 `.pt` files).
+
+### 3.3 Exploration
+
+```bash
+tar -xzf data/pfdelta_orig/case14.tar.gz -C data/pfdelta_orig        # 2.2 GB, 159,622 entries; slow on Windows (many small files)
+tar -xzf data/pfdelta_orig/shuffle_files.tar.gz -C data/pfdelta_orig
+./venv/Scripts/python.exe scripts/explore_data.py --parts ABCD         # ~15 s
+./venv/Scripts/python.exe scripts/explore_data.py --parts E            # PFΔ part, 20 s
+```
+- Extraction ran at only ~50–500 files/s (Windows + many small files; likely antivirus scanning), so it would take more
+  than 1 h. Part E therefore **streams the JSONs directly from `case14.tar.gz`** with Python `tarfile` + a multiprocessing
+  pool (105k feasible JSONs parsed in 20 s). The extraction was left running in the background for later use
+  (the datakit converter needs files on disk).
+- First run of part E crashed with `UnicodeEncodeError` (Windows console cp1252 can't print "Δ"). Fixed with
+  `sys.stdout.reconfigure(encoding="utf-8")` in the script.
+- Datakit's `stats.parquet` only covers 20,000 of 219,606 scenarios, so violations are computed from the raw tables instead.
