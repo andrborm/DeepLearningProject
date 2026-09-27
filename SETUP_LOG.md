@@ -136,3 +136,118 @@ py -3.11 -m venv venv
     --extra-index-url https://download.pytorch.org/whl/cpu \
     -f https://data.pyg.org/whl/torch-2.12.0+cpu.html
 ```
+
+---
+
+## Git (2026-09-27)
+
+The remote `https://github.com/andrborm/DeepLearningProject.git` already had one commit (a placeholder `README.md` from GitHub).
+Our first commit was built on top of it, so no force-push was needed:
+```bash
+git remote add origin https://github.com/andrborm/DeepLearningProject.git
+git fetch origin
+git symbolic-ref HEAD refs/heads/main      # local branch "main" to match the remote
+git reset origin/main                       # index = remote tree, working tree untouched
+git add -A && git commit -m "Set up Python 3.11 environment for GridFM project"
+git push -u origin main                     # a8d9610..3e6788a
+```
+
+---
+
+## Phase 2: Checkpoint and data (2026-09-27)
+
+### 2.1 Finding the identifiers
+
+```bash
+curl -s "https://huggingface.co/api/models?author=gridfm&limit=100"
+curl -s "https://huggingface.co/api/datasets?author=gridfm&limit=200"
+curl -s -o /dev/null -w "%{http_code}" https://huggingface.co/api/models/gridfm/gridfm-pf-reconstruction   # -> 401
+```
+
+- **`gridfm/gridfm-pf-reconstruction` does not exist or is not public** (HTTP 401). The gridfm org has only six model
+  repos, all from the GENCO paper (arXiv 2608.09921): `genco-pf-datakit`, `genco-pfdelta`, `genco-pf-transfer`,
+  `genco-pf-contingency`, `genco-opfdata`, `genco-opf-datakit`.
+- **The case14 PF checkpoint is `gridfm/genco-pf-datakit`, folder `case14_ieee/{base,small,tiny}/seed{0,1,42}/`.**
+  `genco-pfdelta` (the PFDelta models) is **case118-only**.
+
+### 2.2 Checkpoint: `gridfm/genco-pf-datakit` / `case14_ieee`
+
+| Item | Value |
+|---|---|
+| Trained on | `gridfm/pf_small_case14_ieee` (datakit PF data, pglib case14, 219,606 scenarios; the YAML says `scenarios: [250000]` as an upper bound), split 80/10/10 **by load scenario** (`split_by_load_scenario_idx: true`) |
+| Task | `PowerFlow` (graphkit `PowerFlowTask`) |
+| Architecture | `GNS_heterogeneous`: heterogeneous graph (bus nodes, gen nodes, bus–bus branch edges, gen↔bus edges), 12 message-passing layers with 8 attention heads, LayerNorm and skip connections. After every layer the AC power-balance residual is computed and fed back into the bus hidden state via `physics_mlp` (physics-informed "graph neural solver"). |
+| Sizes (seed0) | base: hidden 48, 20.07 M params, 80 MB · small: hidden 24, 5.05 M, 20 MB · tiny: hidden 12, 1.28 M, 5 MB |
+| Inputs | bus 15 features, gen 6, edge 10 (see 2.3) |
+| Outputs | per bus: **Vm, Va** (2-dim head). Per gen: **Pg** (1-dim head). Known (unmasked) values are overwritten with inputs. A physics decoder then derives bus-level **Pg, Qg** from predicted voltages, giving bus output `[Vm, Va, Pg, Qg]` |
+| Loss | 0.1 × `LayeredWeightedPhysics` (per-layer power-balance residual) + 0.9 × `MaskedBusMSE` |
+| Normalizer | `HeteroDataMVANormalizer`: divides powers by a fitted `baseMVA = 84.596` (stored in `normalizer_stats.pt`), angles deg→rad, `rate_a` / baseMVA. Not a per-feature mean/std. |
+| Training config | AdamW lr 5e-4, ReduceLROnPlateau (0.7, patience 5), batch 64, 200 epochs, seeds 0 / 1 / 42 |
+| Training code | graphkit branch `genco-paper-repro` = `v0.0.7-35-g6edf7eb` (pyproject `version = "0.0.7"`). This branch **diverged** from main; it is not an ancestor of v0.9.0.3. The MLflow runs record **no** package version or git commit (tags and params are empty). Eval run date 2026-05-08. |
+
+Reference test metrics (from the checkpoint's MLflow eval run on the 21,946-scenario test split, seed0):
+
+| Model | RMSE Vm PQ (p.u.) | RMSE Va PQ (rad) | RMSE Qg PV (MVar) | RMSE Pg REF (MW) | RMSE Qg REF (MVar) | PBE mean | PBE max |
+|---|---|---|---|---|---|---|---|
+| base | 1.16e-4 | 1.03e-3 | 0.579 | 0.160 | 1.196 | 2.68e-3 | 0.573 |
+| small | 1.48e-4 | 1.23e-3 | 0.665 | 0.164 | 1.362 | 3.03e-3 | 1.646 |
+| tiny | 1.37e-4 | 0.94e-3 | 0.809 | 0.194 | 1.674 | 5.13e-3 | 4.285 |
+
+Download:
+```bash
+./venv/Scripts/hf.exe download gridfm/genco-pf-datakit \
+    --include "case14_ieee/base/seed0/*" --include "case14_ieee/small/seed0/*" --include "case14_ieee/tiny/seed0/*" \
+    --local-dir checkpoints/genco-pf-datakit
+./venv/Scripts/hf.exe download gridfm/genco-pf-datakit \
+    --include "mlflow/eval/case14_ieee/*/seed0/*/artifacts/test/*" \
+    --include "mlflow/eval/case14_ieee/base/seed0/*/artifacts/stats/*" --include README.md \
+    --local-dir checkpoints/genco-pf-datakit
+```
+Note: with `hf` (huggingface_hub 2.0.0, already installed as a dependency) **each pattern needs its own `--include`**.
+`--include a b c` silently dropped patterns.
+`artifacts/stats/case14_ieee_scenario_splits.json` gives the train/val/test scenario IDs (175,713 / 21,947 / 21,946).
+
+### 2.3 Compatibility of the checkpoint with graphkit 0.9.0.3
+
+Method: cloned `gridfm-graphkit` main (v0.9.0.3 = `f70230c`) and the `genco-paper-repro` branch (`6edf7eb`), diffed the
+relevant modules, then loaded all three checkpoints through the same code path the CLI uses
+(`resolve_config` → `LitGridHeteroDataModule` → `get_task` → `model.load_state_dict`, strict).
+
+| Check | Result |
+|---|---|
+| Config version | Checkpoint YAML has no `version:` key, so it is treated as **v0**. 0.9.0.3 refuses it by default (`ValueError: ... is version 0, but this version ... requires config version 1`). **Fix:** `--config_conversion auto_inline` (only rewrites the optimizer block into the v1 schema, which is irrelevant for inference). |
+| State dict keys | **0 missing, 0 unexpected, all shapes match** for base / small / tiny. Strict load OK. |
+| Warnings on load | None about keys. Only `torch.jit.script` DeprecationWarnings from inside torch/graphkit (harmless). |
+| Bus/gen/branch feature lists | **Identical.** Bus: `Pd, Qd, Qg, Vm, Va, PQ, PV, REF, min_vm_pu, max_vm_pu, min_q_mvar, max_q_mvar, GS, BS, vn_kv`. Gen: `p_mw, min_p_mw, max_p_mw, cp0, cp1, cp2, in_service`. Branch fwd: `pf, qf, Yff_r, Yff_i, Yft_r, Yft_i, tap, ang_min, ang_max, rate_a, br_status` (reverse uses `pt, qt, Ytt, Ytf`). `in_service` / `br_status` are used to drop inactive elements, giving gen dim 6 and edge dim 10. |
+| Index constants (`globals.py`) | Identical, plus two new constants (`PD_OUT`, `QD_OUT`) used only for random masking. |
+| Normalizer (`HeteroDataMVANormalizer`) | Same scaling logic. 0.9.0.3 adds Pd/Qd output rescaling, but only when the output has >4 columns (not our case). |
+| PF masking (`AddPFHeteroMask`) | **Unchanged.** New `AddRandomHeteroMask` is only used when `data.mask_type: rnd` (not set). |
+| Model forward | Numerically equivalent predictions. Signature changed to `forward(batch, return_embeddings=False)`. It skips a last-layer `physics_mlp` update whose result was never used, and can now return the final bus/gen hidden states (embeddings). |
+| **Metric definition** | **Changed.** 0.9.0.3 overwrites known quantities with ground truth (`_clamp_known_to_ground_truth`) before computing power-balance residuals / PBE. The training branch used raw model output. **Residual/PBE numbers from 0.9.0.3 are therefore not directly comparable** to the model card's `metrics.csv`. Per-bus-type RMSE is computed the same way. |
+
+**Verdict: the checkpoint is usable with graphkit 0.9.0.3** (with `--config_conversion auto_inline` and
+`--normalizer_stats`). The only mismatch that affects reported numbers is the residual/PBE metric definition.
+
+### 2.4 Datasets
+
+```bash
+# checkpoint's own training/test data (graphkit-ready), layout expected by graphkit: data/<network>/raw/
+mkdir -p data/case14_ieee/raw
+./venv/Scripts/hf.exe download gridfm/pf_small_case14_ieee --repo-type dataset --local-dir data/case14_ieee/raw
+
+# original PFΔ case14 (N / N-1 / N-2 + near-infeasible), not extracted
+./venv/Scripts/hf.exe download pfdelta/pfdelta case14.tar.gz        --repo-type dataset --local-dir data/pfdelta_orig
+./venv/Scripts/hf.exe download pfdelta/pfdelta shuffle_files.tar.gz --repo-type dataset --local-dir data/pfdelta_orig
+```
+
+Download of `pf_small_case14_ieee` took 13 min (unauthenticated, hit one HF rate limit, then retried automatically).
+Verified with pyarrow: 7,262 files (matches the HF listing), 427 MB on disk, Hive-partitioned (1,108 `scenario_partition=*`
+folders per table). bus / gen / branch rows = 3,074,484 / 1,098,030 / 4,392,120 = 219,606 scenarios × 14 / 5 / 20.
+Scenario IDs are contiguous 0..219,605 and match `n_scenarios.txt`.
+
+Source repos cloned read-only (in the scratchpad, not in this project) to read code:
+- `gridfm/gridfm-graphkit` main @ `f70230c` (v0.9.0.3) and `genco-paper-repro` @ `6edf7eb`
+- `gridfm/gridfm-datakit` main @ `5a46ffd` (has `pfdelta/batch_convert_pfdelta.py`)
+- `MOSSLab-MIT/pfdelta` main @ `6fcdf2b`
+
+See `results/dataset_overview.md` for the full dataset comparison.
