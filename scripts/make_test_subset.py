@@ -55,16 +55,13 @@ def outage_info(gen, branch):
         ["none", "branch", "gen"],
         default="mixed",
     )
-    info["out_branches"] = (
-        br_out.groupby("scenario")
-        .apply(lambda d: ";".join(f"{i:.0f}({f}-{t})" for i, f, t in zip(d.idx, d.from_bus, d.to_bus)))
-        .reindex(info.index, fill_value="")
-    )
-    info["out_gens"] = (
-        gen_out.groupby("scenario")
-        .apply(lambda d: ";".join(f"{i:.0f}(bus{b})" for i, b in zip(d.idx, d.bus)))
-        .reindex(info.index, fill_value="")
-    )
+    br_label = pd.Series([f"{i:.0f}({f}-{t})" for i, f, t in zip(br_out.idx, br_out.from_bus, br_out.to_bus)],
+                         index=br_out.scenario, dtype=str)
+    gen_label = pd.Series([f"{i:.0f}(bus{b})" for i, b in zip(gen_out.idx, gen_out.bus)],
+                          index=gen_out.scenario, dtype=str)
+    # (works for N-0 too, where there are no outaged elements)
+    info["out_branches"] = br_label.groupby(level=0).agg(";".join).reindex(info.index, fill_value="")
+    info["out_gens"] = gen_label.groupby(level=0).agg(";".join).reindex(info.index, fill_value="")
     return info
 
 

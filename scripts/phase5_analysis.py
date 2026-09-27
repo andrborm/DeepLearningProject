@@ -53,10 +53,10 @@ plt.rcParams.update({
 
 
 # --------------------------------------------------------------------------- labels
-def true_labels_from_raw():
+def true_labels_from_raw(raw_dir=SUBSET_RAW):
     """Ground-truth labels from the raw solved power flow (both branch ends, in-service only)."""
-    bus = pd.read_parquet(SUBSET_RAW / "bus_data.parquet")
-    br = pd.read_parquet(SUBSET_RAW / "branch_data.parquet")
+    bus = pd.read_parquet(raw_dir / "bus_data.parquet")
+    br = pd.read_parquet(raw_dir / "branch_data.parquet")
     br = br[br.br_status == 1]
     loading = np.maximum(np.hypot(br.pf, br.qf), np.hypot(br.pt, br.qt)) / br.rate_a
     return pd.DataFrame({

@@ -5,8 +5,9 @@ Course paper: "Foundation Models for the Electric Power Grid" (Hamann et al., ar
 The checkpoints used here come from **GENCO** (Puech et al., arXiv 2608.09921, 2026). Citations are in
 `results/dataset_overview.md` §5.
 
-**Status:** setup, first inference and data exploration done (stage 1 groundwork). No fine-tuning or anomaly
-detector yet. Every command and version is in [`SETUP_LOG.md`](SETUP_LOG.md).
+**Status:** setup, first inference, data exploration and a first PFΔ distribution-shift test done. No
+fine-tuning or anomaly detector yet. **PFΔ N-2 is held out untouched for the final evaluation.** Every command and
+version is in [`SETUP_LOG.md`](SETUP_LOG.md).
 
 ## Layout
 
@@ -60,6 +61,10 @@ in place, and extraction takes ~25 min on Windows.
 | 3. Inference | `./venv/Scripts/python.exe scripts/run_inference.py --size base --n 1000` (`--n 50` quick check, `--size tiny` sanity model) | 40 s | `configs/case14_<size>_infer.yaml`, `results/inference_per_sample.csv`, `results/inference_*.csv` → `results/inference_summary.md` |
 | 4. Embeddings + predictions | `gridfm_graphkit predict ... --get_embeddings --output_path data/predictions/base_n1000` (full command in `results/phase5_summary.md`) | 17 s | bus / branch predictions + 384-d bus embeddings (parquet) |
 | 5. Analysis + figures | `./venv/Scripts/python.exe scripts/phase5_analysis.py` | 3 s | embeddings `.npy`, confusion tables, percentiles, hard cases, `results/figures/*.png` → `results/phase5_summary.md` |
+| 6. PFΔ conversion (N-0, N-1 only) | `./venv/Scripts/python.exe scripts/vendor/batch_convert_pfdelta.py --data-dir data/pfdelta_orig/case14/<n or n-1>/raw --out-dir data/pfdelta_case14/<n or n-1>/raw` | 3 min | graphkit-ready parquet |
+| 7. PFΔ test subset | `./venv/Scripts/python.exe scripts/make_pfdelta_subset.py --per-topology 500 --seed 42` | 5 s | `data/pfdelta_test1000/`, `results/pfdelta_test_subset_1000.csv` |
+| 8. PFΔ inference | `./venv/Scripts/python.exe scripts/run_inference.py --dataset pfdelta --size base --n 1000` | 50 s | `results/inference_*_pfdelta.csv` |
+| 9. Shift evaluation | `./venv/Scripts/python.exe scripts/pfdelta_shift_eval.py` | 2 s | conversion checks, error comparison, predict-then-check, wrong-vs-right → `results/pfdelta_shift_summary.md` |
 
 Inference always uses at most 1000 samples (course requirement; the scripts assert it).
 
@@ -101,6 +106,14 @@ Inference always uses at most 1000 samples (course requirement; the scripts asse
    only weakly with the labels (Spearman ≤ 0.12).
 5. One sample (438, outage of the 472 MVA slack line 0–1) has 3.6× the error of any other and sets most maxima.
 6. Reactive-power limits are violated in 57 % of datakit scenarios (PF does not enforce them), so they are useless as an anomaly class.
+7. **The base model breaks down on PFΔ** (`results/pfdelta_shift_summary.md`). On 1000 PFΔ N-0/N-1 test samples,
+   errors are 40–1,000× the datakit level (PQ Vm RMSE 0.067 p.u., slack Pg 34.5 MW). 63 % of the samples have more total
+   load than any datakit sample, and predicted voltages are **biased low** (N-0: 99 % of PQ Vm errors negative).
+   Predict-then-check keeps recall ≈ 0.99 but precision drops to **0.76 (voltage) / 0.65 (overload)**. The false alarms
+   are invented under-voltages (true Vm 0.048 p.u. above the limit) and near-limit branches.
+8. **The power-balance residual flags wrong voltage labels** (AUC 0.80) and tracks reconstruction error closely under
+   shift (Spearman 0.91). For overloads it only works in N-1 (AUC 0.83). In N-0 it is inverted (0.43), because it mostly
+   tracks how stressed a sample is.
 
 ### Open questions to resolve before the next step
 - **Islanding as a class: not possible with the current data.** Both PFΔ (resamples until the graph is connected) and
@@ -122,6 +135,10 @@ Inference always uses at most 1000 samples (course requirement; the scripts asse
 - **Zero-shot cross-topology test**: case30/57/118/500 checkpoints exist (same weight size, so they run on any grid).
   Decide which normalizer (`baseMVA`) to use when running a case30 model on case14.
 - Which training data for the classifier: PFΔ (balanced, stressed) vs datakit (realistic base rates, ~94 % normal), or both.
+- **Stage 2 is clearly needed**: fine-tune on PFΔ N-0/N-1 training-pool samples to cover the higher load range, then
+  redo the PFΔ test. Decide how to handle the load/topology confound (report per topology and per load bin).
+- Can a residual threshold on top of predict-then-check cut the voltage false alarms (voltage-FP residuals ≈ 10× TP
+  residuals) without losing recall? This is a cheap first version of approach A.
 
 ## Results index
 
@@ -131,6 +148,7 @@ Inference always uses at most 1000 samples (course requirement; the scripts asse
 | `results/data_format.md` | columns, bus types, masking, statistics, violations, `rate_a`, PFΔ counts |
 | `results/inference_summary.md` | inference setup, errors by bus / outage type, model-card comparison, residuals, PFΔ + label plan |
 | `results/phase5_summary.md` | percentiles, hard cases, embeddings, predict-then-check, figures |
+| `results/pfdelta_shift_summary.md` | PFΔ conversion, base model on PFΔ N-0/N-1 test, predict-then-check under shift, wrong-vs-right |
 | `results/figures/` | fig1 error distribution, fig2 error by outage type, fig3 embedding PCA |
 | `results/inference_per_sample.csv` | per-sample errors (base); `_tiny_n1000` for tiny |
 | `results/hard_cases_top5pct.csv` | 50 hardest samples with outage info and labels |

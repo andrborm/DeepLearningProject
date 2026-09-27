@@ -362,3 +362,34 @@ gridfm_graphkit predict --config configs/case14_base_infer.yaml \
   `validate_palette.js "#2a78d6,#eb6834,#1baf7a" --mode light --pairs all` (Node v24.14.0): all checks pass, with a contrast WARN
   on aqua, handled by a distinct marker shape and count labels.
 - The background `tar -xzf case14.tar.gz` finished after **23 min** (159,600 files, 2.5 GB in `data/pfdelta_orig/case14/`).
+
+```bash
+git add -A && git commit -m "Add Phase 5 embeddings, predict-then-check baseline and figures" && git push   # 33fa882
+```
+
+---
+
+## Phase 6: PFΔ conversion and first distribution-shift test (2026-09-27)
+
+Rule: **N-2 is not converted, read or run** until the final evaluation.
+
+```bash
+# converter from the datakit GitHub repo (not in the pip package), vendored unmodified with a source header
+#   https://github.com/gridfm/gridfm-datakit/blob/5a46ffd4858c8edb30280bd313d7d5b9694e9a86/pfdelta/batch_convert_pfdelta.py
+./venv/Scripts/python.exe scripts/vendor/batch_convert_pfdelta.py --data-dir data/pfdelta_orig/case14/n-1/raw --out-dir data/pfdelta_case14/n-1/raw   # 29,000 files, 1 min
+./venv/Scripts/python.exe scripts/vendor/batch_convert_pfdelta.py --data-dir data/pfdelta_orig/case14/n/raw   --out-dir data/pfdelta_case14/n/raw     # 56,000 files, 2 min
+./venv/Scripts/python.exe scripts/make_pfdelta_subset.py --per-topology 500 --seed 42        # data/pfdelta_test1000/
+./venv/Scripts/python.exe scripts/run_inference.py --dataset pfdelta --size base --n 1000   # 49 s, run "base_n1000_pfdelta"
+./venv/Scripts/python.exe scripts/pfdelta_shift_eval.py > results/pfdelta_shift_eval_log.txt  # 2 s
+```
+- The converter's imports (`n_scenario_per_partition`, `compute_branch_admittances`) exist in the installed datakit 1.1.0.
+  It uses `Pool(cpu_count())` = 28 processes and writes Hive-partitioned parquet (200 scenarios / partition).
+- Scenario ids: converter maps `sample_N.json` → scenario `N-1`. PFΔ's test split (`core/datasets/pfdelta_dataset.py`)
+  = the last 2,000 positions `k` of `shuffle_files/<topo>/raw_shuffle.json`, file `sample_{shuffle[k]+1}.json`, so the
+  converted scenario id is `shuffle[k]`.
+- `make_test_subset.outage_info` failed on N-0 (no outaged elements: `groupby().apply()` on an empty frame returns a
+  DataFrame). Rewritten with `groupby().agg(";".join)`. Re-running the datakit subset gives an identical `test_subset_1000.csv`.
+- `run_inference.py` got `--dataset {datakit,pfdelta}`. It now finds its MLflow run by run name, and adds
+  `overall_score_vs_datakit` (normalized by the datakit base RMSE, for cross-dataset comparison). The datakit
+  `inference_per_sample.csv` from Phase 4 does not have this column (it would equal `overall_score` there).
+- A one-off check script crashed on "Δ" in the Windows console again; `PYTHONIOENCODING=utf-8` fixes it for ad-hoc runs.

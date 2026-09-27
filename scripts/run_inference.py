@@ -31,8 +31,11 @@ import torch
 import yaml
 
 ROOT = Path(__file__).resolve().parents[1]
-SUBSET = ROOT / "data/case14_test1000"
-SUBSET_CSV = ROOT / "results/test_subset_1000.csv"
+# dataset -> (graphkit data folder, subset mapping csv, output suffix)
+DATASETS = {
+    "datakit": (ROOT / "data/case14_test1000", ROOT / "results/test_subset_1000.csv", ""),
+    "pfdelta": (ROOT / "data/pfdelta_test1000", ROOT / "results/pfdelta_test_subset_1000.csv", "_pfdelta"),
+}
 CKPT_ROOT = ROOT / "checkpoints/genco-pf-datakit/case14_ieee"
 GRAPHKIT = ROOT / "venv/Scripts/gridfm_graphkit.exe"
 
@@ -42,14 +45,14 @@ TARGETS = {"PQ": ["Vm", "Va"], "PV": ["Va", "Qg"], "REF": ["Vm", "Qg", "Pg"]}
 UNITS = {"Vm": "p.u.", "Va": "rad", "Pg": "MW", "Qg": "MVAr"}
 
 
-def make_config(size, n):
+def make_config(size, n, subset, suffix):
     """Checkpoint YAML -> v1 inference config for the subset (written to configs/ for the record)."""
     from gridfm_graphkit.io.config_version import resolve_config
 
     ckpt_yaml = CKPT_ROOT / size / "seed0" / f"case14_ieee_{size}_seed0.yaml"
     cfg = resolve_config(yaml.safe_load(open(ckpt_yaml)), config_path=str(ckpt_yaml), conversion_mode="auto_inline")
 
-    splits = SUBSET / ("splits" if n == 1000 else f"splits_first{n}")
+    splits = subset / ("splits" if n == 1000 else f"splits_first{n}")
     if n != 1000:  # first n scenarios of the same seeded subset
         splits.mkdir(exist_ok=True)
         torch.save(torch.arange(n), splits / "test.pt")
@@ -63,20 +66,20 @@ def make_config(size, n):
     )
     # "auto" makes the CLI pick a DDP strategy on non-MPS machines; force plain CPU
     cfg["training"].update(accelerator="cpu", devices=1, strategy="auto")
-    out = ROOT / "configs" / f"case14_{size}_infer.yaml"
+    out = ROOT / "configs" / f"case14_{size}_infer{suffix}.yaml"
     yaml.safe_dump(cfg, open(out, "w"), sort_keys=False)
     return out
 
 
-def run_evaluate(config, size, n):
+def run_evaluate(config, size, n, subset, suffix):
     ckpt = CKPT_ROOT / size / "seed0"
-    run_name = f"{size}_n{n}"
+    run_name = f"{size}_n{n}{suffix}"
     cmd = [
         str(GRAPHKIT), "evaluate",
         "--config", str(config.relative_to(ROOT)),
         "--model_path", str((ckpt / "best_model_state_dict.pt").relative_to(ROOT)),
         "--normalizer_stats", str((ckpt / "normalizer_stats.pt").relative_to(ROOT)),
-        "--data_path", str(SUBSET.relative_to(ROOT)),
+        "--data_path", str(subset.relative_to(ROOT)),
         "--log_dir", "mlruns",
         "--exp_name", "phase4_inference",
         "--run_name", run_name,
@@ -87,9 +90,11 @@ def run_evaluate(config, size, n):
     # graphkit logs to a local ./mlruns folder; MLflow >= 3.x refuses file stores unless opted in
     env = dict(os.environ, MLFLOW_ALLOW_FILE_STORE="true", MLFLOW_DISABLE_AGENT_HINT="1", PYTHONIOENCODING="utf-8")
     subprocess.run(cmd, cwd=ROOT, check=True, env=env)
-    # newest run folder holding the saved predictions
-    runs = glob.glob(str(ROOT / "mlruns/*/*/artifacts/test/case14_ieee_predictions.parquet"))
-    return Path(max(runs, key=os.path.getmtime)).parents[1]
+    # newest run folder with this run name that holds the saved predictions
+    runs = [Path(p).parents[1] for p in glob.glob(str(ROOT / "mlruns/*/*/tags/mlflow.runName"))
+            if Path(p).read_text().strip() == run_name]
+    runs = [r / "artifacts" for r in runs if (r / "artifacts/test/case14_ieee_predictions.parquet").exists()]
+    return max(runs, key=os.path.getmtime)
 
 
 def per_bus_errors(bus):
@@ -121,16 +126,19 @@ def main():
     parser = argparse.ArgumentParser()
     parser.add_argument("--size", default="base", choices=["base", "small", "tiny"])
     parser.add_argument("--n", type=int, default=1000)
+    parser.add_argument("--dataset", default="datakit", choices=list(DATASETS))
     parser.add_argument("--artifacts", type=Path, help="skip inference, reuse an MLflow artifacts dir")
     args = parser.parse_args()
     assert args.n <= 1000, "course requirement: at most 1000 samples for inference"
     sys.stdout.reconfigure(encoding="utf-8")
+    subset_dir, subset_csv, ds_suffix = DATASETS[args.dataset]
 
-    art = args.artifacts or run_evaluate(make_config(args.size, args.n), args.size, args.n)
+    art = args.artifacts or run_evaluate(make_config(args.size, args.n, subset_dir, ds_suffix),
+                                         args.size, args.n, subset_dir, ds_suffix)
     print(f"\nartifacts: {art}")
     bus = pd.read_parquet(art / "test/case14_ieee_predictions.parquet")
     branch = pd.read_parquet(art / "test/case14_ieee_branch_predictions.parquet")
-    subset = pd.read_csv(SUBSET_CSV).set_index("subset_id")
+    subset = pd.read_csv(subset_csv).set_index("subset_id")
     assert bus.scenario.nunique() == args.n, f"expected {args.n} scenarios, got {bus.scenario.nunique()}"
 
     long = per_bus_errors(bus)
@@ -150,13 +158,18 @@ def main():
     # overall score: mean over variables of (sample RMSE / subset RMSE), so 1.0 = typical sample
     rmse_var = long.groupby(["scenario", "variable"]).err.apply(lambda e: np.sqrt((e ** 2).mean())).unstack()
     per["overall_score"] = (rmse_var / by_var.RMSE).mean(axis=1)
+    # same score but on a fixed scale across datasets: relative to the datakit base-model RMSE
+    ref = ROOT / "results/inference_by_variable.csv"
+    ref_rmse = pd.read_csv(ref, index_col="variable").RMSE if ref.exists() else by_var.RMSE
+    per["overall_score_vs_datakit"] = (rmse_var / ref_rmse).mean(axis=1)
     res = bus.groupby("scenario").agg(pbe_mean=("PBE", "mean"), pbe_max=("PBE", "max"),
                                       res_P_mean=("active res. (MW)", "mean"),
                                       res_Q_mean=("reactive res. (MVar)", "mean"))
     per = per.join(res)
-    per = subset[["orig_scenario", "outage_type", "out_branches", "out_gens"]].join(per, how="inner")
+    id_cols = [c for c in ["topology", "orig_scenario", "outage_type", "out_branches", "out_gens"] if c in subset]
+    per = subset[id_cols].join(per, how="inner")
     per.index.name = "sample_id"
-    suffix = "" if args.size == "base" and args.n == 1000 else f"_{args.size}_n{args.n}"
+    suffix = ds_suffix + ("" if args.size == "base" and args.n == 1000 else f"_{args.size}_n{args.n}")
     per.to_csv(ROOT / f"results/inference_per_sample{suffix}.csv", float_format="%.6g")
 
     # graphkit's own RMSE table for this run vs the model card (same code, same format)
