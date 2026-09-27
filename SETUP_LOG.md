@@ -336,3 +336,29 @@ Problems hit and fixes:
 
 MLflow run ids (experiment `664988715015135692`, gitignored `mlruns/`): base n50 `04f66457…`, base n1000 `cd767993…`,
 tiny n1000 `989a6264…`.
+
+```bash
+git add -A && git commit -m "Add Phase 4 inference on 1000-sample case14 test subset" && git push   # 04bf3af
+```
+
+---
+
+## Phase 5: Hard cases, embeddings, predict-then-check (2026-09-27)
+
+Scope changed by request: **the datakit/Julia N-k smoke test is deferred** (`gridfm_datakit setup_pm` still not run).
+
+```bash
+export MLFLOW_ALLOW_FILE_STORE=true
+gridfm_graphkit predict --config configs/case14_base_infer.yaml \
+  --model_path checkpoints/genco-pf-datakit/case14_ieee/base/seed0/best_model_state_dict.pt \
+  --normalizer_stats checkpoints/genco-pf-datakit/case14_ieee/base/seed0/normalizer_stats.pt \
+  --data_path data/case14_test1000 --log_dir mlruns --exp_name phase5_embeddings --run_name base_n1000 \
+  --num_workers 0 --get_embeddings --output_path data/predictions/base_n1000        # 17 s
+./venv/Scripts/python.exe scripts/phase5_analysis.py > results/phase5_analysis_log.txt   # 3 s
+```
+- `predict --get_embeddings` writes `case14_ieee_{predictions,branch_predictions,bus_embeddings}.parquet` into
+  `--output_path` (gitignored `data/predictions/`). Embeddings are 384-d per bus (14,000 rows × 386 columns).
+- Figures follow the dataviz reference palette. The categorical set was validated with the skill's
+  `validate_palette.js "#2a78d6,#eb6834,#1baf7a" --mode light --pairs all` (Node v24.14.0): all checks pass, with a contrast WARN
+  on aqua, handled by a distinct marker shape and count labels.
+- The background `tar -xzf case14.tar.gz` finished after **23 min** (159,600 files, 2.5 GB in `data/pfdelta_orig/case14/`).

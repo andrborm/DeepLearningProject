@@ -1,0 +1,90 @@
+predict vs evaluate predictions, max abs difference: 0  (run cd7679935b944a4fa64241250bed33a3)
+
+================================================================================
+1. Embeddings
+================================================================================
+bus embeddings (1000, 14, 384) (samples, buses, dim); graph (mean-pooled) (1000, 384)
+embedding = final-layer h_bus fed into the Vm/Va head; dim = hidden_size 48 x 8 heads = 384
+value range -0.16..21.68, mean 1.234, std 1.284
+graph-level dims with std < 1e-6 (dead): 0 / 384
+PCA explained variance, first 5 PCs: [0.824999988079071, 0.0989999994635582, 0.019999999552965164, 0.017000000923871994, 0.00800000037997961] | PCs for 90 %: 2
+
+================================================================================
+2. Predict-then-check: labels from predicted state vs truth
+================================================================================
+graphkit target labels vs raw-data labels, agreement: {'y_voltage': 1000, 'y_overload': 1000} of 1000
+directed edges matched: 38372 of 38372 | max |S_target - S_raw| = 0.000333 MVA | max |rate_a - rate_a_raw| = 2.84e-14
+max |thermal_excess_target - relu(S_raw - rate_a)| = 5.13e-05 MVA
+(a) naive: predicted Vm (incl. predicted slack Vm) vs limits, tolerance 1e-6
+                  TP      FP    FN      TN  precision  recall    F1
+y_voltage     27.000 415.000 1.000 557.000      0.061   0.964 0.115
+y_overload    37.000   0.000 0.000 963.000      1.000   1.000 1.000
+any violation 63.000 396.000 1.000 540.000      0.137   0.984 0.241
+
+voltage false positives: 415; bus of the predicted violation: {0: 415}; true slack Vm on the 1.06 limit in 99.2% of samples
+
+y_voltage under different checking rules:
+                                       TP      FP    FN      TN  precision  recall    F1
+(a) naive, tol 1e-6                27.000 415.000 1.000 557.000      0.061   0.964 0.115
+(b) tolerance 0.0001 p.u.          25.000 325.000 3.000 647.000      0.071   0.893 0.132
+(b) tolerance 0.0005 p.u.          25.000 107.000 3.000 865.000      0.189   0.893 0.312
+(b) tolerance 0.001 p.u.           24.000  19.000 4.000 953.000      0.558   0.857 0.676
+(b) tolerance 0.002 p.u.           20.000   1.000 8.000 971.000      0.952   0.714 0.816
+(c) slack setpoint known, tol 1e-6 27.000   0.000 1.000 972.000      1.000   0.964 0.982
+
+misclassified with rule (c): 1
+          y_voltage  y_voltage_pred_slack_known  vm_margin  min_vm  max_vm  y_overload  y_overload_pred  overload_margin
+scenario                                                                                                                
+119            True                       False -5.545e-05   1.019    1.06       False            False           0.5261
+
+================================================================================
+3. Median / p95 / p99 next to RMSE
+================================================================================
+                         n   median      p95      p99     max      MAE     RMSE
+variable bus_type                                                              
+Pg       REF         1e+03   0.0175    0.075    0.164    3.37   0.0302    0.118
+Qg       PV       3.81e+03   0.0298     1.21     2.47    9.34     0.23    0.606
+         REF         1e+03    0.626     2.43     3.91    9.85     0.84     1.26
+Va       PQ       9.19e+03 0.000126 0.000485  0.00103  0.0204 0.000198 0.000706
+         PV       3.81e+03 0.000131 0.000515  0.00106  0.0212 0.000209 0.000748
+Vm       PQ       9.19e+03 1.31e-05 0.000131 0.000317 0.00367 3.49e-05 8.78e-05
+         REF         1e+03 0.000307  0.00117  0.00201 0.00481  0.00042 0.000621
+
+                                     n   median      p95      p99      max      MAE     RMSE
+variable bus_type outage_type                                                               
+Pg       REF      branch           814   0.0181   0.0843      0.2     3.37   0.0329     0.13
+                  gen              186   0.0145   0.0522   0.0683    0.102   0.0186   0.0245
+Qg       PV       branch      3.26e+03   0.0269     1.26     2.58     9.34    0.231    0.629
+                  gen              558   0.0492    0.945     1.95     2.73    0.218    0.449
+         REF      branch           814    0.654     2.47      4.3     9.85    0.889     1.33
+                  gen              186    0.494     1.82     2.74     2.88    0.628    0.834
+Va       PQ       branch      7.33e+03 0.000131 0.000506  0.00127   0.0204 0.000213 0.000785
+                  gen         1.86e+03  0.00011 0.000367 0.000541 0.000976  0.00014 0.000186
+         PV       branch      3.26e+03 0.000134 0.000541  0.00121   0.0212 0.000218 0.000805
+                  gen              558 0.000116 0.000414 0.000593  0.00117 0.000151 0.000205
+Vm       PQ       branch      7.33e+03 1.11e-05 0.000108 0.000257  0.00367 2.94e-05 8.16e-05
+                  gen         1.86e+03 2.55e-05 0.000219 0.000475  0.00129 5.63e-05 0.000109
+         REF      branch           814 0.000316   0.0012  0.00208  0.00481 0.000433 0.000648
+                  gen              186 0.000283    0.001  0.00139  0.00188 0.000364 0.000483
+
+overall score: median 0.355, p95 1.153, p99 2.003, max 17.30
+
+================================================================================
+4. Top 5 % hard cases
+================================================================================
+50 samples; outage type {'branch': 45, 'gen': 5} (subset: {'branch': 0.814, 'gen': 0.186})
+outaged element: {'3(1-3)': 9, '5(2-3)': 7, '9(4-5)': 5, '3(bus5)': 4, '0(0-1)': 3, '1(0-4)': 3}
+with a true violation: 7 of 50 (subset rate 0.064)
+bus holding the max error of each variable (top-5 % samples):
+variable  bus
+Pg        0      50
+Qg        0      46
+          1       4
+Va        2      25
+          1      11
+          11      6
+Vm        0      48
+          4       2
+Spearman(overall score, true label): {'y_voltage': np.float64(0.122), 'y_overload': np.float64(0.069)}
+
+figures written to D:\school\DeepLearning\gridfm-anomaly\results\figures

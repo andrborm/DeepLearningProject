@@ -46,6 +46,21 @@ input and have zero error by construction. Units: Vm p.u., Va **radians**, Pg MW
 For scale: Vm MAE 3.5e-5 p.u. is ~0.004 % of 1 p.u.; Va MAE 2e-4 rad ≈ 0.011°. The model is very accurate on typical
 samples. **Errors are heavy-tailed** (RMSE ≫ MAE, max ≈ 100× MAE).
 
+Robust view (added in Phase 5, `inference_percentiles_by_bus_type.csv`):
+
+| Variable | Bus type | median | p95 | p99 | RMSE |
+|---|---|---|---|---|---|
+| Vm | PQ | 1.31e-5 | 1.31e-4 | 3.17e-4 | 8.78e-5 |
+| Vm | REF | 3.07e-4 | 1.17e-3 | 2.01e-3 | 6.21e-4 |
+| Va | PQ | 1.26e-4 | 4.85e-4 | 1.03e-3 | 7.06e-4 |
+| Va | PV | 1.31e-4 | 5.15e-4 | 1.06e-3 | 7.48e-4 |
+| Qg | PV | 0.030 | 1.21 | 2.47 | 0.606 |
+| Qg | REF | 0.626 | 2.43 | 3.91 | 1.26 |
+| Pg | REF | 0.0175 | 0.075 | 0.164 | 0.118 |
+
+For Va, RMSE even exceeds the p95: a few samples dominate it. Per outage type see `inference_percentiles_by_outage_type.csv`
+and `phase5_summary.md` §1.
+
 ### By outage type (base)
 
 | Variable | Bus type | RMSE, branch outage | RMSE, gen outage | max abs, branch | max abs, gen |
