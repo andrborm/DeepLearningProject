@@ -299,3 +299,40 @@ tar -xzf data/pfdelta_orig/shuffle_files.tar.gz -C data/pfdelta_orig
 - First run of part E crashed with `UnicodeEncodeError` (Windows console cp1252 can't print "Δ"). Fixed with
   `sys.stdout.reconfigure(encoding="utf-8")` in the script.
 - Datakit's `stats.parquet` only covers 20,000 of 219,606 scenarios, so violations are computed from the raw tables instead.
+
+```bash
+git add -A && git commit -m "Add Phase 3 data exploration and 1000-sample test subset" && git push   # 2adce4f
+```
+
+---
+
+## Phase 4: First inference run (2026-09-27)
+
+```bash
+./venv/Scripts/python.exe scripts/run_inference.py --size base --n 50      # ~40 s, check run
+./venv/Scripts/python.exe scripts/run_inference.py --size base --n 1000    # ~43 s, main run
+./venv/Scripts/python.exe scripts/run_inference.py --size tiny --n 1000    # ~39 s, sanity check
+```
+Each call writes `configs/case14_<size>_infer.yaml` and then runs the graphkit CLI:
+```bash
+gridfm_graphkit evaluate --config configs/case14_<size>_infer.yaml \
+  --model_path checkpoints/genco-pf-datakit/case14_ieee/<size>/seed0/best_model_state_dict.pt \
+  --normalizer_stats checkpoints/genco-pf-datakit/case14_ieee/<size>/seed0/normalizer_stats.pt \
+  --data_path data/case14_test1000 --log_dir mlruns --exp_name phase4_inference --run_name <size>_n<N> \
+  --num_workers 0 --save_output
+```
+For n < 1000 the script writes `data/case14_test1000/splits_first<n>/` (test = first n subset ids) so the 50-sample
+check uses the same processed data.
+
+Problems hit and fixes:
+- **MLflow 3.16 refuses the file-store backend**: `MlflowException: The filesystem tracking backend (e.g., './mlruns') is in
+  maintenance mode ... set MLFLOW_ALLOW_FILE_STORE=true to opt out`. graphkit's CLI always creates an `MLFlowLogger` on a local
+  folder. Fixed by setting `MLFLOW_ALLOW_FILE_STORE=true` in the subprocess environment (alternative: pin `mlflow<3.x`).
+- `accelerator: auto` makes the CLI choose `DDPStrategy` on any non-MPS machine (`cli.py`), so the inference config sets
+  `training.accelerator: cpu` explicitly.
+- Harmless warnings: `Requested number of scenarios (250000) exceeds dataset size (1000)`, `data.scenarios is ignored when
+  split_from_existing_files is set`, numpy `invalid value encountered in divide` (graphkit's correlation plot for constant
+  targets, e.g. Va at REF = 0), Lightning "few workers" hints.
+
+MLflow run ids (experiment `664988715015135692`, gitignored `mlruns/`): base n50 `04f66457…`, base n1000 `cd767993…`,
+tiny n1000 `989a6264…`.
