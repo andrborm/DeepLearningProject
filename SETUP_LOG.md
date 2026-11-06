@@ -448,3 +448,23 @@ git push                                                         # cf3e38a
   `artifacts/model/last_epoch_state_dict.pt` (max |Δw| vs original 0.059). `finetune_pipeline.run` now patches the
   callback to skip `trainer.sanity_checking`. The hard/random best files were saved at 17:01 (end of training) and are fine.
 - MLflow run `ft_replay_base` = `f061c2d3…`. **Chosen final model: replay** (`results/finetune_summary.md`).
+
+---
+
+## Phase 9: Task 3 detectors, no N-2 (2026-11-06)
+
+```bash
+./venv/Scripts/python.exe scripts/stage3_detectors.py extract --model original     # 8 predict runs of <= 1000, ~5 min
+./venv/Scripts/python.exe scripts/stage3_detectors.py extract --model replay
+./venv/Scripts/python.exe scripts/stage3_detectors.py analyze --model replay   --with-datakit > results/stage3_replay_log.txt     # ~3 min
+./venv/Scripts/python.exe scripts/stage3_detectors.py analyze --model original --with-datakit > results/stage3_original_log.txt
+./venv/Scripts/python.exe scripts/stage3_detectors.py compare --models original replay > results/stage3_comparison_log.txt
+# side run (PFΔ-only probes on the random model): extract --model random; analyze --model random
+```
+- `predict --get_embeddings` is called through `main_cli` (same checkpoint normalizer). Its dataloader is the test
+  split, so every block gets a `data/stage3/splits_pred_<block>/` with test = that block (≤ 1000).
+- The embeddings and predictions are in `data/predictions/stage3/<model>/<block>/` (gitignored). The fitted probes are in
+  `data/stage3_probes/` (gitignored, frozen for N-2).
+- sklearn 1.9.1. The val PR-AUCs of refitted probes differ in the 4th digit between thread counts (`OMP_NUM_THREADS`);
+  the test table is unchanged.
+- Gate rule (fixed before looking at test): the fewest solver calls with val precision and recall ≥ 0.98 on both labels.

@@ -33,6 +33,7 @@ from pathlib import Path
 os.environ.setdefault("MLFLOW_ALLOW_FILE_STORE", "true")
 os.environ.setdefault("MLFLOW_DISABLE_AGENT_HINT", "1")
 
+import joblib
 import numpy as np
 import pandas as pd
 import torch
@@ -49,6 +50,7 @@ from phase5_analysis import confusion, labels_from_predictions, true_labels_from
 ROOT = Path(__file__).resolve().parents[1]
 RESULTS = ROOT / "results"
 PRED = ROOT / "data/predictions/stage3"
+PROBES = ROOT / "data/stage3_probes"  # fitted probes + thresholds (gitignored)
 LABELS = ["y_voltage", "y_overload"]
 SIZE = "base"
 
@@ -231,6 +233,9 @@ def approach_b(tabs, feats, train_groups, val_groups, model):
             Xtr, Xva = features(Xtr_raw, best.features), features(Xva_raw, best.features)
             clf = make_clf(probe, hp).fit(Xtr, ttr[lab].values)
             thr = best_threshold(tva[lab].values, clf.predict_proba(Xva)[:, 1])
+            PROBES.mkdir(parents=True, exist_ok=True)  # frozen for the N-2 test
+            joblib.dump({"clf": clf, "features": best.features, "threshold": thr, "hp": hp},
+                        PROBES / f"{model}_{probe}_{lab}.joblib")
             chosen.append({"model": model, "probe": probe, "label": lab, "features": best.features, "hp": best.hp,
                            "val PR-AUC": best["val PR-AUC"], "decision threshold": thr})
             for ds in ["test_pfdelta", "test_datakit"]:

@@ -1,0 +1,41 @@
+     dataset      label               method    model  precision  recall    F1  PR-AUC  FP  FN  solver share
+test_datakit y_overload   A gated PtC (drop) original          1       1     1     NaN   0   0             0
+test_datakit y_overload   A gated PtC (drop)   replay          1       1     1     NaN   0   0             0
+test_datakit y_overload A gated PtC (solver) original          1       1     1     NaN   0   0             0
+test_datakit y_overload A gated PtC (solver)   replay          1       1     1     NaN   0   0             0
+test_datakit y_overload             B logreg original          1       1     1       1   0   0           NaN
+test_datakit y_overload             B logreg   replay          1       1     1       1   0   0           NaN
+test_datakit y_overload                B mlp original          1       1     1       1   0   0           NaN
+test_datakit y_overload                B mlp   replay          1       1     1       1   0   0           NaN
+test_datakit y_overload         baseline PtC original          1       1     1     NaN   0   0           NaN
+test_datakit y_overload         baseline PtC   replay          1       1     1     NaN   0   0           NaN
+test_datakit  y_voltage   A gated PtC (drop) original          1   0.964 0.982     NaN   0   1             0
+test_datakit  y_voltage   A gated PtC (drop)   replay          1   0.964 0.982     NaN   0   1             0
+test_datakit  y_voltage A gated PtC (solver) original          1   0.964 0.982     NaN   0   1             0
+test_datakit  y_voltage A gated PtC (solver)   replay          1   0.964 0.982     NaN   0   1             0
+test_datakit  y_voltage             B logreg original      0.767   0.821 0.793   0.897   7   5           NaN
+test_datakit  y_voltage             B logreg   replay      0.857   0.857 0.857   0.924   4   4           NaN
+test_datakit  y_voltage                B mlp original      0.889   0.571 0.696   0.874   2  12           NaN
+test_datakit  y_voltage                B mlp   replay      0.828   0.857 0.842   0.934   5   4           NaN
+test_datakit  y_voltage         baseline PtC original          1   0.964 0.982     NaN   0   1           NaN
+test_datakit  y_voltage         baseline PtC   replay          1   0.964 0.982     NaN   0   1           NaN
+test_pfdelta y_overload   A gated PtC (drop) original        0.5  0.0187 0.036     NaN   6 315             0
+test_pfdelta y_overload   A gated PtC (drop)   replay          1   0.991 0.995     NaN   0   3             0
+test_pfdelta y_overload A gated PtC (solver) original      0.982       1 0.991     NaN   6   0         0.656
+test_pfdelta y_overload A gated PtC (solver)   replay          1   0.991 0.995     NaN   0   3             0
+test_pfdelta y_overload             B logreg original      0.913   0.888   0.9   0.971  27  36           NaN
+test_pfdelta y_overload             B logreg   replay      0.955   0.922 0.938   0.988  14  25           NaN
+test_pfdelta y_overload                B mlp original      0.859   0.872 0.866   0.956  46  41           NaN
+test_pfdelta y_overload                B mlp   replay      0.943   0.928 0.936   0.988  18  23           NaN
+test_pfdelta y_overload         baseline PtC original      0.647   0.988 0.782     NaN 173   4           NaN
+test_pfdelta y_overload         baseline PtC   replay          1   0.991 0.995     NaN   0   3           NaN
+test_pfdelta  y_voltage   A gated PtC (drop) original      0.938   0.235 0.376     NaN   8 394             0
+test_pfdelta  y_voltage   A gated PtC (drop)   replay          1   0.988 0.994     NaN   0   6             0
+test_pfdelta  y_voltage A gated PtC (solver) original      0.985   0.986 0.986     NaN   8   7         0.656
+test_pfdelta  y_voltage A gated PtC (solver)   replay          1   0.988 0.994     NaN   0   6             0
+test_pfdelta  y_voltage             B logreg original      0.907   0.893   0.9   0.973  47  55           NaN
+test_pfdelta  y_voltage             B logreg   replay      0.944   0.915 0.929   0.987  28  44           NaN
+test_pfdelta  y_voltage                B mlp original      0.903   0.891 0.897   0.971  49  56           NaN
+test_pfdelta  y_voltage                B mlp   replay      0.907   0.934 0.921   0.986  49  34           NaN
+test_pfdelta  y_voltage         baseline PtC original      0.759   0.986 0.858     NaN 161   7           NaN
+test_pfdelta  y_voltage         baseline PtC   replay          1   0.988 0.994     NaN   0   6           NaN

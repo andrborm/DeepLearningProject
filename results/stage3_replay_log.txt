@@ -1,0 +1,79 @@
+pf_probe: n=2000, voltage 50.0%, overload 33.0%, median score 4.01, median pbe 0.0514
+dk_probe: n=2000, voltage 3.1%, overload 4.3%, median score 1.06, median pbe 0.00802
+pf_val: n=1000, voltage 51.8%, overload 33.3%, median score 4.07, median pbe 0.0516
+dk_val: n=1000, voltage 2.0%, overload 4.7%, median score 1.05, median pbe 0.00796
+test_pfdelta: n=1000, voltage 51.5%, overload 32.1%, median score 3.94, median pbe 0.0491
+test_datakit: n=1000, voltage 2.8%, overload 3.7%, median score 1.13, median pbe 0.00835
+[A] gate chosen on val (pf_val+dk_val): residual > inf MVA -> solver (0.0% of val samples)
+
+=== A: residual as trust signal ===
+ model      dataset wrong label  n wrong  spearman(pbe, error)  AUROC  PR-AUC  PR-AUC chance
+replay test_pfdelta   y_voltage        6                 0.512   0.44 0.00638          0.006
+replay test_pfdelta  y_overload        3                 0.512  0.346 0.00298          0.003
+replay test_pfdelta         any        9                 0.512  0.408 0.00813          0.009
+replay test_datakit   y_voltage        1                 0.343  0.961   0.025          0.001
+replay test_datakit  y_overload        0                 0.343    NaN     NaN              0
+replay test_datakit         any        1                 0.343  0.961   0.025          0.001
+replay       pf_val   y_voltage       13                 0.515  0.533  0.0286          0.013
+replay       pf_val  y_overload        4                 0.515  0.526 0.00525          0.004
+replay       pf_val         any       17                 0.515  0.531  0.0288          0.017
+replay       dk_val   y_voltage        2                 0.348  0.757 0.00601          0.002
+replay       dk_val  y_overload        0                 0.348    NaN     NaN              0
+replay       dk_val         any        2                 0.348  0.757 0.00601          0.002
+
+=== A: gate sweep (thresholds = val quantiles) ===
+ model      dataset      label  val share target  threshold  solver share  solver precision  solver recall  solver FP  solver FN  drop precision  drop recall  drop FP  drop FN
+replay test_pfdelta  y_voltage                 0        inf             0                 1          0.988          0          6               1        0.988        0        6
+replay test_pfdelta y_overload                 0        inf             0                 1          0.991          0          3               1        0.991        0        3
+replay test_pfdelta  y_voltage              0.01      0.173         0.023                 1          0.988          0          6               1        0.961        0       20
+replay test_pfdelta y_overload              0.01      0.173         0.023                 1          0.991          0          3               1        0.947        0       17
+replay test_pfdelta  y_voltage              0.02      0.138         0.033                 1          0.988          0          6               1        0.942        0       30
+replay test_pfdelta y_overload              0.02      0.138         0.033                 1          0.991          0          3               1        0.931        0       22
+replay test_pfdelta  y_voltage              0.05      0.103         0.087                 1          0.988          0          6               1        0.872        0       66
+replay test_pfdelta y_overload              0.05      0.103         0.087                 1          0.991          0          3               1        0.813        0       60
+replay test_pfdelta  y_voltage               0.1     0.0823         0.168                 1           0.99          0          5               1        0.759        0      124
+replay test_pfdelta y_overload               0.1     0.0823         0.168                 1          0.991          0          3               1        0.685        0      101
+replay test_pfdelta  y_voltage               0.2     0.0599         0.375                 1          0.992          0          4               1        0.489        0      263
+replay test_pfdelta y_overload               0.2     0.0599         0.375                 1          0.991          0          3               1        0.386        0      197
+replay test_datakit  y_voltage                 0        inf             0                 1          0.964          0          1               1        0.964        0        1
+replay test_datakit y_overload                 0        inf             0                 1              1          0          0               1            1        0        0
+replay test_datakit  y_voltage              0.01      0.173             0                 1          0.964          0          1               1        0.964        0        1
+replay test_datakit y_overload              0.01      0.173             0                 1              1          0          0               1            1        0        0
+replay test_datakit  y_voltage              0.02      0.138         0.001                 1          0.964          0          1               1        0.929        0        2
+replay test_datakit y_overload              0.02      0.138         0.001                 1              1          0          0               1        0.973        0        1
+replay test_datakit  y_voltage              0.05      0.103         0.001                 1          0.964          0          1               1        0.929        0        2
+replay test_datakit y_overload              0.05      0.103         0.001                 1              1          0          0               1        0.973        0        1
+replay test_datakit  y_voltage               0.1     0.0823         0.003                 1          0.964          0          1               1        0.929        0        2
+replay test_datakit y_overload               0.1     0.0823         0.003                 1              1          0          0               1        0.919        0        3
+replay test_datakit  y_voltage               0.2     0.0599         0.006                 1          0.964          0          1               1        0.929        0        2
+replay test_datakit y_overload               0.2     0.0599         0.006                 1              1          0          0               1        0.865        0        5
+
+=== B: chosen probes ===
+ model  probe      label features                          hp  val PR-AUC  decision threshold
+replay logreg  y_voltage   pooled                  {"C": 0.1}       0.982               0.677
+replay logreg y_overload     flat                    {"C": 1}       0.992               0.885
+replay    mlp  y_voltage   pooled  {"alpha": 1, "hidden": 64}       0.983               0.473
+replay    mlp y_overload   pooled {"alpha": 1, "hidden": 256}       0.993               0.579
+
+=== detectors on test subsets ===
+ model               method      dataset      label  TP  FP  FN  TN  precision  recall    F1  PR-AUC  solver share
+replay         baseline PtC test_pfdelta  y_voltage 509   0   6 485          1   0.988 0.994     NaN           NaN
+replay A gated PtC (solver) test_pfdelta  y_voltage 509   0   6 485          1   0.988 0.994     NaN             0
+replay   A gated PtC (drop) test_pfdelta  y_voltage 509   0   6 485          1   0.988 0.994     NaN             0
+replay         baseline PtC test_pfdelta y_overload 318   0   3 679          1   0.991 0.995     NaN           NaN
+replay A gated PtC (solver) test_pfdelta y_overload 318   0   3 679          1   0.991 0.995     NaN             0
+replay   A gated PtC (drop) test_pfdelta y_overload 318   0   3 679          1   0.991 0.995     NaN             0
+replay         baseline PtC test_datakit  y_voltage  27   0   1 972          1   0.964 0.982     NaN           NaN
+replay A gated PtC (solver) test_datakit  y_voltage  27   0   1 972          1   0.964 0.982     NaN             0
+replay   A gated PtC (drop) test_datakit  y_voltage  27   0   1 972          1   0.964 0.982     NaN             0
+replay         baseline PtC test_datakit y_overload  37   0   0 963          1       1     1     NaN           NaN
+replay A gated PtC (solver) test_datakit y_overload  37   0   0 963          1       1     1     NaN             0
+replay   A gated PtC (drop) test_datakit y_overload  37   0   0 963          1       1     1     NaN             0
+replay             B logreg test_pfdelta  y_voltage 471  28  44 457      0.944   0.915 0.929   0.987           NaN
+replay             B logreg test_datakit  y_voltage  24   4   4 968      0.857   0.857 0.857   0.924           NaN
+replay             B logreg test_pfdelta y_overload 296  14  25 665      0.955   0.922 0.938   0.988           NaN
+replay             B logreg test_datakit y_overload  37   0   0 963          1       1     1       1           NaN
+replay                B mlp test_pfdelta  y_voltage 481  49  34 436      0.908   0.934 0.921   0.986           NaN
+replay                B mlp test_datakit  y_voltage  24   5   4 967      0.828   0.857 0.842   0.934           NaN
+replay                B mlp test_pfdelta y_overload 298  18  23 661      0.943   0.928 0.936   0.988           NaN
+replay                B mlp test_datakit y_overload  37   0   0 963          1       1     1       1           NaN

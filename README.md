@@ -6,7 +6,7 @@ The checkpoints used here come from **GENCO** (Puech et al., arXiv 2608.09921, 2
 `results/dataset_overview.md` §5.
 
 **Status:** setup, first inference, data exploration, a PFΔ distribution-shift test and Stage 2 fine-tuning on PFΔ
-N-0/N-1 (hard cases, random control, datakit replay) done. **Final model: replay.** Task 3 detectors in progress. **PFΔ N-2 is held out untouched for the final evaluation.** Every command and
+N-0/N-1 (hard cases, random control, datakit replay) done. **Final model: replay.** Task 3 detectors (baseline, A, B) built and frozen; only the N-2 test remains. **PFΔ N-2 is held out untouched for the final evaluation.** Every command and
 version is in [`SETUP_LOG.md`](SETUP_LOG.md).
 
 ## Layout
@@ -67,6 +67,7 @@ in place, and extraction takes ~25 min on Windows.
 | 9. Shift evaluation | `./venv/Scripts/python.exe scripts/pfdelta_shift_eval.py` | 2 s | conversion checks, error comparison, predict-then-check, wrong-vs-right → `results/pfdelta_shift_summary.md` |
 | 10. Fine-tune data | `./venv/Scripts/python.exe scripts/make_pfdelta_finetune_data.py` | 15 s | `data/pfdelta_ft/` (15k train-position mining pool + 1k PFΔ val), `results/pfdelta_ft_mapping.csv` |
 | 12. Replay fine-tuning | `scripts/make_stage3_data.py`, then `finetune_pipeline.py finetune --set replay --epochs 40`, `eval --model replay`, `compare --models original hard random replay` | 93 min | `results/finetune_summary.md` (replay section) |
+| 13. Task 3 detectors | `scripts/stage3_detectors.py extract --model <m>`, `analyze --model <m> --with-datakit`, `compare` (m = original, replay) | 2 × (5 + 3) min | `results/stage3_*` → `results/stage3_summary.md` |
 | 11. Fine-tuning | `scripts/finetune_pipeline.py` stages `splits`, `time`, `mine`, `select --k 2500`, `finetune --set hard` / `--set random`, `eval --model <m>`, `compare` (full commands in `SETUP_LOG.md` Phase 7) | 3 + 4 + 2×34 + 3 min | `results/finetune_*` → `results/finetune_summary.md` |
 
 Inference always uses at most 1000 samples (course requirement; the scripts assert it).
@@ -128,6 +129,13 @@ Inference always uses at most 1000 samples (course requirement; the scripts asse
     predict-then-check false alarms. datakit errors are only 1.3–3.6× the original's (random: 15–40×), and datakit
     predict-then-check is identical to the original. graphkit's best-model callback can freeze on the sanity-check
     pass; the epoch-40 weights from `last.ckpt` are used (`SETUP_LOG.md` Phase 8).
+11. **Task 3 detectors (`results/stage3_summary.md`): with the replay model, plain predict-then-check wins.** It has
+    zero false alarms and F1 0.994 / 0.995 on PFΔ, 0.982 / 1.00 on datakit. The residual (approach A) is a good trust
+    signal only when the model is wrong (original model on PFΔ: Spearman 0.91 with the true error, AUROC 0.80 for wrong
+    voltage labels). Gating fixes PtC only by sending 66 % of PFΔ samples to the solver, and dropping high-residual
+    alarms destroys recall (those samples are mostly true violations). Embedding probes (approach B) reach F1
+    0.92–0.94 on PFΔ, below PtC. They need datakit in training to detect datakit's over-voltages. N-2 is the real
+    test: there the state prediction, and with it PtC, may break down.
 
 ### Open questions to resolve before the next step
 - **Islanding as a class: not possible with the current data.** Both PFΔ (resamples until the graph is connected) and
@@ -163,6 +171,7 @@ Inference always uses at most 1000 samples (course requirement; the scripts asse
 | `results/phase5_summary.md` | percentiles, hard cases, embeddings, predict-then-check, figures |
 | `results/pfdelta_shift_summary.md` | PFΔ conversion, base model on PFΔ N-0/N-1 test, predict-then-check under shift, wrong-vs-right |
 | `results/finetune_summary.md` | Stage 2 fine-tuning: setup, timing, original vs hard vs random on datakit and PFΔ (errors, predict-then-check) |
+| `results/stage3_summary.md` | Task 3: predict-then-check, residual trust signal + gating, embedding probes; one comparison table; frozen N-2 setup |
 | `results/figures/` | fig1 error distribution, fig2 error by outage type, fig3 embedding PCA |
 | `results/inference_per_sample.csv` | per-sample errors (base); `_tiny_n1000` for tiny |
 | `results/hard_cases_top5pct.csv` | 50 hardest samples with outage info and labels |

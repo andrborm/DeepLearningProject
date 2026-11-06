@@ -1,5 +1,5 @@
 model,probe,label,features,hp,val PR-AUC,decision threshold
-original,logreg,y_voltage,flat,"{""C"": 0.01}",0.9668,0.6476
-original,logreg,y_overload,flat,"{""C"": 0.01}",0.9778,0.7338
+original,logreg,y_voltage,flat,"{""C"": 0.01}",0.9669,0.6468
+original,logreg,y_overload,flat,"{""C"": 0.01}",0.9778,0.7122
 original,mlp,y_voltage,flat,"{""alpha"": 0.0001, ""hidden"": 256}",0.9619,0.585
 original,mlp,y_overload,pooled,"{""alpha"": 0.0001, ""hidden"": 64}",0.9752,0.4817

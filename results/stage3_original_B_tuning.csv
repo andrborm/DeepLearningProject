@@ -2,11 +2,11 @@ model,probe,features,hp,label,val PR-AUC
 original,logreg,pooled,"{""C"": 0.001}",y_voltage,0.9349
 original,logreg,pooled,"{""C"": 0.001}",y_overload,0.9686
 original,logreg,pooled,"{""C"": 0.01}",y_voltage,0.9516
-original,logreg,pooled,"{""C"": 0.01}",y_overload,0.9775
+original,logreg,pooled,"{""C"": 0.01}",y_overload,0.9774
 original,logreg,pooled,"{""C"": 0.1}",y_voltage,0.9523
 original,logreg,pooled,"{""C"": 0.1}",y_overload,0.977
-original,logreg,pooled,"{""C"": 1}",y_voltage,0.9442
-original,logreg,pooled,"{""C"": 1}",y_overload,0.9716
+original,logreg,pooled,"{""C"": 1}",y_voltage,0.9444
+original,logreg,pooled,"{""C"": 1}",y_overload,0.9717
 original,mlp,pooled,"{""alpha"": 0.0001, ""hidden"": 64}",y_voltage,0.9559
 original,mlp,pooled,"{""alpha"": 0.0001, ""hidden"": 64}",y_overload,0.9752
 original,mlp,pooled,"{""alpha"": 0.0001, ""hidden"": 256}",y_voltage,0.951
@@ -21,14 +21,14 @@ original,mlp,pooled,"{""alpha"": 1, ""hidden"": 256}",y_voltage,0.9561
 original,mlp,pooled,"{""alpha"": 1, ""hidden"": 256}",y_overload,0.9736
 original,logreg,flat,"{""C"": 0.001}",y_voltage,0.9594
 original,logreg,flat,"{""C"": 0.001}",y_overload,0.9767
-original,logreg,flat,"{""C"": 0.01}",y_voltage,0.9668
+original,logreg,flat,"{""C"": 0.01}",y_voltage,0.9669
 original,logreg,flat,"{""C"": 0.01}",y_overload,0.9778
-original,logreg,flat,"{""C"": 0.1}",y_voltage,0.9641
-original,logreg,flat,"{""C"": 0.1}",y_overload,0.9768
-original,logreg,flat,"{""C"": 1}",y_voltage,0.9589
-original,logreg,flat,"{""C"": 1}",y_overload,0.9729
+original,logreg,flat,"{""C"": 0.1}",y_voltage,0.9642
+original,logreg,flat,"{""C"": 0.1}",y_overload,0.9767
+original,logreg,flat,"{""C"": 1}",y_voltage,0.9591
+original,logreg,flat,"{""C"": 1}",y_overload,0.9721
 original,mlp,flat,"{""alpha"": 0.0001, ""hidden"": 64}",y_voltage,0.956
-original,mlp,flat,"{""alpha"": 0.0001, ""hidden"": 64}",y_overload,0.9713
+original,mlp,flat,"{""alpha"": 0.0001, ""hidden"": 64}",y_overload,0.9721
 original,mlp,flat,"{""alpha"": 0.0001, ""hidden"": 256}",y_voltage,0.9619
 original,mlp,flat,"{""alpha"": 0.0001, ""hidden"": 256}",y_overload,0.9652
 original,mlp,flat,"{""alpha"": 0.01, ""hidden"": 64}",y_voltage,0.9604

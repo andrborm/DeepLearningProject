@@ -1,0 +1,41 @@
+model,probe,features,hp,label,val PR-AUC
+replay,logreg,pooled,"{""C"": 0.001}",y_voltage,0.9601
+replay,logreg,pooled,"{""C"": 0.001}",y_overload,0.978
+replay,logreg,pooled,"{""C"": 0.01}",y_voltage,0.9793
+replay,logreg,pooled,"{""C"": 0.01}",y_overload,0.9878
+replay,logreg,pooled,"{""C"": 0.1}",y_voltage,0.982
+replay,logreg,pooled,"{""C"": 0.1}",y_overload,0.9911
+replay,logreg,pooled,"{""C"": 1}",y_voltage,0.9796
+replay,logreg,pooled,"{""C"": 1}",y_overload,0.9911
+replay,mlp,pooled,"{""alpha"": 0.0001, ""hidden"": 64}",y_voltage,0.9824
+replay,mlp,pooled,"{""alpha"": 0.0001, ""hidden"": 64}",y_overload,0.99
+replay,mlp,pooled,"{""alpha"": 0.0001, ""hidden"": 256}",y_voltage,0.9761
+replay,mlp,pooled,"{""alpha"": 0.0001, ""hidden"": 256}",y_overload,0.992
+replay,mlp,pooled,"{""alpha"": 0.01, ""hidden"": 64}",y_voltage,0.9798
+replay,mlp,pooled,"{""alpha"": 0.01, ""hidden"": 64}",y_overload,0.9924
+replay,mlp,pooled,"{""alpha"": 0.01, ""hidden"": 256}",y_voltage,0.9761
+replay,mlp,pooled,"{""alpha"": 0.01, ""hidden"": 256}",y_overload,0.9921
+replay,mlp,pooled,"{""alpha"": 1, ""hidden"": 64}",y_voltage,0.983
+replay,mlp,pooled,"{""alpha"": 1, ""hidden"": 64}",y_overload,0.991
+replay,mlp,pooled,"{""alpha"": 1, ""hidden"": 256}",y_voltage,0.9804
+replay,mlp,pooled,"{""alpha"": 1, ""hidden"": 256}",y_overload,0.9927
+replay,logreg,flat,"{""C"": 0.001}",y_voltage,0.9752
+replay,logreg,flat,"{""C"": 0.001}",y_overload,0.9854
+replay,logreg,flat,"{""C"": 0.01}",y_voltage,0.9798
+replay,logreg,flat,"{""C"": 0.01}",y_overload,0.9905
+replay,logreg,flat,"{""C"": 0.1}",y_voltage,0.9786
+replay,logreg,flat,"{""C"": 0.1}",y_overload,0.9916
+replay,logreg,flat,"{""C"": 1}",y_voltage,0.9774
+replay,logreg,flat,"{""C"": 1}",y_overload,0.9923
+replay,mlp,flat,"{""alpha"": 0.0001, ""hidden"": 64}",y_voltage,0.9701
+replay,mlp,flat,"{""alpha"": 0.0001, ""hidden"": 64}",y_overload,0.9863
+replay,mlp,flat,"{""alpha"": 0.0001, ""hidden"": 256}",y_voltage,0.9741
+replay,mlp,flat,"{""alpha"": 0.0001, ""hidden"": 256}",y_overload,0.9876
+replay,mlp,flat,"{""alpha"": 0.01, ""hidden"": 64}",y_voltage,0.973
+replay,mlp,flat,"{""alpha"": 0.01, ""hidden"": 64}",y_overload,0.9862
+replay,mlp,flat,"{""alpha"": 0.01, ""hidden"": 256}",y_voltage,0.9664
+replay,mlp,flat,"{""alpha"": 0.01, ""hidden"": 256}",y_overload,0.9874
+replay,mlp,flat,"{""alpha"": 1, ""hidden"": 64}",y_voltage,0.9727
+replay,mlp,flat,"{""alpha"": 1, ""hidden"": 64}",y_overload,0.9854
+replay,mlp,flat,"{""alpha"": 1, ""hidden"": 256}",y_voltage,0.9722
+replay,mlp,flat,"{""alpha"": 1, ""hidden"": 256}",y_overload,0.9924

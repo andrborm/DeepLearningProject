@@ -22,9 +22,7 @@ split='train' len(split_indices)=0
 split='val' len(split_indices)=0
 split='test' len(split_indices)=1000
 Restoring normalizer for case14_ieee from saved stats
-Predicting: |          | 0/? [00:00<?, ?it/s]D:\school\DeepLearning\gridfm-anomaly\venv\Lib\site-packages\lightning\pytorch\trainer\connectors\data_connector.py:378: You have overridden `transfer_batch_to_device` in `LightningModule` but have passed in a `LightningDataModule`. It will use the implementation from `LightningModule` instance.
 D:\school\DeepLearning\gridfm-anomaly\venv\Lib\site-packages\lightning\pytorch\trainer\connectors\data_connector.py:378: You have overridden `on_after_batch_transfer` in `LightningModule` but have passed in a `LightningDataModule`. It will use the implementation from `LightningModule` instance.
-Predicting: |          | 0/? [00:00<?, ?it/s]Predicting DataLoader 0:   0%|          | 0/16 [00:00<?, ?it/s]Predicting DataLoader 0:   6%|▋         | 1/16 [00:00<00:02,  5.64it/s]Predicting DataLoader 0:  12%|█▎        | 2/16 [00:00<00:06,  2.08it/s]Predicting DataLoader 0:  19%|█▉        | 3/16 [00:01<00:07,  1.74it/s]Predicting DataLoader 0:  25%|██▌       | 4/16 [00:02<00:07,  1.70it/s]Predicting DataLoader 0:  31%|███▏      | 5/16 [00:03<00:06,  1.59it/s]Predicting DataLoader 0:  38%|███▊      | 6/16 [00:03<00:06,  1.53it/s]Predicting DataLoader 0:  44%|████▍     | 7/16 [00:04<00:05,  1.53it/s]Predicting DataLoader 0:  50%|█████     | 8/16 [00:05<00:05,  1.49it/s]Predicting DataLoader 0:  56%|█████▋    | 9/16 [00:06<00:04,  1.46it/s]Predicting DataLoader 0:  62%|██████▎   | 10/16 [00:06<00:04,  1.46it/s]Predicting DataLoader 0:  69%|██████▉   | 11/16 [00:07<00:03,  1.46it/s]Predicting DataLoader 0:  75%|███████▌  | 12/16 [00:08<00:02,  1.43it/s]Predicting DataLoader 0:  81%|████████▏ | 13/16 [00:09<00:02,  1.43it/s]Predicting DataLoader 0:  88%|████████▊ | 14/16 [00:09<00:01,  1.43it/s]Predicting DataLoader 0:  94%|█████████▍| 15/16 [00:10<00:00,  1.42it/s]Predicting DataLoader 0: 100%|██████████| 16/16 [00:10<00:00,  1.46it/s]Predicting DataLoader 0: 100%|██████████| 16/16 [00:10<00:00,  1.46it/s]Seed set to 0
 GPU available: False, used: False
 TPU available: False, using: 0 TPU cores
 \U0001f4a1 Tip: For seamless cloud logging and experiment tracking, try installing [litlogger](https://pypi.org/project/litlogger/) to enable LitLogger, which logs metrics and artifacts automatically to the Lightning Experiments platform.
@@ -38,7 +36,6 @@ D:\school\DeepLearning\gridfm-anomaly\venv\Lib\site-packages\gridfm_graphkit\dat
   warnings.warn(
 D:\school\DeepLearning\gridfm-anomaly\venv\Lib\site-packages\lightning\pytorch\utilities\_pytree.py:21: `isinstance(treespec, LeafSpec)` is deprecated, use `isinstance(treespec, TreeSpec) and treespec.is_leaf()` instead.
 D:\school\DeepLearning\gridfm-anomaly\venv\Lib\site-packages\lightning\pytorch\trainer\connectors\data_connector.py:434: The 'predict_dataloader' does not have many workers which may be a bottleneck. Consider increasing the value of the `num_workers` argument` to `num_workers=27` in the `DataLoader` to improve performance.
-
 Saved bus predictions to D:\school\DeepLearning\gridfm-anomaly\data\predictions\stage3\original\pf_probe0\case14_ieee_predictions.parquet
 Saved branch predictions to D:\school\DeepLearning\gridfm-anomaly\data\predictions\stage3\original\pf_probe0\case14_ieee_branch_predictions.parquet
 Saved bus_embeddings predictions to D:\school\DeepLearning\gridfm-anomaly\data\predictions\stage3\original\pf_probe0\case14_ieee_bus_embeddings.parquet
@@ -51,7 +48,6 @@ split='train' len(split_indices)=0
 split='val' len(split_indices)=0
 split='test' len(split_indices)=1000
 Restoring normalizer for case14_ieee from saved stats
-Predicting: |          | 0/? [00:00<?, ?it/s]Predicting: |          | 0/? [00:00<?, ?it/s]Predicting DataLoader 0:   0%|          | 0/16 [00:00<?, ?it/s]Predicting DataLoader 0:   6%|▋         | 1/16 [00:00<00:01,  7.66it/s]Predicting DataLoader 0:  12%|█▎        | 2/16 [00:00<00:06,  2.13it/s]Predicting DataLoader 0:  19%|█▉        | 3/16 [00:01<00:06,  1.88it/s]Predicting DataLoader 0:  25%|██▌       | 4/16 [00:02<00:07,  1.62it/s]Predicting DataLoader 0:  31%|███▏      | 5/16 [00:03<00:07,  1.55it/s]Predicting DataLoader 0:  38%|███▊      | 6/16 [00:03<00:06,  1.54it/s]Predicting DataLoader 0:  44%|████▍     | 7/16 [00:04<00:06,  1.48it/s]Predicting DataLoader 0:  50%|█████     | 8/16 [00:05<00:05,  1.46it/s]Predicting DataLoader 0:  56%|█████▋    | 9/16 [00:06<00:04,  1.46it/s]Predicting DataLoader 0:  62%|██████▎   | 10/16 [00:06<00:04,  1.43it/s]Predicting DataLoader 0:  69%|██████▉   | 11/16 [00:07<00:03,  1.41it/s]Predicting DataLoader 0:  75%|███████▌  | 12/16 [00:08<00:02,  1.42it/s]Predicting DataLoader 0:  81%|████████▏ | 13/16 [00:09<00:02,  1.40it/s]Predicting DataLoader 0:  88%|████████▊ | 14/16 [00:10<00:01,  1.39it/s]Predicting DataLoader 0:  94%|█████████▍| 15/16 [00:10<00:00,  1.40it/s]Predicting DataLoader 0: 100%|██████████| 16/16 [00:11<00:00,  1.42it/s]Predicting DataLoader 0: 100%|██████████| 16/16 [00:11<00:00,  1.42it/s]Seed set to 0
 GPU available: False, used: False
 TPU available: False, using: 0 TPU cores
 \U0001f4a1 Tip: For seamless cloud logging and experiment tracking, try installing [litlogger](https://pypi.org/project/litlogger/) to enable LitLogger, which logs metrics and artifacts automatically to the Lightning Experiments platform.
@@ -65,7 +61,6 @@ D:\school\DeepLearning\gridfm-anomaly\venv\Lib\site-packages\gridfm_graphkit\dat
   warnings.warn(
 D:\school\DeepLearning\gridfm-anomaly\venv\Lib\site-packages\lightning\pytorch\utilities\_pytree.py:21: `isinstance(treespec, LeafSpec)` is deprecated, use `isinstance(treespec, TreeSpec) and treespec.is_leaf()` instead.
 D:\school\DeepLearning\gridfm-anomaly\venv\Lib\site-packages\lightning\pytorch\trainer\connectors\data_connector.py:434: The 'predict_dataloader' does not have many workers which may be a bottleneck. Consider increasing the value of the `num_workers` argument` to `num_workers=27` in the `DataLoader` to improve performance.
-
 Saved bus predictions to D:\school\DeepLearning\gridfm-anomaly\data\predictions\stage3\original\pf_probe1\case14_ieee_predictions.parquet
 Saved branch predictions to D:\school\DeepLearning\gridfm-anomaly\data\predictions\stage3\original\pf_probe1\case14_ieee_branch_predictions.parquet
 Saved bus_embeddings predictions to D:\school\DeepLearning\gridfm-anomaly\data\predictions\stage3\original\pf_probe1\case14_ieee_bus_embeddings.parquet
@@ -78,7 +73,6 @@ split='train' len(split_indices)=0
 split='val' len(split_indices)=0
 split='test' len(split_indices)=1000
 Restoring normalizer for case14_ieee from saved stats
-Predicting: |          | 0/? [00:00<?, ?it/s]Predicting: |          | 0/? [00:00<?, ?it/s]Predicting DataLoader 0:   0%|          | 0/16 [00:00<?, ?it/s]Predicting DataLoader 0:   6%|▋         | 1/16 [00:00<00:01, 10.75it/s]Predicting DataLoader 0:  12%|█▎        | 2/16 [00:00<00:06,  2.15it/s]Predicting DataLoader 0:  19%|█▉        | 3/16 [00:01<00:07,  1.78it/s]Predicting DataLoader 0:  25%|██▌       | 4/16 [00:02<00:07,  1.70it/s]Predicting DataLoader 0:  31%|███▏      | 5/16 [00:03<00:06,  1.59it/s]Predicting DataLoader 0:  38%|███▊      | 6/16 [00:03<00:06,  1.53it/s]Predicting DataLoader 0:  44%|████▍     | 7/16 [00:04<00:05,  1.53it/s]Predicting DataLoader 0:  50%|█████     | 8/16 [00:05<00:05,  1.50it/s]Predicting DataLoader 0:  56%|█████▋    | 9/16 [00:06<00:04,  1.46it/s]Predicting DataLoader 0:  62%|██████▎   | 10/16 [00:06<00:04,  1.46it/s]Predicting DataLoader 0:  69%|██████▉   | 11/16 [00:07<00:03,  1.46it/s]Predicting DataLoader 0:  75%|███████▌  | 12/16 [00:08<00:02,  1.43it/s]Predicting DataLoader 0:  81%|████████▏ | 13/16 [00:09<00:02,  1.43it/s]Predicting DataLoader 0:  88%|████████▊ | 14/16 [00:09<00:01,  1.43it/s]Predicting DataLoader 0:  94%|█████████▍| 15/16 [00:10<00:00,  1.41it/s]Predicting DataLoader 0: 100%|██████████| 16/16 [00:11<00:00,  1.45it/s]Predicting DataLoader 0: 100%|██████████| 16/16 [00:11<00:00,  1.45it/s]Seed set to 0
 GPU available: False, used: False
 TPU available: False, using: 0 TPU cores
 \U0001f4a1 Tip: For seamless cloud logging and experiment tracking, try installing [litlogger](https://pypi.org/project/litlogger/) to enable LitLogger, which logs metrics and artifacts automatically to the Lightning Experiments platform.
@@ -92,7 +86,6 @@ D:\school\DeepLearning\gridfm-anomaly\venv\Lib\site-packages\gridfm_graphkit\dat
   warnings.warn(
 D:\school\DeepLearning\gridfm-anomaly\venv\Lib\site-packages\lightning\pytorch\utilities\_pytree.py:21: `isinstance(treespec, LeafSpec)` is deprecated, use `isinstance(treespec, TreeSpec) and treespec.is_leaf()` instead.
 D:\school\DeepLearning\gridfm-anomaly\venv\Lib\site-packages\lightning\pytorch\trainer\connectors\data_connector.py:434: The 'predict_dataloader' does not have many workers which may be a bottleneck. Consider increasing the value of the `num_workers` argument` to `num_workers=27` in the `DataLoader` to improve performance.
-
 Saved bus predictions to D:\school\DeepLearning\gridfm-anomaly\data\predictions\stage3\original\dk_probe0\case14_ieee_predictions.parquet
 Saved branch predictions to D:\school\DeepLearning\gridfm-anomaly\data\predictions\stage3\original\dk_probe0\case14_ieee_branch_predictions.parquet
 Saved bus_embeddings predictions to D:\school\DeepLearning\gridfm-anomaly\data\predictions\stage3\original\dk_probe0\case14_ieee_bus_embeddings.parquet
@@ -105,7 +98,6 @@ split='train' len(split_indices)=0
 split='val' len(split_indices)=0
 split='test' len(split_indices)=1000
 Restoring normalizer for case14_ieee from saved stats
-Predicting: |          | 0/? [00:00<?, ?it/s]Predicting: |          | 0/? [00:00<?, ?it/s]Predicting DataLoader 0:   0%|          | 0/16 [00:00<?, ?it/s]Predicting DataLoader 0:   6%|▋         | 1/16 [00:00<00:02,  5.92it/s]Predicting DataLoader 0:  12%|█▎        | 2/16 [00:00<00:06,  2.27it/s]Predicting DataLoader 0:  19%|█▉        | 3/16 [00:01<00:06,  1.89it/s]Predicting DataLoader 0:  25%|██▌       | 4/16 [00:02<00:07,  1.68it/s]Predicting DataLoader 0:  31%|███▏      | 5/16 [00:03<00:06,  1.60it/s]Predicting DataLoader 0:  38%|███▊      | 6/16 [00:03<00:06,  1.60it/s]Predicting DataLoader 0:  44%|████▍     | 7/16 [00:04<00:05,  1.54it/s]Predicting DataLoader 0:  50%|█████     | 8/16 [00:05<00:05,  1.47it/s]Predicting DataLoader 0:  56%|█████▋    | 9/16 [00:06<00:04,  1.46it/s]Predicting DataLoader 0:  62%|██████▎   | 10/16 [00:06<00:04,  1.43it/s]Predicting DataLoader 0:  69%|██████▉   | 11/16 [00:07<00:03,  1.41it/s]Predicting DataLoader 0:  75%|███████▌  | 12/16 [00:08<00:02,  1.41it/s]Predicting DataLoader 0:  81%|████████▏ | 13/16 [00:09<00:02,  1.41it/s]Predicting DataLoader 0:  88%|████████▊ | 14/16 [00:10<00:01,  1.39it/s]Predicting DataLoader 0:  94%|█████████▍| 15/16 [00:10<00:00,  1.40it/s]Predicting DataLoader 0: 100%|██████████| 16/16 [00:11<00:00,  1.42it/s]Predicting DataLoader 0: 100%|██████████| 16/16 [00:11<00:00,  1.42it/s]Seed set to 0
 GPU available: False, used: False
 TPU available: False, using: 0 TPU cores
 \U0001f4a1 Tip: For seamless cloud logging and experiment tracking, try installing [litlogger](https://pypi.org/project/litlogger/) to enable LitLogger, which logs metrics and artifacts automatically to the Lightning Experiments platform.
@@ -119,7 +111,6 @@ D:\school\DeepLearning\gridfm-anomaly\venv\Lib\site-packages\gridfm_graphkit\dat
   warnings.warn(
 D:\school\DeepLearning\gridfm-anomaly\venv\Lib\site-packages\lightning\pytorch\utilities\_pytree.py:21: `isinstance(treespec, LeafSpec)` is deprecated, use `isinstance(treespec, TreeSpec) and treespec.is_leaf()` instead.
 D:\school\DeepLearning\gridfm-anomaly\venv\Lib\site-packages\lightning\pytorch\trainer\connectors\data_connector.py:434: The 'predict_dataloader' does not have many workers which may be a bottleneck. Consider increasing the value of the `num_workers` argument` to `num_workers=27` in the `DataLoader` to improve performance.
-
 Saved bus predictions to D:\school\DeepLearning\gridfm-anomaly\data\predictions\stage3\original\dk_probe1\case14_ieee_predictions.parquet
 Saved branch predictions to D:\school\DeepLearning\gridfm-anomaly\data\predictions\stage3\original\dk_probe1\case14_ieee_branch_predictions.parquet
 Saved bus_embeddings predictions to D:\school\DeepLearning\gridfm-anomaly\data\predictions\stage3\original\dk_probe1\case14_ieee_bus_embeddings.parquet
@@ -132,7 +123,6 @@ split='train' len(split_indices)=0
 split='val' len(split_indices)=0
 split='test' len(split_indices)=1000
 Restoring normalizer for case14_ieee from saved stats
-Predicting: |          | 0/? [00:00<?, ?it/s]Predicting: |          | 0/? [00:00<?, ?it/s]Predicting DataLoader 0:   0%|          | 0/16 [00:00<?, ?it/s]Predicting DataLoader 0:   6%|▋         | 1/16 [00:00<00:01,  9.38it/s]Predicting DataLoader 0:  12%|█▎        | 2/16 [00:00<00:06,  2.06it/s]Predicting DataLoader 0:  19%|█▉        | 3/16 [00:01<00:07,  1.70it/s]Predicting DataLoader 0:  25%|██▌       | 4/16 [00:02<00:07,  1.63it/s]Predicting DataLoader 0:  31%|███▏      | 5/16 [00:03<00:07,  1.56it/s]Predicting DataLoader 0:  38%|███▊      | 6/16 [00:04<00:06,  1.49it/s]Predicting DataLoader 0:  44%|████▍     | 7/16 [00:04<00:06,  1.47it/s]Predicting DataLoader 0:  50%|█████     | 8/16 [00:05<00:05,  1.49it/s]Predicting DataLoader 0:  56%|█████▋    | 9/16 [00:06<00:04,  1.45it/s]Predicting DataLoader 0:  62%|██████▎   | 10/16 [00:06<00:04,  1.44it/s]Predicting DataLoader 0:  69%|██████▉   | 11/16 [00:07<00:03,  1.45it/s]Predicting DataLoader 0:  75%|███████▌  | 12/16 [00:08<00:02,  1.43it/s]Predicting DataLoader 0:  81%|████████▏ | 13/16 [00:09<00:02,  1.41it/s]Predicting DataLoader 0:  88%|████████▊ | 14/16 [00:09<00:01,  1.42it/s]Predicting DataLoader 0:  94%|█████████▍| 15/16 [00:10<00:00,  1.42it/s]Predicting DataLoader 0: 100%|██████████| 16/16 [00:11<00:00,  1.44it/s]Predicting DataLoader 0: 100%|██████████| 16/16 [00:11<00:00,  1.44it/s]Seed set to 0
 GPU available: False, used: False
 TPU available: False, using: 0 TPU cores
 \U0001f4a1 Tip: For seamless cloud logging and experiment tracking, try installing [litlogger](https://pypi.org/project/litlogger/) to enable LitLogger, which logs metrics and artifacts automatically to the Lightning Experiments platform.
@@ -146,7 +136,6 @@ D:\school\DeepLearning\gridfm-anomaly\venv\Lib\site-packages\gridfm_graphkit\dat
   warnings.warn(
 D:\school\DeepLearning\gridfm-anomaly\venv\Lib\site-packages\lightning\pytorch\utilities\_pytree.py:21: `isinstance(treespec, LeafSpec)` is deprecated, use `isinstance(treespec, TreeSpec) and treespec.is_leaf()` instead.
 D:\school\DeepLearning\gridfm-anomaly\venv\Lib\site-packages\lightning\pytorch\trainer\connectors\data_connector.py:434: The 'predict_dataloader' does not have many workers which may be a bottleneck. Consider increasing the value of the `num_workers` argument` to `num_workers=27` in the `DataLoader` to improve performance.
-
 Saved bus predictions to D:\school\DeepLearning\gridfm-anomaly\data\predictions\stage3\original\pf_val0\case14_ieee_predictions.parquet
 Saved branch predictions to D:\school\DeepLearning\gridfm-anomaly\data\predictions\stage3\original\pf_val0\case14_ieee_branch_predictions.parquet
 Saved bus_embeddings predictions to D:\school\DeepLearning\gridfm-anomaly\data\predictions\stage3\original\pf_val0\case14_ieee_bus_embeddings.parquet
@@ -159,7 +148,6 @@ split='train' len(split_indices)=0
 split='val' len(split_indices)=0
 split='test' len(split_indices)=1000
 Restoring normalizer for case14_ieee from saved stats
-Predicting: |          | 0/? [00:00<?, ?it/s]Predicting: |          | 0/? [00:00<?, ?it/s]Predicting DataLoader 0:   0%|          | 0/16 [00:00<?, ?it/s]Predicting DataLoader 0:   6%|▋         | 1/16 [00:00<00:01,  7.98it/s]Predicting DataLoader 0:  12%|█▎        | 2/16 [00:00<00:04,  3.41it/s]Predicting DataLoader 0:  19%|█▉        | 3/16 [00:01<00:05,  2.49it/s]Predicting DataLoader 0:  25%|██▌       | 4/16 [00:01<00:04,  2.42it/s]Predicting DataLoader 0:  31%|███▏      | 5/16 [00:02<00:05,  2.09it/s]Predicting DataLoader 0:  38%|███▊      | 6/16 [00:03<00:05,  1.87it/s]Predicting DataLoader 0:  44%|████▍     | 7/16 [00:03<00:05,  1.79it/s]Predicting DataLoader 0:  50%|█████     | 8/16 [00:04<00:04,  1.76it/s]Predicting DataLoader 0:  56%|█████▋    | 9/16 [00:05<00:04,  1.66it/s]Predicting DataLoader 0:  62%|██████▎   | 10/16 [00:06<00:03,  1.62it/s]Predicting DataLoader 0:  69%|██████▉   | 11/16 [00:06<00:03,  1.61it/s]Predicting DataLoader 0:  75%|███████▌  | 12/16 [00:07<00:02,  1.57it/s]Predicting DataLoader 0:  81%|████████▏ | 13/16 [00:08<00:01,  1.55it/s]Predicting DataLoader 0:  88%|████████▊ | 14/16 [00:09<00:01,  1.54it/s]Predicting DataLoader 0:  94%|█████████▍| 15/16 [00:09<00:00,  1.52it/s]Predicting DataLoader 0: 100%|██████████| 16/16 [00:10<00:00,  1.54it/s]Predicting DataLoader 0: 100%|██████████| 16/16 [00:10<00:00,  1.54it/s]Seed set to 0
 GPU available: False, used: False
 TPU available: False, using: 0 TPU cores
 \U0001f4a1 Tip: For seamless cloud logging and experiment tracking, try installing [litlogger](https://pypi.org/project/litlogger/) to enable LitLogger, which logs metrics and artifacts automatically to the Lightning Experiments platform.
@@ -173,7 +161,6 @@ D:\school\DeepLearning\gridfm-anomaly\venv\Lib\site-packages\gridfm_graphkit\dat
   warnings.warn(
 D:\school\DeepLearning\gridfm-anomaly\venv\Lib\site-packages\lightning\pytorch\utilities\_pytree.py:21: `isinstance(treespec, LeafSpec)` is deprecated, use `isinstance(treespec, TreeSpec) and treespec.is_leaf()` instead.
 D:\school\DeepLearning\gridfm-anomaly\venv\Lib\site-packages\lightning\pytorch\trainer\connectors\data_connector.py:434: The 'predict_dataloader' does not have many workers which may be a bottleneck. Consider increasing the value of the `num_workers` argument` to `num_workers=27` in the `DataLoader` to improve performance.
-
 Saved bus predictions to D:\school\DeepLearning\gridfm-anomaly\data\predictions\stage3\original\dk_val0\case14_ieee_predictions.parquet
 Saved branch predictions to D:\school\DeepLearning\gridfm-anomaly\data\predictions\stage3\original\dk_val0\case14_ieee_branch_predictions.parquet
 Saved bus_embeddings predictions to D:\school\DeepLearning\gridfm-anomaly\data\predictions\stage3\original\dk_val0\case14_ieee_bus_embeddings.parquet
@@ -186,7 +173,6 @@ split='train' len(split_indices)=0
 split='val' len(split_indices)=0
 split='test' len(split_indices)=1000
 Restoring normalizer for case14_ieee from saved stats
-Predicting: |          | 0/? [00:00<?, ?it/s]Predicting: |          | 0/? [00:00<?, ?it/s]Predicting DataLoader 0:   0%|          | 0/16 [00:00<?, ?it/s]Predicting DataLoader 0:   6%|▋         | 1/16 [00:00<00:02,  5.79it/s]Predicting DataLoader 0:  12%|█▎        | 2/16 [00:00<00:03,  4.45it/s]Predicting DataLoader 0:  19%|█▉        | 3/16 [00:00<00:02,  4.44it/s]Predicting DataLoader 0:  25%|██▌       | 4/16 [00:00<00:02,  4.07it/s]Predicting DataLoader 0:  31%|███▏      | 5/16 [00:01<00:02,  3.82it/s]Predicting DataLoader 0:  38%|███▊      | 6/16 [00:01<00:02,  3.68it/s]Predicting DataLoader 0:  44%|████▍     | 7/16 [00:01<00:02,  3.80it/s]Predicting DataLoader 0:  50%|█████     | 8/16 [00:02<00:02,  3.80it/s]Predicting DataLoader 0:  56%|█████▋    | 9/16 [00:02<00:01,  3.59it/s]Predicting DataLoader 0:  62%|██████▎   | 10/16 [00:02<00:01,  3.50it/s]Predicting DataLoader 0:  69%|██████▉   | 11/16 [00:03<00:01,  3.59it/s]Predicting DataLoader 0:  75%|███████▌  | 12/16 [00:03<00:01,  3.65it/s]Predicting DataLoader 0:  81%|████████▏ | 13/16 [00:03<00:00,  3.51it/s]Predicting DataLoader 0:  88%|████████▊ | 14/16 [00:04<00:00,  3.44it/s]Predicting DataLoader 0:  94%|█████████▍| 15/16 [00:04<00:00,  3.51it/s]Predicting DataLoader 0: 100%|██████████| 16/16 [00:04<00:00,  3.63it/s]Predicting DataLoader 0: 100%|██████████| 16/16 [00:04<00:00,  3.63it/s]Seed set to 0
 GPU available: False, used: False
 TPU available: False, using: 0 TPU cores
 \U0001f4a1 Tip: For seamless cloud logging and experiment tracking, try installing [litlogger](https://pypi.org/project/litlogger/) to enable LitLogger, which logs metrics and artifacts automatically to the Lightning Experiments platform.
@@ -200,7 +186,6 @@ D:\school\DeepLearning\gridfm-anomaly\venv\Lib\site-packages\gridfm_graphkit\dat
   warnings.warn(
 D:\school\DeepLearning\gridfm-anomaly\venv\Lib\site-packages\lightning\pytorch\utilities\_pytree.py:21: `isinstance(treespec, LeafSpec)` is deprecated, use `isinstance(treespec, TreeSpec) and treespec.is_leaf()` instead.
 D:\school\DeepLearning\gridfm-anomaly\venv\Lib\site-packages\lightning\pytorch\trainer\connectors\data_connector.py:434: The 'predict_dataloader' does not have many workers which may be a bottleneck. Consider increasing the value of the `num_workers` argument` to `num_workers=27` in the `DataLoader` to improve performance.
-
 Saved bus predictions to D:\school\DeepLearning\gridfm-anomaly\data\predictions\stage3\original\test_pfdelta\case14_ieee_predictions.parquet
 Saved branch predictions to D:\school\DeepLearning\gridfm-anomaly\data\predictions\stage3\original\test_pfdelta\case14_ieee_branch_predictions.parquet
 Saved bus_embeddings predictions to D:\school\DeepLearning\gridfm-anomaly\data\predictions\stage3\original\test_pfdelta\case14_ieee_bus_embeddings.parquet
@@ -213,7 +198,6 @@ split='train' len(split_indices)=0
 split='val' len(split_indices)=0
 split='test' len(split_indices)=1000
 Restoring normalizer for case14_ieee from saved stats
-Predicting: |          | 0/? [00:00<?, ?it/s]Predicting: |          | 0/? [00:00<?, ?it/s]Predicting DataLoader 0:   0%|          | 0/16 [00:00<?, ?it/s]Predicting DataLoader 0:   6%|▋         | 1/16 [00:00<00:01,  9.41it/s]Predicting DataLoader 0:  12%|█▎        | 2/16 [00:00<00:02,  5.91it/s]Predicting DataLoader 0:  19%|█▉        | 3/16 [00:00<00:03,  4.05it/s]Predicting DataLoader 0:  25%|██▌       | 4/16 [00:01<00:03,  3.63it/s]Predicting DataLoader 0:  31%|███▏      | 5/16 [00:01<00:02,  3.85it/s]Predicting DataLoader 0:  38%|███▊      | 6/16 [00:01<00:02,  4.00it/s]Predicting DataLoader 0:  44%|████▍     | 7/16 [00:01<00:02,  3.86it/s]Predicting DataLoader 0:  50%|█████     | 8/16 [00:02<00:02,  3.65it/s]Predicting DataLoader 0:  56%|█████▋    | 9/16 [00:02<00:01,  3.72it/s]Predicting DataLoader 0:  62%|██████▎   | 10/16 [00:02<00:01,  3.81it/s]Predicting DataLoader 0:  69%|██████▉   | 11/16 [00:02<00:01,  3.76it/s]Predicting DataLoader 0:  75%|███████▌  | 12/16 [00:03<00:01,  3.57it/s]Predicting DataLoader 0:  81%|████████▏ | 13/16 [00:03<00:00,  3.56it/s]Predicting DataLoader 0:  88%|████████▊ | 14/16 [00:03<00:00,  3.60it/s]Predicting DataLoader 0:  94%|█████████▍| 15/16 [00:04<00:00,  3.57it/s]Predicting DataLoader 0: 100%|██████████| 16/16 [00:04<00:00,  3.58it/s]Predicting DataLoader 0: 100%|██████████| 16/16 [00:04<00:00,  3.58it/s]
 Saved bus predictions to D:\school\DeepLearning\gridfm-anomaly\data\predictions\stage3\original\test_datakit\case14_ieee_predictions.parquet
 Saved branch predictions to D:\school\DeepLearning\gridfm-anomaly\data\predictions\stage3\original\test_datakit\case14_ieee_branch_predictions.parquet
 Saved bus_embeddings predictions to D:\school\DeepLearning\gridfm-anomaly\data\predictions\stage3\original\test_datakit\case14_ieee_bus_embeddings.parquet

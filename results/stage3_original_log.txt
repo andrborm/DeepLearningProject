@@ -50,28 +50,28 @@ original test_datakit y_overload               0.2        5.1             0     
 
 === B: chosen probes ===
    model  probe      label features                               hp  val PR-AUC  decision threshold
-original logreg  y_voltage     flat                      {"C": 0.01}       0.967               0.648
-original logreg y_overload     flat                      {"C": 0.01}       0.978               0.734
+original logreg  y_voltage     flat                      {"C": 0.01}       0.967               0.647
+original logreg y_overload     flat                      {"C": 0.01}       0.978               0.712
 original    mlp  y_voltage     flat {"alpha": 0.0001, "hidden": 256}       0.962               0.585
 original    mlp y_overload   pooled  {"alpha": 0.0001, "hidden": 64}       0.975               0.482
 
 === detectors on test subsets ===
    model               method      dataset      label  TP  FP  FN  TN  precision  recall    F1  PR-AUC  solver share
 original         baseline PtC test_pfdelta  y_voltage 508 161   7 324      0.759   0.986 0.858     NaN           NaN
-original A gated PtC (solver) test_pfdelta  y_voltage NaN   8   7 NaN      0.984   0.986 0.985     NaN         0.656
-original   A gated PtC (drop) test_pfdelta  y_voltage NaN   8 394 NaN      0.938   0.235 0.376     NaN             0
+original A gated PtC (solver) test_pfdelta  y_voltage 508   8   7 477      0.984   0.986 0.985     NaN         0.656
+original   A gated PtC (drop) test_pfdelta  y_voltage 121   8 394 477      0.938   0.235 0.376     NaN             0
 original         baseline PtC test_pfdelta y_overload 317 173   4 506      0.647   0.988 0.782     NaN           NaN
-original A gated PtC (solver) test_pfdelta y_overload NaN   6   0 NaN      0.982       1 0.991     NaN         0.656
-original   A gated PtC (drop) test_pfdelta y_overload NaN   6 315 NaN        0.5  0.0187 0.036     NaN             0
+original A gated PtC (solver) test_pfdelta y_overload 321   6   0 673      0.982       1 0.991     NaN         0.656
+original   A gated PtC (drop) test_pfdelta y_overload   6   6 315 673        0.5  0.0187 0.036     NaN             0
 original         baseline PtC test_datakit  y_voltage  27   0   1 972          1   0.964 0.982     NaN           NaN
-original A gated PtC (solver) test_datakit  y_voltage NaN   0   1 NaN          1   0.964 0.982     NaN             0
-original   A gated PtC (drop) test_datakit  y_voltage NaN   0   1 NaN          1   0.964 0.982     NaN             0
+original A gated PtC (solver) test_datakit  y_voltage  27   0   1 972          1   0.964 0.982     NaN             0
+original   A gated PtC (drop) test_datakit  y_voltage  27   0   1 972          1   0.964 0.982     NaN             0
 original         baseline PtC test_datakit y_overload  37   0   0 963          1       1     1     NaN           NaN
-original A gated PtC (solver) test_datakit y_overload NaN   0   0 NaN          1       1     1     NaN             0
-original   A gated PtC (drop) test_datakit y_overload NaN   0   0 NaN          1       1     1     NaN             0
-original             B logreg test_pfdelta  y_voltage 459  47  56 438      0.907   0.891 0.899   0.973           NaN
+original A gated PtC (solver) test_datakit y_overload  37   0   0 963          1       1     1     NaN             0
+original   A gated PtC (drop) test_datakit y_overload  37   0   0 963          1       1     1     NaN             0
+original             B logreg test_pfdelta  y_voltage 460  47  55 438      0.907   0.893   0.9   0.973           NaN
 original             B logreg test_datakit  y_voltage  23   7   5 965      0.767   0.821 0.793   0.897           NaN
-original             B logreg test_pfdelta y_overload 284  26  37 653      0.916   0.885   0.9   0.971           NaN
+original             B logreg test_pfdelta y_overload 285  27  36 652      0.913   0.888   0.9   0.971           NaN
 original             B logreg test_datakit y_overload  37   0   0 963          1       1     1       1           NaN
 original                B mlp test_pfdelta  y_voltage 459  49  56 436      0.904   0.891 0.897   0.971           NaN
 original                B mlp test_datakit  y_voltage  16   2  12 970      0.889   0.571 0.696   0.874           NaN

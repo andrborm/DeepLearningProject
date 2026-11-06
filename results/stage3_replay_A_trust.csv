@@ -1,0 +1,13 @@
+model,dataset,wrong label,n wrong,"spearman(pbe, error)",AUROC,PR-AUC,PR-AUC chance
+replay,test_pfdelta,y_voltage,6,0.5118,0.4398,0.006375,0.006
+replay,test_pfdelta,y_overload,3,0.5118,0.346,0.002975,0.003
+replay,test_pfdelta,any,9,0.5118,0.4081,0.008129,0.009
+replay,test_datakit,y_voltage,1,0.3427,0.961,0.025,0.001
+replay,test_datakit,y_overload,0,0.3427,,,0
+replay,test_datakit,any,1,0.3427,0.961,0.025,0.001
+replay,pf_val,y_voltage,13,0.5154,0.5325,0.02858,0.013
+replay,pf_val,y_overload,4,0.5154,0.5256,0.005246,0.004
+replay,pf_val,any,17,0.5154,0.5311,0.02878,0.017
+replay,dk_val,y_voltage,2,0.3479,0.7565,0.006006,0.002
+replay,dk_val,y_overload,0,0.3479,,,0
+replay,dk_val,any,2,0.3479,0.7565,0.006006,0.002

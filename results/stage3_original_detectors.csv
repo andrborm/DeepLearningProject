@@ -1,19 +1,19 @@
 model,method,dataset,label,TP,FP,FN,TN,precision,recall,F1,PR-AUC,solver share
 original,baseline PtC,test_pfdelta,y_voltage,508,161,7,324,0.7593,0.9864,0.8581,,
-original,A gated PtC (solver),test_pfdelta,y_voltage,,8,7,,0.9845,0.9864,0.9855,,0.656
-original,A gated PtC (drop),test_pfdelta,y_voltage,,8,394,,0.938,0.235,0.3758,,0
+original,A gated PtC (solver),test_pfdelta,y_voltage,508,8,7,477,0.9845,0.9864,0.9855,,0.656
+original,A gated PtC (drop),test_pfdelta,y_voltage,121,8,394,477,0.938,0.235,0.3758,,0
 original,baseline PtC,test_pfdelta,y_overload,317,173,4,506,0.6469,0.9875,0.7818,,
-original,A gated PtC (solver),test_pfdelta,y_overload,,6,0,,0.9817,1,0.9907,,0.656
-original,A gated PtC (drop),test_pfdelta,y_overload,,6,315,,0.5,0.01869,0.03604,,0
+original,A gated PtC (solver),test_pfdelta,y_overload,321,6,0,673,0.9817,1,0.9907,,0.656
+original,A gated PtC (drop),test_pfdelta,y_overload,6,6,315,673,0.5,0.01869,0.03604,,0
 original,baseline PtC,test_datakit,y_voltage,27,0,1,972,1,0.9643,0.9818,,
-original,A gated PtC (solver),test_datakit,y_voltage,,0,1,,1,0.9643,0.9818,,0
-original,A gated PtC (drop),test_datakit,y_voltage,,0,1,,1,0.9643,0.9818,,0
+original,A gated PtC (solver),test_datakit,y_voltage,27,0,1,972,1,0.9643,0.9818,,0
+original,A gated PtC (drop),test_datakit,y_voltage,27,0,1,972,1,0.9643,0.9818,,0
 original,baseline PtC,test_datakit,y_overload,37,0,0,963,1,1,1,,
-original,A gated PtC (solver),test_datakit,y_overload,,0,0,,1,1,1,,0
-original,A gated PtC (drop),test_datakit,y_overload,,0,0,,1,1,1,,0
-original,B logreg,test_pfdelta,y_voltage,459,47,56,438,0.9071,0.8913,0.8991,0.9731,
-original,B logreg,test_datakit,y_voltage,23,7,5,965,0.7667,0.8214,0.7931,0.8966,
-original,B logreg,test_pfdelta,y_overload,284,26,37,653,0.9161,0.8847,0.9002,0.9707,
+original,A gated PtC (solver),test_datakit,y_overload,37,0,0,963,1,1,1,,0
+original,A gated PtC (drop),test_datakit,y_overload,37,0,0,963,1,1,1,,0
+original,B logreg,test_pfdelta,y_voltage,460,47,55,438,0.9073,0.8932,0.9002,0.9731,
+original,B logreg,test_datakit,y_voltage,23,7,5,965,0.7667,0.8214,0.7931,0.897,
+original,B logreg,test_pfdelta,y_overload,285,27,36,652,0.9135,0.8879,0.9005,0.9708,
 original,B logreg,test_datakit,y_overload,37,0,0,963,1,1,1,1,
 original,B mlp,test_pfdelta,y_voltage,459,49,56,436,0.9035,0.8913,0.8974,0.9713,
 original,B mlp,test_datakit,y_voltage,16,2,12,970,0.8889,0.5714,0.6957,0.8742,
