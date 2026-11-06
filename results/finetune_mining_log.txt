@@ -1,0 +1,549 @@
+Seed set to 0
+GPU available: False, used: False
+TPU available: False, using: 0 TPU cores
+\U0001f4a1 Tip: For seamless cloud logging and experiment tracking, try installing [litlogger](https://pypi.org/project/litlogger/) to enable LitLogger, which logs metrics and artifacts automatically to the Lightning Experiments platform.
+GPU available: False, used: False
+TPU available: False, using: 0 TPU cores
+\U0001f4a1 Tip: For seamless cloud logging and experiment tracking, try installing [litlogger](https://pypi.org/project/litlogger/) to enable LitLogger, which logs metrics and artifacts automatically to the Lightning Experiments platform.
+\U0001f4a1 Tip: For seamless cloud uploads and versioning, try installing [litmodels](https://pypi.org/project/litmodels/) to enable LitModelCheckpoint, which syncs automatically with the Lightning model registry.
+D:\school\DeepLearning\gridfm-anomaly\venv\Lib\site-packages\gridfm_graphkit\datasets\hetero_powergrid_datamodule.py:235: UserWarning: Requested number of scenarios (250000) exceeds dataset size (16000). Using the full dataset instead.
+  warnings.warn(
+D:\school\DeepLearning\gridfm-anomaly\venv\Lib\site-packages\gridfm_graphkit\datasets\hetero_powergrid_datamodule.py:245: UserWarning: `data.scenarios` is ignored when `split_from_existing_files` is set; train/val/test scenario ids are loaded from the provided split files.
+  warnings.warn(
+D:\school\DeepLearning\gridfm-anomaly\venv\Lib\site-packages\lightning\pytorch\utilities\_pytree.py:21: `isinstance(treespec, LeafSpec)` is deprecated, use `isinstance(treespec, TreeSpec) and treespec.is_leaf()` instead.
+D:\school\DeepLearning\gridfm-anomaly\venv\Lib\site-packages\lightning\pytorch\trainer\connectors\data_connector.py:434: The 'test_dataloader' does not have many workers which may be a bottleneck. Consider increasing the value of the `num_workers` argument` to `num_workers=27` in the `DataLoader` to improve performance.
+[config] Converted v0 config -> v1 in memory (file on disk unchanged).
+Loading model weights from D:\school\DeepLearning\gridfm-anomaly\checkpoints\genco-pf-datakit\case14_ieee\base\seed0\best_model_state_dict.pt
+[device] hostname=DESKTOP-0IMA98D
+[device] WARNING: No GPU found, running on CPU only
+Loaded normalizer stats from D:\school\DeepLearning\gridfm-anomaly\checkpoints\genco-pf-datakit\case14_ieee\base\seed0\normalizer_stats.pt
+split='train' len(split_indices)=0
+split='val' len(split_indices)=0
+split='test' len(split_indices)=1000
+Restoring normalizer for case14_ieee from saved stats
+D:\school\DeepLearning\gridfm-anomaly\venv\Lib\site-packages\lightning\pytorch\trainer\connectors\data_connector.py:378: You have overridden `on_after_batch_transfer` in `LightningModule` but have passed in a `LightningDataModule`. It will use the implementation from `LightningModule` instance.
+  c /= stddev[:, None]
+D:\school\DeepLearning\gridfm-anomaly\venv\Lib\site-packages\numpy\lib\_function_base_impl.py:3023: RuntimeWarning: invalid value encountered in divide
+  c /= stddev[:, None]
+GPU available: False, used: False
+TPU available: False, using: 0 TPU cores
+\U0001f4a1 Tip: For seamless cloud logging and experiment tracking, try installing [litlogger](https://pypi.org/project/litlogger/) to enable LitLogger, which logs metrics and artifacts automatically to the Lightning Experiments platform.
+\U0001f4a1 Tip: For seamless cloud uploads and versioning, try installing [litmodels](https://pypi.org/project/litmodels/) to enable LitModelCheckpoint, which syncs automatically with the Lightning model registry.
+D:\school\DeepLearning\gridfm-anomaly\venv\Lib\site-packages\lightning\pytorch\utilities\_pytree.py:21: `isinstance(treespec, LeafSpec)` is deprecated, use `isinstance(treespec, TreeSpec) and treespec.is_leaf()` instead.
+D:\school\DeepLearning\gridfm-anomaly\venv\Lib\site-packages\lightning\pytorch\trainer\connectors\data_connector.py:434: The 'predict_dataloader' does not have many workers which may be a bottleneck. Consider increasing the value of the `num_workers` argument` to `num_workers=27` in the `DataLoader` to improve performance.
+[performance] case14_ieee/layer_0_residual : 0.2935856878757477
+Setup already done for stage=TrainerFn.PREDICTING, skipping...
+GPU available: False, used: False
+TPU available: False, using: 0 TPU cores
+\U0001f4a1 Tip: For seamless cloud logging and experiment tracking, try installing [litlogger](https://pypi.org/project/litlogger/) to enable LitLogger, which logs metrics and artifacts automatically to the Lightning Experiments platform.
+GPU available: False, used: False
+TPU available: False, using: 0 TPU cores
+\U0001f4a1 Tip: For seamless cloud logging and experiment tracking, try installing [litlogger](https://pypi.org/project/litlogger/) to enable LitLogger, which logs metrics and artifacts automatically to the Lightning Experiments platform.
+\U0001f4a1 Tip: For seamless cloud uploads and versioning, try installing [litmodels](https://pypi.org/project/litmodels/) to enable LitModelCheckpoint, which syncs automatically with the Lightning model registry.
+D:\school\DeepLearning\gridfm-anomaly\venv\Lib\site-packages\gridfm_graphkit\datasets\hetero_powergrid_datamodule.py:235: UserWarning: Requested number of scenarios (250000) exceeds dataset size (16000). Using the full dataset instead.
+  warnings.warn(
+D:\school\DeepLearning\gridfm-anomaly\venv\Lib\site-packages\gridfm_graphkit\datasets\hetero_powergrid_datamodule.py:245: UserWarning: `data.scenarios` is ignored when `split_from_existing_files` is set; train/val/test scenario ids are loaded from the provided split files.
+  warnings.warn(
+D:\school\DeepLearning\gridfm-anomaly\venv\Lib\site-packages\lightning\pytorch\utilities\_pytree.py:21: `isinstance(treespec, LeafSpec)` is deprecated, use `isinstance(treespec, TreeSpec) and treespec.is_leaf()` instead.
+D:\school\DeepLearning\gridfm-anomaly\venv\Lib\site-packages\lightning\pytorch\trainer\connectors\data_connector.py:434: The 'test_dataloader' does not have many workers which may be a bottleneck. Consider increasing the value of the `num_workers` argument` to `num_workers=27` in the `DataLoader` to improve performance.
+Saved bus predictions to mlruns\657056988967417188\f1b74fc5b222460393bf1de61c51896a\artifacts\test\case14_ieee_predictions.parquet
+Saved branch predictions to mlruns\657056988967417188\f1b74fc5b222460393bf1de61c51896a\artifacts\test\case14_ieee_branch_predictions.parquet
+[mine] splits_mine00: 1000 samples, 17 s
+[config] Converted v0 config -> v1 in memory (file on disk unchanged).
+Loading model weights from D:\school\DeepLearning\gridfm-anomaly\checkpoints\genco-pf-datakit\case14_ieee\base\seed0\best_model_state_dict.pt
+[device] hostname=DESKTOP-0IMA98D
+[device] WARNING: No GPU found, running on CPU only
+Loaded normalizer stats from D:\school\DeepLearning\gridfm-anomaly\checkpoints\genco-pf-datakit\case14_ieee\base\seed0\normalizer_stats.pt
+split='train' len(split_indices)=0
+split='val' len(split_indices)=0
+split='test' len(split_indices)=1000
+Restoring normalizer for case14_ieee from saved stats
+  c /= stddev[:, None]
+D:\school\DeepLearning\gridfm-anomaly\venv\Lib\site-packages\numpy\lib\_function_base_impl.py:3023: RuntimeWarning: invalid value encountered in divide
+  c /= stddev[:, None]
+GPU available: False, used: False
+TPU available: False, using: 0 TPU cores
+\U0001f4a1 Tip: For seamless cloud logging and experiment tracking, try installing [litlogger](https://pypi.org/project/litlogger/) to enable LitLogger, which logs metrics and artifacts automatically to the Lightning Experiments platform.
+\U0001f4a1 Tip: For seamless cloud uploads and versioning, try installing [litmodels](https://pypi.org/project/litmodels/) to enable LitModelCheckpoint, which syncs automatically with the Lightning model registry.
+D:\school\DeepLearning\gridfm-anomaly\venv\Lib\site-packages\lightning\pytorch\utilities\_pytree.py:21: `isinstance(treespec, LeafSpec)` is deprecated, use `isinstance(treespec, TreeSpec) and treespec.is_leaf()` instead.
+D:\school\DeepLearning\gridfm-anomaly\venv\Lib\site-packages\lightning\pytorch\trainer\connectors\data_connector.py:434: The 'predict_dataloader' does not have many workers which may be a bottleneck. Consider increasing the value of the `num_workers` argument` to `num_workers=27` in the `DataLoader` to improve performance.
+[performance] case14_ieee/layer_0_residual : 0.29051902890205383
+Setup already done for stage=TrainerFn.PREDICTING, skipping...
+GPU available: False, used: False
+TPU available: False, using: 0 TPU cores
+\U0001f4a1 Tip: For seamless cloud logging and experiment tracking, try installing [litlogger](https://pypi.org/project/litlogger/) to enable LitLogger, which logs metrics and artifacts automatically to the Lightning Experiments platform.
+GPU available: False, used: False
+TPU available: False, using: 0 TPU cores
+\U0001f4a1 Tip: For seamless cloud logging and experiment tracking, try installing [litlogger](https://pypi.org/project/litlogger/) to enable LitLogger, which logs metrics and artifacts automatically to the Lightning Experiments platform.
+\U0001f4a1 Tip: For seamless cloud uploads and versioning, try installing [litmodels](https://pypi.org/project/litmodels/) to enable LitModelCheckpoint, which syncs automatically with the Lightning model registry.
+D:\school\DeepLearning\gridfm-anomaly\venv\Lib\site-packages\gridfm_graphkit\datasets\hetero_powergrid_datamodule.py:235: UserWarning: Requested number of scenarios (250000) exceeds dataset size (16000). Using the full dataset instead.
+  warnings.warn(
+D:\school\DeepLearning\gridfm-anomaly\venv\Lib\site-packages\gridfm_graphkit\datasets\hetero_powergrid_datamodule.py:245: UserWarning: `data.scenarios` is ignored when `split_from_existing_files` is set; train/val/test scenario ids are loaded from the provided split files.
+  warnings.warn(
+D:\school\DeepLearning\gridfm-anomaly\venv\Lib\site-packages\lightning\pytorch\utilities\_pytree.py:21: `isinstance(treespec, LeafSpec)` is deprecated, use `isinstance(treespec, TreeSpec) and treespec.is_leaf()` instead.
+D:\school\DeepLearning\gridfm-anomaly\venv\Lib\site-packages\lightning\pytorch\trainer\connectors\data_connector.py:434: The 'test_dataloader' does not have many workers which may be a bottleneck. Consider increasing the value of the `num_workers` argument` to `num_workers=27` in the `DataLoader` to improve performance.
+Saved bus predictions to mlruns\657056988967417188\1ea53b99194c4eb0935cde3942bffeeb\artifacts\test\case14_ieee_predictions.parquet
+Saved branch predictions to mlruns\657056988967417188\1ea53b99194c4eb0935cde3942bffeeb\artifacts\test\case14_ieee_branch_predictions.parquet
+[mine] splits_mine01: 1000 samples, 18 s
+[config] Converted v0 config -> v1 in memory (file on disk unchanged).
+Loading model weights from D:\school\DeepLearning\gridfm-anomaly\checkpoints\genco-pf-datakit\case14_ieee\base\seed0\best_model_state_dict.pt
+[device] hostname=DESKTOP-0IMA98D
+[device] WARNING: No GPU found, running on CPU only
+Loaded normalizer stats from D:\school\DeepLearning\gridfm-anomaly\checkpoints\genco-pf-datakit\case14_ieee\base\seed0\normalizer_stats.pt
+split='train' len(split_indices)=0
+split='val' len(split_indices)=0
+split='test' len(split_indices)=1000
+Restoring normalizer for case14_ieee from saved stats
+  c /= stddev[:, None]
+D:\school\DeepLearning\gridfm-anomaly\venv\Lib\site-packages\numpy\lib\_function_base_impl.py:3023: RuntimeWarning: invalid value encountered in divide
+  c /= stddev[:, None]
+GPU available: False, used: False
+TPU available: False, using: 0 TPU cores
+\U0001f4a1 Tip: For seamless cloud logging and experiment tracking, try installing [litlogger](https://pypi.org/project/litlogger/) to enable LitLogger, which logs metrics and artifacts automatically to the Lightning Experiments platform.
+\U0001f4a1 Tip: For seamless cloud uploads and versioning, try installing [litmodels](https://pypi.org/project/litmodels/) to enable LitModelCheckpoint, which syncs automatically with the Lightning model registry.
+D:\school\DeepLearning\gridfm-anomaly\venv\Lib\site-packages\lightning\pytorch\utilities\_pytree.py:21: `isinstance(treespec, LeafSpec)` is deprecated, use `isinstance(treespec, TreeSpec) and treespec.is_leaf()` instead.
+D:\school\DeepLearning\gridfm-anomaly\venv\Lib\site-packages\lightning\pytorch\trainer\connectors\data_connector.py:434: The 'predict_dataloader' does not have many workers which may be a bottleneck. Consider increasing the value of the `num_workers` argument` to `num_workers=27` in the `DataLoader` to improve performance.
+[performance] case14_ieee/layer_0_residual : 0.2932508587837219
+Setup already done for stage=TrainerFn.PREDICTING, skipping...
+GPU available: False, used: False
+TPU available: False, using: 0 TPU cores
+\U0001f4a1 Tip: For seamless cloud logging and experiment tracking, try installing [litlogger](https://pypi.org/project/litlogger/) to enable LitLogger, which logs metrics and artifacts automatically to the Lightning Experiments platform.
+GPU available: False, used: False
+TPU available: False, using: 0 TPU cores
+\U0001f4a1 Tip: For seamless cloud logging and experiment tracking, try installing [litlogger](https://pypi.org/project/litlogger/) to enable LitLogger, which logs metrics and artifacts automatically to the Lightning Experiments platform.
+\U0001f4a1 Tip: For seamless cloud uploads and versioning, try installing [litmodels](https://pypi.org/project/litmodels/) to enable LitModelCheckpoint, which syncs automatically with the Lightning model registry.
+D:\school\DeepLearning\gridfm-anomaly\venv\Lib\site-packages\gridfm_graphkit\datasets\hetero_powergrid_datamodule.py:235: UserWarning: Requested number of scenarios (250000) exceeds dataset size (16000). Using the full dataset instead.
+  warnings.warn(
+D:\school\DeepLearning\gridfm-anomaly\venv\Lib\site-packages\gridfm_graphkit\datasets\hetero_powergrid_datamodule.py:245: UserWarning: `data.scenarios` is ignored when `split_from_existing_files` is set; train/val/test scenario ids are loaded from the provided split files.
+  warnings.warn(
+D:\school\DeepLearning\gridfm-anomaly\venv\Lib\site-packages\lightning\pytorch\utilities\_pytree.py:21: `isinstance(treespec, LeafSpec)` is deprecated, use `isinstance(treespec, TreeSpec) and treespec.is_leaf()` instead.
+D:\school\DeepLearning\gridfm-anomaly\venv\Lib\site-packages\lightning\pytorch\trainer\connectors\data_connector.py:434: The 'test_dataloader' does not have many workers which may be a bottleneck. Consider increasing the value of the `num_workers` argument` to `num_workers=27` in the `DataLoader` to improve performance.
+Saved bus predictions to mlruns\657056988967417188\7659e8cf840845b283888b1267fa8758\artifacts\test\case14_ieee_predictions.parquet
+Saved branch predictions to mlruns\657056988967417188\7659e8cf840845b283888b1267fa8758\artifacts\test\case14_ieee_branch_predictions.parquet
+[mine] splits_mine02: 1000 samples, 17 s
+[config] Converted v0 config -> v1 in memory (file on disk unchanged).
+Loading model weights from D:\school\DeepLearning\gridfm-anomaly\checkpoints\genco-pf-datakit\case14_ieee\base\seed0\best_model_state_dict.pt
+[device] hostname=DESKTOP-0IMA98D
+[device] WARNING: No GPU found, running on CPU only
+Loaded normalizer stats from D:\school\DeepLearning\gridfm-anomaly\checkpoints\genco-pf-datakit\case14_ieee\base\seed0\normalizer_stats.pt
+split='train' len(split_indices)=0
+split='val' len(split_indices)=0
+split='test' len(split_indices)=1000
+Restoring normalizer for case14_ieee from saved stats
+  c /= stddev[:, None]
+D:\school\DeepLearning\gridfm-anomaly\venv\Lib\site-packages\numpy\lib\_function_base_impl.py:3023: RuntimeWarning: invalid value encountered in divide
+  c /= stddev[:, None]
+GPU available: False, used: False
+TPU available: False, using: 0 TPU cores
+\U0001f4a1 Tip: For seamless cloud logging and experiment tracking, try installing [litlogger](https://pypi.org/project/litlogger/) to enable LitLogger, which logs metrics and artifacts automatically to the Lightning Experiments platform.
+\U0001f4a1 Tip: For seamless cloud uploads and versioning, try installing [litmodels](https://pypi.org/project/litmodels/) to enable LitModelCheckpoint, which syncs automatically with the Lightning model registry.
+D:\school\DeepLearning\gridfm-anomaly\venv\Lib\site-packages\lightning\pytorch\utilities\_pytree.py:21: `isinstance(treespec, LeafSpec)` is deprecated, use `isinstance(treespec, TreeSpec) and treespec.is_leaf()` instead.
+D:\school\DeepLearning\gridfm-anomaly\venv\Lib\site-packages\lightning\pytorch\trainer\connectors\data_connector.py:434: The 'predict_dataloader' does not have many workers which may be a bottleneck. Consider increasing the value of the `num_workers` argument` to `num_workers=27` in the `DataLoader` to improve performance.
+[performance] case14_ieee/layer_0_residual : 0.29363930225372314
+Setup already done for stage=TrainerFn.PREDICTING, skipping...
+GPU available: False, used: False
+TPU available: False, using: 0 TPU cores
+\U0001f4a1 Tip: For seamless cloud logging and experiment tracking, try installing [litlogger](https://pypi.org/project/litlogger/) to enable LitLogger, which logs metrics and artifacts automatically to the Lightning Experiments platform.
+GPU available: False, used: False
+TPU available: False, using: 0 TPU cores
+\U0001f4a1 Tip: For seamless cloud logging and experiment tracking, try installing [litlogger](https://pypi.org/project/litlogger/) to enable LitLogger, which logs metrics and artifacts automatically to the Lightning Experiments platform.
+\U0001f4a1 Tip: For seamless cloud uploads and versioning, try installing [litmodels](https://pypi.org/project/litmodels/) to enable LitModelCheckpoint, which syncs automatically with the Lightning model registry.
+D:\school\DeepLearning\gridfm-anomaly\venv\Lib\site-packages\gridfm_graphkit\datasets\hetero_powergrid_datamodule.py:235: UserWarning: Requested number of scenarios (250000) exceeds dataset size (16000). Using the full dataset instead.
+  warnings.warn(
+D:\school\DeepLearning\gridfm-anomaly\venv\Lib\site-packages\gridfm_graphkit\datasets\hetero_powergrid_datamodule.py:245: UserWarning: `data.scenarios` is ignored when `split_from_existing_files` is set; train/val/test scenario ids are loaded from the provided split files.
+  warnings.warn(
+D:\school\DeepLearning\gridfm-anomaly\venv\Lib\site-packages\lightning\pytorch\utilities\_pytree.py:21: `isinstance(treespec, LeafSpec)` is deprecated, use `isinstance(treespec, TreeSpec) and treespec.is_leaf()` instead.
+D:\school\DeepLearning\gridfm-anomaly\venv\Lib\site-packages\lightning\pytorch\trainer\connectors\data_connector.py:434: The 'test_dataloader' does not have many workers which may be a bottleneck. Consider increasing the value of the `num_workers` argument` to `num_workers=27` in the `DataLoader` to improve performance.
+Saved bus predictions to mlruns\657056988967417188\81e840dfa1074b44b209fb56c903ed46\artifacts\test\case14_ieee_predictions.parquet
+Saved branch predictions to mlruns\657056988967417188\81e840dfa1074b44b209fb56c903ed46\artifacts\test\case14_ieee_branch_predictions.parquet
+[mine] splits_mine03: 1000 samples, 15 s
+[config] Converted v0 config -> v1 in memory (file on disk unchanged).
+Loading model weights from D:\school\DeepLearning\gridfm-anomaly\checkpoints\genco-pf-datakit\case14_ieee\base\seed0\best_model_state_dict.pt
+[device] hostname=DESKTOP-0IMA98D
+[device] WARNING: No GPU found, running on CPU only
+Loaded normalizer stats from D:\school\DeepLearning\gridfm-anomaly\checkpoints\genco-pf-datakit\case14_ieee\base\seed0\normalizer_stats.pt
+split='train' len(split_indices)=0
+split='val' len(split_indices)=0
+split='test' len(split_indices)=1000
+Restoring normalizer for case14_ieee from saved stats
+  c /= stddev[:, None]
+D:\school\DeepLearning\gridfm-anomaly\venv\Lib\site-packages\numpy\lib\_function_base_impl.py:3023: RuntimeWarning: invalid value encountered in divide
+  c /= stddev[:, None]
+GPU available: False, used: False
+TPU available: False, using: 0 TPU cores
+\U0001f4a1 Tip: For seamless cloud logging and experiment tracking, try installing [litlogger](https://pypi.org/project/litlogger/) to enable LitLogger, which logs metrics and artifacts automatically to the Lightning Experiments platform.
+\U0001f4a1 Tip: For seamless cloud uploads and versioning, try installing [litmodels](https://pypi.org/project/litmodels/) to enable LitModelCheckpoint, which syncs automatically with the Lightning model registry.
+D:\school\DeepLearning\gridfm-anomaly\venv\Lib\site-packages\lightning\pytorch\utilities\_pytree.py:21: `isinstance(treespec, LeafSpec)` is deprecated, use `isinstance(treespec, TreeSpec) and treespec.is_leaf()` instead.
+D:\school\DeepLearning\gridfm-anomaly\venv\Lib\site-packages\lightning\pytorch\trainer\connectors\data_connector.py:434: The 'predict_dataloader' does not have many workers which may be a bottleneck. Consider increasing the value of the `num_workers` argument` to `num_workers=27` in the `DataLoader` to improve performance.
+[performance] case14_ieee/layer_0_residual : 0.2907145023345947
+Setup already done for stage=TrainerFn.PREDICTING, skipping...
+GPU available: False, used: False
+TPU available: False, using: 0 TPU cores
+\U0001f4a1 Tip: For seamless cloud logging and experiment tracking, try installing [litlogger](https://pypi.org/project/litlogger/) to enable LitLogger, which logs metrics and artifacts automatically to the Lightning Experiments platform.
+GPU available: False, used: False
+TPU available: False, using: 0 TPU cores
+\U0001f4a1 Tip: For seamless cloud logging and experiment tracking, try installing [litlogger](https://pypi.org/project/litlogger/) to enable LitLogger, which logs metrics and artifacts automatically to the Lightning Experiments platform.
+\U0001f4a1 Tip: For seamless cloud uploads and versioning, try installing [litmodels](https://pypi.org/project/litmodels/) to enable LitModelCheckpoint, which syncs automatically with the Lightning model registry.
+D:\school\DeepLearning\gridfm-anomaly\venv\Lib\site-packages\gridfm_graphkit\datasets\hetero_powergrid_datamodule.py:235: UserWarning: Requested number of scenarios (250000) exceeds dataset size (16000). Using the full dataset instead.
+  warnings.warn(
+D:\school\DeepLearning\gridfm-anomaly\venv\Lib\site-packages\gridfm_graphkit\datasets\hetero_powergrid_datamodule.py:245: UserWarning: `data.scenarios` is ignored when `split_from_existing_files` is set; train/val/test scenario ids are loaded from the provided split files.
+  warnings.warn(
+D:\school\DeepLearning\gridfm-anomaly\venv\Lib\site-packages\lightning\pytorch\utilities\_pytree.py:21: `isinstance(treespec, LeafSpec)` is deprecated, use `isinstance(treespec, TreeSpec) and treespec.is_leaf()` instead.
+D:\school\DeepLearning\gridfm-anomaly\venv\Lib\site-packages\lightning\pytorch\trainer\connectors\data_connector.py:434: The 'test_dataloader' does not have many workers which may be a bottleneck. Consider increasing the value of the `num_workers` argument` to `num_workers=27` in the `DataLoader` to improve performance.
+Saved bus predictions to mlruns\657056988967417188\d3f246af4d074916994f2a796b9326d6\artifacts\test\case14_ieee_predictions.parquet
+Saved branch predictions to mlruns\657056988967417188\d3f246af4d074916994f2a796b9326d6\artifacts\test\case14_ieee_branch_predictions.parquet
+[mine] splits_mine04: 1000 samples, 14 s
+[config] Converted v0 config -> v1 in memory (file on disk unchanged).
+Loading model weights from D:\school\DeepLearning\gridfm-anomaly\checkpoints\genco-pf-datakit\case14_ieee\base\seed0\best_model_state_dict.pt
+[device] hostname=DESKTOP-0IMA98D
+[device] WARNING: No GPU found, running on CPU only
+Loaded normalizer stats from D:\school\DeepLearning\gridfm-anomaly\checkpoints\genco-pf-datakit\case14_ieee\base\seed0\normalizer_stats.pt
+split='train' len(split_indices)=0
+split='val' len(split_indices)=0
+split='test' len(split_indices)=1000
+Restoring normalizer for case14_ieee from saved stats
+  c /= stddev[:, None]
+D:\school\DeepLearning\gridfm-anomaly\venv\Lib\site-packages\numpy\lib\_function_base_impl.py:3023: RuntimeWarning: invalid value encountered in divide
+  c /= stddev[:, None]
+GPU available: False, used: False
+TPU available: False, using: 0 TPU cores
+\U0001f4a1 Tip: For seamless cloud logging and experiment tracking, try installing [litlogger](https://pypi.org/project/litlogger/) to enable LitLogger, which logs metrics and artifacts automatically to the Lightning Experiments platform.
+\U0001f4a1 Tip: For seamless cloud uploads and versioning, try installing [litmodels](https://pypi.org/project/litmodels/) to enable LitModelCheckpoint, which syncs automatically with the Lightning model registry.
+D:\school\DeepLearning\gridfm-anomaly\venv\Lib\site-packages\lightning\pytorch\utilities\_pytree.py:21: `isinstance(treespec, LeafSpec)` is deprecated, use `isinstance(treespec, TreeSpec) and treespec.is_leaf()` instead.
+D:\school\DeepLearning\gridfm-anomaly\venv\Lib\site-packages\lightning\pytorch\trainer\connectors\data_connector.py:434: The 'predict_dataloader' does not have many workers which may be a bottleneck. Consider increasing the value of the `num_workers` argument` to `num_workers=27` in the `DataLoader` to improve performance.
+[performance] case14_ieee/layer_0_residual : 0.2887665331363678
+Setup already done for stage=TrainerFn.PREDICTING, skipping...
+GPU available: False, used: False
+TPU available: False, using: 0 TPU cores
+\U0001f4a1 Tip: For seamless cloud logging and experiment tracking, try installing [litlogger](https://pypi.org/project/litlogger/) to enable LitLogger, which logs metrics and artifacts automatically to the Lightning Experiments platform.
+GPU available: False, used: False
+TPU available: False, using: 0 TPU cores
+\U0001f4a1 Tip: For seamless cloud logging and experiment tracking, try installing [litlogger](https://pypi.org/project/litlogger/) to enable LitLogger, which logs metrics and artifacts automatically to the Lightning Experiments platform.
+\U0001f4a1 Tip: For seamless cloud uploads and versioning, try installing [litmodels](https://pypi.org/project/litmodels/) to enable LitModelCheckpoint, which syncs automatically with the Lightning model registry.
+D:\school\DeepLearning\gridfm-anomaly\venv\Lib\site-packages\gridfm_graphkit\datasets\hetero_powergrid_datamodule.py:235: UserWarning: Requested number of scenarios (250000) exceeds dataset size (16000). Using the full dataset instead.
+  warnings.warn(
+D:\school\DeepLearning\gridfm-anomaly\venv\Lib\site-packages\gridfm_graphkit\datasets\hetero_powergrid_datamodule.py:245: UserWarning: `data.scenarios` is ignored when `split_from_existing_files` is set; train/val/test scenario ids are loaded from the provided split files.
+  warnings.warn(
+D:\school\DeepLearning\gridfm-anomaly\venv\Lib\site-packages\lightning\pytorch\utilities\_pytree.py:21: `isinstance(treespec, LeafSpec)` is deprecated, use `isinstance(treespec, TreeSpec) and treespec.is_leaf()` instead.
+D:\school\DeepLearning\gridfm-anomaly\venv\Lib\site-packages\lightning\pytorch\trainer\connectors\data_connector.py:434: The 'test_dataloader' does not have many workers which may be a bottleneck. Consider increasing the value of the `num_workers` argument` to `num_workers=27` in the `DataLoader` to improve performance.
+Saved bus predictions to mlruns\657056988967417188\3d66122771f44ffb9f431fe57b123ac3\artifacts\test\case14_ieee_predictions.parquet
+Saved branch predictions to mlruns\657056988967417188\3d66122771f44ffb9f431fe57b123ac3\artifacts\test\case14_ieee_branch_predictions.parquet
+[mine] splits_mine05: 1000 samples, 14 s
+[config] Converted v0 config -> v1 in memory (file on disk unchanged).
+Loading model weights from D:\school\DeepLearning\gridfm-anomaly\checkpoints\genco-pf-datakit\case14_ieee\base\seed0\best_model_state_dict.pt
+[device] hostname=DESKTOP-0IMA98D
+[device] WARNING: No GPU found, running on CPU only
+Loaded normalizer stats from D:\school\DeepLearning\gridfm-anomaly\checkpoints\genco-pf-datakit\case14_ieee\base\seed0\normalizer_stats.pt
+split='train' len(split_indices)=0
+split='val' len(split_indices)=0
+split='test' len(split_indices)=1000
+Restoring normalizer for case14_ieee from saved stats
+  c /= stddev[:, None]
+D:\school\DeepLearning\gridfm-anomaly\venv\Lib\site-packages\numpy\lib\_function_base_impl.py:3023: RuntimeWarning: invalid value encountered in divide
+  c /= stddev[:, None]
+GPU available: False, used: False
+TPU available: False, using: 0 TPU cores
+\U0001f4a1 Tip: For seamless cloud logging and experiment tracking, try installing [litlogger](https://pypi.org/project/litlogger/) to enable LitLogger, which logs metrics and artifacts automatically to the Lightning Experiments platform.
+\U0001f4a1 Tip: For seamless cloud uploads and versioning, try installing [litmodels](https://pypi.org/project/litmodels/) to enable LitModelCheckpoint, which syncs automatically with the Lightning model registry.
+D:\school\DeepLearning\gridfm-anomaly\venv\Lib\site-packages\lightning\pytorch\utilities\_pytree.py:21: `isinstance(treespec, LeafSpec)` is deprecated, use `isinstance(treespec, TreeSpec) and treespec.is_leaf()` instead.
+D:\school\DeepLearning\gridfm-anomaly\venv\Lib\site-packages\lightning\pytorch\trainer\connectors\data_connector.py:434: The 'predict_dataloader' does not have many workers which may be a bottleneck. Consider increasing the value of the `num_workers` argument` to `num_workers=27` in the `DataLoader` to improve performance.
+[performance] case14_ieee/layer_0_residual : 0.2922103703022003
+Setup already done for stage=TrainerFn.PREDICTING, skipping...
+GPU available: False, used: False
+TPU available: False, using: 0 TPU cores
+\U0001f4a1 Tip: For seamless cloud logging and experiment tracking, try installing [litlogger](https://pypi.org/project/litlogger/) to enable LitLogger, which logs metrics and artifacts automatically to the Lightning Experiments platform.
+GPU available: False, used: False
+TPU available: False, using: 0 TPU cores
+\U0001f4a1 Tip: For seamless cloud logging and experiment tracking, try installing [litlogger](https://pypi.org/project/litlogger/) to enable LitLogger, which logs metrics and artifacts automatically to the Lightning Experiments platform.
+\U0001f4a1 Tip: For seamless cloud uploads and versioning, try installing [litmodels](https://pypi.org/project/litmodels/) to enable LitModelCheckpoint, which syncs automatically with the Lightning model registry.
+D:\school\DeepLearning\gridfm-anomaly\venv\Lib\site-packages\gridfm_graphkit\datasets\hetero_powergrid_datamodule.py:235: UserWarning: Requested number of scenarios (250000) exceeds dataset size (16000). Using the full dataset instead.
+  warnings.warn(
+D:\school\DeepLearning\gridfm-anomaly\venv\Lib\site-packages\gridfm_graphkit\datasets\hetero_powergrid_datamodule.py:245: UserWarning: `data.scenarios` is ignored when `split_from_existing_files` is set; train/val/test scenario ids are loaded from the provided split files.
+  warnings.warn(
+D:\school\DeepLearning\gridfm-anomaly\venv\Lib\site-packages\lightning\pytorch\utilities\_pytree.py:21: `isinstance(treespec, LeafSpec)` is deprecated, use `isinstance(treespec, TreeSpec) and treespec.is_leaf()` instead.
+D:\school\DeepLearning\gridfm-anomaly\venv\Lib\site-packages\lightning\pytorch\trainer\connectors\data_connector.py:434: The 'test_dataloader' does not have many workers which may be a bottleneck. Consider increasing the value of the `num_workers` argument` to `num_workers=27` in the `DataLoader` to improve performance.
+Saved bus predictions to mlruns\657056988967417188\4805d2ba3bfc4e87ba4e763348544206\artifacts\test\case14_ieee_predictions.parquet
+Saved branch predictions to mlruns\657056988967417188\4805d2ba3bfc4e87ba4e763348544206\artifacts\test\case14_ieee_branch_predictions.parquet
+[mine] splits_mine06: 1000 samples, 14 s
+[config] Converted v0 config -> v1 in memory (file on disk unchanged).
+Loading model weights from D:\school\DeepLearning\gridfm-anomaly\checkpoints\genco-pf-datakit\case14_ieee\base\seed0\best_model_state_dict.pt
+[device] hostname=DESKTOP-0IMA98D
+[device] WARNING: No GPU found, running on CPU only
+Loaded normalizer stats from D:\school\DeepLearning\gridfm-anomaly\checkpoints\genco-pf-datakit\case14_ieee\base\seed0\normalizer_stats.pt
+split='train' len(split_indices)=0
+split='val' len(split_indices)=0
+split='test' len(split_indices)=1000
+Restoring normalizer for case14_ieee from saved stats
+  c /= stddev[:, None]
+D:\school\DeepLearning\gridfm-anomaly\venv\Lib\site-packages\numpy\lib\_function_base_impl.py:3023: RuntimeWarning: invalid value encountered in divide
+  c /= stddev[:, None]
+GPU available: False, used: False
+TPU available: False, using: 0 TPU cores
+\U0001f4a1 Tip: For seamless cloud logging and experiment tracking, try installing [litlogger](https://pypi.org/project/litlogger/) to enable LitLogger, which logs metrics and artifacts automatically to the Lightning Experiments platform.
+\U0001f4a1 Tip: For seamless cloud uploads and versioning, try installing [litmodels](https://pypi.org/project/litmodels/) to enable LitModelCheckpoint, which syncs automatically with the Lightning model registry.
+D:\school\DeepLearning\gridfm-anomaly\venv\Lib\site-packages\lightning\pytorch\utilities\_pytree.py:21: `isinstance(treespec, LeafSpec)` is deprecated, use `isinstance(treespec, TreeSpec) and treespec.is_leaf()` instead.
+D:\school\DeepLearning\gridfm-anomaly\venv\Lib\site-packages\lightning\pytorch\trainer\connectors\data_connector.py:434: The 'predict_dataloader' does not have many workers which may be a bottleneck. Consider increasing the value of the `num_workers` argument` to `num_workers=27` in the `DataLoader` to improve performance.
+[performance] case14_ieee/layer_0_residual : 0.2675212025642395
+Setup already done for stage=TrainerFn.PREDICTING, skipping...
+GPU available: False, used: False
+TPU available: False, using: 0 TPU cores
+\U0001f4a1 Tip: For seamless cloud logging and experiment tracking, try installing [litlogger](https://pypi.org/project/litlogger/) to enable LitLogger, which logs metrics and artifacts automatically to the Lightning Experiments platform.
+GPU available: False, used: False
+TPU available: False, using: 0 TPU cores
+\U0001f4a1 Tip: For seamless cloud logging and experiment tracking, try installing [litlogger](https://pypi.org/project/litlogger/) to enable LitLogger, which logs metrics and artifacts automatically to the Lightning Experiments platform.
+\U0001f4a1 Tip: For seamless cloud uploads and versioning, try installing [litmodels](https://pypi.org/project/litmodels/) to enable LitModelCheckpoint, which syncs automatically with the Lightning model registry.
+D:\school\DeepLearning\gridfm-anomaly\venv\Lib\site-packages\gridfm_graphkit\datasets\hetero_powergrid_datamodule.py:235: UserWarning: Requested number of scenarios (250000) exceeds dataset size (16000). Using the full dataset instead.
+  warnings.warn(
+D:\school\DeepLearning\gridfm-anomaly\venv\Lib\site-packages\gridfm_graphkit\datasets\hetero_powergrid_datamodule.py:245: UserWarning: `data.scenarios` is ignored when `split_from_existing_files` is set; train/val/test scenario ids are loaded from the provided split files.
+  warnings.warn(
+D:\school\DeepLearning\gridfm-anomaly\venv\Lib\site-packages\lightning\pytorch\utilities\_pytree.py:21: `isinstance(treespec, LeafSpec)` is deprecated, use `isinstance(treespec, TreeSpec) and treespec.is_leaf()` instead.
+D:\school\DeepLearning\gridfm-anomaly\venv\Lib\site-packages\lightning\pytorch\trainer\connectors\data_connector.py:434: The 'test_dataloader' does not have many workers which may be a bottleneck. Consider increasing the value of the `num_workers` argument` to `num_workers=27` in the `DataLoader` to improve performance.
+Saved bus predictions to mlruns\657056988967417188\4ef0c19d71e540efb4fc30a93afee140\artifacts\test\case14_ieee_predictions.parquet
+Saved branch predictions to mlruns\657056988967417188\4ef0c19d71e540efb4fc30a93afee140\artifacts\test\case14_ieee_branch_predictions.parquet
+[mine] splits_mine07: 1000 samples, 14 s
+[config] Converted v0 config -> v1 in memory (file on disk unchanged).
+Loading model weights from D:\school\DeepLearning\gridfm-anomaly\checkpoints\genco-pf-datakit\case14_ieee\base\seed0\best_model_state_dict.pt
+[device] hostname=DESKTOP-0IMA98D
+[device] WARNING: No GPU found, running on CPU only
+Loaded normalizer stats from D:\school\DeepLearning\gridfm-anomaly\checkpoints\genco-pf-datakit\case14_ieee\base\seed0\normalizer_stats.pt
+split='train' len(split_indices)=0
+split='val' len(split_indices)=0
+split='test' len(split_indices)=1000
+Restoring normalizer for case14_ieee from saved stats
+  c /= stddev[:, None]
+D:\school\DeepLearning\gridfm-anomaly\venv\Lib\site-packages\numpy\lib\_function_base_impl.py:3023: RuntimeWarning: invalid value encountered in divide
+  c /= stddev[:, None]
+GPU available: False, used: False
+TPU available: False, using: 0 TPU cores
+\U0001f4a1 Tip: For seamless cloud logging and experiment tracking, try installing [litlogger](https://pypi.org/project/litlogger/) to enable LitLogger, which logs metrics and artifacts automatically to the Lightning Experiments platform.
+\U0001f4a1 Tip: For seamless cloud uploads and versioning, try installing [litmodels](https://pypi.org/project/litmodels/) to enable LitModelCheckpoint, which syncs automatically with the Lightning model registry.
+D:\school\DeepLearning\gridfm-anomaly\venv\Lib\site-packages\lightning\pytorch\utilities\_pytree.py:21: `isinstance(treespec, LeafSpec)` is deprecated, use `isinstance(treespec, TreeSpec) and treespec.is_leaf()` instead.
+D:\school\DeepLearning\gridfm-anomaly\venv\Lib\site-packages\lightning\pytorch\trainer\connectors\data_connector.py:434: The 'predict_dataloader' does not have many workers which may be a bottleneck. Consider increasing the value of the `num_workers` argument` to `num_workers=27` in the `DataLoader` to improve performance.
+[performance] case14_ieee/layer_0_residual : 0.22881801426410675
+Setup already done for stage=TrainerFn.PREDICTING, skipping...
+GPU available: False, used: False
+TPU available: False, using: 0 TPU cores
+\U0001f4a1 Tip: For seamless cloud logging and experiment tracking, try installing [litlogger](https://pypi.org/project/litlogger/) to enable LitLogger, which logs metrics and artifacts automatically to the Lightning Experiments platform.
+GPU available: False, used: False
+TPU available: False, using: 0 TPU cores
+\U0001f4a1 Tip: For seamless cloud logging and experiment tracking, try installing [litlogger](https://pypi.org/project/litlogger/) to enable LitLogger, which logs metrics and artifacts automatically to the Lightning Experiments platform.
+\U0001f4a1 Tip: For seamless cloud uploads and versioning, try installing [litmodels](https://pypi.org/project/litmodels/) to enable LitModelCheckpoint, which syncs automatically with the Lightning model registry.
+D:\school\DeepLearning\gridfm-anomaly\venv\Lib\site-packages\gridfm_graphkit\datasets\hetero_powergrid_datamodule.py:235: UserWarning: Requested number of scenarios (250000) exceeds dataset size (16000). Using the full dataset instead.
+  warnings.warn(
+D:\school\DeepLearning\gridfm-anomaly\venv\Lib\site-packages\gridfm_graphkit\datasets\hetero_powergrid_datamodule.py:245: UserWarning: `data.scenarios` is ignored when `split_from_existing_files` is set; train/val/test scenario ids are loaded from the provided split files.
+  warnings.warn(
+D:\school\DeepLearning\gridfm-anomaly\venv\Lib\site-packages\lightning\pytorch\utilities\_pytree.py:21: `isinstance(treespec, LeafSpec)` is deprecated, use `isinstance(treespec, TreeSpec) and treespec.is_leaf()` instead.
+D:\school\DeepLearning\gridfm-anomaly\venv\Lib\site-packages\lightning\pytorch\trainer\connectors\data_connector.py:434: The 'test_dataloader' does not have many workers which may be a bottleneck. Consider increasing the value of the `num_workers` argument` to `num_workers=27` in the `DataLoader` to improve performance.
+Saved bus predictions to mlruns\657056988967417188\6f2085d88f024d9ab664d1c2cc4e3bd6\artifacts\test\case14_ieee_predictions.parquet
+Saved branch predictions to mlruns\657056988967417188\6f2085d88f024d9ab664d1c2cc4e3bd6\artifacts\test\case14_ieee_branch_predictions.parquet
+[mine] splits_mine08: 1000 samples, 14 s
+[config] Converted v0 config -> v1 in memory (file on disk unchanged).
+Loading model weights from D:\school\DeepLearning\gridfm-anomaly\checkpoints\genco-pf-datakit\case14_ieee\base\seed0\best_model_state_dict.pt
+[device] hostname=DESKTOP-0IMA98D
+[device] WARNING: No GPU found, running on CPU only
+Loaded normalizer stats from D:\school\DeepLearning\gridfm-anomaly\checkpoints\genco-pf-datakit\case14_ieee\base\seed0\normalizer_stats.pt
+split='train' len(split_indices)=0
+split='val' len(split_indices)=0
+split='test' len(split_indices)=1000
+Restoring normalizer for case14_ieee from saved stats
+  c /= stddev[:, None]
+D:\school\DeepLearning\gridfm-anomaly\venv\Lib\site-packages\numpy\lib\_function_base_impl.py:3023: RuntimeWarning: invalid value encountered in divide
+  c /= stddev[:, None]
+GPU available: False, used: False
+TPU available: False, using: 0 TPU cores
+\U0001f4a1 Tip: For seamless cloud logging and experiment tracking, try installing [litlogger](https://pypi.org/project/litlogger/) to enable LitLogger, which logs metrics and artifacts automatically to the Lightning Experiments platform.
+\U0001f4a1 Tip: For seamless cloud uploads and versioning, try installing [litmodels](https://pypi.org/project/litmodels/) to enable LitModelCheckpoint, which syncs automatically with the Lightning model registry.
+D:\school\DeepLearning\gridfm-anomaly\venv\Lib\site-packages\lightning\pytorch\utilities\_pytree.py:21: `isinstance(treespec, LeafSpec)` is deprecated, use `isinstance(treespec, TreeSpec) and treespec.is_leaf()` instead.
+D:\school\DeepLearning\gridfm-anomaly\venv\Lib\site-packages\lightning\pytorch\trainer\connectors\data_connector.py:434: The 'predict_dataloader' does not have many workers which may be a bottleneck. Consider increasing the value of the `num_workers` argument` to `num_workers=27` in the `DataLoader` to improve performance.
+[performance] case14_ieee/layer_0_residual : 0.22851571440696716
+Setup already done for stage=TrainerFn.PREDICTING, skipping...
+GPU available: False, used: False
+TPU available: False, using: 0 TPU cores
+\U0001f4a1 Tip: For seamless cloud logging and experiment tracking, try installing [litlogger](https://pypi.org/project/litlogger/) to enable LitLogger, which logs metrics and artifacts automatically to the Lightning Experiments platform.
+GPU available: False, used: False
+TPU available: False, using: 0 TPU cores
+\U0001f4a1 Tip: For seamless cloud logging and experiment tracking, try installing [litlogger](https://pypi.org/project/litlogger/) to enable LitLogger, which logs metrics and artifacts automatically to the Lightning Experiments platform.
+\U0001f4a1 Tip: For seamless cloud uploads and versioning, try installing [litmodels](https://pypi.org/project/litmodels/) to enable LitModelCheckpoint, which syncs automatically with the Lightning model registry.
+D:\school\DeepLearning\gridfm-anomaly\venv\Lib\site-packages\gridfm_graphkit\datasets\hetero_powergrid_datamodule.py:235: UserWarning: Requested number of scenarios (250000) exceeds dataset size (16000). Using the full dataset instead.
+  warnings.warn(
+D:\school\DeepLearning\gridfm-anomaly\venv\Lib\site-packages\gridfm_graphkit\datasets\hetero_powergrid_datamodule.py:245: UserWarning: `data.scenarios` is ignored when `split_from_existing_files` is set; train/val/test scenario ids are loaded from the provided split files.
+  warnings.warn(
+D:\school\DeepLearning\gridfm-anomaly\venv\Lib\site-packages\lightning\pytorch\utilities\_pytree.py:21: `isinstance(treespec, LeafSpec)` is deprecated, use `isinstance(treespec, TreeSpec) and treespec.is_leaf()` instead.
+D:\school\DeepLearning\gridfm-anomaly\venv\Lib\site-packages\lightning\pytorch\trainer\connectors\data_connector.py:434: The 'test_dataloader' does not have many workers which may be a bottleneck. Consider increasing the value of the `num_workers` argument` to `num_workers=27` in the `DataLoader` to improve performance.
+Saved bus predictions to mlruns\657056988967417188\e54a354ded1a4c73adce3ed23f3c0c86\artifacts\test\case14_ieee_predictions.parquet
+Saved branch predictions to mlruns\657056988967417188\e54a354ded1a4c73adce3ed23f3c0c86\artifacts\test\case14_ieee_branch_predictions.parquet
+[mine] splits_mine09: 1000 samples, 14 s
+[config] Converted v0 config -> v1 in memory (file on disk unchanged).
+Loading model weights from D:\school\DeepLearning\gridfm-anomaly\checkpoints\genco-pf-datakit\case14_ieee\base\seed0\best_model_state_dict.pt
+[device] hostname=DESKTOP-0IMA98D
+[device] WARNING: No GPU found, running on CPU only
+Loaded normalizer stats from D:\school\DeepLearning\gridfm-anomaly\checkpoints\genco-pf-datakit\case14_ieee\base\seed0\normalizer_stats.pt
+split='train' len(split_indices)=0
+split='val' len(split_indices)=0
+split='test' len(split_indices)=1000
+Restoring normalizer for case14_ieee from saved stats
+  c /= stddev[:, None]
+D:\school\DeepLearning\gridfm-anomaly\venv\Lib\site-packages\numpy\lib\_function_base_impl.py:3023: RuntimeWarning: invalid value encountered in divide
+  c /= stddev[:, None]
+GPU available: False, used: False
+TPU available: False, using: 0 TPU cores
+\U0001f4a1 Tip: For seamless cloud logging and experiment tracking, try installing [litlogger](https://pypi.org/project/litlogger/) to enable LitLogger, which logs metrics and artifacts automatically to the Lightning Experiments platform.
+\U0001f4a1 Tip: For seamless cloud uploads and versioning, try installing [litmodels](https://pypi.org/project/litmodels/) to enable LitModelCheckpoint, which syncs automatically with the Lightning model registry.
+D:\school\DeepLearning\gridfm-anomaly\venv\Lib\site-packages\lightning\pytorch\utilities\_pytree.py:21: `isinstance(treespec, LeafSpec)` is deprecated, use `isinstance(treespec, TreeSpec) and treespec.is_leaf()` instead.
+D:\school\DeepLearning\gridfm-anomaly\venv\Lib\site-packages\lightning\pytorch\trainer\connectors\data_connector.py:434: The 'predict_dataloader' does not have many workers which may be a bottleneck. Consider increasing the value of the `num_workers` argument` to `num_workers=27` in the `DataLoader` to improve performance.
+[performance] case14_ieee/layer_0_residual : 0.22691042721271515
+Setup already done for stage=TrainerFn.PREDICTING, skipping...
+GPU available: False, used: False
+TPU available: False, using: 0 TPU cores
+\U0001f4a1 Tip: For seamless cloud logging and experiment tracking, try installing [litlogger](https://pypi.org/project/litlogger/) to enable LitLogger, which logs metrics and artifacts automatically to the Lightning Experiments platform.
+GPU available: False, used: False
+TPU available: False, using: 0 TPU cores
+\U0001f4a1 Tip: For seamless cloud logging and experiment tracking, try installing [litlogger](https://pypi.org/project/litlogger/) to enable LitLogger, which logs metrics and artifacts automatically to the Lightning Experiments platform.
+\U0001f4a1 Tip: For seamless cloud uploads and versioning, try installing [litmodels](https://pypi.org/project/litmodels/) to enable LitModelCheckpoint, which syncs automatically with the Lightning model registry.
+D:\school\DeepLearning\gridfm-anomaly\venv\Lib\site-packages\gridfm_graphkit\datasets\hetero_powergrid_datamodule.py:235: UserWarning: Requested number of scenarios (250000) exceeds dataset size (16000). Using the full dataset instead.
+  warnings.warn(
+D:\school\DeepLearning\gridfm-anomaly\venv\Lib\site-packages\gridfm_graphkit\datasets\hetero_powergrid_datamodule.py:245: UserWarning: `data.scenarios` is ignored when `split_from_existing_files` is set; train/val/test scenario ids are loaded from the provided split files.
+  warnings.warn(
+D:\school\DeepLearning\gridfm-anomaly\venv\Lib\site-packages\lightning\pytorch\utilities\_pytree.py:21: `isinstance(treespec, LeafSpec)` is deprecated, use `isinstance(treespec, TreeSpec) and treespec.is_leaf()` instead.
+D:\school\DeepLearning\gridfm-anomaly\venv\Lib\site-packages\lightning\pytorch\trainer\connectors\data_connector.py:434: The 'test_dataloader' does not have many workers which may be a bottleneck. Consider increasing the value of the `num_workers` argument` to `num_workers=27` in the `DataLoader` to improve performance.
+Saved bus predictions to mlruns\657056988967417188\75b933459f83437895bf38ec13a4a27f\artifacts\test\case14_ieee_predictions.parquet
+Saved branch predictions to mlruns\657056988967417188\75b933459f83437895bf38ec13a4a27f\artifacts\test\case14_ieee_branch_predictions.parquet
+[mine] splits_mine10: 1000 samples, 15 s
+[config] Converted v0 config -> v1 in memory (file on disk unchanged).
+Loading model weights from D:\school\DeepLearning\gridfm-anomaly\checkpoints\genco-pf-datakit\case14_ieee\base\seed0\best_model_state_dict.pt
+[device] hostname=DESKTOP-0IMA98D
+[device] WARNING: No GPU found, running on CPU only
+Loaded normalizer stats from D:\school\DeepLearning\gridfm-anomaly\checkpoints\genco-pf-datakit\case14_ieee\base\seed0\normalizer_stats.pt
+split='train' len(split_indices)=0
+split='val' len(split_indices)=0
+split='test' len(split_indices)=1000
+Restoring normalizer for case14_ieee from saved stats
+  c /= stddev[:, None]
+D:\school\DeepLearning\gridfm-anomaly\venv\Lib\site-packages\numpy\lib\_function_base_impl.py:3023: RuntimeWarning: invalid value encountered in divide
+  c /= stddev[:, None]
+GPU available: False, used: False
+TPU available: False, using: 0 TPU cores
+\U0001f4a1 Tip: For seamless cloud logging and experiment tracking, try installing [litlogger](https://pypi.org/project/litlogger/) to enable LitLogger, which logs metrics and artifacts automatically to the Lightning Experiments platform.
+\U0001f4a1 Tip: For seamless cloud uploads and versioning, try installing [litmodels](https://pypi.org/project/litmodels/) to enable LitModelCheckpoint, which syncs automatically with the Lightning model registry.
+D:\school\DeepLearning\gridfm-anomaly\venv\Lib\site-packages\lightning\pytorch\utilities\_pytree.py:21: `isinstance(treespec, LeafSpec)` is deprecated, use `isinstance(treespec, TreeSpec) and treespec.is_leaf()` instead.
+D:\school\DeepLearning\gridfm-anomaly\venv\Lib\site-packages\lightning\pytorch\trainer\connectors\data_connector.py:434: The 'predict_dataloader' does not have many workers which may be a bottleneck. Consider increasing the value of the `num_workers` argument` to `num_workers=27` in the `DataLoader` to improve performance.
+[performance] case14_ieee/layer_0_residual : 0.22844502329826355
+Setup already done for stage=TrainerFn.PREDICTING, skipping...
+GPU available: False, used: False
+TPU available: False, using: 0 TPU cores
+\U0001f4a1 Tip: For seamless cloud logging and experiment tracking, try installing [litlogger](https://pypi.org/project/litlogger/) to enable LitLogger, which logs metrics and artifacts automatically to the Lightning Experiments platform.
+GPU available: False, used: False
+TPU available: False, using: 0 TPU cores
+\U0001f4a1 Tip: For seamless cloud logging and experiment tracking, try installing [litlogger](https://pypi.org/project/litlogger/) to enable LitLogger, which logs metrics and artifacts automatically to the Lightning Experiments platform.
+\U0001f4a1 Tip: For seamless cloud uploads and versioning, try installing [litmodels](https://pypi.org/project/litmodels/) to enable LitModelCheckpoint, which syncs automatically with the Lightning model registry.
+D:\school\DeepLearning\gridfm-anomaly\venv\Lib\site-packages\gridfm_graphkit\datasets\hetero_powergrid_datamodule.py:235: UserWarning: Requested number of scenarios (250000) exceeds dataset size (16000). Using the full dataset instead.
+  warnings.warn(
+D:\school\DeepLearning\gridfm-anomaly\venv\Lib\site-packages\gridfm_graphkit\datasets\hetero_powergrid_datamodule.py:245: UserWarning: `data.scenarios` is ignored when `split_from_existing_files` is set; train/val/test scenario ids are loaded from the provided split files.
+  warnings.warn(
+D:\school\DeepLearning\gridfm-anomaly\venv\Lib\site-packages\lightning\pytorch\utilities\_pytree.py:21: `isinstance(treespec, LeafSpec)` is deprecated, use `isinstance(treespec, TreeSpec) and treespec.is_leaf()` instead.
+D:\school\DeepLearning\gridfm-anomaly\venv\Lib\site-packages\lightning\pytorch\trainer\connectors\data_connector.py:434: The 'test_dataloader' does not have many workers which may be a bottleneck. Consider increasing the value of the `num_workers` argument` to `num_workers=27` in the `DataLoader` to improve performance.
+Saved bus predictions to mlruns\657056988967417188\1d11096867424bc7b84075a0a0e1bc4a\artifacts\test\case14_ieee_predictions.parquet
+Saved branch predictions to mlruns\657056988967417188\1d11096867424bc7b84075a0a0e1bc4a\artifacts\test\case14_ieee_branch_predictions.parquet
+[mine] splits_mine11: 1000 samples, 14 s
+[config] Converted v0 config -> v1 in memory (file on disk unchanged).
+Loading model weights from D:\school\DeepLearning\gridfm-anomaly\checkpoints\genco-pf-datakit\case14_ieee\base\seed0\best_model_state_dict.pt
+[device] hostname=DESKTOP-0IMA98D
+[device] WARNING: No GPU found, running on CPU only
+Loaded normalizer stats from D:\school\DeepLearning\gridfm-anomaly\checkpoints\genco-pf-datakit\case14_ieee\base\seed0\normalizer_stats.pt
+split='train' len(split_indices)=0
+split='val' len(split_indices)=0
+split='test' len(split_indices)=1000
+Restoring normalizer for case14_ieee from saved stats
+  c /= stddev[:, None]
+D:\school\DeepLearning\gridfm-anomaly\venv\Lib\site-packages\numpy\lib\_function_base_impl.py:3023: RuntimeWarning: invalid value encountered in divide
+  c /= stddev[:, None]
+GPU available: False, used: False
+TPU available: False, using: 0 TPU cores
+\U0001f4a1 Tip: For seamless cloud logging and experiment tracking, try installing [litlogger](https://pypi.org/project/litlogger/) to enable LitLogger, which logs metrics and artifacts automatically to the Lightning Experiments platform.
+\U0001f4a1 Tip: For seamless cloud uploads and versioning, try installing [litmodels](https://pypi.org/project/litmodels/) to enable LitModelCheckpoint, which syncs automatically with the Lightning model registry.
+D:\school\DeepLearning\gridfm-anomaly\venv\Lib\site-packages\lightning\pytorch\utilities\_pytree.py:21: `isinstance(treespec, LeafSpec)` is deprecated, use `isinstance(treespec, TreeSpec) and treespec.is_leaf()` instead.
+D:\school\DeepLearning\gridfm-anomaly\venv\Lib\site-packages\lightning\pytorch\trainer\connectors\data_connector.py:434: The 'predict_dataloader' does not have many workers which may be a bottleneck. Consider increasing the value of the `num_workers` argument` to `num_workers=27` in the `DataLoader` to improve performance.
+[performance] case14_ieee/layer_0_residual : 0.23203398287296295
+Setup already done for stage=TrainerFn.PREDICTING, skipping...
+GPU available: False, used: False
+TPU available: False, using: 0 TPU cores
+\U0001f4a1 Tip: For seamless cloud logging and experiment tracking, try installing [litlogger](https://pypi.org/project/litlogger/) to enable LitLogger, which logs metrics and artifacts automatically to the Lightning Experiments platform.
+GPU available: False, used: False
+TPU available: False, using: 0 TPU cores
+\U0001f4a1 Tip: For seamless cloud logging and experiment tracking, try installing [litlogger](https://pypi.org/project/litlogger/) to enable LitLogger, which logs metrics and artifacts automatically to the Lightning Experiments platform.
+\U0001f4a1 Tip: For seamless cloud uploads and versioning, try installing [litmodels](https://pypi.org/project/litmodels/) to enable LitModelCheckpoint, which syncs automatically with the Lightning model registry.
+D:\school\DeepLearning\gridfm-anomaly\venv\Lib\site-packages\gridfm_graphkit\datasets\hetero_powergrid_datamodule.py:235: UserWarning: Requested number of scenarios (250000) exceeds dataset size (16000). Using the full dataset instead.
+  warnings.warn(
+D:\school\DeepLearning\gridfm-anomaly\venv\Lib\site-packages\gridfm_graphkit\datasets\hetero_powergrid_datamodule.py:245: UserWarning: `data.scenarios` is ignored when `split_from_existing_files` is set; train/val/test scenario ids are loaded from the provided split files.
+  warnings.warn(
+D:\school\DeepLearning\gridfm-anomaly\venv\Lib\site-packages\lightning\pytorch\utilities\_pytree.py:21: `isinstance(treespec, LeafSpec)` is deprecated, use `isinstance(treespec, TreeSpec) and treespec.is_leaf()` instead.
+D:\school\DeepLearning\gridfm-anomaly\venv\Lib\site-packages\lightning\pytorch\trainer\connectors\data_connector.py:434: The 'test_dataloader' does not have many workers which may be a bottleneck. Consider increasing the value of the `num_workers` argument` to `num_workers=27` in the `DataLoader` to improve performance.
+Saved bus predictions to mlruns\657056988967417188\c5f5e130776b4e6f8543d412d8271430\artifacts\test\case14_ieee_predictions.parquet
+Saved branch predictions to mlruns\657056988967417188\c5f5e130776b4e6f8543d412d8271430\artifacts\test\case14_ieee_branch_predictions.parquet
+[mine] splits_mine12: 1000 samples, 14 s
+[config] Converted v0 config -> v1 in memory (file on disk unchanged).
+Loading model weights from D:\school\DeepLearning\gridfm-anomaly\checkpoints\genco-pf-datakit\case14_ieee\base\seed0\best_model_state_dict.pt
+[device] hostname=DESKTOP-0IMA98D
+[device] WARNING: No GPU found, running on CPU only
+Loaded normalizer stats from D:\school\DeepLearning\gridfm-anomaly\checkpoints\genco-pf-datakit\case14_ieee\base\seed0\normalizer_stats.pt
+split='train' len(split_indices)=0
+split='val' len(split_indices)=0
+split='test' len(split_indices)=1000
+Restoring normalizer for case14_ieee from saved stats
+  c /= stddev[:, None]
+D:\school\DeepLearning\gridfm-anomaly\venv\Lib\site-packages\numpy\lib\_function_base_impl.py:3023: RuntimeWarning: invalid value encountered in divide
+  c /= stddev[:, None]
+GPU available: False, used: False
+TPU available: False, using: 0 TPU cores
+\U0001f4a1 Tip: For seamless cloud logging and experiment tracking, try installing [litlogger](https://pypi.org/project/litlogger/) to enable LitLogger, which logs metrics and artifacts automatically to the Lightning Experiments platform.
+\U0001f4a1 Tip: For seamless cloud uploads and versioning, try installing [litmodels](https://pypi.org/project/litmodels/) to enable LitModelCheckpoint, which syncs automatically with the Lightning model registry.
+D:\school\DeepLearning\gridfm-anomaly\venv\Lib\site-packages\lightning\pytorch\utilities\_pytree.py:21: `isinstance(treespec, LeafSpec)` is deprecated, use `isinstance(treespec, TreeSpec) and treespec.is_leaf()` instead.
+D:\school\DeepLearning\gridfm-anomaly\venv\Lib\site-packages\lightning\pytorch\trainer\connectors\data_connector.py:434: The 'predict_dataloader' does not have many workers which may be a bottleneck. Consider increasing the value of the `num_workers` argument` to `num_workers=27` in the `DataLoader` to improve performance.
+[performance] case14_ieee/layer_0_residual : 0.23008520901203156
+Setup already done for stage=TrainerFn.PREDICTING, skipping...
+GPU available: False, used: False
+TPU available: False, using: 0 TPU cores
+\U0001f4a1 Tip: For seamless cloud logging and experiment tracking, try installing [litlogger](https://pypi.org/project/litlogger/) to enable LitLogger, which logs metrics and artifacts automatically to the Lightning Experiments platform.
+GPU available: False, used: False
+TPU available: False, using: 0 TPU cores
+\U0001f4a1 Tip: For seamless cloud logging and experiment tracking, try installing [litlogger](https://pypi.org/project/litlogger/) to enable LitLogger, which logs metrics and artifacts automatically to the Lightning Experiments platform.
+\U0001f4a1 Tip: For seamless cloud uploads and versioning, try installing [litmodels](https://pypi.org/project/litmodels/) to enable LitModelCheckpoint, which syncs automatically with the Lightning model registry.
+D:\school\DeepLearning\gridfm-anomaly\venv\Lib\site-packages\gridfm_graphkit\datasets\hetero_powergrid_datamodule.py:235: UserWarning: Requested number of scenarios (250000) exceeds dataset size (16000). Using the full dataset instead.
+  warnings.warn(
+D:\school\DeepLearning\gridfm-anomaly\venv\Lib\site-packages\gridfm_graphkit\datasets\hetero_powergrid_datamodule.py:245: UserWarning: `data.scenarios` is ignored when `split_from_existing_files` is set; train/val/test scenario ids are loaded from the provided split files.
+  warnings.warn(
+D:\school\DeepLearning\gridfm-anomaly\venv\Lib\site-packages\lightning\pytorch\utilities\_pytree.py:21: `isinstance(treespec, LeafSpec)` is deprecated, use `isinstance(treespec, TreeSpec) and treespec.is_leaf()` instead.
+D:\school\DeepLearning\gridfm-anomaly\venv\Lib\site-packages\lightning\pytorch\trainer\connectors\data_connector.py:434: The 'test_dataloader' does not have many workers which may be a bottleneck. Consider increasing the value of the `num_workers` argument` to `num_workers=27` in the `DataLoader` to improve performance.
+Saved bus predictions to mlruns\657056988967417188\689f2d4a928e43e3becd9dff674640c0\artifacts\test\case14_ieee_predictions.parquet
+Saved branch predictions to mlruns\657056988967417188\689f2d4a928e43e3becd9dff674640c0\artifacts\test\case14_ieee_branch_predictions.parquet
+[mine] splits_mine13: 1000 samples, 14 s
+[config] Converted v0 config -> v1 in memory (file on disk unchanged).
+Loading model weights from D:\school\DeepLearning\gridfm-anomaly\checkpoints\genco-pf-datakit\case14_ieee\base\seed0\best_model_state_dict.pt
+[device] hostname=DESKTOP-0IMA98D
+[device] WARNING: No GPU found, running on CPU only
+Loaded normalizer stats from D:\school\DeepLearning\gridfm-anomaly\checkpoints\genco-pf-datakit\case14_ieee\base\seed0\normalizer_stats.pt
+split='train' len(split_indices)=0
+split='val' len(split_indices)=0
+split='test' len(split_indices)=1000
+Restoring normalizer for case14_ieee from saved stats
+  c /= stddev[:, None]
+D:\school\DeepLearning\gridfm-anomaly\venv\Lib\site-packages\numpy\lib\_function_base_impl.py:3023: RuntimeWarning: invalid value encountered in divide
+  c /= stddev[:, None]
+GPU available: False, used: False
+TPU available: False, using: 0 TPU cores
+\U0001f4a1 Tip: For seamless cloud logging and experiment tracking, try installing [litlogger](https://pypi.org/project/litlogger/) to enable LitLogger, which logs metrics and artifacts automatically to the Lightning Experiments platform.
+\U0001f4a1 Tip: For seamless cloud uploads and versioning, try installing [litmodels](https://pypi.org/project/litmodels/) to enable LitModelCheckpoint, which syncs automatically with the Lightning model registry.
+D:\school\DeepLearning\gridfm-anomaly\venv\Lib\site-packages\lightning\pytorch\utilities\_pytree.py:21: `isinstance(treespec, LeafSpec)` is deprecated, use `isinstance(treespec, TreeSpec) and treespec.is_leaf()` instead.
+D:\school\DeepLearning\gridfm-anomaly\venv\Lib\site-packages\lightning\pytorch\trainer\connectors\data_connector.py:434: The 'predict_dataloader' does not have many workers which may be a bottleneck. Consider increasing the value of the `num_workers` argument` to `num_workers=27` in the `DataLoader` to improve performance.
+[performance] case14_ieee/layer_0_residual : 0.23216325044631958
+Setup already done for stage=TrainerFn.PREDICTING, skipping...
+Saved bus predictions to mlruns\657056988967417188\b1524228a0c74772b13714cd858433c4\artifacts\test\case14_ieee_predictions.parquet
+Saved branch predictions to mlruns\657056988967417188\b1524228a0c74772b13714cd858433c4\artifacts\test\case14_ieee_branch_predictions.parquet
+[mine] splits_mine14: 1000 samples, 16 s
+           count        mean         std        min         25%         50%        75%         max
+topology                                                                                          
+N-0       7500.0  209.979584  118.031320  11.084132  117.802938  184.654166  283.25175  683.959185
+N-1       7500.0   57.173798   53.183372   0.352491   29.383492   43.702491   66.19867  669.120363
+real	3m54.291s
+user	0m0.000s
+sys	0m0.031s

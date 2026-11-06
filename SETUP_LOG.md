@@ -393,3 +393,35 @@ Rule: **N-2 is not converted, read or run** until the final evaluation.
   `overall_score_vs_datakit` (normalized by the datakit base RMSE, for cross-dataset comparison). The datakit
   `inference_per_sample.csv` from Phase 4 does not have this column (it would equal `overall_score` there).
 - A one-off check script crashed on "Δ" in the Windows console again; `PYTHONIOENCODING=utf-8` fixes it for ad-hoc runs.
+
+---
+
+## Phase 7: Stage 2 fine-tuning on PFΔ N-0/N-1 (2026-11-06)
+
+Rule unchanged: **N-2 is not converted, read or run.** All inference runs use ≤ 1000 samples.
+
+```bash
+./venv/Scripts/python.exe scripts/make_pfdelta_finetune_data.py --mine-per-topology 7500 --val-per-topology 500   # 15 s
+./venv/Scripts/python.exe scripts/finetune_pipeline.py splits
+./venv/Scripts/python.exe scripts/finetune_pipeline.py time --size base > results/finetune_timing_base_log.txt     # 3 min (1st run also processes 16k .pt files)
+./venv/Scripts/python.exe scripts/finetune_pipeline.py mine --size base > results/finetune_mining_log.txt          # 4 min, 15 x 1000
+./venv/Scripts/python.exe scripts/finetune_pipeline.py select --k 2500 > results/finetune_selection_log.txt
+OMP_NUM_THREADS=13 ./venv/Scripts/python.exe scripts/finetune_pipeline.py finetune --set hard   --lr 5e-5 --epochs 30 --patience 5   # 34 min
+OMP_NUM_THREADS=13 ./venv/Scripts/python.exe scripts/finetune_pipeline.py finetune --set random --lr 5e-5 --epochs 30 --patience 5   # 34 min, run in parallel
+./venv/Scripts/python.exe scripts/finetune_pipeline.py eval --model original   # also: --model hard, --model random (~1 min each)
+./venv/Scripts/python.exe scripts/finetune_pipeline.py compare > results/finetune_compare_base_log.txt
+```
+- **Timing:** base model, 1 epoch on 5,000 PFΔ samples + validation on 1,000 = 82 s on CPU (79 batches of 64,
+  0.96 it/s, 28 logical cores). 30 epochs ≈ 40 min, under the 3 h limit, so the base model is kept. With two runs in
+  parallel (13 threads each), epochs take 60–70 s.
+- **graphkit `finetune` has no `--normalizer_stats` flag** and refits `HeteroDataMVANormalizer` (baseMVA = 95th
+  percentile of the train loads) on the fine-tuning set. That would change the input scaling of the pretrained
+  weights. `finetune_pipeline.py` calls `gridfm_graphkit.cli.main_cli` with an `argparse.Namespace` that includes
+  `normalizer_stats` (log line: "Loaded normalizer stats from …/base/seed0/normalizer_stats.pt").
+- PFΔ positions: test = last 2,000 (not read), val = last 10 % of the remaining positions, train = first 90 %. The
+  script asserts no overlap with `pfdelta_test_subset_1000.csv`.
+- The `eval --model original` run reproduces the Phase 6 PFΔ numbers and the Phase 4 datakit numbers exactly.
+- Both fine-tuning runs reached `max_epochs=30` (validation loss still falling, best = last epoch). MLflow experiment
+  `stage2_finetune` (gitignored): runs `ft_hard_base` `95c890fe…`, `ft_random_base` `1f1199cb…`. The best weights are at
+  `mlruns/<exp>/<run>/artifacts/model/best_model_state_dict.pt`.
+- Logs in `results/finetune_*_log.txt` are stripped of tqdm progress bars (one line per epoch kept).

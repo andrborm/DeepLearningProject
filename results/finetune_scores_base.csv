@@ -1,0 +1,7 @@
+model,dataset,score median,score p95,score p99,score median N-0,score median N-1
+original,datakit,0.3546,1.153,2.003,,
+original,pfdelta,87.4,395.8,473.3,183.1,43.11
+hard,datakit,18.07,27.9,33.24,,
+hard,pfdelta,5.555,17.13,29.46,3.99,7.674
+random,datakit,16.74,25.24,30.74,,
+random,pfdelta,4.687,16.27,31.13,3.56,6.072

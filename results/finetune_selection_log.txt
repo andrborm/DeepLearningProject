@@ -1,0 +1,12 @@
+N-0: hard threshold score >= 243.9 (pool median 184.7)
+N-1: hard threshold score >= 56.0 (pool median 43.7)
+hard 5000, random 5000, overlap 1679
+topology  hard 
+N-0       False    139.26850
+          True     332.88250
+N-1       False     34.35365
+          True      83.07070
+topology  outage_type
+N-0       none           2500
+N-1       branch         1139
+          gen            1361

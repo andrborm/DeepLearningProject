@@ -5,8 +5,8 @@ Course paper: "Foundation Models for the Electric Power Grid" (Hamann et al., ar
 The checkpoints used here come from **GENCO** (Puech et al., arXiv 2608.09921, 2026). Citations are in
 `results/dataset_overview.md` §5.
 
-**Status:** setup, first inference, data exploration and a first PFΔ distribution-shift test done. No
-fine-tuning or anomaly detector yet. **PFΔ N-2 is held out untouched for the final evaluation.** Every command and
+**Status:** setup, first inference, data exploration, a PFΔ distribution-shift test and Stage 2 fine-tuning on PFΔ
+N-0/N-1 (hard cases + random control) done. No anomaly detector yet. **PFΔ N-2 is held out untouched for the final evaluation.** Every command and
 version is in [`SETUP_LOG.md`](SETUP_LOG.md).
 
 ## Layout
@@ -65,6 +65,8 @@ in place, and extraction takes ~25 min on Windows.
 | 7. PFΔ test subset | `./venv/Scripts/python.exe scripts/make_pfdelta_subset.py --per-topology 500 --seed 42` | 5 s | `data/pfdelta_test1000/`, `results/pfdelta_test_subset_1000.csv` |
 | 8. PFΔ inference | `./venv/Scripts/python.exe scripts/run_inference.py --dataset pfdelta --size base --n 1000` | 50 s | `results/inference_*_pfdelta.csv` |
 | 9. Shift evaluation | `./venv/Scripts/python.exe scripts/pfdelta_shift_eval.py` | 2 s | conversion checks, error comparison, predict-then-check, wrong-vs-right → `results/pfdelta_shift_summary.md` |
+| 10. Fine-tune data | `./venv/Scripts/python.exe scripts/make_pfdelta_finetune_data.py` | 15 s | `data/pfdelta_ft/` (15k train-position mining pool + 1k PFΔ val), `results/pfdelta_ft_mapping.csv` |
+| 11. Fine-tuning | `scripts/finetune_pipeline.py` stages `splits`, `time`, `mine`, `select --k 2500`, `finetune --set hard` / `--set random`, `eval --model <m>`, `compare` (full commands in `SETUP_LOG.md` Phase 7) | 3 + 4 + 2×34 + 3 min | `results/finetune_*` → `results/finetune_summary.md` |
 
 Inference always uses at most 1000 samples (course requirement; the scripts assert it).
 
@@ -114,6 +116,12 @@ Inference always uses at most 1000 samples (course requirement; the scripts asse
 8. **The power-balance residual flags wrong voltage labels** (AUC 0.80) and tracks reconstruction error closely under
    shift (Spearman 0.91). For overloads it only works in N-1 (AUC 0.83). In N-0 it is inverted (0.43), because it mostly
    tracks how stressed a sample is.
+9. **Fine-tuning on PFΔ N-0/N-1 fixes the shift, but hard-case selection does not beat random**
+   (`results/finetune_summary.md`). Base model, 5,000 samples, lr 5e-5, 30 epochs (34 min on CPU). On the PFΔ test
+   subset, PQ Vm RMSE drops 0.067 → 0.0015 p.u. and slack Pg 34.5 → 1.3 MW. Predict-then-check precision goes
+   0.76 → 0.998 (voltage) and 0.65 → 0.99 (overload), with recall unchanged. The random control is as good as the
+   hard set or slightly better. **Forgetting on datakit is strong**: errors grow 15–40×, and voltage recall drops
+   0.96 → 0.79 (hard) / 0.82 (random). Overload detection stays at 1.00/1.00.
 
 ### Open questions to resolve before the next step
 - **Islanding as a class: not possible with the current data.** Both PFΔ (resamples until the graph is connected) and
@@ -135,8 +143,7 @@ Inference always uses at most 1000 samples (course requirement; the scripts asse
 - **Zero-shot cross-topology test**: case30/57/118/500 checkpoints exist (same weight size, so they run on any grid).
   Decide which normalizer (`baseMVA`) to use when running a case30 model on case14.
 - Which training data for the classifier: PFΔ (balanced, stressed) vs datakit (realistic base rates, ~94 % normal), or both.
-- **Stage 2 is clearly needed**: fine-tune on PFΔ N-0/N-1 training-pool samples to cover the higher load range, then
-  redo the PFΔ test. Decide how to handle the load/topology confound (report per topology and per load bin).
+- **Stage 2 done** (finding 9). Open: add datakit replay against forgetting? Use the random or hard model for the N-2 test?
 - Can a residual threshold on top of predict-then-check cut the voltage false alarms (voltage-FP residuals ≈ 10× TP
   residuals) without losing recall? This is a cheap first version of approach A.
 
@@ -149,6 +156,7 @@ Inference always uses at most 1000 samples (course requirement; the scripts asse
 | `results/inference_summary.md` | inference setup, errors by bus / outage type, model-card comparison, residuals, PFΔ + label plan |
 | `results/phase5_summary.md` | percentiles, hard cases, embeddings, predict-then-check, figures |
 | `results/pfdelta_shift_summary.md` | PFΔ conversion, base model on PFΔ N-0/N-1 test, predict-then-check under shift, wrong-vs-right |
+| `results/finetune_summary.md` | Stage 2 fine-tuning: setup, timing, original vs hard vs random on datakit and PFΔ (errors, predict-then-check) |
 | `results/figures/` | fig1 error distribution, fig2 error by outage type, fig3 embedding PCA |
 | `results/inference_per_sample.csv` | per-sample errors (base); `_tiny_n1000` for tiny |
 | `results/hard_cases_top5pct.csv` | 50 hardest samples with outage info and labels |
