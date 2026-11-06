@@ -6,7 +6,7 @@ The checkpoints used here come from **GENCO** (Puech et al., arXiv 2608.09921, 2
 `results/dataset_overview.md` §5.
 
 **Status:** setup, first inference, data exploration, a PFΔ distribution-shift test and Stage 2 fine-tuning on PFΔ
-N-0/N-1 (hard cases + random control) done. No anomaly detector yet. **PFΔ N-2 is held out untouched for the final evaluation.** Every command and
+N-0/N-1 (hard cases, random control, datakit replay) done. **Final model: replay.** Task 3 detectors in progress. **PFΔ N-2 is held out untouched for the final evaluation.** Every command and
 version is in [`SETUP_LOG.md`](SETUP_LOG.md).
 
 ## Layout
@@ -66,6 +66,7 @@ in place, and extraction takes ~25 min on Windows.
 | 8. PFΔ inference | `./venv/Scripts/python.exe scripts/run_inference.py --dataset pfdelta --size base --n 1000` | 50 s | `results/inference_*_pfdelta.csv` |
 | 9. Shift evaluation | `./venv/Scripts/python.exe scripts/pfdelta_shift_eval.py` | 2 s | conversion checks, error comparison, predict-then-check, wrong-vs-right → `results/pfdelta_shift_summary.md` |
 | 10. Fine-tune data | `./venv/Scripts/python.exe scripts/make_pfdelta_finetune_data.py` | 15 s | `data/pfdelta_ft/` (15k train-position mining pool + 1k PFΔ val), `results/pfdelta_ft_mapping.csv` |
+| 12. Replay fine-tuning | `scripts/make_stage3_data.py`, then `finetune_pipeline.py finetune --set replay --epochs 40`, `eval --model replay`, `compare --models original hard random replay` | 93 min | `results/finetune_summary.md` (replay section) |
 | 11. Fine-tuning | `scripts/finetune_pipeline.py` stages `splits`, `time`, `mine`, `select --k 2500`, `finetune --set hard` / `--set random`, `eval --model <m>`, `compare` (full commands in `SETUP_LOG.md` Phase 7) | 3 + 4 + 2×34 + 3 min | `results/finetune_*` → `results/finetune_summary.md` |
 
 Inference always uses at most 1000 samples (course requirement; the scripts assert it).
@@ -122,6 +123,11 @@ Inference always uses at most 1000 samples (course requirement; the scripts asse
    0.76 → 0.998 (voltage) and 0.65 → 0.99 (overload), with recall unchanged. The random control is as good as the
    hard set or slightly better. **Forgetting on datakit is strong**: errors grow 15–40×, and voltage recall drops
    0.96 → 0.79 (hard) / 0.82 (random). Overload detection stays at 1.00/1.00.
+10. **Replay fixes the forgetting, and the replay model is the final model.** 5,000 random PFΔ + 5,000 datakit train,
+    40 epochs. PFΔ errors are 20–45 % lower than the random model's (PQ Vm RMSE 0.00095 p.u.), with zero
+    predict-then-check false alarms. datakit errors are only 1.3–3.6× the original's (random: 15–40×), and datakit
+    predict-then-check is identical to the original. graphkit's best-model callback can freeze on the sanity-check
+    pass; the epoch-40 weights from `last.ckpt` are used (`SETUP_LOG.md` Phase 8).
 
 ### Open questions to resolve before the next step
 - **Islanding as a class: not possible with the current data.** Both PFΔ (resamples until the graph is connected) and
@@ -143,7 +149,7 @@ Inference always uses at most 1000 samples (course requirement; the scripts asse
 - **Zero-shot cross-topology test**: case30/57/118/500 checkpoints exist (same weight size, so they run on any grid).
   Decide which normalizer (`baseMVA`) to use when running a case30 model on case14.
 - Which training data for the classifier: PFΔ (balanced, stressed) vs datakit (realistic base rates, ~94 % normal), or both.
-- **Stage 2 done** (finding 9). Open: add datakit replay against forgetting? Use the random or hard model for the N-2 test?
+- **Stage 2 done** (findings 9–10). The replay model is frozen for the N-2 test.
 - Can a residual threshold on top of predict-then-check cut the voltage false alarms (voltage-FP residuals ≈ 10× TP
   residuals) without losing recall? This is a cheap first version of approach A.
 

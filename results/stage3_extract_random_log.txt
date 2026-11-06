@@ -1,0 +1,218 @@
+Seed set to 0
+GPU available: False, used: False
+TPU available: False, using: 0 TPU cores
+\U0001f4a1 Tip: For seamless cloud logging and experiment tracking, try installing [litlogger](https://pypi.org/project/litlogger/) to enable LitLogger, which logs metrics and artifacts automatically to the Lightning Experiments platform.
+GPU available: False, used: False
+TPU available: False, using: 0 TPU cores
+\U0001f4a1 Tip: For seamless cloud logging and experiment tracking, try installing [litlogger](https://pypi.org/project/litlogger/) to enable LitLogger, which logs metrics and artifacts automatically to the Lightning Experiments platform.
+\U0001f4a1 Tip: For seamless cloud uploads and versioning, try installing [litmodels](https://pypi.org/project/litmodels/) to enable LitModelCheckpoint, which syncs automatically with the Lightning model registry.
+D:\school\DeepLearning\gridfm-anomaly\venv\Lib\site-packages\gridfm_graphkit\datasets\hetero_powergrid_datamodule.py:235: UserWarning: Requested number of scenarios (250000) exceeds dataset size (16000). Using the full dataset instead.
+  warnings.warn(
+D:\school\DeepLearning\gridfm-anomaly\venv\Lib\site-packages\gridfm_graphkit\datasets\hetero_powergrid_datamodule.py:245: UserWarning: `data.scenarios` is ignored when `split_from_existing_files` is set; train/val/test scenario ids are loaded from the provided split files.
+  warnings.warn(
+D:\school\DeepLearning\gridfm-anomaly\venv\Lib\site-packages\lightning\pytorch\utilities\_pytree.py:21: `isinstance(treespec, LeafSpec)` is deprecated, use `isinstance(treespec, TreeSpec) and treespec.is_leaf()` instead.
+D:\school\DeepLearning\gridfm-anomaly\venv\Lib\site-packages\lightning\pytorch\trainer\connectors\data_connector.py:434: The 'predict_dataloader' does not have many workers which may be a bottleneck. Consider increasing the value of the `num_workers` argument` to `num_workers=27` in the `DataLoader` to improve performance.
+[config] Converted v0 config -> v1 in memory (file on disk unchanged).
+Loading model weights from D:\school\DeepLearning\gridfm-anomaly\mlruns\657056988967417188\1f1199cb93004031970696db1fa7dac3\artifacts\model\best_model_state_dict.pt
+[device] hostname=DESKTOP-0IMA98D
+[device] WARNING: No GPU found, running on CPU only
+Loaded normalizer stats from D:\school\DeepLearning\gridfm-anomaly\checkpoints\genco-pf-datakit\case14_ieee\base\seed0\normalizer_stats.pt
+split='train' len(split_indices)=0
+split='val' len(split_indices)=0
+split='test' len(split_indices)=1000
+Restoring normalizer for case14_ieee from saved stats
+Predicting: |          | 0/? [00:00<?, ?it/s]D:\school\DeepLearning\gridfm-anomaly\venv\Lib\site-packages\lightning\pytorch\trainer\connectors\data_connector.py:378: You have overridden `transfer_batch_to_device` in `LightningModule` but have passed in a `LightningDataModule`. It will use the implementation from `LightningModule` instance.
+D:\school\DeepLearning\gridfm-anomaly\venv\Lib\site-packages\lightning\pytorch\trainer\connectors\data_connector.py:378: You have overridden `on_after_batch_transfer` in `LightningModule` but have passed in a `LightningDataModule`. It will use the implementation from `LightningModule` instance.
+Predicting: |          | 0/? [00:00<?, ?it/s]Predicting DataLoader 0:   0%|          | 0/16 [00:00<?, ?it/s]Predicting DataLoader 0:   6%|▋         | 1/16 [00:00<00:02,  5.70it/s]Predicting DataLoader 0:  12%|█▎        | 2/16 [00:00<00:03,  3.62it/s]Predicting DataLoader 0:  19%|█▉        | 3/16 [00:00<00:04,  3.21it/s]Predicting DataLoader 0:  25%|██▌       | 4/16 [00:01<00:03,  3.06it/s]Predicting DataLoader 0:  31%|███▏      | 5/16 [00:01<00:03,  2.94it/s]Predicting DataLoader 0:  38%|███▊      | 6/16 [00:02<00:03,  2.96it/s]Predicting DataLoader 0:  44%|████▍     | 7/16 [00:02<00:03,  2.91it/s]Predicting DataLoader 0:  50%|█████     | 8/16 [00:02<00:02,  2.92it/s]Predicting DataLoader 0:  56%|█████▋    | 9/16 [00:03<00:02,  2.88it/s]Predicting DataLoader 0:  62%|██████▎   | 10/16 [00:03<00:02,  2.89it/s]Predicting DataLoader 0:  69%|██████▉   | 11/16 [00:03<00:01,  2.86it/s]Predicting DataLoader 0:  75%|███████▌  | 12/16 [00:04<00:01,  2.86it/s]Predicting DataLoader 0:  81%|████████▏ | 13/16 [00:04<00:01,  2.83it/s]Predicting DataLoader 0:  88%|████████▊ | 14/16 [00:04<00:00,  2.83it/s]Predicting DataLoader 0:  94%|█████████▍| 15/16 [00:05<00:00,  2.81it/s]Predicting DataLoader 0: 100%|██████████| 16/16 [00:05<00:00,  2.86it/s]Predicting DataLoader 0: 100%|██████████| 16/16 [00:05<00:00,  2.86it/s]Seed set to 0
+GPU available: False, used: False
+TPU available: False, using: 0 TPU cores
+\U0001f4a1 Tip: For seamless cloud logging and experiment tracking, try installing [litlogger](https://pypi.org/project/litlogger/) to enable LitLogger, which logs metrics and artifacts automatically to the Lightning Experiments platform.
+GPU available: False, used: False
+TPU available: False, using: 0 TPU cores
+\U0001f4a1 Tip: For seamless cloud logging and experiment tracking, try installing [litlogger](https://pypi.org/project/litlogger/) to enable LitLogger, which logs metrics and artifacts automatically to the Lightning Experiments platform.
+\U0001f4a1 Tip: For seamless cloud uploads and versioning, try installing [litmodels](https://pypi.org/project/litmodels/) to enable LitModelCheckpoint, which syncs automatically with the Lightning model registry.
+D:\school\DeepLearning\gridfm-anomaly\venv\Lib\site-packages\gridfm_graphkit\datasets\hetero_powergrid_datamodule.py:235: UserWarning: Requested number of scenarios (250000) exceeds dataset size (16000). Using the full dataset instead.
+  warnings.warn(
+D:\school\DeepLearning\gridfm-anomaly\venv\Lib\site-packages\gridfm_graphkit\datasets\hetero_powergrid_datamodule.py:245: UserWarning: `data.scenarios` is ignored when `split_from_existing_files` is set; train/val/test scenario ids are loaded from the provided split files.
+  warnings.warn(
+D:\school\DeepLearning\gridfm-anomaly\venv\Lib\site-packages\lightning\pytorch\utilities\_pytree.py:21: `isinstance(treespec, LeafSpec)` is deprecated, use `isinstance(treespec, TreeSpec) and treespec.is_leaf()` instead.
+D:\school\DeepLearning\gridfm-anomaly\venv\Lib\site-packages\lightning\pytorch\trainer\connectors\data_connector.py:434: The 'predict_dataloader' does not have many workers which may be a bottleneck. Consider increasing the value of the `num_workers` argument` to `num_workers=27` in the `DataLoader` to improve performance.
+
+Saved bus predictions to D:\school\DeepLearning\gridfm-anomaly\data\predictions\stage3\random\pf_probe0\case14_ieee_predictions.parquet
+Saved branch predictions to D:\school\DeepLearning\gridfm-anomaly\data\predictions\stage3\random\pf_probe0\case14_ieee_branch_predictions.parquet
+Saved bus_embeddings predictions to D:\school\DeepLearning\gridfm-anomaly\data\predictions\stage3\random\pf_probe0\case14_ieee_bus_embeddings.parquet
+[config] Converted v0 config -> v1 in memory (file on disk unchanged).
+Loading model weights from D:\school\DeepLearning\gridfm-anomaly\mlruns\657056988967417188\1f1199cb93004031970696db1fa7dac3\artifacts\model\best_model_state_dict.pt
+[device] hostname=DESKTOP-0IMA98D
+[device] WARNING: No GPU found, running on CPU only
+Loaded normalizer stats from D:\school\DeepLearning\gridfm-anomaly\checkpoints\genco-pf-datakit\case14_ieee\base\seed0\normalizer_stats.pt
+split='train' len(split_indices)=0
+split='val' len(split_indices)=0
+split='test' len(split_indices)=1000
+Restoring normalizer for case14_ieee from saved stats
+Predicting: |          | 0/? [00:00<?, ?it/s]Predicting: |          | 0/? [00:00<?, ?it/s]Predicting DataLoader 0:   0%|          | 0/16 [00:00<?, ?it/s]Predicting DataLoader 0:   6%|▋         | 1/16 [00:00<00:03,  4.99it/s]Predicting DataLoader 0:  12%|█▎        | 2/16 [00:00<00:04,  3.31it/s]Predicting DataLoader 0:  19%|█▉        | 3/16 [00:00<00:04,  3.04it/s]Predicting DataLoader 0:  25%|██▌       | 4/16 [00:01<00:04,  2.87it/s]Predicting DataLoader 0:  31%|███▏      | 5/16 [00:01<00:03,  2.78it/s]Predicting DataLoader 0:  38%|███▊      | 6/16 [00:02<00:03,  2.69it/s]Predicting DataLoader 0:  44%|████▍     | 7/16 [00:02<00:03,  2.65it/s]Predicting DataLoader 0:  50%|█████     | 8/16 [00:03<00:03,  2.63it/s]Predicting DataLoader 0:  56%|█████▋    | 9/16 [00:03<00:02,  2.65it/s]Predicting DataLoader 0:  62%|██████▎   | 10/16 [00:03<00:02,  2.70it/s]Predicting DataLoader 0:  69%|██████▉   | 11/16 [00:04<00:01,  2.70it/s]Predicting DataLoader 0:  75%|███████▌  | 12/16 [00:04<00:01,  2.70it/s]Predicting DataLoader 0:  81%|████████▏ | 13/16 [00:04<00:01,  2.70it/s]Predicting DataLoader 0:  88%|████████▊ | 14/16 [00:05<00:00,  2.69it/s]Predicting DataLoader 0:  94%|█████████▍| 15/16 [00:05<00:00,  2.69it/s]Predicting DataLoader 0: 100%|██████████| 16/16 [00:05<00:00,  2.74it/s]Predicting DataLoader 0: 100%|██████████| 16/16 [00:05<00:00,  2.74it/s]Seed set to 0
+GPU available: False, used: False
+TPU available: False, using: 0 TPU cores
+\U0001f4a1 Tip: For seamless cloud logging and experiment tracking, try installing [litlogger](https://pypi.org/project/litlogger/) to enable LitLogger, which logs metrics and artifacts automatically to the Lightning Experiments platform.
+GPU available: False, used: False
+TPU available: False, using: 0 TPU cores
+\U0001f4a1 Tip: For seamless cloud logging and experiment tracking, try installing [litlogger](https://pypi.org/project/litlogger/) to enable LitLogger, which logs metrics and artifacts automatically to the Lightning Experiments platform.
+\U0001f4a1 Tip: For seamless cloud uploads and versioning, try installing [litmodels](https://pypi.org/project/litmodels/) to enable LitModelCheckpoint, which syncs automatically with the Lightning model registry.
+D:\school\DeepLearning\gridfm-anomaly\venv\Lib\site-packages\gridfm_graphkit\datasets\hetero_powergrid_datamodule.py:235: UserWarning: Requested number of scenarios (250000) exceeds dataset size (16000). Using the full dataset instead.
+  warnings.warn(
+D:\school\DeepLearning\gridfm-anomaly\venv\Lib\site-packages\gridfm_graphkit\datasets\hetero_powergrid_datamodule.py:245: UserWarning: `data.scenarios` is ignored when `split_from_existing_files` is set; train/val/test scenario ids are loaded from the provided split files.
+  warnings.warn(
+D:\school\DeepLearning\gridfm-anomaly\venv\Lib\site-packages\lightning\pytorch\utilities\_pytree.py:21: `isinstance(treespec, LeafSpec)` is deprecated, use `isinstance(treespec, TreeSpec) and treespec.is_leaf()` instead.
+D:\school\DeepLearning\gridfm-anomaly\venv\Lib\site-packages\lightning\pytorch\trainer\connectors\data_connector.py:434: The 'predict_dataloader' does not have many workers which may be a bottleneck. Consider increasing the value of the `num_workers` argument` to `num_workers=27` in the `DataLoader` to improve performance.
+
+Saved bus predictions to D:\school\DeepLearning\gridfm-anomaly\data\predictions\stage3\random\pf_probe1\case14_ieee_predictions.parquet
+Saved branch predictions to D:\school\DeepLearning\gridfm-anomaly\data\predictions\stage3\random\pf_probe1\case14_ieee_branch_predictions.parquet
+Saved bus_embeddings predictions to D:\school\DeepLearning\gridfm-anomaly\data\predictions\stage3\random\pf_probe1\case14_ieee_bus_embeddings.parquet
+[config] Converted v0 config -> v1 in memory (file on disk unchanged).
+Loading model weights from D:\school\DeepLearning\gridfm-anomaly\mlruns\657056988967417188\1f1199cb93004031970696db1fa7dac3\artifacts\model\best_model_state_dict.pt
+[device] hostname=DESKTOP-0IMA98D
+[device] WARNING: No GPU found, running on CPU only
+Loaded normalizer stats from D:\school\DeepLearning\gridfm-anomaly\checkpoints\genco-pf-datakit\case14_ieee\base\seed0\normalizer_stats.pt
+split='train' len(split_indices)=0
+split='val' len(split_indices)=0
+split='test' len(split_indices)=1000
+Restoring normalizer for case14_ieee from saved stats
+Predicting: |          | 0/? [00:00<?, ?it/s]Predicting: |          | 0/? [00:00<?, ?it/s]Predicting DataLoader 0:   0%|          | 0/16 [00:00<?, ?it/s]Predicting DataLoader 0:   6%|▋         | 1/16 [00:00<00:02,  5.06it/s]Predicting DataLoader 0:  12%|█▎        | 2/16 [00:00<00:04,  3.34it/s]Predicting DataLoader 0:  19%|█▉        | 3/16 [00:00<00:04,  3.09it/s]Predicting DataLoader 0:  25%|██▌       | 4/16 [00:01<00:04,  2.83it/s]Predicting DataLoader 0:  31%|███▏      | 5/16 [00:01<00:03,  2.80it/s]Predicting DataLoader 0:  38%|███▊      | 6/16 [00:02<00:03,  2.75it/s]Predicting DataLoader 0:  44%|████▍     | 7/16 [00:02<00:03,  2.77it/s]Predicting DataLoader 0:  50%|█████     | 8/16 [00:02<00:02,  2.74it/s]Predicting DataLoader 0:  56%|█████▋    | 9/16 [00:03<00:02,  2.76it/s]Predicting DataLoader 0:  62%|██████▎   | 10/16 [00:03<00:02,  2.74it/s]Predicting DataLoader 0:  69%|██████▉   | 11/16 [00:04<00:01,  2.74it/s]Predicting DataLoader 0:  75%|███████▌  | 12/16 [00:04<00:01,  2.76it/s]Predicting DataLoader 0:  81%|████████▏ | 13/16 [00:04<00:01,  2.76it/s]Predicting DataLoader 0:  88%|████████▊ | 14/16 [00:05<00:00,  2.74it/s]Predicting DataLoader 0:  94%|█████████▍| 15/16 [00:05<00:00,  2.73it/s]Predicting DataLoader 0: 100%|██████████| 16/16 [00:05<00:00,  2.77it/s]Predicting DataLoader 0: 100%|██████████| 16/16 [00:05<00:00,  2.77it/s]Seed set to 0
+GPU available: False, used: False
+TPU available: False, using: 0 TPU cores
+\U0001f4a1 Tip: For seamless cloud logging and experiment tracking, try installing [litlogger](https://pypi.org/project/litlogger/) to enable LitLogger, which logs metrics and artifacts automatically to the Lightning Experiments platform.
+GPU available: False, used: False
+TPU available: False, using: 0 TPU cores
+\U0001f4a1 Tip: For seamless cloud logging and experiment tracking, try installing [litlogger](https://pypi.org/project/litlogger/) to enable LitLogger, which logs metrics and artifacts automatically to the Lightning Experiments platform.
+\U0001f4a1 Tip: For seamless cloud uploads and versioning, try installing [litmodels](https://pypi.org/project/litmodels/) to enable LitModelCheckpoint, which syncs automatically with the Lightning model registry.
+D:\school\DeepLearning\gridfm-anomaly\venv\Lib\site-packages\gridfm_graphkit\datasets\hetero_powergrid_datamodule.py:235: UserWarning: Requested number of scenarios (250000) exceeds dataset size (16000). Using the full dataset instead.
+  warnings.warn(
+D:\school\DeepLearning\gridfm-anomaly\venv\Lib\site-packages\gridfm_graphkit\datasets\hetero_powergrid_datamodule.py:245: UserWarning: `data.scenarios` is ignored when `split_from_existing_files` is set; train/val/test scenario ids are loaded from the provided split files.
+  warnings.warn(
+D:\school\DeepLearning\gridfm-anomaly\venv\Lib\site-packages\lightning\pytorch\utilities\_pytree.py:21: `isinstance(treespec, LeafSpec)` is deprecated, use `isinstance(treespec, TreeSpec) and treespec.is_leaf()` instead.
+D:\school\DeepLearning\gridfm-anomaly\venv\Lib\site-packages\lightning\pytorch\trainer\connectors\data_connector.py:434: The 'predict_dataloader' does not have many workers which may be a bottleneck. Consider increasing the value of the `num_workers` argument` to `num_workers=27` in the `DataLoader` to improve performance.
+
+Saved bus predictions to D:\school\DeepLearning\gridfm-anomaly\data\predictions\stage3\random\dk_probe0\case14_ieee_predictions.parquet
+Saved branch predictions to D:\school\DeepLearning\gridfm-anomaly\data\predictions\stage3\random\dk_probe0\case14_ieee_branch_predictions.parquet
+Saved bus_embeddings predictions to D:\school\DeepLearning\gridfm-anomaly\data\predictions\stage3\random\dk_probe0\case14_ieee_bus_embeddings.parquet
+[config] Converted v0 config -> v1 in memory (file on disk unchanged).
+Loading model weights from D:\school\DeepLearning\gridfm-anomaly\mlruns\657056988967417188\1f1199cb93004031970696db1fa7dac3\artifacts\model\best_model_state_dict.pt
+[device] hostname=DESKTOP-0IMA98D
+[device] WARNING: No GPU found, running on CPU only
+Loaded normalizer stats from D:\school\DeepLearning\gridfm-anomaly\checkpoints\genco-pf-datakit\case14_ieee\base\seed0\normalizer_stats.pt
+split='train' len(split_indices)=0
+split='val' len(split_indices)=0
+split='test' len(split_indices)=1000
+Restoring normalizer for case14_ieee from saved stats
+Predicting: |          | 0/? [00:00<?, ?it/s]Predicting: |          | 0/? [00:00<?, ?it/s]Predicting DataLoader 0:   0%|          | 0/16 [00:00<?, ?it/s]Predicting DataLoader 0:   6%|▋         | 1/16 [00:00<00:02,  5.71it/s]Predicting DataLoader 0:  12%|█▎        | 2/16 [00:00<00:03,  3.66it/s]Predicting DataLoader 0:  19%|█▉        | 3/16 [00:00<00:04,  3.16it/s]Predicting DataLoader 0:  25%|██▌       | 4/16 [00:01<00:03,  3.02it/s]Predicting DataLoader 0:  31%|███▏      | 5/16 [00:01<00:03,  2.83it/s]Predicting DataLoader 0:  38%|███▊      | 6/16 [00:02<00:03,  2.76it/s]Predicting DataLoader 0:  44%|████▍     | 7/16 [00:02<00:03,  2.70it/s]Predicting DataLoader 0:  50%|█████     | 8/16 [00:02<00:02,  2.69it/s]Predicting DataLoader 0:  56%|█████▋    | 9/16 [00:03<00:02,  2.67it/s]Predicting DataLoader 0:  62%|██████▎   | 10/16 [00:03<00:02,  2.67it/s]Predicting DataLoader 0:  69%|██████▉   | 11/16 [00:04<00:01,  2.65it/s]Predicting DataLoader 0:  75%|███████▌  | 12/16 [00:04<00:01,  2.66it/s]Predicting DataLoader 0:  81%|████████▏ | 13/16 [00:04<00:01,  2.63it/s]Predicting DataLoader 0:  88%|████████▊ | 14/16 [00:05<00:00,  2.63it/s]Predicting DataLoader 0:  94%|█████████▍| 15/16 [00:05<00:00,  2.62it/s]Predicting DataLoader 0: 100%|██████████| 16/16 [00:05<00:00,  2.68it/s]Predicting DataLoader 0: 100%|██████████| 16/16 [00:05<00:00,  2.68it/s]Seed set to 0
+GPU available: False, used: False
+TPU available: False, using: 0 TPU cores
+\U0001f4a1 Tip: For seamless cloud logging and experiment tracking, try installing [litlogger](https://pypi.org/project/litlogger/) to enable LitLogger, which logs metrics and artifacts automatically to the Lightning Experiments platform.
+GPU available: False, used: False
+TPU available: False, using: 0 TPU cores
+\U0001f4a1 Tip: For seamless cloud logging and experiment tracking, try installing [litlogger](https://pypi.org/project/litlogger/) to enable LitLogger, which logs metrics and artifacts automatically to the Lightning Experiments platform.
+\U0001f4a1 Tip: For seamless cloud uploads and versioning, try installing [litmodels](https://pypi.org/project/litmodels/) to enable LitModelCheckpoint, which syncs automatically with the Lightning model registry.
+D:\school\DeepLearning\gridfm-anomaly\venv\Lib\site-packages\gridfm_graphkit\datasets\hetero_powergrid_datamodule.py:235: UserWarning: Requested number of scenarios (250000) exceeds dataset size (16000). Using the full dataset instead.
+  warnings.warn(
+D:\school\DeepLearning\gridfm-anomaly\venv\Lib\site-packages\gridfm_graphkit\datasets\hetero_powergrid_datamodule.py:245: UserWarning: `data.scenarios` is ignored when `split_from_existing_files` is set; train/val/test scenario ids are loaded from the provided split files.
+  warnings.warn(
+D:\school\DeepLearning\gridfm-anomaly\venv\Lib\site-packages\lightning\pytorch\utilities\_pytree.py:21: `isinstance(treespec, LeafSpec)` is deprecated, use `isinstance(treespec, TreeSpec) and treespec.is_leaf()` instead.
+D:\school\DeepLearning\gridfm-anomaly\venv\Lib\site-packages\lightning\pytorch\trainer\connectors\data_connector.py:434: The 'predict_dataloader' does not have many workers which may be a bottleneck. Consider increasing the value of the `num_workers` argument` to `num_workers=27` in the `DataLoader` to improve performance.
+
+Saved bus predictions to D:\school\DeepLearning\gridfm-anomaly\data\predictions\stage3\random\dk_probe1\case14_ieee_predictions.parquet
+Saved branch predictions to D:\school\DeepLearning\gridfm-anomaly\data\predictions\stage3\random\dk_probe1\case14_ieee_branch_predictions.parquet
+Saved bus_embeddings predictions to D:\school\DeepLearning\gridfm-anomaly\data\predictions\stage3\random\dk_probe1\case14_ieee_bus_embeddings.parquet
+[config] Converted v0 config -> v1 in memory (file on disk unchanged).
+Loading model weights from D:\school\DeepLearning\gridfm-anomaly\mlruns\657056988967417188\1f1199cb93004031970696db1fa7dac3\artifacts\model\best_model_state_dict.pt
+[device] hostname=DESKTOP-0IMA98D
+[device] WARNING: No GPU found, running on CPU only
+Loaded normalizer stats from D:\school\DeepLearning\gridfm-anomaly\checkpoints\genco-pf-datakit\case14_ieee\base\seed0\normalizer_stats.pt
+split='train' len(split_indices)=0
+split='val' len(split_indices)=0
+split='test' len(split_indices)=1000
+Restoring normalizer for case14_ieee from saved stats
+Predicting: |          | 0/? [00:00<?, ?it/s]Predicting: |          | 0/? [00:00<?, ?it/s]Predicting DataLoader 0:   0%|          | 0/16 [00:00<?, ?it/s]Predicting DataLoader 0:   6%|▋         | 1/16 [00:00<00:02,  6.45it/s]Predicting DataLoader 0:  12%|█▎        | 2/16 [00:00<00:03,  3.98it/s]Predicting DataLoader 0:  19%|█▉        | 3/16 [00:00<00:03,  3.28it/s]Predicting DataLoader 0:  25%|██▌       | 4/16 [00:01<00:03,  3.12it/s]Predicting DataLoader 0:  31%|███▏      | 5/16 [00:01<00:03,  3.01it/s]Predicting DataLoader 0:  38%|███▊      | 6/16 [00:01<00:03,  3.02it/s]Predicting DataLoader 0:  44%|████▍     | 7/16 [00:02<00:03,  2.94it/s]Predicting DataLoader 0:  50%|█████     | 8/16 [00:02<00:02,  2.91it/s]Predicting DataLoader 0:  56%|█████▋    | 9/16 [00:03<00:02,  2.88it/s]Predicting DataLoader 0:  62%|██████▎   | 10/16 [00:03<00:02,  2.89it/s]Predicting DataLoader 0:  69%|██████▉   | 11/16 [00:03<00:01,  2.86it/s]Predicting DataLoader 0:  75%|███████▌  | 12/16 [00:04<00:01,  2.85it/s]Predicting DataLoader 0:  81%|████████▏ | 13/16 [00:04<00:01,  2.81it/s]Predicting DataLoader 0:  88%|████████▊ | 14/16 [00:05<00:00,  2.79it/s]Predicting DataLoader 0:  94%|█████████▍| 15/16 [00:05<00:00,  2.77it/s]Predicting DataLoader 0: 100%|██████████| 16/16 [00:05<00:00,  2.83it/s]Predicting DataLoader 0: 100%|██████████| 16/16 [00:05<00:00,  2.83it/s]Seed set to 0
+GPU available: False, used: False
+TPU available: False, using: 0 TPU cores
+\U0001f4a1 Tip: For seamless cloud logging and experiment tracking, try installing [litlogger](https://pypi.org/project/litlogger/) to enable LitLogger, which logs metrics and artifacts automatically to the Lightning Experiments platform.
+GPU available: False, used: False
+TPU available: False, using: 0 TPU cores
+\U0001f4a1 Tip: For seamless cloud logging and experiment tracking, try installing [litlogger](https://pypi.org/project/litlogger/) to enable LitLogger, which logs metrics and artifacts automatically to the Lightning Experiments platform.
+\U0001f4a1 Tip: For seamless cloud uploads and versioning, try installing [litmodels](https://pypi.org/project/litmodels/) to enable LitModelCheckpoint, which syncs automatically with the Lightning model registry.
+D:\school\DeepLearning\gridfm-anomaly\venv\Lib\site-packages\gridfm_graphkit\datasets\hetero_powergrid_datamodule.py:235: UserWarning: Requested number of scenarios (250000) exceeds dataset size (16000). Using the full dataset instead.
+  warnings.warn(
+D:\school\DeepLearning\gridfm-anomaly\venv\Lib\site-packages\gridfm_graphkit\datasets\hetero_powergrid_datamodule.py:245: UserWarning: `data.scenarios` is ignored when `split_from_existing_files` is set; train/val/test scenario ids are loaded from the provided split files.
+  warnings.warn(
+D:\school\DeepLearning\gridfm-anomaly\venv\Lib\site-packages\lightning\pytorch\utilities\_pytree.py:21: `isinstance(treespec, LeafSpec)` is deprecated, use `isinstance(treespec, TreeSpec) and treespec.is_leaf()` instead.
+D:\school\DeepLearning\gridfm-anomaly\venv\Lib\site-packages\lightning\pytorch\trainer\connectors\data_connector.py:434: The 'predict_dataloader' does not have many workers which may be a bottleneck. Consider increasing the value of the `num_workers` argument` to `num_workers=27` in the `DataLoader` to improve performance.
+
+Saved bus predictions to D:\school\DeepLearning\gridfm-anomaly\data\predictions\stage3\random\pf_val0\case14_ieee_predictions.parquet
+Saved branch predictions to D:\school\DeepLearning\gridfm-anomaly\data\predictions\stage3\random\pf_val0\case14_ieee_branch_predictions.parquet
+Saved bus_embeddings predictions to D:\school\DeepLearning\gridfm-anomaly\data\predictions\stage3\random\pf_val0\case14_ieee_bus_embeddings.parquet
+[config] Converted v0 config -> v1 in memory (file on disk unchanged).
+Loading model weights from D:\school\DeepLearning\gridfm-anomaly\mlruns\657056988967417188\1f1199cb93004031970696db1fa7dac3\artifacts\model\best_model_state_dict.pt
+[device] hostname=DESKTOP-0IMA98D
+[device] WARNING: No GPU found, running on CPU only
+Loaded normalizer stats from D:\school\DeepLearning\gridfm-anomaly\checkpoints\genco-pf-datakit\case14_ieee\base\seed0\normalizer_stats.pt
+split='train' len(split_indices)=0
+split='val' len(split_indices)=0
+split='test' len(split_indices)=1000
+Restoring normalizer for case14_ieee from saved stats
+Predicting: |          | 0/? [00:00<?, ?it/s]Predicting: |          | 0/? [00:00<?, ?it/s]Predicting DataLoader 0:   0%|          | 0/16 [00:00<?, ?it/s]Predicting DataLoader 0:   6%|▋         | 1/16 [00:00<00:02,  5.69it/s]Predicting DataLoader 0:  12%|█▎        | 2/16 [00:00<00:04,  3.24it/s]Predicting DataLoader 0:  19%|█▉        | 3/16 [00:00<00:04,  3.00it/s]Predicting DataLoader 0:  25%|██▌       | 4/16 [00:01<00:04,  2.83it/s]Predicting DataLoader 0:  31%|███▏      | 5/16 [00:01<00:03,  2.78it/s]Predicting DataLoader 0:  38%|███▊      | 6/16 [00:02<00:03,  2.73it/s]Predicting DataLoader 0:  44%|████▍     | 7/16 [00:02<00:03,  2.72it/s]Predicting DataLoader 0:  50%|█████     | 8/16 [00:03<00:03,  2.66it/s]Predicting DataLoader 0:  56%|█████▋    | 9/16 [00:03<00:02,  2.62it/s]Predicting DataLoader 0:  62%|██████▎   | 10/16 [00:03<00:02,  2.59it/s]Predicting DataLoader 0:  69%|██████▉   | 11/16 [00:04<00:01,  2.60it/s]Predicting DataLoader 0:  75%|███████▌  | 12/16 [00:04<00:01,  2.63it/s]Predicting DataLoader 0:  81%|████████▏ | 13/16 [00:04<00:01,  2.68it/s]Predicting DataLoader 0:  88%|████████▊ | 14/16 [00:05<00:00,  2.70it/s]Predicting DataLoader 0:  94%|█████████▍| 15/16 [00:05<00:00,  2.69it/s]Predicting DataLoader 0: 100%|██████████| 16/16 [00:05<00:00,  2.73it/s]Predicting DataLoader 0: 100%|██████████| 16/16 [00:05<00:00,  2.73it/s]Seed set to 0
+GPU available: False, used: False
+TPU available: False, using: 0 TPU cores
+\U0001f4a1 Tip: For seamless cloud logging and experiment tracking, try installing [litlogger](https://pypi.org/project/litlogger/) to enable LitLogger, which logs metrics and artifacts automatically to the Lightning Experiments platform.
+GPU available: False, used: False
+TPU available: False, using: 0 TPU cores
+\U0001f4a1 Tip: For seamless cloud logging and experiment tracking, try installing [litlogger](https://pypi.org/project/litlogger/) to enable LitLogger, which logs metrics and artifacts automatically to the Lightning Experiments platform.
+\U0001f4a1 Tip: For seamless cloud uploads and versioning, try installing [litmodels](https://pypi.org/project/litmodels/) to enable LitModelCheckpoint, which syncs automatically with the Lightning model registry.
+D:\school\DeepLearning\gridfm-anomaly\venv\Lib\site-packages\gridfm_graphkit\datasets\hetero_powergrid_datamodule.py:235: UserWarning: Requested number of scenarios (250000) exceeds dataset size (1000). Using the full dataset instead.
+  warnings.warn(
+D:\school\DeepLearning\gridfm-anomaly\venv\Lib\site-packages\gridfm_graphkit\datasets\hetero_powergrid_datamodule.py:245: UserWarning: `data.scenarios` is ignored when `split_from_existing_files` is set; train/val/test scenario ids are loaded from the provided split files.
+  warnings.warn(
+D:\school\DeepLearning\gridfm-anomaly\venv\Lib\site-packages\lightning\pytorch\utilities\_pytree.py:21: `isinstance(treespec, LeafSpec)` is deprecated, use `isinstance(treespec, TreeSpec) and treespec.is_leaf()` instead.
+D:\school\DeepLearning\gridfm-anomaly\venv\Lib\site-packages\lightning\pytorch\trainer\connectors\data_connector.py:434: The 'predict_dataloader' does not have many workers which may be a bottleneck. Consider increasing the value of the `num_workers` argument` to `num_workers=27` in the `DataLoader` to improve performance.
+
+Saved bus predictions to D:\school\DeepLearning\gridfm-anomaly\data\predictions\stage3\random\dk_val0\case14_ieee_predictions.parquet
+Saved branch predictions to D:\school\DeepLearning\gridfm-anomaly\data\predictions\stage3\random\dk_val0\case14_ieee_branch_predictions.parquet
+Saved bus_embeddings predictions to D:\school\DeepLearning\gridfm-anomaly\data\predictions\stage3\random\dk_val0\case14_ieee_bus_embeddings.parquet
+[config] Converted v0 config -> v1 in memory (file on disk unchanged).
+Loading model weights from D:\school\DeepLearning\gridfm-anomaly\mlruns\657056988967417188\1f1199cb93004031970696db1fa7dac3\artifacts\model\best_model_state_dict.pt
+[device] hostname=DESKTOP-0IMA98D
+[device] WARNING: No GPU found, running on CPU only
+Loaded normalizer stats from D:\school\DeepLearning\gridfm-anomaly\checkpoints\genco-pf-datakit\case14_ieee\base\seed0\normalizer_stats.pt
+split='train' len(split_indices)=0
+split='val' len(split_indices)=0
+split='test' len(split_indices)=1000
+Restoring normalizer for case14_ieee from saved stats
+Predicting: |          | 0/? [00:00<?, ?it/s]Predicting: |          | 0/? [00:00<?, ?it/s]Predicting DataLoader 0:   0%|          | 0/16 [00:00<?, ?it/s]Predicting DataLoader 0:   6%|▋         | 1/16 [00:00<00:02,  5.55it/s]Predicting DataLoader 0:  12%|█▎        | 2/16 [00:00<00:04,  3.02it/s]Predicting DataLoader 0:  19%|█▉        | 3/16 [00:01<00:04,  2.81it/s]Predicting DataLoader 0:  25%|██▌       | 4/16 [00:01<00:04,  2.76it/s]Predicting DataLoader 0:  31%|███▏      | 5/16 [00:01<00:04,  2.65it/s]Predicting DataLoader 0:  38%|███▊      | 6/16 [00:02<00:03,  2.60it/s]Predicting DataLoader 0:  44%|████▍     | 7/16 [00:02<00:03,  2.57it/s]Predicting DataLoader 0:  50%|█████     | 8/16 [00:03<00:03,  2.58it/s]Predicting DataLoader 0:  56%|█████▋    | 9/16 [00:03<00:02,  2.57it/s]Predicting DataLoader 0:  62%|██████▎   | 10/16 [00:03<00:02,  2.59it/s]Predicting DataLoader 0:  69%|██████▉   | 11/16 [00:04<00:01,  2.58it/s]Predicting DataLoader 0:  75%|███████▌  | 12/16 [00:04<00:01,  2.61it/s]Predicting DataLoader 0:  81%|████████▏ | 13/16 [00:04<00:01,  2.61it/s]Predicting DataLoader 0:  88%|████████▊ | 14/16 [00:05<00:00,  2.63it/s]Predicting DataLoader 0:  94%|█████████▍| 15/16 [00:05<00:00,  2.61it/s]Predicting DataLoader 0: 100%|██████████| 16/16 [00:06<00:00,  2.65it/s]Predicting DataLoader 0: 100%|██████████| 16/16 [00:06<00:00,  2.65it/s]Seed set to 0
+GPU available: False, used: False
+TPU available: False, using: 0 TPU cores
+\U0001f4a1 Tip: For seamless cloud logging and experiment tracking, try installing [litlogger](https://pypi.org/project/litlogger/) to enable LitLogger, which logs metrics and artifacts automatically to the Lightning Experiments platform.
+GPU available: False, used: False
+TPU available: False, using: 0 TPU cores
+\U0001f4a1 Tip: For seamless cloud logging and experiment tracking, try installing [litlogger](https://pypi.org/project/litlogger/) to enable LitLogger, which logs metrics and artifacts automatically to the Lightning Experiments platform.
+\U0001f4a1 Tip: For seamless cloud uploads and versioning, try installing [litmodels](https://pypi.org/project/litmodels/) to enable LitModelCheckpoint, which syncs automatically with the Lightning model registry.
+D:\school\DeepLearning\gridfm-anomaly\venv\Lib\site-packages\gridfm_graphkit\datasets\hetero_powergrid_datamodule.py:235: UserWarning: Requested number of scenarios (250000) exceeds dataset size (1000). Using the full dataset instead.
+  warnings.warn(
+D:\school\DeepLearning\gridfm-anomaly\venv\Lib\site-packages\gridfm_graphkit\datasets\hetero_powergrid_datamodule.py:245: UserWarning: `data.scenarios` is ignored when `split_from_existing_files` is set; train/val/test scenario ids are loaded from the provided split files.
+  warnings.warn(
+D:\school\DeepLearning\gridfm-anomaly\venv\Lib\site-packages\lightning\pytorch\utilities\_pytree.py:21: `isinstance(treespec, LeafSpec)` is deprecated, use `isinstance(treespec, TreeSpec) and treespec.is_leaf()` instead.
+D:\school\DeepLearning\gridfm-anomaly\venv\Lib\site-packages\lightning\pytorch\trainer\connectors\data_connector.py:434: The 'predict_dataloader' does not have many workers which may be a bottleneck. Consider increasing the value of the `num_workers` argument` to `num_workers=27` in the `DataLoader` to improve performance.
+
+Saved bus predictions to D:\school\DeepLearning\gridfm-anomaly\data\predictions\stage3\random\test_pfdelta\case14_ieee_predictions.parquet
+Saved branch predictions to D:\school\DeepLearning\gridfm-anomaly\data\predictions\stage3\random\test_pfdelta\case14_ieee_branch_predictions.parquet
+Saved bus_embeddings predictions to D:\school\DeepLearning\gridfm-anomaly\data\predictions\stage3\random\test_pfdelta\case14_ieee_bus_embeddings.parquet
+[config] Converted v0 config -> v1 in memory (file on disk unchanged).
+Loading model weights from D:\school\DeepLearning\gridfm-anomaly\mlruns\657056988967417188\1f1199cb93004031970696db1fa7dac3\artifacts\model\best_model_state_dict.pt
+[device] hostname=DESKTOP-0IMA98D
+[device] WARNING: No GPU found, running on CPU only
+Loaded normalizer stats from D:\school\DeepLearning\gridfm-anomaly\checkpoints\genco-pf-datakit\case14_ieee\base\seed0\normalizer_stats.pt
+split='train' len(split_indices)=0
+split='val' len(split_indices)=0
+split='test' len(split_indices)=1000
+Restoring normalizer for case14_ieee from saved stats
+Predicting: |          | 0/? [00:00<?, ?it/s]Predicting: |          | 0/? [00:00<?, ?it/s]Predicting DataLoader 0:   0%|          | 0/16 [00:00<?, ?it/s]Predicting DataLoader 0:   6%|▋         | 1/16 [00:00<00:02,  6.55it/s]Predicting DataLoader 0:  12%|█▎        | 2/16 [00:00<00:03,  4.23it/s]Predicting DataLoader 0:  19%|█▉        | 3/16 [00:00<00:03,  3.51it/s]Predicting DataLoader 0:  25%|██▌       | 4/16 [00:01<00:03,  3.35it/s]Predicting DataLoader 0:  31%|███▏      | 5/16 [00:01<00:03,  3.16it/s]Predicting DataLoader 0:  38%|███▊      | 6/16 [00:01<00:03,  3.12it/s]Predicting DataLoader 0:  44%|████▍     | 7/16 [00:02<00:03,  2.97it/s]Predicting DataLoader 0:  50%|█████     | 8/16 [00:02<00:02,  2.92it/s]Predicting DataLoader 0:  56%|█████▋    | 9/16 [00:03<00:02,  2.87it/s]Predicting DataLoader 0:  62%|██████▎   | 10/16 [00:03<00:02,  2.83it/s]Predicting DataLoader 0:  69%|██████▉   | 11/16 [00:03<00:01,  2.82it/s]Predicting DataLoader 0:  75%|███████▌  | 12/16 [00:04<00:01,  2.84it/s]Predicting DataLoader 0:  81%|████████▏ | 13/16 [00:04<00:01,  2.82it/s]Predicting DataLoader 0:  88%|████████▊ | 14/16 [00:05<00:00,  2.79it/s]Predicting DataLoader 0:  94%|█████████▍| 15/16 [00:05<00:00,  2.78it/s]Predicting DataLoader 0: 100%|██████████| 16/16 [00:05<00:00,  2.81it/s]Predicting DataLoader 0: 100%|██████████| 16/16 [00:05<00:00,  2.81it/s]
+Saved bus predictions to D:\school\DeepLearning\gridfm-anomaly\data\predictions\stage3\random\test_datakit\case14_ieee_predictions.parquet
+Saved branch predictions to D:\school\DeepLearning\gridfm-anomaly\data\predictions\stage3\random\test_datakit\case14_ieee_branch_predictions.parquet
+Saved bus_embeddings predictions to D:\school\DeepLearning\gridfm-anomaly\data\predictions\stage3\random\test_datakit\case14_ieee_bus_embeddings.parquet

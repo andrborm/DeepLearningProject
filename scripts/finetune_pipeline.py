@@ -9,6 +9,7 @@ Stages (run in order):
   mine   --size S              base-model error on every mining sample (15 evaluate runs of 1000)
   select --k K                 hard = top K per topology by base error; random = K per topology, seeded
   finetune --set hard|random   fine-tune from the checkpoint, PFΔ val for early stopping
+  finetune --set replay        same, on 5,000 datakit train + 5,000 random PFΔ (data/stage3), mixed val
   eval   --model NAME          evaluate on datakit test1000 and PFΔ test1000 (forgetting / shift)
   compare                      one table: original vs fine-tuned
 
@@ -37,6 +38,7 @@ from run_inference import per_bus_errors
 
 ROOT = Path(__file__).resolve().parents[1]
 FT = ROOT / "data/pfdelta_ft"
+S3 = ROOT / "data/stage3"  # scripts/make_stage3_data.py
 RESULTS = ROOT / "results"
 CKPT_ROOT = ROOT / "checkpoints/genco-pf-datakit/case14_ieee"
 MAPPING = RESULTS / "pfdelta_ft_mapping.csv"
@@ -86,9 +88,28 @@ def run(command, config, model_path, size, data_path, run_name, save_output=Fals
                      data_path=rel(data_path), log_dir="mlruns", exp_name=EXP, run_name=run_name,
                      num_workers=0, save_output=save_output, report_performance=True,
                      config_conversion="no", plugins=[])
+    patch_sanity_check_save()
     t0 = time.perf_counter()
     main_cli(args)
     return time.perf_counter() - t0
+
+
+def patch_sanity_check_save():
+    """graphkit 0.9.0.3 SaveBestModelStateDict only skips the sanity-check pass when the metric is missing.
+    If it is present, the 2-batch sanity loss becomes 'best' and can block every later save. Skip it always."""
+    from gridfm_graphkit.training.callbacks import SaveBestModelStateDict
+
+    orig = SaveBestModelStateDict.on_validation_end
+    if getattr(orig, "_patched", False):
+        return
+
+    def on_validation_end(self, trainer, pl_module):
+        if trainer.sanity_checking:
+            return
+        return orig(self, trainer, pl_module)
+
+    on_validation_end._patched = True
+    SaveBestModelStateDict.on_validation_end = on_validation_end
 
 
 def find_run_dir(run_name, needs):
@@ -169,11 +190,28 @@ def stage_select(args):
     print(sel[sel.hard].groupby(["topology", "outage_type"]).size().to_string())
 
 
+def replay_splits():
+    """Replay set (data/stage3): 5,000 datakit TRAIN + the 5,000 random PFΔ train samples.
+    Validation: 250 N-0 + 250 N-1 PFΔ val + 500 datakit val (1,000 total), so early stopping sees both."""
+    m = pd.read_csv(RESULTS / "stage3_mapping.csv")
+    rng = np.random.default_rng(2)
+    train = m[m.role.isin(["dk_train", "pf_train"])].s3_id.values
+    pf_val = np.concatenate([rng.choice(g.s3_id.values, 250, replace=False)
+                             for _, g in m[m.role == "pf_val"].groupby("topology")])
+    dk_val = rng.choice(m[m.role == "dk_val"].s3_id.values, 500, replace=False)
+    val = np.concatenate([pf_val, dk_val])
+    d = S3 / "splits_replay"
+    d.mkdir(parents=True, exist_ok=True)
+    for k, ids in [("train", train), ("val", val), ("test", val[:100])]:
+        torch.save(torch.tensor(np.sort(ids), dtype=torch.long), d / f"{k}.pt")
+    return d
+
+
 def stage_finetune(args):
     name = f"ft_{args.set}_{args.size}"
-    cfg = make_config(args.size, FT / f"splits_{args.set}", name, lr=args.lr, epochs=args.epochs,
-                      patience=args.patience)
-    wall = run("finetune", cfg, base_model(args.size), args.size, FT, name)
+    data, splits = (S3, replay_splits()) if args.set == "replay" else (FT, FT / f"splits_{args.set}")
+    cfg = make_config(args.size, splits, name, lr=args.lr, epochs=args.epochs, patience=args.patience)
+    wall = run("finetune", cfg, base_model(args.size), args.size, data, name)
     d = find_run_dir(name, "artifacts/model/best_model_state_dict.pt")
     print(f"\n[finetune] {name}: {wall / 60:.1f} min wall, best model {d / 'artifacts/model/best_model_state_dict.pt'}")
 
@@ -181,8 +219,13 @@ def stage_finetune(args):
 def model_path(name, size):
     if name == "original":
         return base_model(size)
-    return find_run_dir(f"ft_{name}_{size}", "artifacts/model/best_model_state_dict.pt") \
-        / "artifacts/model/best_model_state_dict.pt"
+    # replay: graphkit saved its "best" model in the 2-batch sanity check (datakit-only batches, tiny loss),
+    # i.e. the unchanged original weights. Use the epoch-40 weights extracted from checkpoints/last.ckpt.
+    f = MODEL_FILE.get(name, "best_model_state_dict.pt")
+    return find_run_dir(f"ft_{name}_{size}", f"artifacts/model/{f}") / "artifacts/model" / f
+
+
+MODEL_FILE = {"replay": "last_epoch_state_dict.pt"}
 
 
 def stage_eval(args):
@@ -256,7 +299,7 @@ def main():
     p.add_argument("--epochs", type=int, default=30)
     p.add_argument("--patience", type=int, default=5)
     p.add_argument("--k", type=int, default=2500)
-    p.add_argument("--set", default="hard", choices=["hard", "random"])
+    p.add_argument("--set", default="hard", choices=["hard", "random", "replay"])
     p.add_argument("--model", default="original")
     p.add_argument("--models", nargs="+", default=["original", "hard", "random"])
     args = p.parse_args()

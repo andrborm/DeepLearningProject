@@ -1,0 +1,21 @@
+model,method,dataset,label,TP,FP,FN,TN,precision,recall,F1,PR-AUC,solver share
+random,baseline PtC,test_pfdelta,y_voltage,508,1,7,484,0.998,0.9864,0.9922,,
+random,A gated PtC (solver),test_pfdelta,y_voltage,508,1,7,484,0.998,0.9864,0.9922,,0
+random,A gated PtC (drop),test_pfdelta,y_voltage,508,1,7,484,0.998,0.9864,0.9922,,0
+random,baseline PtC,test_pfdelta,y_overload,320,1,1,678,0.9969,0.9969,0.9969,,
+random,A gated PtC (solver),test_pfdelta,y_overload,320,1,1,678,0.9969,0.9969,0.9969,,0
+random,A gated PtC (drop),test_pfdelta,y_overload,320,1,1,678,0.9969,0.9969,0.9969,,0
+random,baseline PtC,test_datakit,y_voltage,23,0,5,972,1,0.8214,0.902,,
+random,A gated PtC (solver),test_datakit,y_voltage,23,0,5,972,1,0.8214,0.902,,0
+random,A gated PtC (drop),test_datakit,y_voltage,23,0,5,972,1,0.8214,0.902,,0
+random,baseline PtC,test_datakit,y_overload,37,0,0,963,1,1,1,,
+random,A gated PtC (solver),test_datakit,y_overload,37,0,0,963,1,1,1,,0
+random,A gated PtC (drop),test_datakit,y_overload,37,0,0,963,1,1,1,,0
+random,B logreg,test_pfdelta,y_voltage,470,25,45,460,0.9495,0.9126,0.9307,0.9826,
+random,B logreg,test_datakit,y_voltage,1,16,27,956,0.05882,0.03571,0.04444,0.07303,
+random,B logreg,test_pfdelta,y_overload,292,14,29,665,0.9542,0.9097,0.9314,0.9874,
+random,B logreg,test_datakit,y_overload,30,0,7,963,1,0.8108,0.8955,0.9986,
+random,B mlp,test_pfdelta,y_voltage,463,24,52,461,0.9507,0.899,0.9242,0.9858,
+random,B mlp,test_datakit,y_voltage,0,0,28,972,,0,,0.09937,
+random,B mlp,test_pfdelta,y_overload,300,32,21,647,0.9036,0.9346,0.9188,0.9815,
+random,B mlp,test_datakit,y_overload,35,0,2,963,1,0.9459,0.9722,1,

@@ -23,3 +23,11 @@ random,pfdelta,N-0,y_voltage,315,0,1,184,1.0000,0.9968,0.9984
 random,pfdelta,N-0,y_overload,296,1,1,202,0.9966,0.9966,0.9966
 random,pfdelta,N-1,y_voltage,193,1,6,300,0.9948,0.9698,0.9822
 random,pfdelta,N-1,y_overload,24,0,0,476,1.0000,1.0000,1.0000
+replay,datakit,all,y_voltage,27,0,1,972,1.0000,0.9643,0.9818
+replay,datakit,all,y_overload,37,0,0,963,1.0000,1.0000,1.0000
+replay,pfdelta,all,y_voltage,509,0,6,485,1.0000,0.9883,0.9941
+replay,pfdelta,all,y_overload,318,0,3,679,1.0000,0.9907,0.9953
+replay,pfdelta,N-0,y_voltage,315,0,1,184,1.0000,0.9968,0.9984
+replay,pfdelta,N-0,y_overload,294,0,3,203,1.0000,0.9899,0.9949
+replay,pfdelta,N-1,y_voltage,194,0,5,301,1.0000,0.9749,0.9873
+replay,pfdelta,N-1,y_overload,24,0,0,476,1.0000,1.0000,1.0000

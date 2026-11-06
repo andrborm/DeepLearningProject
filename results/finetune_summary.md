@@ -92,3 +92,70 @@ datakit voltage misses: 1 → 6 (hard) / 5 (random) of 28.
 
 - Mixing in some datakit replay (or a datakit val term) should cut the forgetting at little PFΔ cost.
 - The PFΔ N-2 final test should use the **random** fine-tuned model (or both), because hard selection gave no gain.
+
+---
+
+# Replay fine-tuning against forgetting (and final model choice)
+
+Scripts: `scripts/make_stage3_data.py` (data folder `data/stage3`, mapping `stage3_mapping.csv`),
+`scripts/finetune_pipeline.py finetune --set replay`. Log: `finetune_replay_base_log.txt`; all four models in
+`finetune_compare_base_log.txt`, `finetune_errors_base.csv`, `finetune_predict_then_check_base.csv`.
+
+| Item | Choice |
+|---|---|
+| Start | original checkpoint, same normalizer handling (checkpoint `normalizer_stats.pt`), lr 5e-5, same scheduler and loss |
+| Train | **5,000 random PFΔ N-0/N-1** (the same samples as the random run) **+ 5,000 datakit** from the checkpoint's TRAIN split (`scenario_splits.json`; seeded, disjoint from the datakit test1000 subset) |
+| Validation | 250 N-0 + 250 N-1 PFΔ val positions + 500 datakit from the checkpoint's VAL split (1,000 total) |
+| Epochs | cap 40. Ran all 40 (93 min, ~2.1 min/epoch). Val loss 7.8e-4 → 9.5e-5 at epoch 40 (best 8.6e-5 at epoch 39) |
+
+**Bug found and worked around.** graphkit's `SaveBestModelStateDict` only skips Lightning's pre-training sanity check
+when the metric is missing. Here the metric was present: the sanity check runs 2 validation batches, and with sorted
+ids those were the datakit samples (ids 5000+, before PFΔ val at 13000+). Their tiny loss became "best", and no
+later epoch beat it, so `best_model_state_dict.pt` is the **unchanged original model**. The replay model used below
+is the **epoch-40 weights** from Lightning's `checkpoints/last.ckpt`, saved as `artifacts/model/last_epoch_state_dict.pt`.
+The hard/random runs were not affected: their best file was written at the last epoch. `finetune_pipeline.py` now
+patches the callback to always skip the sanity check.
+
+## Results (unknowns only)
+
+| Data | Variable | Bus | RMSE orig | RMSE random | **RMSE replay** | median orig | median random | **median replay** | p95 orig | p95 random | **p95 replay** | p99 orig | p99 random | **p99 replay** |
+|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|
+| PFΔ | Vm (p.u.) | PQ | 0.0668 | 0.00152 | **0.00095** | 0.0086 | 0.00020 | **0.00015** | 0.167 | 0.0027 | **0.0017** | 0.305 | 0.0070 | **0.0039** |
+| PFΔ | Vm (p.u.) | REF | 0.0269 | 0.0062 | **0.0044** | 0.022 | 0.0030 | **0.0020** | 0.047 | 0.013 | **0.0091** | 0.057 | 0.023 | **0.017** |
+| PFΔ | Va (rad) | PQ | 0.0622 | 0.0044 | **0.0034** | 0.027 | 0.0018 | **0.0015** | 0.135 | 0.0081 | **0.0060** | 0.196 | 0.017 | **0.012** |
+| PFΔ | Va (rad) | PV | 0.0477 | 0.0042 | **0.0032** | 0.018 | 0.0017 | **0.0014** | 0.110 | 0.0073 | **0.0055** | 0.165 | 0.015 | **0.012** |
+| PFΔ | Qg (MVAr) | PV | 74.6 | 5.55 | **4.21** | 11.6 | 0.36 | **0.28** | 182 | 12.0 | **8.8** | 336 | 23.9 | **18.2** |
+| PFΔ | Qg (MVAr) | REF | 55.2 | 10.4 | **7.69** | 42.6 | 5.63 | **3.97** | 93.6 | 21.5 | **16.0** | 107 | 34.9 | **28.8** |
+| PFΔ | Pg (MW) | REF | 34.5 | 1.45 | **1.19** | 19.9 | **0.53** | 0.69 | 70.7 | 2.29 | **2.07** | 86.1 | 5.68 | **3.97** |
+| datakit | Vm (p.u.) | PQ | **8.8e-5** | 1.83e-3 | 2.4e-4 | **1.3e-5** | 6.7e-4 | 4.1e-5 | **1.3e-4** | 3.9e-3 | 4.7e-4 | **3.2e-4** | 6.2e-3 | 1.0e-3 |
+| datakit | Vm (p.u.) | REF | **6.2e-4** | 0.0145 | 0.0019 | **3.1e-4** | 0.0142 | 9.6e-4 | **1.2e-3** | 0.0192 | 0.0036 | **2.0e-3** | 0.0220 | 0.0054 |
+| datakit | Va (rad) | PQ | **7.1e-4** | 8.6e-3 | 9.2e-4 | **1.3e-4** | 6.7e-3 | 4.0e-4 | **4.8e-4** | 0.0132 | 1.6e-3 | **1.0e-3** | 0.0222 | 2.9e-3 |
+| datakit | Va (rad) | PV | **7.5e-4** | 8.6e-3 | 9.7e-4 | **1.3e-4** | 6.7e-3 | 4.0e-4 | **5.1e-4** | 0.0123 | 1.6e-3 | **1.1e-3** | 0.0223 | 2.9e-3 |
+| datakit | Qg (MVAr) | PV | **0.61** | 15.0 | 1.93 | **0.03** | 1.32 | 0.09 | **1.21** | 34.4 | 4.0 | **2.47** | 41.3 | 8.0 |
+| datakit | Qg (MVAr) | REF | **1.26** | 30.5 | 3.97 | **0.63** | 29.4 | 1.85 | **2.43** | 41.9 | 7.7 | **3.91** | 51.3 | 12.1 |
+| datakit | Pg (MW) | REF | **0.12** | 2.29 | 0.21 | **0.018** | 1.24 | 0.079 | **0.075** | 4.25 | 0.27 | **0.16** | 8.27 | 0.62 |
+
+Per-sample overall score, median (1.0 = datakit base RMSE level): PFΔ 87 (orig) / 4.7 (random) / **3.9 (replay)**;
+datakit 0.35 / 16.7 / **1.13**.
+
+| Data | Label | orig P / R | hard P / R | random P / R | **replay P / R** |
+|---|---|---|---|---|---|
+| PFΔ | y_voltage | 0.759 / 0.986 | 0.998 / 0.979 | 0.998 / 0.986 | **1.000 / 0.988** |
+| PFΔ | y_overload | 0.647 / 0.988 | 0.988 / 1.000 | 0.997 / 0.997 | **1.000 / 0.991** |
+| datakit | y_voltage | 1.000 / 0.964 | 1.000 / 0.786 | 1.000 / 0.821 | **1.000 / 0.964** |
+| datakit | y_overload | 1.000 / 1.000 | 1.000 / 1.000 | 1.000 / 1.000 | **1.000 / 1.000** |
+
+Replay FP/FN on PFΔ: voltage 0 / 6, overload 0 / 3 (random: 1 / 7 and 1 / 1).
+
+## Final model: **replay**
+
+- **PFΔ:** replay is better than random and hard on every RMSE, p95 and p99 (and every median except slack Pg),
+  by 20–45 %. Predict-then-check has zero false alarms on both labels. It misses 2 more overloads than random
+  (3 vs 1 of 321).
+- **datakit (forgetting):** errors are 1.3–3.6× the original's, instead of 15–40× for random/hard. Predict-then-check is
+  **identical to the original** (voltage recall 0.964, overload 1.00/1.00). The 4–5 extra voltage misses of the
+  PFΔ-only models are gone.
+- So replay is the only model that is good on both datasets at once. Caveat: it also trained longer (40 vs 30
+  epochs, 157 vs 79 batches per epoch) and was selected by a different validation mix. Part of its PFΔ gain may be
+  more training, not replay itself. One seed.
+- **Frozen for the N-2 test:** replay model, `mlruns/657056988967417188/f061c2d3…/artifacts/model/last_epoch_state_dict.pt`.

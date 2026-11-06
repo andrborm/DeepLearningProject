@@ -425,3 +425,26 @@ OMP_NUM_THREADS=13 ./venv/Scripts/python.exe scripts/finetune_pipeline.py finetu
   `stage2_finetune` (gitignored): runs `ft_hard_base` `95c890fe…`, `ft_random_base` `1f1199cb…`. The best weights are at
   `mlruns/<exp>/<run>/artifacts/model/best_model_state_dict.pt`.
 - Logs in `results/finetune_*_log.txt` are stripped of tqdm progress bars (one line per epoch kept).
+
+---
+
+## Phase 8: Replay fine-tuning and final model choice (2026-11-06)
+
+```bash
+git push                                                         # cf3e38a
+./venv/Scripts/python.exe scripts/make_stage3_data.py            # 24 s, data/stage3 (16,000 samples), results/stage3_mapping.csv
+./venv/Scripts/python.exe scripts/finetune_pipeline.py finetune --set replay --lr 5e-5 --epochs 40 --patience 5   # 93 min
+./venv/Scripts/python.exe scripts/finetune_pipeline.py eval --model replay
+./venv/Scripts/python.exe scripts/finetune_pipeline.py compare --models original hard random replay > results/finetune_compare_base_log.txt
+```
+- `data/stage3` merges datakit and PFΔ in one graphkit folder. Columns = the common set (datakit's `Pg_dc`, `Va_dc`,
+  `p_mw_dc`, `pf_dc`, `pt_dc`, `load_scenario_idx` dropped); PFΔ int columns cast to datakit's float dtypes.
+  datakit samples come from the checkpoint's `scenario_splits.json` train/val lists (seed 7), never from test.
+- First load processes 16,000 `.pt` files (~1 min). Epochs: 157 batches, ~2.1 min.
+- **graphkit bug:** `SaveBestModelStateDict.on_validation_end` returns early in the sanity check only when the
+  monitored metric is missing. In the replay run, the sanity check's 2 batches were datakit-only (sorted val ids), and
+  their loss (lower than any later epoch) froze `best_model_state_dict.pt` at the original weights (saved 17:15:02,
+  max |Δw| = 0 vs the checkpoint). Recovered the epoch-40 weights from `checkpoints/last.ckpt` →
+  `artifacts/model/last_epoch_state_dict.pt` (max |Δw| vs original 0.059). `finetune_pipeline.run` now patches the
+  callback to skip `trainer.sanity_checking`. The hard/random best files were saved at 17:01 (end of training) and are fine.
+- MLflow run `ft_replay_base` = `f061c2d3…`. **Chosen final model: replay** (`results/finetune_summary.md`).

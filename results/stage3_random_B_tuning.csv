@@ -1,0 +1,41 @@
+model,probe,features,hp,label,val PR-AUC
+random,logreg,pooled,"{""C"": 0.001}",y_voltage,0.9776
+random,logreg,pooled,"{""C"": 0.001}",y_overload,0.9731
+random,logreg,pooled,"{""C"": 0.01}",y_voltage,0.9869
+random,logreg,pooled,"{""C"": 0.01}",y_overload,0.9851
+random,logreg,pooled,"{""C"": 0.1}",y_voltage,0.9875
+random,logreg,pooled,"{""C"": 0.1}",y_overload,0.9895
+random,logreg,pooled,"{""C"": 1}",y_voltage,0.9864
+random,logreg,pooled,"{""C"": 1}",y_overload,0.9893
+random,mlp,pooled,"{""alpha"": 0.0001, ""hidden"": 64}",y_voltage,0.9847
+random,mlp,pooled,"{""alpha"": 0.0001, ""hidden"": 64}",y_overload,0.9728
+random,mlp,pooled,"{""alpha"": 0.0001, ""hidden"": 256}",y_voltage,0.9829
+random,mlp,pooled,"{""alpha"": 0.0001, ""hidden"": 256}",y_overload,0.9837
+random,mlp,pooled,"{""alpha"": 0.01, ""hidden"": 64}",y_voltage,0.9846
+random,mlp,pooled,"{""alpha"": 0.01, ""hidden"": 64}",y_overload,0.9728
+random,mlp,pooled,"{""alpha"": 0.01, ""hidden"": 256}",y_voltage,0.9829
+random,mlp,pooled,"{""alpha"": 0.01, ""hidden"": 256}",y_overload,0.9837
+random,mlp,pooled,"{""alpha"": 1, ""hidden"": 64}",y_voltage,0.985
+random,mlp,pooled,"{""alpha"": 1, ""hidden"": 64}",y_overload,0.9728
+random,mlp,pooled,"{""alpha"": 1, ""hidden"": 256}",y_voltage,0.984
+random,mlp,pooled,"{""alpha"": 1, ""hidden"": 256}",y_overload,0.9833
+random,logreg,flat,"{""C"": 0.001}",y_voltage,0.9814
+random,logreg,flat,"{""C"": 0.001}",y_overload,0.9801
+random,logreg,flat,"{""C"": 0.01}",y_voltage,0.9837
+random,logreg,flat,"{""C"": 0.01}",y_overload,0.987
+random,logreg,flat,"{""C"": 0.1}",y_voltage,0.9836
+random,logreg,flat,"{""C"": 0.1}",y_overload,0.9895
+random,logreg,flat,"{""C"": 1}",y_voltage,0.9827
+random,logreg,flat,"{""C"": 1}",y_overload,0.9882
+random,mlp,flat,"{""alpha"": 0.0001, ""hidden"": 64}",y_voltage,0.9812
+random,mlp,flat,"{""alpha"": 0.0001, ""hidden"": 64}",y_overload,0.9699
+random,mlp,flat,"{""alpha"": 0.0001, ""hidden"": 256}",y_voltage,0.9762
+random,mlp,flat,"{""alpha"": 0.0001, ""hidden"": 256}",y_overload,0.9656
+random,mlp,flat,"{""alpha"": 0.01, ""hidden"": 64}",y_voltage,0.9814
+random,mlp,flat,"{""alpha"": 0.01, ""hidden"": 64}",y_overload,0.9699
+random,mlp,flat,"{""alpha"": 0.01, ""hidden"": 256}",y_voltage,0.9763
+random,mlp,flat,"{""alpha"": 0.01, ""hidden"": 256}",y_overload,0.9656
+random,mlp,flat,"{""alpha"": 1, ""hidden"": 64}",y_voltage,0.9812
+random,mlp,flat,"{""alpha"": 1, ""hidden"": 64}",y_overload,0.9743
+random,mlp,flat,"{""alpha"": 1, ""hidden"": 256}",y_voltage,0.9778
+random,mlp,flat,"{""alpha"": 1, ""hidden"": 256}",y_overload,0.9633
