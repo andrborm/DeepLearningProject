@@ -1,0 +1,337 @@
+model,dataset,scope,n,label,val share target,threshold,solver share,solver precision,solver recall,solver FP,solver FN,drop precision,drop recall,drop FP,drop FN
+original,test_n2,all,1000,y_voltage,0,inf,0,0.8974,0.9628,68,23,0.8974,0.9628,68,23
+original,test_n2,all,1000,y_voltage,0.01,124.8,0.002,0.8974,0.9628,68,23,0.8971,0.9595,68,25
+original,test_n2,all,1000,y_voltage,0.02,106.3,0.002,0.8974,0.9628,68,23,0.8971,0.9595,68,25
+original,test_n2,all,1000,y_voltage,0.05,75.25,0.013,0.8988,0.9628,67,23,0.8969,0.9434,67,35
+original,test_n2,all,1000,y_voltage,0.1,37.3,0.057,0.9196,0.9628,52,23,0.9142,0.8964,52,64
+original,test_n2,all,1000,y_voltage,0.2,5.101,0.192,0.9581,0.9628,26,23,0.9467,0.7476,26,156
+original,test_n2,all,1000,y_overload,0,inf,0,0.6352,0.9439,58,6,0.6352,0.9439,58,6
+original,test_n2,all,1000,y_overload,0.01,124.8,0.002,0.6352,0.9439,58,6,0.6306,0.9252,58,8
+original,test_n2,all,1000,y_overload,0.02,106.3,0.002,0.6352,0.9439,58,6,0.6306,0.9252,58,8
+original,test_n2,all,1000,y_overload,0.05,75.25,0.013,0.6474,0.9439,55,6,0.6405,0.9159,55,9
+original,test_n2,all,1000,y_overload,0.1,37.3,0.057,0.6918,0.9439,45,6,0.6691,0.8505,45,16
+original,test_n2,all,1000,y_overload,0.2,5.101,0.192,0.7769,0.9439,29,6,0.6979,0.6262,29,40
+original,test_n2,load within,836,y_voltage,0,inf,0,0.9122,0.9559,48,23,0.9122,0.9559,48,23
+original,test_n2,load within,836,y_voltage,0.01,124.8,0.002392,0.9122,0.9559,48,23,0.9119,0.9521,48,25
+original,test_n2,load within,836,y_voltage,0.02,106.3,0.002392,0.9122,0.9559,48,23,0.9119,0.9521,48,25
+original,test_n2,load within,836,y_voltage,0.05,75.25,0.01077,0.9139,0.9559,47,23,0.9126,0.9406,47,31
+original,test_n2,load within,836,y_voltage,0.1,37.3,0.03947,0.9258,0.9559,40,23,0.9222,0.908,40,48
+original,test_n2,load within,836,y_voltage,0.2,5.101,0.1663,0.9633,0.9559,19,23,0.955,0.772,19,119
+original,test_n2,load within,836,y_overload,0,inf,0,0.6446,0.9286,43,6,0.6446,0.9286,43,6
+original,test_n2,load within,836,y_overload,0.01,124.8,0.002392,0.6446,0.9286,43,6,0.6387,0.9048,43,8
+original,test_n2,load within,836,y_overload,0.02,106.3,0.002392,0.6446,0.9286,43,6,0.6387,0.9048,43,8
+original,test_n2,load within,836,y_overload,0.05,75.25,0.01077,0.6555,0.9286,41,6,0.6496,0.9048,41,8
+original,test_n2,load within,836,y_overload,0.1,37.3,0.03947,0.6724,0.9286,38,6,0.6514,0.8452,38,13
+original,test_n2,load within,836,y_overload,0.2,5.101,0.1663,0.7573,0.9286,25,6,0.6835,0.6429,25,30
+original,test_n2,load above,164,y_voltage,0,inf,0,0.8276,1,20,0,0.8276,1,20,0
+original,test_n2,load above,164,y_voltage,0.01,124.8,0,0.8276,1,20,0,0.8276,1,20,0
+original,test_n2,load above,164,y_voltage,0.02,106.3,0,0.8276,1,20,0,0.8276,1,20,0
+original,test_n2,load above,164,y_voltage,0.05,75.25,0.02439,0.8276,1,20,0,0.8214,0.9583,20,4
+original,test_n2,load above,164,y_voltage,0.1,37.3,0.1463,0.8889,1,12,0,0.8696,0.8333,12,16
+original,test_n2,load above,164,y_voltage,0.2,5.101,0.3232,0.932,1,7,0,0.8939,0.6146,7,37
+original,test_n2,load above,164,y_overload,0,inf,0,0.6053,1,15,0,0.6053,1,15,0
+original,test_n2,load above,164,y_overload,0.01,124.8,0,0.6053,1,15,0,0.6053,1,15,0
+original,test_n2,load above,164,y_overload,0.02,106.3,0,0.6053,1,15,0,0.6053,1,15,0
+original,test_n2,load above,164,y_overload,0.05,75.25,0.02439,0.6216,1,14,0,0.6111,0.9565,14,1
+original,test_n2,load above,164,y_overload,0.1,37.3,0.1463,0.7667,1,7,0,0.7407,0.8696,7,3
+original,test_n2,load above,164,y_overload,0.2,5.101,0.3232,0.8519,1,4,0,0.7647,0.5652,4,10
+original,test_n2,N-2,1000,y_voltage,0,inf,0,0.8974,0.9628,68,23,0.8974,0.9628,68,23
+original,test_n2,N-2,1000,y_voltage,0.01,124.8,0.002,0.8974,0.9628,68,23,0.8971,0.9595,68,25
+original,test_n2,N-2,1000,y_voltage,0.02,106.3,0.002,0.8974,0.9628,68,23,0.8971,0.9595,68,25
+original,test_n2,N-2,1000,y_voltage,0.05,75.25,0.013,0.8988,0.9628,67,23,0.8969,0.9434,67,35
+original,test_n2,N-2,1000,y_voltage,0.1,37.3,0.057,0.9196,0.9628,52,23,0.9142,0.8964,52,64
+original,test_n2,N-2,1000,y_voltage,0.2,5.101,0.192,0.9581,0.9628,26,23,0.9467,0.7476,26,156
+original,test_n2,N-2,1000,y_overload,0,inf,0,0.6352,0.9439,58,6,0.6352,0.9439,58,6
+original,test_n2,N-2,1000,y_overload,0.01,124.8,0.002,0.6352,0.9439,58,6,0.6306,0.9252,58,8
+original,test_n2,N-2,1000,y_overload,0.02,106.3,0.002,0.6352,0.9439,58,6,0.6306,0.9252,58,8
+original,test_n2,N-2,1000,y_overload,0.05,75.25,0.013,0.6474,0.9439,55,6,0.6405,0.9159,55,9
+original,test_n2,N-2,1000,y_overload,0.1,37.3,0.057,0.6918,0.9439,45,6,0.6691,0.8505,45,16
+original,test_n2,N-2,1000,y_overload,0.2,5.101,0.192,0.7769,0.9439,29,6,0.6979,0.6262,29,40
+original,test_n2,N-2 branch,263,y_voltage,0,inf,0,0.8712,0.9793,21,3,0.8712,0.9793,21,3
+original,test_n2,N-2 branch,263,y_voltage,0.01,124.8,0.007605,0.8712,0.9793,21,3,0.8696,0.9655,21,5
+original,test_n2,N-2 branch,263,y_voltage,0.02,106.3,0.007605,0.8712,0.9793,21,3,0.8696,0.9655,21,5
+original,test_n2,N-2 branch,263,y_voltage,0.05,75.25,0.007605,0.8712,0.9793,21,3,0.8696,0.9655,21,5
+original,test_n2,N-2 branch,263,y_voltage,0.1,37.3,0.03422,0.8931,0.9793,17,3,0.8896,0.9448,17,8
+original,test_n2,N-2 branch,263,y_voltage,0.2,5.101,0.1255,0.9221,0.9793,12,3,0.9118,0.8552,12,21
+original,test_n2,N-2 branch,263,y_overload,0,inf,0,0.7294,0.9538,23,3,0.7294,0.9538,23,3
+original,test_n2,N-2 branch,263,y_overload,0.01,124.8,0.007605,0.7294,0.9538,23,3,0.7229,0.9231,23,5
+original,test_n2,N-2 branch,263,y_overload,0.02,106.3,0.007605,0.7294,0.9538,23,3,0.7229,0.9231,23,5
+original,test_n2,N-2 branch,263,y_overload,0.05,75.25,0.007605,0.7294,0.9538,23,3,0.7229,0.9231,23,5
+original,test_n2,N-2 branch,263,y_overload,0.1,37.3,0.03422,0.747,0.9538,21,3,0.7273,0.8615,21,9
+original,test_n2,N-2 branch,263,y_overload,0.2,5.101,0.1255,0.7949,0.9538,16,3,0.7333,0.6769,16,21
+original,test_n2,N-2 gen,385,y_voltage,0,inf,0,0.9113,0.9519,25,13,0.9113,0.9519,25,13
+original,test_n2,N-2 gen,385,y_voltage,0.01,124.8,0,0.9113,0.9519,25,13,0.9113,0.9519,25,13
+original,test_n2,N-2 gen,385,y_voltage,0.02,106.3,0,0.9113,0.9519,25,13,0.9113,0.9519,25,13
+original,test_n2,N-2 gen,385,y_voltage,0.05,75.25,0.01818,0.9146,0.9519,24,13,0.9127,0.9296,24,19
+original,test_n2,N-2 gen,385,y_voltage,0.1,37.3,0.08571,0.9345,0.9519,18,13,0.9277,0.8556,18,39
+original,test_n2,N-2 gen,385,y_voltage,0.2,5.101,0.2831,0.9772,0.9519,6,13,0.9665,0.6407,6,97
+original,test_n2,N-2 gen,385,y_overload,0,inf,0,0,,15,0,0,,15,0
+original,test_n2,N-2 gen,385,y_overload,0.01,124.8,0,0,,15,0,0,,15,0
+original,test_n2,N-2 gen,385,y_overload,0.02,106.3,0,0,,15,0,0,,15,0
+original,test_n2,N-2 gen,385,y_overload,0.05,75.25,0.01818,0,,13,0,0,,13,0
+original,test_n2,N-2 gen,385,y_overload,0.1,37.3,0.08571,0,,9,0,0,,9,0
+original,test_n2,N-2 gen,385,y_overload,0.2,5.101,0.2831,0,,1,0,0,,1,0
+original,test_n2,N-2 mixed,352,y_voltage,0,inf,0,0.8991,0.9655,22,7,0.8991,0.9655,22,7
+original,test_n2,N-2 mixed,352,y_voltage,0.01,124.8,0,0.8991,0.9655,22,7,0.8991,0.9655,22,7
+original,test_n2,N-2 mixed,352,y_voltage,0.02,106.3,0,0.8991,0.9655,22,7,0.8991,0.9655,22,7
+original,test_n2,N-2 mixed,352,y_voltage,0.05,75.25,0.01136,0.8991,0.9655,22,7,0.8972,0.9458,22,11
+original,test_n2,N-2 mixed,352,y_voltage,0.1,37.3,0.04261,0.9202,0.9655,17,7,0.9163,0.9163,17,17
+original,test_n2,N-2 mixed,352,y_voltage,0.2,5.101,0.142,0.9608,0.9655,8,7,0.9538,0.8128,8,38
+original,test_n2,N-2 mixed,352,y_overload,0,inf,0,0.661,0.9286,20,3,0.661,0.9286,20,3
+original,test_n2,N-2 mixed,352,y_overload,0.01,124.8,0,0.661,0.9286,20,3,0.661,0.9286,20,3
+original,test_n2,N-2 mixed,352,y_overload,0.02,106.3,0,0.661,0.9286,20,3,0.661,0.9286,20,3
+original,test_n2,N-2 mixed,352,y_overload,0.05,75.25,0.01136,0.6724,0.9286,19,3,0.6667,0.9048,19,4
+original,test_n2,N-2 mixed,352,y_overload,0.1,37.3,0.04261,0.7222,0.9286,15,3,0.7,0.8333,15,7
+original,test_n2,N-2 mixed,352,y_overload,0.2,5.101,0.142,0.7647,0.9286,12,3,0.6571,0.5476,12,19
+original,test_pfdelta,all,1000,y_voltage,0,inf,0,0.7593,0.9864,161,7,0.7593,0.9864,161,7
+original,test_pfdelta,all,1000,y_voltage,0.01,124.8,0.012,0.7709,0.9864,151,7,0.7702,0.9825,151,9
+original,test_pfdelta,all,1000,y_voltage,0.02,106.3,0.027,0.7864,0.9864,138,7,0.785,0.9786,138,11
+original,test_pfdelta,all,1000,y_voltage,0.05,75.25,0.072,0.8115,0.9864,118,7,0.8023,0.9301,118,36
+original,test_pfdelta,all,1000,y_voltage,0.1,37.3,0.189,0.8789,0.9864,70,7,0.8542,0.7961,70,105
+original,test_pfdelta,all,1000,y_voltage,0.2,5.101,0.369,0.9425,0.9864,31,7,0.901,0.5476,31,233
+original,test_pfdelta,all,1000,y_overload,0,inf,0,0.6469,0.9875,173,4,0.6469,0.9875,173,4
+original,test_pfdelta,all,1000,y_overload,0.01,124.8,0.012,0.6483,0.9875,172,4,0.6402,0.9533,172,15
+original,test_pfdelta,all,1000,y_overload,0.02,106.3,0.027,0.6536,0.9875,168,4,0.6371,0.919,168,26
+original,test_pfdelta,all,1000,y_overload,0.05,75.25,0.072,0.6632,0.9875,161,4,0.6167,0.8069,161,62
+original,test_pfdelta,all,1000,y_overload,0.1,37.3,0.189,0.7076,0.9875,131,4,0.5868,0.5794,131,135
+original,test_pfdelta,all,1000,y_overload,0.2,5.101,0.369,0.7868,1,87,0,0.4882,0.2586,87,238
+original,test_pfdelta,load within,407,y_voltage,0,inf,0,0.8653,0.9598,26,7,0.8653,0.9598,26,7
+original,test_pfdelta,load within,407,y_voltage,0.01,124.8,0,0.8653,0.9598,26,7,0.8653,0.9598,26,7
+original,test_pfdelta,load within,407,y_voltage,0.02,106.3,0,0.8653,0.9598,26,7,0.8653,0.9598,26,7
+original,test_pfdelta,load within,407,y_voltage,0.05,75.25,0,0.8653,0.9598,26,7,0.8653,0.9598,26,7
+original,test_pfdelta,load within,407,y_voltage,0.1,37.3,0.01474,0.8836,0.9598,22,7,0.8824,0.9483,22,9
+original,test_pfdelta,load within,407,y_voltage,0.2,5.101,0.07617,0.9126,0.9598,16,7,0.903,0.8563,16,25
+original,test_pfdelta,load within,407,y_overload,0,inf,0,0.5581,1,19,0,0.5581,1,19,0
+original,test_pfdelta,load within,407,y_overload,0.01,124.8,0,0.5581,1,19,0,0.5581,1,19,0
+original,test_pfdelta,load within,407,y_overload,0.02,106.3,0,0.5581,1,19,0,0.5581,1,19,0
+original,test_pfdelta,load within,407,y_overload,0.05,75.25,0,0.5581,1,19,0,0.5581,1,19,0
+original,test_pfdelta,load within,407,y_overload,0.1,37.3,0.01474,0.5581,1,19,0,0.5366,0.9167,19,2
+original,test_pfdelta,load within,407,y_overload,0.2,5.101,0.07617,0.6316,1,14,0,0.5625,0.75,14,6
+original,test_pfdelta,load above,593,y_voltage,0,inf,0,0.7164,1,135,0,0.7164,1,135,0
+original,test_pfdelta,load above,593,y_voltage,0.01,124.8,0.02024,0.7318,1,125,0,0.7306,0.9941,125,2
+original,test_pfdelta,load above,593,y_voltage,0.02,106.3,0.04553,0.7528,1,112,0,0.7506,0.9883,112,4
+original,test_pfdelta,load above,593,y_voltage,0.05,75.25,0.1214,0.7875,1,92,0,0.7723,0.915,92,29
+original,test_pfdelta,load above,593,y_voltage,0.1,37.3,0.3086,0.8766,1,48,0,0.8362,0.7185,48,96
+original,test_pfdelta,load above,593,y_voltage,0.2,5.101,0.57,0.9579,1,15,0,0.8986,0.39,15,208
+original,test_pfdelta,load above,593,y_overload,0,inf,0,0.6555,0.9865,154,4,0.6555,0.9865,154,4
+original,test_pfdelta,load above,593,y_overload,0.01,124.8,0.02024,0.657,0.9865,153,4,0.6483,0.9495,153,15
+original,test_pfdelta,load above,593,y_overload,0.02,106.3,0.04553,0.6629,0.9865,149,4,0.6452,0.9125,149,26
+original,test_pfdelta,load above,593,y_overload,0.05,75.25,0.1214,0.6736,0.9865,142,4,0.6233,0.7912,142,62
+original,test_pfdelta,load above,593,y_overload,0.1,37.3,0.3086,0.7235,0.9865,112,4,0.5942,0.5522,112,133
+original,test_pfdelta,load above,593,y_overload,0.2,5.101,0.57,0.8027,1,73,0,0.471,0.2189,73,232
+original,test_pfdelta,N-0,500,y_voltage,0,inf,0,0.7332,1,115,0,0.7332,1,115,0
+original,test_pfdelta,N-0,500,y_voltage,0.01,124.8,0.024,0.7506,1,105,0,0.7494,0.9937,105,2
+original,test_pfdelta,N-0,500,y_voltage,0.02,106.3,0.052,0.7726,1,93,0,0.7704,0.9873,93,4
+original,test_pfdelta,N-0,500,y_voltage,0.05,75.25,0.14,0.8123,1,73,0,0.7978,0.9114,73,28
+original,test_pfdelta,N-0,500,y_voltage,0.1,37.3,0.336,0.8952,1,37,0,0.8593,0.7152,37,90
+original,test_pfdelta,N-0,500,y_voltage,0.2,5.101,0.638,0.9783,1,7,0,0.9421,0.3608,7,202
+original,test_pfdelta,N-0,500,y_overload,0,inf,0,0.6674,0.9865,146,4,0.6674,0.9865,146,4
+original,test_pfdelta,N-0,500,y_overload,0.01,124.8,0.024,0.6689,0.9865,145,4,0.6604,0.9495,145,15
+original,test_pfdelta,N-0,500,y_overload,0.02,106.3,0.052,0.6736,0.9865,142,4,0.6562,0.9125,142,26
+original,test_pfdelta,N-0,500,y_overload,0.05,75.25,0.14,0.6846,0.9865,135,4,0.6351,0.7912,135,62
+original,test_pfdelta,N-0,500,y_overload,0.1,37.3,0.336,0.7325,0.9865,107,4,0.6081,0.5589,107,131
+original,test_pfdelta,N-0,500,y_overload,0.2,5.101,0.638,0.8159,1,67,0,0.4924,0.2189,67,232
+original,test_pfdelta,N-1,500,y_voltage,0,inf,0,0.8067,0.9648,46,7,0.8067,0.9648,46,7
+original,test_pfdelta,N-1,500,y_voltage,0.01,124.8,0,0.8067,0.9648,46,7,0.8067,0.9648,46,7
+original,test_pfdelta,N-1,500,y_voltage,0.02,106.3,0.002,0.8101,0.9648,45,7,0.8101,0.9648,45,7
+original,test_pfdelta,N-1,500,y_voltage,0.05,75.25,0.004,0.8101,0.9648,45,7,0.8093,0.9598,45,8
+original,test_pfdelta,N-1,500,y_voltage,0.1,37.3,0.042,0.8533,0.9648,33,7,0.8479,0.9246,33,15
+original,test_pfdelta,N-1,500,y_voltage,0.2,5.101,0.1,0.8889,0.9648,24,7,0.875,0.8442,24,31
+original,test_pfdelta,N-1,500,y_overload,0,inf,0,0.4706,1,27,0,0.4706,1,27,0
+original,test_pfdelta,N-1,500,y_overload,0.01,124.8,0,0.4706,1,27,0,0.4706,1,27,0
+original,test_pfdelta,N-1,500,y_overload,0.02,106.3,0.002,0.48,1,26,0,0.48,1,26,0
+original,test_pfdelta,N-1,500,y_overload,0.05,75.25,0.004,0.48,1,26,0,0.48,1,26,0
+original,test_pfdelta,N-1,500,y_overload,0.1,37.3,0.042,0.5,1,24,0,0.4545,0.8333,24,4
+original,test_pfdelta,N-1,500,y_overload,0.2,5.101,0.1,0.5455,1,20,0,0.4737,0.75,20,6
+original,test_datakit,all,1000,y_voltage,0,inf,0,1,0.9643,0,1,1,0.9643,0,1
+original,test_datakit,all,1000,y_voltage,0.01,124.8,0,1,0.9643,0,1,1,0.9643,0,1
+original,test_datakit,all,1000,y_voltage,0.02,106.3,0,1,0.9643,0,1,1,0.9643,0,1
+original,test_datakit,all,1000,y_voltage,0.05,75.25,0,1,0.9643,0,1,1,0.9643,0,1
+original,test_datakit,all,1000,y_voltage,0.1,37.3,0,1,0.9643,0,1,1,0.9643,0,1
+original,test_datakit,all,1000,y_voltage,0.2,5.101,0,1,0.9643,0,1,1,0.9643,0,1
+original,test_datakit,all,1000,y_overload,0,inf,0,1,1,0,0,1,1,0,0
+original,test_datakit,all,1000,y_overload,0.01,124.8,0,1,1,0,0,1,1,0,0
+original,test_datakit,all,1000,y_overload,0.02,106.3,0,1,1,0,0,1,1,0,0
+original,test_datakit,all,1000,y_overload,0.05,75.25,0,1,1,0,0,1,1,0,0
+original,test_datakit,all,1000,y_overload,0.1,37.3,0,1,1,0,0,1,1,0,0
+original,test_datakit,all,1000,y_overload,0.2,5.101,0,1,1,0,0,1,1,0,0
+original,test_datakit,load within,1000,y_voltage,0,inf,0,1,0.9643,0,1,1,0.9643,0,1
+original,test_datakit,load within,1000,y_voltage,0.01,124.8,0,1,0.9643,0,1,1,0.9643,0,1
+original,test_datakit,load within,1000,y_voltage,0.02,106.3,0,1,0.9643,0,1,1,0.9643,0,1
+original,test_datakit,load within,1000,y_voltage,0.05,75.25,0,1,0.9643,0,1,1,0.9643,0,1
+original,test_datakit,load within,1000,y_voltage,0.1,37.3,0,1,0.9643,0,1,1,0.9643,0,1
+original,test_datakit,load within,1000,y_voltage,0.2,5.101,0,1,0.9643,0,1,1,0.9643,0,1
+original,test_datakit,load within,1000,y_overload,0,inf,0,1,1,0,0,1,1,0,0
+original,test_datakit,load within,1000,y_overload,0.01,124.8,0,1,1,0,0,1,1,0,0
+original,test_datakit,load within,1000,y_overload,0.02,106.3,0,1,1,0,0,1,1,0,0
+original,test_datakit,load within,1000,y_overload,0.05,75.25,0,1,1,0,0,1,1,0,0
+original,test_datakit,load within,1000,y_overload,0.1,37.3,0,1,1,0,0,1,1,0,0
+original,test_datakit,load within,1000,y_overload,0.2,5.101,0,1,1,0,0,1,1,0,0
+replay,test_n2,all,1000,y_voltage,0,inf,0,0.9983,0.9725,1,17,0.9983,0.9725,1,17
+replay,test_n2,all,1000,y_voltage,0.01,0.173,0.508,1,0.9919,0,5,1,0.3382,0,409
+replay,test_n2,all,1000,y_voltage,0.02,0.1381,0.638,1,0.9968,0,2,1,0.2298,0,476
+replay,test_n2,all,1000,y_voltage,0.05,0.103,0.782,1,0.9984,0,1,1,0.1117,0,549
+replay,test_n2,all,1000,y_voltage,0.1,0.08225,0.867,1,1,0,0,1,0.05502,0,584
+replay,test_n2,all,1000,y_voltage,0.2,0.05988,0.938,1,1,0,0,1,0.0178,0,607
+replay,test_n2,all,1000,y_overload,0,inf,0,0.9895,0.8785,1,13,0.9895,0.8785,1,13
+replay,test_n2,all,1000,y_overload,0.01,0.173,0.508,1,1,0,0,1,0.1495,0,91
+replay,test_n2,all,1000,y_overload,0.02,0.1381,0.638,1,1,0,0,1,0.08411,0,98
+replay,test_n2,all,1000,y_overload,0.05,0.103,0.782,1,1,0,0,1,0.009346,0,106
+replay,test_n2,all,1000,y_overload,0.1,0.08225,0.867,1,1,0,0,,0,0,107
+replay,test_n2,all,1000,y_overload,0.2,0.05988,0.938,1,1,0,0,,0,0,107
+replay,test_n2,load within,836,y_voltage,0,inf,0,0.998,0.9732,1,14,0.998,0.9732,1,14
+replay,test_n2,load within,836,y_voltage,0.01,0.173,0.4868,1,0.9904,0,5,1,0.3506,0,339
+replay,test_n2,load within,836,y_voltage,0.02,0.1381,0.622,1,0.9962,0,2,1,0.2395,0,397
+replay,test_n2,load within,836,y_voltage,0.05,0.103,0.7632,1,0.9981,0,1,1,0.1226,0,458
+replay,test_n2,load within,836,y_voltage,0.1,0.08225,0.8553,1,1,0,0,1,0.0613,0,490
+replay,test_n2,load within,836,y_voltage,0.2,0.05988,0.9306,1,1,0,0,1,0.01916,0,512
+replay,test_n2,load within,836,y_overload,0,inf,0,0.9863,0.8571,1,12,0.9863,0.8571,1,12
+replay,test_n2,load within,836,y_overload,0.01,0.173,0.4868,1,1,0,0,1,0.131,0,73
+replay,test_n2,load within,836,y_overload,0.02,0.1381,0.622,1,1,0,0,1,0.05952,0,79
+replay,test_n2,load within,836,y_overload,0.05,0.103,0.7632,1,1,0,0,1,0.0119,0,83
+replay,test_n2,load within,836,y_overload,0.1,0.08225,0.8553,1,1,0,0,,0,0,84
+replay,test_n2,load within,836,y_overload,0.2,0.05988,0.9306,1,1,0,0,,0,0,84
+replay,test_n2,load above,164,y_voltage,0,inf,0,1,0.9688,0,3,1,0.9688,0,3
+replay,test_n2,load above,164,y_voltage,0.01,0.173,0.6159,1,1,0,0,1,0.2708,0,70
+replay,test_n2,load above,164,y_voltage,0.02,0.1381,0.7195,1,1,0,0,1,0.1771,0,79
+replay,test_n2,load above,164,y_voltage,0.05,0.103,0.878,1,1,0,0,1,0.05208,0,91
+replay,test_n2,load above,164,y_voltage,0.1,0.08225,0.9268,1,1,0,0,1,0.02083,0,94
+replay,test_n2,load above,164,y_voltage,0.2,0.05988,0.9756,1,1,0,0,1,0.01042,0,95
+replay,test_n2,load above,164,y_overload,0,inf,0,1,0.9565,0,1,1,0.9565,0,1
+replay,test_n2,load above,164,y_overload,0.01,0.173,0.6159,1,1,0,0,1,0.2174,0,18
+replay,test_n2,load above,164,y_overload,0.02,0.1381,0.7195,1,1,0,0,1,0.1739,0,19
+replay,test_n2,load above,164,y_overload,0.05,0.103,0.878,1,1,0,0,,0,0,23
+replay,test_n2,load above,164,y_overload,0.1,0.08225,0.9268,1,1,0,0,,0,0,23
+replay,test_n2,load above,164,y_overload,0.2,0.05988,0.9756,1,1,0,0,,0,0,23
+replay,test_n2,N-2,1000,y_voltage,0,inf,0,0.9983,0.9725,1,17,0.9983,0.9725,1,17
+replay,test_n2,N-2,1000,y_voltage,0.01,0.173,0.508,1,0.9919,0,5,1,0.3382,0,409
+replay,test_n2,N-2,1000,y_voltage,0.02,0.1381,0.638,1,0.9968,0,2,1,0.2298,0,476
+replay,test_n2,N-2,1000,y_voltage,0.05,0.103,0.782,1,0.9984,0,1,1,0.1117,0,549
+replay,test_n2,N-2,1000,y_voltage,0.1,0.08225,0.867,1,1,0,0,1,0.05502,0,584
+replay,test_n2,N-2,1000,y_voltage,0.2,0.05988,0.938,1,1,0,0,1,0.0178,0,607
+replay,test_n2,N-2,1000,y_overload,0,inf,0,0.9895,0.8785,1,13,0.9895,0.8785,1,13
+replay,test_n2,N-2,1000,y_overload,0.01,0.173,0.508,1,1,0,0,1,0.1495,0,91
+replay,test_n2,N-2,1000,y_overload,0.02,0.1381,0.638,1,1,0,0,1,0.08411,0,98
+replay,test_n2,N-2,1000,y_overload,0.05,0.103,0.782,1,1,0,0,1,0.009346,0,106
+replay,test_n2,N-2,1000,y_overload,0.1,0.08225,0.867,1,1,0,0,,0,0,107
+replay,test_n2,N-2,1000,y_overload,0.2,0.05988,0.938,1,1,0,0,,0,0,107
+replay,test_n2,N-2 branch,263,y_voltage,0,inf,0,1,0.9862,0,2,1,0.9862,0,2
+replay,test_n2,N-2 branch,263,y_voltage,0.01,0.173,0.5247,1,1,0,0,1,0.3793,0,90
+replay,test_n2,N-2 branch,263,y_voltage,0.02,0.1381,0.6426,1,1,0,0,1,0.2552,0,108
+replay,test_n2,N-2 branch,263,y_voltage,0.05,0.103,0.7795,1,1,0,0,1,0.1379,0,125
+replay,test_n2,N-2 branch,263,y_voltage,0.1,0.08225,0.8821,1,1,0,0,1,0.06207,0,136
+replay,test_n2,N-2 branch,263,y_voltage,0.2,0.05988,0.9468,1,1,0,0,1,0.01379,0,143
+replay,test_n2,N-2 branch,263,y_overload,0,inf,0,0.9821,0.8462,1,10,0.9821,0.8462,1,10
+replay,test_n2,N-2 branch,263,y_overload,0.01,0.173,0.5247,1,1,0,0,1,0.09231,0,59
+replay,test_n2,N-2 branch,263,y_overload,0.02,0.1381,0.6426,1,1,0,0,1,0.04615,0,62
+replay,test_n2,N-2 branch,263,y_overload,0.05,0.103,0.7795,1,1,0,0,1,0.01538,0,64
+replay,test_n2,N-2 branch,263,y_overload,0.1,0.08225,0.8821,1,1,0,0,,0,0,65
+replay,test_n2,N-2 branch,263,y_overload,0.2,0.05988,0.9468,1,1,0,0,,0,0,65
+replay,test_n2,N-2 gen,385,y_voltage,0,inf,0,1,0.9519,0,13,1,0.9519,0,13
+replay,test_n2,N-2 gen,385,y_voltage,0.01,0.173,0.626,1,0.9852,0,4,1,0.2111,0,213
+replay,test_n2,N-2 gen,385,y_voltage,0.02,0.1381,0.7377,1,0.9963,0,1,1,0.1259,0,236
+replay,test_n2,N-2 gen,385,y_voltage,0.05,0.103,0.8519,1,1,0,0,1,0.04815,0,257
+replay,test_n2,N-2 gen,385,y_voltage,0.1,0.08225,0.8935,1,1,0,0,1,0.02963,0,262
+replay,test_n2,N-2 gen,385,y_voltage,0.2,0.05988,0.9455,1,1,0,0,1,0.01481,0,266
+replay,test_n2,N-2 gen,385,y_overload,0,inf,0,,,0,0,,,0,0
+replay,test_n2,N-2 gen,385,y_overload,0.01,0.173,0.626,,,0,0,,,0,0
+replay,test_n2,N-2 gen,385,y_overload,0.02,0.1381,0.7377,,,0,0,,,0,0
+replay,test_n2,N-2 gen,385,y_overload,0.05,0.103,0.8519,,,0,0,,,0,0
+replay,test_n2,N-2 gen,385,y_overload,0.1,0.08225,0.8935,,,0,0,,,0,0
+replay,test_n2,N-2 gen,385,y_overload,0.2,0.05988,0.9455,,,0,0,,,0,0
+replay,test_n2,N-2 mixed,352,y_voltage,0,inf,0,0.995,0.9901,1,2,0.995,0.9901,1,2
+replay,test_n2,N-2 mixed,352,y_voltage,0.01,0.173,0.3665,1,0.9951,0,1,1,0.4778,0,106
+replay,test_n2,N-2 mixed,352,y_voltage,0.02,0.1381,0.5256,1,0.9951,0,1,1,0.3498,0,132
+replay,test_n2,N-2 mixed,352,y_voltage,0.05,0.103,0.7074,1,0.9951,0,1,1,0.1773,0,167
+replay,test_n2,N-2 mixed,352,y_voltage,0.1,0.08225,0.8267,1,1,0,0,1,0.08374,0,186
+replay,test_n2,N-2 mixed,352,y_voltage,0.2,0.05988,0.9233,1,1,0,0,1,0.02463,0,198
+replay,test_n2,N-2 mixed,352,y_overload,0,inf,0,1,0.9286,0,3,1,0.9286,0,3
+replay,test_n2,N-2 mixed,352,y_overload,0.01,0.173,0.3665,1,1,0,0,1,0.2381,0,32
+replay,test_n2,N-2 mixed,352,y_overload,0.02,0.1381,0.5256,1,1,0,0,1,0.1429,0,36
+replay,test_n2,N-2 mixed,352,y_overload,0.05,0.103,0.7074,1,1,0,0,,0,0,42
+replay,test_n2,N-2 mixed,352,y_overload,0.1,0.08225,0.8267,1,1,0,0,,0,0,42
+replay,test_n2,N-2 mixed,352,y_overload,0.2,0.05988,0.9233,1,1,0,0,,0,0,42
+replay,test_pfdelta,all,1000,y_voltage,0,inf,0,1,0.9883,0,6,1,0.9883,0,6
+replay,test_pfdelta,all,1000,y_voltage,0.01,0.173,0.023,1,0.9883,0,6,1,0.9612,0,20
+replay,test_pfdelta,all,1000,y_voltage,0.02,0.1381,0.033,1,0.9883,0,6,1,0.9417,0,30
+replay,test_pfdelta,all,1000,y_voltage,0.05,0.103,0.087,1,0.9883,0,6,1,0.8718,0,66
+replay,test_pfdelta,all,1000,y_voltage,0.1,0.08225,0.168,1,0.9903,0,5,1,0.7592,0,124
+replay,test_pfdelta,all,1000,y_voltage,0.2,0.05988,0.375,1,0.9922,0,4,1,0.4893,0,263
+replay,test_pfdelta,all,1000,y_overload,0,inf,0,1,0.9907,0,3,1,0.9907,0,3
+replay,test_pfdelta,all,1000,y_overload,0.01,0.173,0.023,1,0.9907,0,3,1,0.947,0,17
+replay,test_pfdelta,all,1000,y_overload,0.02,0.1381,0.033,1,0.9907,0,3,1,0.9315,0,22
+replay,test_pfdelta,all,1000,y_overload,0.05,0.103,0.087,1,0.9907,0,3,1,0.8131,0,60
+replay,test_pfdelta,all,1000,y_overload,0.1,0.08225,0.168,1,0.9907,0,3,1,0.6854,0,101
+replay,test_pfdelta,all,1000,y_overload,0.2,0.05988,0.375,1,0.9907,0,3,1,0.3863,0,197
+replay,test_pfdelta,load within,407,y_voltage,0,inf,0,1,0.9713,0,5,1,0.9713,0,5
+replay,test_pfdelta,load within,407,y_voltage,0.01,0.173,0.03931,1,0.9713,0,5,1,0.9253,0,13
+replay,test_pfdelta,load within,407,y_voltage,0.02,0.1381,0.04914,1,0.9713,0,5,1,0.9023,0,17
+replay,test_pfdelta,load within,407,y_voltage,0.05,0.103,0.07862,1,0.9713,0,5,1,0.8621,0,24
+replay,test_pfdelta,load within,407,y_voltage,0.1,0.08225,0.1376,1,0.977,0,4,1,0.7874,0,37
+replay,test_pfdelta,load within,407,y_voltage,0.2,0.05988,0.2948,1,0.977,0,4,1,0.592,0,71
+replay,test_pfdelta,load within,407,y_overload,0,inf,0,1,1,0,0,1,1,0,0
+replay,test_pfdelta,load within,407,y_overload,0.01,0.173,0.03931,1,1,0,0,1,0.5417,0,11
+replay,test_pfdelta,load within,407,y_overload,0.02,0.1381,0.04914,1,1,0,0,1,0.5417,0,11
+replay,test_pfdelta,load within,407,y_overload,0.05,0.103,0.07862,1,1,0,0,1,0.4167,0,14
+replay,test_pfdelta,load within,407,y_overload,0.1,0.08225,0.1376,1,1,0,0,1,0.3333,0,16
+replay,test_pfdelta,load within,407,y_overload,0.2,0.05988,0.2948,1,1,0,0,1,0.2083,0,19
+replay,test_pfdelta,load above,593,y_voltage,0,inf,0,1,0.9971,0,1,1,0.9971,0,1
+replay,test_pfdelta,load above,593,y_voltage,0.01,0.173,0.0118,1,0.9971,0,1,1,0.9795,0,7
+replay,test_pfdelta,load above,593,y_voltage,0.02,0.1381,0.02192,1,0.9971,0,1,1,0.9619,0,13
+replay,test_pfdelta,load above,593,y_voltage,0.05,0.103,0.09275,1,0.9971,0,1,1,0.8768,0,42
+replay,test_pfdelta,load above,593,y_voltage,0.1,0.08225,0.1889,1,0.9971,0,1,1,0.7449,0,87
+replay,test_pfdelta,load above,593,y_voltage,0.2,0.05988,0.43,1,1,0,0,1,0.437,0,192
+replay,test_pfdelta,load above,593,y_overload,0,inf,0,1,0.9899,0,3,1,0.9899,0,3
+replay,test_pfdelta,load above,593,y_overload,0.01,0.173,0.0118,1,0.9899,0,3,1,0.9798,0,6
+replay,test_pfdelta,load above,593,y_overload,0.02,0.1381,0.02192,1,0.9899,0,3,1,0.963,0,11
+replay,test_pfdelta,load above,593,y_overload,0.05,0.103,0.09275,1,0.9899,0,3,1,0.8451,0,46
+replay,test_pfdelta,load above,593,y_overload,0.1,0.08225,0.1889,1,0.9899,0,3,1,0.7138,0,85
+replay,test_pfdelta,load above,593,y_overload,0.2,0.05988,0.43,1,0.9899,0,3,1,0.4007,0,178
+replay,test_pfdelta,N-0,500,y_voltage,0,inf,0,1,0.9968,0,1,1,0.9968,0,1
+replay,test_pfdelta,N-0,500,y_voltage,0.01,0.173,0.006,1,0.9968,0,1,1,0.9905,0,3
+replay,test_pfdelta,N-0,500,y_voltage,0.02,0.1381,0.016,1,0.9968,0,1,1,0.9747,0,8
+replay,test_pfdelta,N-0,500,y_voltage,0.05,0.103,0.086,1,0.9968,0,1,1,0.8924,0,34
+replay,test_pfdelta,N-0,500,y_voltage,0.1,0.08225,0.184,1,0.9968,0,1,1,0.7658,0,74
+replay,test_pfdelta,N-0,500,y_voltage,0.2,0.05988,0.45,1,1,0,0,1,0.4462,0,175
+replay,test_pfdelta,N-0,500,y_overload,0,inf,0,1,0.9899,0,3,1,0.9899,0,3
+replay,test_pfdelta,N-0,500,y_overload,0.01,0.173,0.006,1,0.9899,0,3,1,0.9798,0,6
+replay,test_pfdelta,N-0,500,y_overload,0.02,0.1381,0.016,1,0.9899,0,3,1,0.963,0,11
+replay,test_pfdelta,N-0,500,y_overload,0.05,0.103,0.086,1,0.9899,0,3,1,0.8519,0,44
+replay,test_pfdelta,N-0,500,y_overload,0.1,0.08225,0.184,1,0.9899,0,3,1,0.7205,0,83
+replay,test_pfdelta,N-0,500,y_overload,0.2,0.05988,0.45,1,0.9899,0,3,1,0.404,0,177
+replay,test_pfdelta,N-1,500,y_voltage,0,inf,0,1,0.9749,0,5,1,0.9749,0,5
+replay,test_pfdelta,N-1,500,y_voltage,0.01,0.173,0.04,1,0.9749,0,5,1,0.9146,0,17
+replay,test_pfdelta,N-1,500,y_voltage,0.02,0.1381,0.05,1,0.9749,0,5,1,0.8894,0,22
+replay,test_pfdelta,N-1,500,y_voltage,0.05,0.103,0.088,1,0.9749,0,5,1,0.8392,0,32
+replay,test_pfdelta,N-1,500,y_voltage,0.1,0.08225,0.152,1,0.9799,0,4,1,0.7487,0,50
+replay,test_pfdelta,N-1,500,y_voltage,0.2,0.05988,0.3,1,0.9799,0,4,1,0.5578,0,88
+replay,test_pfdelta,N-1,500,y_overload,0,inf,0,1,1,0,0,1,1,0,0
+replay,test_pfdelta,N-1,500,y_overload,0.01,0.173,0.04,1,1,0,0,1,0.5417,0,11
+replay,test_pfdelta,N-1,500,y_overload,0.02,0.1381,0.05,1,1,0,0,1,0.5417,0,11
+replay,test_pfdelta,N-1,500,y_overload,0.05,0.103,0.088,1,1,0,0,1,0.3333,0,16
+replay,test_pfdelta,N-1,500,y_overload,0.1,0.08225,0.152,1,1,0,0,1,0.25,0,18
+replay,test_pfdelta,N-1,500,y_overload,0.2,0.05988,0.3,1,1,0,0,1,0.1667,0,20
+replay,test_datakit,all,1000,y_voltage,0,inf,0,1,0.9643,0,1,1,0.9643,0,1
+replay,test_datakit,all,1000,y_voltage,0.01,0.173,0,1,0.9643,0,1,1,0.9643,0,1
+replay,test_datakit,all,1000,y_voltage,0.02,0.1381,0.001,1,0.9643,0,1,1,0.9286,0,2
+replay,test_datakit,all,1000,y_voltage,0.05,0.103,0.001,1,0.9643,0,1,1,0.9286,0,2
+replay,test_datakit,all,1000,y_voltage,0.1,0.08225,0.003,1,0.9643,0,1,1,0.9286,0,2
+replay,test_datakit,all,1000,y_voltage,0.2,0.05988,0.006,1,0.9643,0,1,1,0.9286,0,2
+replay,test_datakit,all,1000,y_overload,0,inf,0,1,1,0,0,1,1,0,0
+replay,test_datakit,all,1000,y_overload,0.01,0.173,0,1,1,0,0,1,1,0,0
+replay,test_datakit,all,1000,y_overload,0.02,0.1381,0.001,1,1,0,0,1,0.973,0,1
+replay,test_datakit,all,1000,y_overload,0.05,0.103,0.001,1,1,0,0,1,0.973,0,1
+replay,test_datakit,all,1000,y_overload,0.1,0.08225,0.003,1,1,0,0,1,0.9189,0,3
+replay,test_datakit,all,1000,y_overload,0.2,0.05988,0.006,1,1,0,0,1,0.8649,0,5
+replay,test_datakit,load within,1000,y_voltage,0,inf,0,1,0.9643,0,1,1,0.9643,0,1
+replay,test_datakit,load within,1000,y_voltage,0.01,0.173,0,1,0.9643,0,1,1,0.9643,0,1
+replay,test_datakit,load within,1000,y_voltage,0.02,0.1381,0.001,1,0.9643,0,1,1,0.9286,0,2
+replay,test_datakit,load within,1000,y_voltage,0.05,0.103,0.001,1,0.9643,0,1,1,0.9286,0,2
+replay,test_datakit,load within,1000,y_voltage,0.1,0.08225,0.003,1,0.9643,0,1,1,0.9286,0,2
+replay,test_datakit,load within,1000,y_voltage,0.2,0.05988,0.006,1,0.9643,0,1,1,0.9286,0,2
+replay,test_datakit,load within,1000,y_overload,0,inf,0,1,1,0,0,1,1,0,0
+replay,test_datakit,load within,1000,y_overload,0.01,0.173,0,1,1,0,0,1,1,0,0
+replay,test_datakit,load within,1000,y_overload,0.02,0.1381,0.001,1,1,0,0,1,0.973,0,1
+replay,test_datakit,load within,1000,y_overload,0.05,0.103,0.001,1,1,0,0,1,0.973,0,1
+replay,test_datakit,load within,1000,y_overload,0.1,0.08225,0.003,1,1,0,0,1,0.9189,0,3
+replay,test_datakit,load within,1000,y_overload,0.2,0.05988,0.006,1,1,0,0,1,0.8649,0,5

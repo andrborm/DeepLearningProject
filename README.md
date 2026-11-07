@@ -6,7 +6,7 @@ The checkpoints used here come from **GENCO** (Puech et al., arXiv 2608.09921, 2
 `results/dataset_overview.md` §5.
 
 **Status:** setup, first inference, data exploration, a PFΔ distribution-shift test and Stage 2 fine-tuning on PFΔ
-N-0/N-1 (hard cases, random control, datakit replay) done. **Final model: replay.** Task 3 detectors (baseline, A, B) built and frozen; only the N-2 test remains. **PFΔ N-2 is held out untouched for the final evaluation.** Every command and
+N-0/N-1 (hard cases, random control, datakit replay) done. **Final model: replay.** Task 3 detectors (baseline, A, B) built, frozen, and **tested once on PFΔ N-2** (`results/final_n2_summary.md`). Every command and
 version is in [`SETUP_LOG.md`](SETUP_LOG.md).
 
 ## Layout
@@ -68,6 +68,7 @@ in place, and extraction takes ~25 min on Windows.
 | 10. Fine-tune data | `./venv/Scripts/python.exe scripts/make_pfdelta_finetune_data.py` | 15 s | `data/pfdelta_ft/` (15k train-position mining pool + 1k PFΔ val), `results/pfdelta_ft_mapping.csv` |
 | 12. Replay fine-tuning | `scripts/make_stage3_data.py`, then `finetune_pipeline.py finetune --set replay --epochs 40`, `eval --model replay`, `compare --models original hard random replay` | 93 min | `results/finetune_summary.md` (replay section) |
 | 13. Task 3 detectors | `scripts/stage3_detectors.py extract --model <m>`, `analyze --model <m> --with-datakit`, `compare` (m = original, replay) | 2 × (5 + 3) min | `results/stage3_*` → `results/stage3_summary.md` |
+| 14. Final N-2 test | `scripts/make_pfdelta_n2_subset.py`, then `final_n2_test.py extract --model <m>` (m = replay, original), `evaluate` (conversion command in `SETUP_LOG.md` Phase 10) | 1.5 + 2 × 1 + 2 min | `results/final_n2_*` → `results/final_n2_summary.md` |
 | 11. Fine-tuning | `scripts/finetune_pipeline.py` stages `splits`, `time`, `mine`, `select --k 2500`, `finetune --set hard` / `--set random`, `eval --model <m>`, `compare` (full commands in `SETUP_LOG.md` Phase 7) | 3 + 4 + 2×34 + 3 min | `results/finetune_*` → `results/finetune_summary.md` |
 
 Inference always uses at most 1000 samples (course requirement; the scripts assert it).
@@ -136,6 +137,12 @@ Inference always uses at most 1000 samples (course requirement; the scripts asse
     alarms destroys recall (those samples are mostly true violations). Embedding probes (approach B) reach F1
     0.92–0.94 on PFΔ, below PtC. They need datakit in training to detect datakit's over-voltages. N-2 is the real
     test: there the state prediction, and with it PtC, may break down.
+12. **Final N-2 test (`results/final_n2_summary.md`, run once, frozen): replay + PtC still wins, but degrades.** Voltage
+    F1 0.985 and overload F1 0.931, with 1 false alarm each; overload recall falls to 0.88 (13 of 107 missed, mostly
+    double branch outages). The replay model's errors are 3× its N-0/N-1 level. The residual becomes informative under
+    the unseen topology (Spearman 0.80, AUROC 0.86 for missed overloads), but the gate tuned on N-0/N-1 never fires.
+    The original model + solver gate (45 % solved) reaches overload recall 0.98. Embedding probes degrade most
+    (overload F1 0.78). Within vs above the training load range matters little on N-2: topology is the driver.
 
 ### Open questions to resolve before the next step
 - **Islanding as a class: not possible with the current data.** Both PFΔ (resamples until the graph is connected) and
@@ -172,6 +179,7 @@ Inference always uses at most 1000 samples (course requirement; the scripts asse
 | `results/pfdelta_shift_summary.md` | PFΔ conversion, base model on PFΔ N-0/N-1 test, predict-then-check under shift, wrong-vs-right |
 | `results/finetune_summary.md` | Stage 2 fine-tuning: setup, timing, original vs hard vs random on datakit and PFΔ (errors, predict-then-check) |
 | `results/stage3_summary.md` | Task 3: predict-then-check, residual trust signal + gating, embedding probes; one comparison table; frozen N-2 setup |
+| `results/final_n2_summary.md` | Final N-2 test: errors, baseline / A / B on N-2 vs N-0/N-1 vs datakit, by load level and outage type |
 | `results/figures/` | fig1 error distribution, fig2 error by outage type, fig3 embedding PCA |
 | `results/inference_per_sample.csv` | per-sample errors (base); `_tiny_n1000` for tiny |
 | `results/hard_cases_top5pct.csv` | 50 hardest samples with outage info and labels |

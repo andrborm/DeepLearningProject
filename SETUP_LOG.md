@@ -468,3 +468,21 @@ git push                                                         # cf3e38a
 - sklearn 1.9.1. The val PR-AUCs of refitted probes differ in the 4th digit between thread counts (`OMP_NUM_THREADS`);
   the test table is unchanged.
 - Gate rule (fixed before looking at test): the fewest solver calls with val precision and recall ≥ 0.98 on both labels.
+
+---
+
+## Phase 10: Final N-2 test, run once (2026-11-07)
+
+```bash
+./venv/Scripts/python.exe scripts/vendor/batch_convert_pfdelta.py --data-dir data/pfdelta_orig/case14/n-2/raw --out-dir data/pfdelta_case14/n-2/raw   # 20,000 files, 1.5 min
+cd scripts && ../venv/Scripts/python.exe make_pfdelta_n2_subset.py --n 1000 --seed 42 && cd ..                                                    # test split = last 2,000 shuffle positions
+./venv/Scripts/python.exe scripts/final_n2_test.py extract --model replay      # 1 predict run (1,000 samples), ~1 min
+./venv/Scripts/python.exe scripts/final_n2_test.py extract --model original
+./venv/Scripts/python.exe scripts/final_n2_test.py evaluate > results/final_n2_log.txt   # ~2 min
+```
+- Design frozen before this run (`results/stage3_summary.md`, commit ff09d27). `evaluate` re-derives the gate t with the
+  frozen rule on the same val data and asserts it equals the frozen value (original 1.272 MVA, replay ∞). The probes are
+  loaded from `data/stage3_probes/` without refitting. `extract` refuses to run twice.
+- Load level: datakit TRAIN max total Pd = 321.8 MW (175,713 train scenarios; min 171.5). N-2 subset: 164 above it.
+- The PFΔ / datakit rows were recomputed from predict outputs and match `stage3_comparison.csv` and the Phase 8
+  evaluate-run errors exactly.

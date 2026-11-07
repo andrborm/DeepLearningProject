@@ -1,0 +1,197 @@
+variable,bus_type,RMSE,median,p95,p99,model,dataset,scope
+Pg,REF,15.53,6.11052,33.7298,58.2254,original,test_n2,all
+Qg,PV,43.0036,5.08339,87.3732,158.612,original,test_n2,all
+Qg,REF,50.7204,29.9585,93.0213,119.794,original,test_n2,all
+Va,PQ,0.042047,0.0149942,0.0683389,0.126966,original,test_n2,all
+Va,PV,0.0316682,0.0138709,0.0592465,0.112437,original,test_n2,all
+Vm,PQ,0.035635,0.00520229,0.0557123,0.192508,original,test_n2,all
+Vm,REF,0.0264429,0.0199198,0.0469949,0.0548874,original,test_n2,all
+Pg,REF,14.2974,5.82542,31.7293,53.6277,original,test_n2,load within
+Qg,PV,41.9899,4.84083,85.9882,132.022,original,test_n2,load within
+Qg,REF,51.1949,29.8092,92.9521,114.58,original,test_n2,load within
+Va,PQ,0.0421936,0.0147326,0.0650924,0.121512,original,test_n2,load within
+Va,PV,0.0309118,0.0138702,0.0571195,0.108823,original,test_n2,load within
+Vm,PQ,0.0336671,0.00497079,0.0476919,0.192155,original,test_n2,load within
+Vm,REF,0.026731,0.0206268,0.0468651,0.0547551,original,test_n2,load within
+Pg,REF,20.7022,7.93344,40.3555,77.2144,original,test_n2,load above
+Qg,PV,47.8499,6.97407,99.6874,199.382,original,test_n2,load above
+Qg,REF,48.2291,30.6351,92.9346,124.662,original,test_n2,load above
+Va,PQ,0.0412921,0.0167092,0.086904,0.159985,original,test_n2,load above
+Va,PV,0.0352814,0.0138757,0.0820993,0.120071,original,test_n2,load above
+Vm,PQ,0.0443233,0.00651425,0.102181,0.196628,original,test_n2,load above
+Vm,REF,0.0249226,0.0187687,0.0473527,0.05317,original,test_n2,load above
+Pg,REF,15.53,6.11052,33.7298,58.2254,original,test_n2,N-2
+Qg,PV,43.0036,5.08339,87.3732,158.612,original,test_n2,N-2
+Qg,REF,50.7204,29.9585,93.0213,119.794,original,test_n2,N-2
+Va,PQ,0.042047,0.0149942,0.0683389,0.126966,original,test_n2,N-2
+Va,PV,0.0316682,0.0138709,0.0592465,0.112437,original,test_n2,N-2
+Vm,PQ,0.035635,0.00520229,0.0557123,0.192508,original,test_n2,N-2
+Vm,REF,0.0264429,0.0199198,0.0469949,0.0548874,original,test_n2,N-2
+Pg,REF,17.0154,6.4144,36.6036,58.7725,original,test_n2,N-2 branch
+Qg,PV,42.9321,2.86529,79.4415,118.153,original,test_n2,N-2 branch
+Qg,REF,52.9327,43.6832,90.7268,98.0831,original,test_n2,N-2 branch
+Va,PQ,0.0647337,0.0160659,0.0911486,0.285297,original,test_n2,N-2 branch
+Va,PV,0.0389254,0.0144923,0.0672566,0.137478,original,test_n2,N-2 branch
+Vm,PQ,0.0330553,0.00308526,0.0294584,0.174017,original,test_n2,N-2 branch
+Vm,REF,0.0272755,0.0216737,0.0483185,0.0543429,original,test_n2,N-2 branch
+Pg,REF,13.3279,6.36475,27.9199,49.4315,original,test_n2,N-2 gen
+Qg,PV,47.8208,9.28094,99.7631,191.394,original,test_n2,N-2 gen
+Qg,REF,49.6281,22.5457,95.869,134.047,original,test_n2,N-2 gen
+Va,PQ,0.0292363,0.0149878,0.0555617,0.109675,original,test_n2,N-2 gen
+Va,PV,0.0249326,0.0147271,0.0494133,0.093785,original,test_n2,N-2 gen
+Vm,PQ,0.0431501,0.00875551,0.0792581,0.213498,original,test_n2,N-2 gen
+Vm,REF,0.0265229,0.0196769,0.0469512,0.0634016,original,test_n2,N-2 gen
+Pg,REF,16.57,5.5756,34.5463,60.807,original,test_n2,N-2 mixed
+Qg,PV,39.1971,5.0743,83.8185,139.601,original,test_n2,N-2 mixed
+Qg,REF,50.2107,31.7314,92.6369,100.64,original,test_n2,N-2 mixed
+Va,PQ,0.0351801,0.0142448,0.0704752,0.120946,original,test_n2,N-2 mixed
+Va,PV,0.0277577,0.0132499,0.0588668,0.106095,original,test_n2,N-2 mixed
+Vm,PQ,0.0260128,0.00440925,0.0369025,0.12236,original,test_n2,N-2 mixed
+Vm,REF,0.0257132,0.0192997,0.0456304,0.0497883,original,test_n2,N-2 mixed
+Pg,REF,34.5009,19.8671,70.6622,86.055,original,test_pfdelta,all
+Qg,PV,74.5798,11.5753,182.286,335.925,original,test_pfdelta,all
+Qg,REF,55.2288,42.6203,93.5476,106.861,original,test_pfdelta,all
+Va,PQ,0.0621492,0.0265396,0.134685,0.195974,original,test_pfdelta,all
+Va,PV,0.0476891,0.0182577,0.11035,0.165181,original,test_pfdelta,all
+Vm,PQ,0.0667843,0.00857449,0.167111,0.304859,original,test_pfdelta,all
+Vm,REF,0.0269323,0.0219848,0.0465461,0.0568662,original,test_pfdelta,all
+Pg,REF,14.1386,5.97968,30.817,45.2834,original,test_pfdelta,load within
+Qg,PV,30.7975,3.25415,75.5152,97.7371,original,test_pfdelta,load within
+Qg,REF,53.1664,32.908,93.4767,101.741,original,test_pfdelta,load within
+Va,PQ,0.0274923,0.0123139,0.0580342,0.0951099,original,test_pfdelta,load within
+Va,PV,0.0216831,0.0118576,0.0455295,0.0802639,original,test_pfdelta,load within
+Vm,PQ,0.0223936,0.00321877,0.0234176,0.10085,original,test_pfdelta,load within
+Vm,REF,0.0268516,0.0219016,0.0461639,0.0499253,original,test_pfdelta,load within
+Pg,REF,43.2444,35.4108,75.018,88.8668,original,test_pfdelta,load above
+Qg,PV,91.5596,22.002,223.137,361.048,original,test_pfdelta,load above
+Qg,REF,56.6008,44.7764,93.6196,112.645,original,test_pfdelta,load above
+Va,PQ,0.0780646,0.0492844,0.151599,0.220409,original,test_pfdelta,load above
+Va,PV,0.0581151,0.0289491,0.127316,0.177472,original,test_pfdelta,load above
+Vm,PQ,0.0854616,0.0181506,0.211629,0.322456,original,test_pfdelta,load above
+Vm,REF,0.0269875,0.0219857,0.0471997,0.0642545,original,test_pfdelta,load above
+Pg,REF,46.4327,40.739,76.8054,89.2662,original,test_pfdelta,N-0
+Qg,PV,96.732,25.4906,231.802,373.665,original,test_pfdelta,N-0
+Qg,REF,55.6243,48.052,93.7894,110.29,original,test_pfdelta,N-0
+Va,PQ,0.0837344,0.0567851,0.158823,0.228082,original,test_pfdelta,N-0
+Va,PV,0.0611125,0.0312358,0.132052,0.182529,original,test_pfdelta,N-0
+Vm,PQ,0.0913198,0.0223087,0.223481,0.331171,original,test_pfdelta,N-0
+Vm,REF,0.0273708,0.0232158,0.0462005,0.0642511,original,test_pfdelta,N-0
+Pg,REF,14.9877,6.91365,31.7313,45.3222,original,test_pfdelta,N-1
+Qg,PV,33.7511,3.56337,77.2859,110.502,original,test_pfdelta,N-1
+Qg,REF,54.8304,31.8385,92.5975,102.895,original,test_pfdelta,N-1
+Va,PQ,0.0300089,0.0135426,0.06473,0.102442,original,test_pfdelta,N-1
+Va,PV,0.0239177,0.0121065,0.0532115,0.0821047,original,test_pfdelta,N-1
+Vm,PQ,0.028483,0.00340661,0.0342584,0.151424,original,test_pfdelta,N-1
+Vm,REF,0.0264865,0.0199933,0.0465461,0.0535962,original,test_pfdelta,N-1
+Pg,REF,0.118184,0.0175247,0.074868,0.163937,original,test_datakit,all
+Qg,PV,0.606135,0.0298362,1.20755,2.47351,original,test_datakit,all
+Qg,REF,1.25544,0.626186,2.42712,3.90826,original,test_datakit,all
+Va,PQ,0.0007063,0.000125676,0.000484582,0.00102824,original,test_datakit,all
+Va,PV,0.000747831,0.000130801,0.000514654,0.0010617,original,test_datakit,all
+Vm,PQ,8.78375e-05,1.30534e-05,0.000131488,0.000317252,original,test_datakit,all
+Vm,REF,0.000620894,0.000306845,0.00116613,0.00200561,original,test_datakit,all
+Pg,REF,0.118184,0.0175247,0.074868,0.163937,original,test_datakit,load within
+Qg,PV,0.606135,0.0298362,1.20755,2.47351,original,test_datakit,load within
+Qg,REF,1.25544,0.626186,2.42712,3.90826,original,test_datakit,load within
+Va,PQ,0.0007063,0.000125676,0.000484582,0.00102824,original,test_datakit,load within
+Va,PV,0.000747831,0.000130801,0.000514654,0.0010617,original,test_datakit,load within
+Vm,PQ,8.78375e-05,1.30534e-05,0.000131488,0.000317252,original,test_datakit,load within
+Vm,REF,0.000620894,0.000306845,0.00116613,0.00200561,original,test_datakit,load within
+Pg,REF,5.90061,2.38934,9.31857,24.7103,replay,test_n2,all
+Qg,PV,11.3313,1.30647,22.5701,46.3463,replay,test_n2,all
+Qg,REF,14.5302,6.78787,31.4501,45.1193,replay,test_n2,all
+Va,PQ,0.0190003,0.00440121,0.0250304,0.0680761,replay,test_n2,all
+Va,PV,0.0178211,0.00354153,0.0244192,0.0628748,replay,test_n2,all
+Vm,PQ,0.00883185,0.00112689,0.0167702,0.0329099,replay,test_n2,all
+Vm,REF,0.0105296,0.00454134,0.0233699,0.0367929,replay,test_n2,all
+Pg,REF,6.04849,2.30936,9.50287,25.4394,replay,test_n2,load within
+Qg,PV,11.4992,1.30738,22.3179,47.7104,replay,test_n2,load within
+Qg,REF,14.4758,6.47929,31.1351,45.3926,replay,test_n2,load within
+Va,PQ,0.0193315,0.00434765,0.0257793,0.0739747,replay,test_n2,load within
+Va,PV,0.018023,0.00350401,0.0257389,0.0724056,replay,test_n2,load within
+Vm,PQ,0.00914272,0.0010941,0.0170802,0.033045,replay,test_n2,load within
+Vm,REF,0.0105215,0.00433868,0.0234905,0.0391327,replay,test_n2,load within
+Pg,REF,5.0803,2.87544,8.8042,16.0033,replay,test_n2,load above
+Qg,PV,10.4307,1.29979,24.3073,44.2859,replay,test_n2,load above
+Qg,REF,14.8044,8.44933,31.4465,40.7599,replay,test_n2,load above
+Va,PQ,0.0172147,0.00477377,0.0235784,0.0424981,replay,test_n2,load above
+Va,PV,0.0167514,0.00376296,0.0193332,0.0403614,replay,test_n2,load above
+Vm,PQ,0.00703834,0.00129396,0.0147318,0.0315388,replay,test_n2,load above
+Vm,REF,0.0105712,0.00563848,0.0226923,0.0316275,replay,test_n2,load above
+Pg,REF,5.90061,2.38934,9.31857,24.7103,replay,test_n2,N-2
+Qg,PV,11.3313,1.30647,22.5701,46.3463,replay,test_n2,N-2
+Qg,REF,14.5302,6.78787,31.4501,45.1193,replay,test_n2,N-2
+Va,PQ,0.0190003,0.00440121,0.0250304,0.0680761,replay,test_n2,N-2
+Va,PV,0.0178211,0.00354153,0.0244192,0.0628748,replay,test_n2,N-2
+Vm,PQ,0.00883185,0.00112689,0.0167702,0.0329099,replay,test_n2,N-2
+Vm,REF,0.0105296,0.00454134,0.0233699,0.0367929,replay,test_n2,N-2
+Pg,REF,9.68244,2.55154,22.3322,44.0929,replay,test_n2,N-2 branch
+Qg,PV,13.1871,0.609551,17.822,51.4161,replay,test_n2,N-2 branch
+Qg,REF,16.4374,6.47998,38.849,62.9531,replay,test_n2,N-2 branch
+Va,PQ,0.0346144,0.00469893,0.0533241,0.16194,replay,test_n2,N-2 branch
+Va,PV,0.0269892,0.00351821,0.0442592,0.114525,replay,test_n2,N-2 branch
+Vm,PQ,0.0100986,0.000399053,0.00601764,0.0205518,replay,test_n2,N-2 branch
+Vm,REF,0.00942745,0.00339389,0.0225834,0.0354966,replay,test_n2,N-2 branch
+Pg,REF,3.30043,2.55048,5.96716,7.41888,replay,test_n2,N-2 gen
+Qg,PV,11.96,3.40321,28.2411,45.142,replay,test_n2,N-2 gen
+Qg,REF,14.5795,7.91386,30.0559,38.5027,replay,test_n2,N-2 gen
+Va,PQ,0.00937141,0.0050846,0.0194498,0.02754,replay,test_n2,N-2 gen
+Va,PV,0.0079836,0.00473775,0.0161774,0.0211545,replay,test_n2,N-2 gen
+Vm,PQ,0.0102468,0.00334579,0.0245577,0.0356869,replay,test_n2,N-2 gen
+Vm,REF,0.0131459,0.00693047,0.0314104,0.0418056,replay,test_n2,N-2 gen
+Pg,REF,4.11733,2.03736,7.71563,16.0474,replay,test_n2,N-2 mixed
+Qg,PV,8.50825,1.03838,17.2893,39.5408,replay,test_n2,N-2 mixed
+Qg,REF,12.8618,5.82596,28.8181,47.0246,replay,test_n2,N-2 mixed
+Va,PQ,0.0112585,0.00354184,0.0203518,0.0479814,replay,test_n2,N-2 mixed
+Va,PV,0.00966541,0.00297405,0.0158818,0.0383148,replay,test_n2,N-2 mixed
+Vm,PQ,0.00542196,0.000738204,0.00819483,0.0244881,replay,test_n2,N-2 mixed
+Vm,REF,0.00771744,0.003667,0.0170069,0.025704,replay,test_n2,N-2 mixed
+Pg,REF,1.18778,0.690338,2.07152,3.97241,replay,test_pfdelta,all
+Qg,PV,4.20757,0.281902,8.83522,18.2294,replay,test_pfdelta,all
+Qg,REF,7.69223,3.96836,15.9749,28.8131,replay,test_pfdelta,all
+Va,PQ,0.00337947,0.00154918,0.0060205,0.012385,replay,test_pfdelta,all
+Va,PV,0.00315605,0.00135098,0.00551441,0.0122724,replay,test_pfdelta,all
+Vm,PQ,0.000946986,0.000150532,0.00171065,0.00386979,replay,test_pfdelta,all
+Vm,REF,0.00441169,0.00203937,0.00912924,0.0166312,replay,test_pfdelta,all
+Pg,REF,1.16496,0.537933,1.80086,4.55733,replay,test_pfdelta,load within
+Qg,PV,4.92166,0.361412,10.5166,20.2085,replay,test_pfdelta,load within
+Qg,REF,8.8094,4.22294,18.5488,31.5043,replay,test_pfdelta,load within
+Va,PQ,0.00388509,0.00154182,0.00674057,0.0144704,replay,test_pfdelta,load within
+Va,PV,0.00383099,0.00130429,0.00651851,0.0142375,replay,test_pfdelta,load within
+Vm,PQ,0.00109481,0.000213146,0.00231284,0.00420629,replay,test_pfdelta,load within
+Vm,REF,0.00510014,0.0022229,0.00979339,0.0197738,replay,test_pfdelta,load within
+Pg,REF,1.20318,0.842041,2.18681,2.78904,replay,test_pfdelta,load above
+Qg,PV,3.70373,0.255523,8.03404,14.1884,replay,test_pfdelta,load above
+Qg,REF,6.82038,3.85979,12.6546,25.4464,replay,test_pfdelta,load above
+Va,PQ,0.00296352,0.00155947,0.00548567,0.0103307,replay,test_pfdelta,load above
+Va,PV,0.0026603,0.00136517,0.00501137,0.00908083,replay,test_pfdelta,load above
+Vm,PQ,0.000824611,0.000119507,0.00106871,0.0033034,replay,test_pfdelta,load above
+Vm,REF,0.00386892,0.00194442,0.00728698,0.0152546,replay,test_pfdelta,load above
+Pg,REF,1.20843,0.869659,2.1543,2.52004,replay,test_pfdelta,N-0
+Qg,PV,3.15523,0.244316,7.46215,12.2702,replay,test_pfdelta,N-0
+Qg,REF,5.94882,3.80781,10.8791,18.9878,replay,test_pfdelta,N-0
+Va,PQ,0.0025719,0.00153483,0.0047442,0.00657179,replay,test_pfdelta,N-0
+Va,PV,0.00228301,0.00135514,0.00430394,0.00631414,replay,test_pfdelta,N-0
+Vm,PQ,0.000365305,0.000107467,0.000718907,0.00133024,replay,test_pfdelta,N-0
+Vm,REF,0.00300174,0.00190037,0.00559849,0.00968221,replay,test_pfdelta,N-0
+Pg,REF,1.16676,0.538559,1.95542,4.38727,replay,test_pfdelta,N-1
+Qg,PV,5.17051,0.380148,11.0502,24.3915,replay,test_pfdelta,N-1
+Qg,REF,9.10781,4.29344,18.7812,31.5232,replay,test_pfdelta,N-1
+Va,PQ,0.0039927,0.00156823,0.0077464,0.0136946,replay,test_pfdelta,N-1
+Va,PV,0.00393638,0.00134698,0.00773297,0.0141437,replay,test_pfdelta,N-1
+Vm,PQ,0.00127075,0.000219822,0.0024425,0.00542924,replay,test_pfdelta,N-1
+Vm,REF,0.00546951,0.00225145,0.0121482,0.0198028,replay,test_pfdelta,N-1
+Pg,REF,0.209523,0.0789795,0.273726,0.615545,replay,test_datakit,all
+Qg,PV,1.92753,0.0934925,4.00718,7.98229,replay,test_datakit,all
+Qg,REF,3.97257,1.84481,7.69494,12.1128,replay,test_datakit,all
+Va,PQ,0.000921633,0.000397764,0.00156859,0.00290469,replay,test_datakit,all
+Va,PV,0.0009678,0.000401352,0.00161604,0.00289628,replay,test_datakit,all
+Vm,PQ,0.000238254,4.12464e-05,0.000472724,0.00102786,replay,test_datakit,all
+Vm,REF,0.00191339,0.000963628,0.00364259,0.00539073,replay,test_datakit,all
+Pg,REF,0.209523,0.0789795,0.273726,0.615545,replay,test_datakit,load within
+Qg,PV,1.92753,0.0934925,4.00718,7.98229,replay,test_datakit,load within
+Qg,REF,3.97257,1.84481,7.69494,12.1128,replay,test_datakit,load within
+Va,PQ,0.000921633,0.000397764,0.00156859,0.00290469,replay,test_datakit,load within
+Va,PV,0.0009678,0.000401352,0.00161604,0.00289628,replay,test_datakit,load within
+Vm,PQ,0.000238254,4.12464e-05,0.000472724,0.00102786,replay,test_datakit,load within
+Vm,REF,0.00191339,0.000963628,0.00364259,0.00539073,replay,test_datakit,load within
