@@ -486,3 +486,17 @@ cd scripts && ../venv/Scripts/python.exe make_pfdelta_n2_subset.py --n 1000 --se
 - Load level: datakit TRAIN max total Pd = 321.8 MW (175,713 train scenarios; min 171.5). N-2 subset: 164 above it.
 - The PFΔ / datakit rows were recomputed from predict outputs and match `stage3_comparison.csv` and the Phase 8
   evaluate-run errors exactly.
+
+---
+
+## Phase 11: Explainability and presentation figures (2026-11-07)
+
+```bash
+./venv/Scripts/python.exe scripts/explain_ig.py localize > results/explain_ig_log.txt   # ~20 s, IG on every correct probe alarm
+./venv/Scripts/python.exe scripts/explain_ig.py examples                                 # results/figures/fig_explain_grid_examples.png
+cd scripts && ../venv/Scripts/python.exe make_presentation_figures.py && cd ..           # 4 presentation figures
+```
+- No retraining: the frozen sklearn probes are re-implemented in torch (checked against `predict_proba`, atol 1e-6).
+- IG: 64-step trapezoid. The completeness error is at most 1.6 % of the logit gap (max/min pooling and ReLU make the path
+  piecewise); the script asserts < 2 %.
+- The case14 layout in `explain_ig.POS` is hand-placed (no coordinates in the data).

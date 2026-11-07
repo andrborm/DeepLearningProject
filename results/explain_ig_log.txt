@@ -1,0 +1,26 @@
+test_pfdelta logreg y_voltage: 471 correct alarms
+test_pfdelta logreg y_overload: 296 correct alarms
+test_pfdelta mlp y_voltage: 481 correct alarms
+test_pfdelta mlp y_overload: 298 correct alarms
+test_n2 logreg y_voltage: 555 correct alarms
+test_n2 logreg y_overload: 85 correct alarms
+test_n2 mlp y_voltage: 573 correct alarms
+test_n2 mlp y_overload: 80 correct alarms
+test_datakit logreg y_voltage: 24 correct alarms
+test_datakit logreg y_overload: 37 correct alarms
+test_datakit mlp y_voltage: 24 correct alarms
+test_datakit mlp y_overload: 37 correct alarms
+     dataset      label  probe   n    IG  residual   PtC  chance  mean_true IG_endpoint_bus residual_endpoint_bus  chance_endpoint_bus
+test_datakit y_overload logreg  37 0.000     0.000 1.000   0.158      1.000           1.000                 0.595                0.396
+test_datakit y_overload    mlp  37 1.000     0.000 1.000   0.158      1.000           1.000                 0.595                0.396
+test_datakit  y_voltage logreg  24 1.000     0.750 1.000   0.270      1.333             NaN                   NaN                  NaN
+test_datakit  y_voltage    mlp  24 1.000     0.750 1.000   0.270      1.333             NaN                   NaN                  NaN
+     test_n2 y_overload logreg  85 0.271     0.318 0.918   0.178      1.106           0.882                 0.659                0.423
+     test_n2 y_overload    mlp  80 0.600     0.312 0.912   0.180      1.113           0.863                 0.650                0.425
+     test_n2  y_voltage logreg 555 0.984     0.636 1.000   0.586      4.009             NaN                   NaN                  NaN
+     test_n2  y_voltage    mlp 573 0.984     0.625 1.000   0.577      3.930             NaN                   NaN                  NaN
+test_pfdelta y_overload logreg 296 0.108     0.054 1.000   0.211      1.453           0.848                 0.314                0.465
+test_pfdelta y_overload    mlp 298 0.128     0.060 1.000   0.211      1.450           0.651                 0.315                0.465
+test_pfdelta  y_voltage logreg 471 0.994     0.616 1.000   0.509      3.079             NaN                   NaN                  NaN
+test_pfdelta  y_voltage    mlp 481 0.990     0.620 1.000   0.505      3.046             NaN                   NaN                  NaN
+completeness: max error 2.00e-01 logit, max relative 1.62%

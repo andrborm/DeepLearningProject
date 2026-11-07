@@ -1,0 +1,13 @@
+dataset,label,probe,n,IG,residual,PtC,chance,mean_true,IG_endpoint_bus,residual_endpoint_bus,chance_endpoint_bus
+test_datakit,y_overload,logreg,37,0,0,1,0.1579,1,1.0,0.5945945945945946,0.3956
+test_datakit,y_overload,mlp,37,1,0,1,0.1579,1,1.0,0.5945945945945946,0.3956
+test_datakit,y_voltage,logreg,24,1,0.75,1,0.2698,1.333,,,
+test_datakit,y_voltage,mlp,24,1,0.75,1,0.2698,1.333,,,
+test_n2,y_overload,logreg,85,0.2706,0.3176,0.9176,0.1783,1.106,0.8823529411764706,0.6588235294117647,0.4232
+test_n2,y_overload,mlp,80,0.6,0.3125,0.9125,0.1801,1.113,0.8625,0.65,0.425
+test_n2,y_voltage,logreg,555,0.9838,0.636,1,0.5857,4.009,,,
+test_n2,y_voltage,mlp,573,0.9843,0.6248,1,0.5774,3.93,,,
+test_pfdelta,y_overload,logreg,296,0.1081,0.05405,1,0.2111,1.453,0.847972972972973,0.3141891891891892,0.4651
+test_pfdelta,y_overload,mlp,298,0.1275,0.0604,1,0.2106,1.45,0.6510067114093959,0.31543624161073824,0.4646
+test_pfdelta,y_voltage,logreg,471,0.9936,0.6157,1,0.5094,3.079,,,
+test_pfdelta,y_voltage,mlp,481,0.9896,0.6195,1,0.5051,3.046,,,

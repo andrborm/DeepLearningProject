@@ -69,6 +69,7 @@ in place, and extraction takes ~25 min on Windows.
 | 12. Replay fine-tuning | `scripts/make_stage3_data.py`, then `finetune_pipeline.py finetune --set replay --epochs 40`, `eval --model replay`, `compare --models original hard random replay` | 93 min | `results/finetune_summary.md` (replay section) |
 | 13. Task 3 detectors | `scripts/stage3_detectors.py extract --model <m>`, `analyze --model <m> --with-datakit`, `compare` (m = original, replay) | 2 × (5 + 3) min | `results/stage3_*` → `results/stage3_summary.md` |
 | 14. Final N-2 test | `scripts/make_pfdelta_n2_subset.py`, then `final_n2_test.py extract --model <m>` (m = replay, original), `evaluate` (conversion command in `SETUP_LOG.md` Phase 10) | 1.5 + 2 × 1 + 2 min | `results/final_n2_*` → `results/final_n2_summary.md` |
+| 15. Explainability + figures | `scripts/explain_ig.py localize`, `explain_ig.py examples`, `make_presentation_figures.py` | 20 s + 10 s + 15 s | `results/explain_*` → `results/explain_summary.md`, `results/figures/fig_*` |
 | 11. Fine-tuning | `scripts/finetune_pipeline.py` stages `splits`, `time`, `mine`, `select --k 2500`, `finetune --set hard` / `--set random`, `eval --model <m>`, `compare` (full commands in `SETUP_LOG.md` Phase 7) | 3 + 4 + 2×34 + 3 min | `results/finetune_*` → `results/finetune_summary.md` |
 
 Inference always uses at most 1000 samples (course requirement; the scripts assert it).
@@ -143,6 +144,11 @@ Inference always uses at most 1000 samples (course requirement; the scripts asse
     the unseen topology (Spearman 0.80, AUROC 0.86 for missed overloads), but the gate tuned on N-0/N-1 never fires.
     The original model + solver gate (45 % solved) reaches overload recall 0.98. Embedding probes degrade most
     (overload F1 0.78). Within vs above the training load range matters little on N-2: topology is the driver.
+13. **Explanations (`results/explain_summary.md`): Integrated Gradients on the replay probes localizes voltage alarms
+    (top-3 buses contain a violating bus in 98–99 % of correct alarms, chance 51–59 %) equally well on N-0/N-1 and
+    N-2.** For overloads, IG finds an endpoint of the overloaded line (85–88 %), but bus attributions cannot pick the
+    line itself (branch top-3: 11–60 %). The per-bus residual is a poor locator. The predicted state of the replay model
+    localizes best, so predict-then-check is its own explanation.
 
 ### Open questions to resolve before the next step
 - **Islanding as a class: not possible with the current data.** Both PFΔ (resamples until the graph is connected) and
@@ -180,7 +186,8 @@ Inference always uses at most 1000 samples (course requirement; the scripts asse
 | `results/finetune_summary.md` | Stage 2 fine-tuning: setup, timing, original vs hard vs random on datakit and PFΔ (errors, predict-then-check) |
 | `results/stage3_summary.md` | Task 3: predict-then-check, residual trust signal + gating, embedding probes; one comparison table; frozen N-2 setup |
 | `results/final_n2_summary.md` | Final N-2 test: errors, baseline / A / B on N-2 vs N-0/N-1 vs datakit, by load level and outage type |
-| `results/figures/` | fig1 error distribution, fig2 error by outage type, fig3 embedding PCA |
+| `results/explain_summary.md` | Integrated Gradients on the replay probes: localization accuracy (PFΔ vs N-2), grid examples |
+| `results/figures/` | fig1–3 (Phase 5); presentation: `fig_summary_detectors`, `fig_residual_vs_error`, `fig_explain_localization`, `fig_explain_grid_example(s)` |
 | `results/inference_per_sample.csv` | per-sample errors (base); `_tiny_n1000` for tiny |
 | `results/hard_cases_top5pct.csv` | 50 hardest samples with outage info and labels |
 | `results/labels_true_vs_pred_base_n1000.csv` | true and predicted `y_voltage` / `y_overload` per sample |
