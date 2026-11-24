@@ -1,0 +1,4 @@
+hard: 30 epochs, val 0.00134 -> 0.000184, min 0.000184 at epoch 30, used epoch 30; train points at epochs [12.7, 25.3]
+random: 30 epochs, val 0.00134 -> 0.000182, min 0.000182 at epoch 30, used epoch 30; train points at epochs [12.7, 25.3]
+replay: 40 epochs, val 0.00078 -> 9.51e-05, min 8.57e-05 at epoch 39, used epoch 40; train points at epochs [6.4, 12.7, 19.1, 25.5, 31.8, 38.2]
+checkpoint metrics.csv: 4 rows, metrics ['Avg. active res. (MW)', 'Avg. reactive res. (MVar)', 'PBE Mean', 'PBE Max'] -> no per-epoch loss, no 2nd panel

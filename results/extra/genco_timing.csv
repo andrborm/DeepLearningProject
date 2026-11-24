@@ -1,0 +1,13 @@
+max |Vm_pred - saved replay Vm_pred|,dataset,batch size,threads,batches timed,samples timed,forward ms/sample,predict_step ms/sample,predict_step ms/batch median,throughput samples/s (predict_step)
+8.345e-07,test_datakit,1,20,995,995,30.17,32.4,33.37,30.87
+0,test_datakit,64,20,11,680,1.839,1.876,117.9,533.1
+9.537e-07,test_pfdelta,1,20,995,995,31.61,34.38,35.47,29.09
+0,test_pfdelta,64,20,11,680,1.809,1.905,119.7,524.9
+5.245e-06,test_n2,1,20,995,995,31.48,33.86,34.75,29.54
+0,test_n2,64,20,11,680,1.792,1.8,112.9,555.5
+1.192e-06,test_datakit,1,1,995,995,25.34,26.5,25.38,37.73
+1.073e-06,test_datakit,64,1,11,680,5.343,5.306,335.5,188.5
+1.669e-06,test_pfdelta,1,1,995,995,28.25,29.52,27.91,33.88
+7.153e-07,test_pfdelta,64,1,11,680,5.582,5.709,351.6,175.2
+9.298e-06,test_n2,1,1,995,995,28.87,30.15,27.59,33.17
+7.153e-07,test_n2,64,1,11,680,6.788,6.812,393.2,146.8

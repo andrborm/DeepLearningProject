@@ -1,0 +1,72 @@
+train 4000 (pf_probe + dk_probe), val 2000 (pf_val + dk_val), 64 raw features
+train rates: voltage 0.266, overload 0.186
+
+=== chosen (val) ===
+ model      label                                            hp  val PR-AUC  decision threshold
+logreg  y_voltage                                   {"C": 0.01}       0.922               0.671
+logreg y_overload                                      {"C": 1}       0.976               0.805
+   hgb  y_voltage {"learning_rate": 0.05, "max_leaf_nodes": 15}       0.961               0.383
+   hgb y_overload  {"learning_rate": 0.1, "max_leaf_nodes": 15}       0.982               0.736
+
+=== comparison (test) ===
+     dataset      label                       method  precision  recall    F1  FP  FN  PR-AUC  solver share
+test_datakit y_overload limit check (PtC) [original]      1.000   1.000 1.000   0   0     NaN         0.000
+test_datakit y_overload   limit check (PtC) [replay]      1.000   1.000 1.000   0   0     NaN         0.000
+test_datakit y_overload         probe MLP [original]      1.000   1.000 1.000   0   0   1.000         0.000
+test_datakit y_overload           probe MLP [replay]      1.000   1.000 1.000   0   0   1.000         0.000
+test_datakit y_overload      probe logreg [original]      1.000   1.000 1.000   0   0   1.000         0.000
+test_datakit y_overload        probe logreg [replay]      1.000   1.000 1.000   0   0   1.000         0.000
+test_datakit y_overload                raw-input hgb      1.000   1.000 1.000   0   0   1.000         0.000
+test_datakit y_overload             raw-input logreg      1.000   1.000 1.000   0   0   1.000         0.000
+test_datakit y_overload  residual routing [original]      1.000   1.000 1.000   0   0     NaN         0.000
+test_datakit y_overload    residual routing [replay]      1.000   1.000 1.000   0   0     NaN         0.000
+test_datakit  y_voltage limit check (PtC) [original]      1.000   0.964 0.982   0   1     NaN         0.000
+test_datakit  y_voltage   limit check (PtC) [replay]      1.000   0.964 0.982   0   1     NaN         0.000
+test_datakit  y_voltage         probe MLP [original]      0.889   0.571 0.696   2  12   0.874         0.000
+test_datakit  y_voltage           probe MLP [replay]      0.828   0.857 0.842   5   4   0.934         0.000
+test_datakit  y_voltage      probe logreg [original]      0.767   0.821 0.793   7   5   0.897         0.000
+test_datakit  y_voltage        probe logreg [replay]      0.857   0.857 0.857   4   4   0.924         0.000
+test_datakit  y_voltage                raw-input hgb      0.769   0.714 0.741   6   8   0.824         0.000
+test_datakit  y_voltage             raw-input logreg      0.000   0.000   NaN   1  28   0.303         0.000
+test_datakit  y_voltage  residual routing [original]      1.000   0.964 0.982   0   1     NaN         0.000
+test_datakit  y_voltage    residual routing [replay]      1.000   0.964 0.982   0   1     NaN         0.000
+test_pfdelta y_overload limit check (PtC) [original]      0.647   0.988 0.782 173   4     NaN         0.000
+test_pfdelta y_overload   limit check (PtC) [replay]      1.000   0.991 0.995   0   3     NaN         0.000
+test_pfdelta y_overload         probe MLP [original]      0.859   0.872 0.866  46  41   0.956         0.000
+test_pfdelta y_overload           probe MLP [replay]      0.943   0.928 0.936  18  23   0.988         0.000
+test_pfdelta y_overload      probe logreg [original]      0.913   0.888 0.900  27  36   0.971         0.000
+test_pfdelta y_overload        probe logreg [replay]      0.955   0.922 0.938  14  25   0.988         0.000
+test_pfdelta y_overload                raw-input hgb      0.958   0.860 0.906  12  45   0.973         0.000
+test_pfdelta y_overload             raw-input logreg      0.880   0.866 0.873  38  43   0.962         0.000
+test_pfdelta y_overload  residual routing [original]      0.982   1.000 0.991   6   0     NaN         0.656
+test_pfdelta y_overload    residual routing [replay]      1.000   0.991 0.995   0   3     NaN         0.000
+test_pfdelta  y_voltage limit check (PtC) [original]      0.759   0.986 0.858 161   7     NaN         0.000
+test_pfdelta  y_voltage   limit check (PtC) [replay]      1.000   0.988 0.994   0   6     NaN         0.000
+test_pfdelta  y_voltage         probe MLP [original]      0.903   0.891 0.897  49  56   0.971         0.000
+test_pfdelta  y_voltage           probe MLP [replay]      0.907   0.934 0.921  49  34   0.986         0.000
+test_pfdelta  y_voltage      probe logreg [original]      0.907   0.893 0.900  47  55   0.973         0.000
+test_pfdelta  y_voltage        probe logreg [replay]      0.944   0.915 0.929  28  44   0.987         0.000
+test_pfdelta  y_voltage                raw-input hgb      0.891   0.901 0.896  57  51   0.975         0.000
+test_pfdelta  y_voltage             raw-input logreg      0.869   0.864 0.867  67  70   0.935         0.000
+test_pfdelta  y_voltage  residual routing [original]      0.985   0.986 0.986   8   7     NaN         0.656
+test_pfdelta  y_voltage    residual routing [replay]      1.000   0.988 0.994   0   6     NaN         0.000
+     test_n2 y_overload limit check (PtC) [original]      0.635   0.944 0.759  58   6     NaN         0.000
+     test_n2 y_overload   limit check (PtC) [replay]      0.990   0.878 0.931   1  13     NaN         0.000
+     test_n2 y_overload         probe MLP [original]      0.829   0.542 0.655  12  49   0.777         0.000
+     test_n2 y_overload           probe MLP [replay]      0.825   0.748 0.784  17  27   0.878         0.000
+     test_n2 y_overload      probe logreg [original]      0.868   0.617 0.721  10  41   0.863         0.000
+     test_n2 y_overload        probe logreg [replay]      0.773   0.794 0.783  25  22   0.852         0.000
+     test_n2 y_overload                raw-input hgb      0.906   0.271 0.417   3  78   0.699         0.000
+     test_n2 y_overload             raw-input logreg      0.760   0.533 0.626  18  50   0.755         0.000
+     test_n2 y_overload  residual routing [original]      0.929   0.981 0.955   8   2     NaN         0.450
+     test_n2 y_overload    residual routing [replay]      0.990   0.878 0.931   1  13     NaN         0.000
+     test_n2  y_voltage limit check (PtC) [original]      0.897   0.963 0.929  68  23     NaN         0.000
+     test_n2  y_voltage   limit check (PtC) [replay]      0.998   0.973 0.985   1  17     NaN         0.000
+     test_n2  y_voltage         probe MLP [original]      0.935   0.814 0.870  35 115   0.967         0.000
+     test_n2  y_voltage           probe MLP [replay]      0.917   0.927 0.922  52  45   0.983         0.000
+     test_n2  y_voltage      probe logreg [original]      0.942   0.833 0.884  32 103   0.973         0.000
+     test_n2  y_voltage        probe logreg [replay]      0.931   0.898 0.914  41  63   0.974         0.000
+     test_n2  y_voltage                raw-input hgb      0.932   0.618 0.743  28 236   0.934         0.000
+     test_n2  y_voltage             raw-input logreg      0.932   0.485 0.638  22 318   0.910         0.000
+     test_n2  y_voltage  residual routing [original]      0.985   0.968 0.976   9  20     NaN         0.450
+     test_n2  y_voltage    residual routing [replay]      0.998   0.973 0.985   1  17     NaN         0.000

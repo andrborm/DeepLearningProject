@@ -1,0 +1,13 @@
+dataset,label,method,TP,FP,FN,TN,precision,recall,F1,false alarms,misses,PR-AUC
+test_datakit,y_voltage,raw-input logreg,0,1,28,971,0,0,,1,28,0.3027
+test_pfdelta,y_voltage,raw-input logreg,445,67,70,418,0.8691,0.8641,0.8666,67,70,0.9346
+test_n2,y_voltage,raw-input logreg,300,22,318,360,0.9317,0.4854,0.6383,22,318,0.9103
+test_datakit,y_overload,raw-input logreg,37,0,0,963,1,1,1,0,0,1
+test_pfdelta,y_overload,raw-input logreg,278,38,43,641,0.8797,0.866,0.8728,38,43,0.9619
+test_n2,y_overload,raw-input logreg,57,18,50,875,0.76,0.5327,0.6264,18,50,0.755
+test_datakit,y_voltage,raw-input hgb,20,6,8,966,0.7692,0.7143,0.7407,6,8,0.8237
+test_pfdelta,y_voltage,raw-input hgb,464,57,51,428,0.8906,0.901,0.8958,57,51,0.9749
+test_n2,y_voltage,raw-input hgb,382,28,236,354,0.9317,0.6181,0.7432,28,236,0.9338
+test_datakit,y_overload,raw-input hgb,37,0,0,963,1,1,1,0,0,1
+test_pfdelta,y_overload,raw-input hgb,276,12,45,667,0.9583,0.8598,0.9064,12,45,0.9732
+test_n2,y_overload,raw-input hgb,29,3,78,890,0.9062,0.271,0.4173,3,78,0.6995

@@ -1,0 +1,61 @@
+dataset,label,method,precision,recall,F1,FP,FN,PR-AUC,solver share
+test_datakit,y_overload,limit check (PtC) [original],1,1,1,0,0,,0
+test_datakit,y_overload,limit check (PtC) [replay],1,1,1,0,0,,0
+test_datakit,y_overload,probe MLP [original],1,1,1,0,0,1,0
+test_datakit,y_overload,probe MLP [replay],1,1,1,0,0,1,0
+test_datakit,y_overload,probe logreg [original],1,1,1,0,0,1,0
+test_datakit,y_overload,probe logreg [replay],1,1,1,0,0,1,0
+test_datakit,y_overload,raw-input hgb,1,1,1,0,0,1,0
+test_datakit,y_overload,raw-input logreg,1,1,1,0,0,1,0
+test_datakit,y_overload,residual routing [original],1,1,1,0,0,,0
+test_datakit,y_overload,residual routing [replay],1,1,1,0,0,,0
+test_datakit,y_voltage,limit check (PtC) [original],1,0.9643,0.9818,0,1,,0
+test_datakit,y_voltage,limit check (PtC) [replay],1,0.9643,0.9818,0,1,,0
+test_datakit,y_voltage,probe MLP [original],0.8889,0.5714,0.6957,2,12,0.8742,0
+test_datakit,y_voltage,probe MLP [replay],0.8276,0.8571,0.8421,5,4,0.9339,0
+test_datakit,y_voltage,probe logreg [original],0.7667,0.8214,0.7931,7,5,0.897,0
+test_datakit,y_voltage,probe logreg [replay],0.8571,0.8571,0.8571,4,4,0.9244,0
+test_datakit,y_voltage,raw-input hgb,0.7692,0.7143,0.7407,6,8,0.8237,0
+test_datakit,y_voltage,raw-input logreg,0,0,,1,28,0.3027,0
+test_datakit,y_voltage,residual routing [original],1,0.9643,0.9818,0,1,,0
+test_datakit,y_voltage,residual routing [replay],1,0.9643,0.9818,0,1,,0
+test_pfdelta,y_overload,limit check (PtC) [original],0.6469,0.9875,0.7818,173,4,,0
+test_pfdelta,y_overload,limit check (PtC) [replay],1,0.9907,0.9953,0,3,,0
+test_pfdelta,y_overload,probe MLP [original],0.8589,0.8723,0.8655,46,41,0.9564,0
+test_pfdelta,y_overload,probe MLP [replay],0.943,0.9283,0.9356,18,23,0.9875,0
+test_pfdelta,y_overload,probe logreg [original],0.9135,0.8879,0.9005,27,36,0.9708,0
+test_pfdelta,y_overload,probe logreg [replay],0.9548,0.9221,0.9382,14,25,0.9876,0
+test_pfdelta,y_overload,raw-input hgb,0.9583,0.8598,0.9064,12,45,0.9732,0
+test_pfdelta,y_overload,raw-input logreg,0.8797,0.866,0.8728,38,43,0.9619,0
+test_pfdelta,y_overload,residual routing [original],0.9817,1,0.9907,6,0,,0.656
+test_pfdelta,y_overload,residual routing [replay],1,0.9907,0.9953,0,3,,0
+test_pfdelta,y_voltage,limit check (PtC) [original],0.7593,0.9864,0.8581,161,7,,0
+test_pfdelta,y_voltage,limit check (PtC) [replay],1,0.9883,0.9941,0,6,,0
+test_pfdelta,y_voltage,probe MLP [original],0.9035,0.8913,0.8974,49,56,0.9713,0
+test_pfdelta,y_voltage,probe MLP [replay],0.9075,0.934,0.9206,49,34,0.9861,0
+test_pfdelta,y_voltage,probe logreg [original],0.9073,0.8932,0.9002,47,55,0.9731,0
+test_pfdelta,y_voltage,probe logreg [replay],0.9439,0.9146,0.929,28,44,0.9869,0
+test_pfdelta,y_voltage,raw-input hgb,0.8906,0.901,0.8958,57,51,0.9749,0
+test_pfdelta,y_voltage,raw-input logreg,0.8691,0.8641,0.8666,67,70,0.9346,0
+test_pfdelta,y_voltage,residual routing [original],0.9845,0.9864,0.9855,8,7,,0.656
+test_pfdelta,y_voltage,residual routing [replay],1,0.9883,0.9941,0,6,,0
+test_n2,y_overload,limit check (PtC) [original],0.6352,0.9439,0.7594,58,6,,0
+test_n2,y_overload,limit check (PtC) [replay],0.9895,0.8785,0.9307,1,13,,0
+test_n2,y_overload,probe MLP [original],0.8286,0.5421,0.6554,12,49,0.777,0
+test_n2,y_overload,probe MLP [replay],0.8247,0.7477,0.7843,17,27,0.8779,0
+test_n2,y_overload,probe logreg [original],0.8684,0.6168,0.7213,10,41,0.8629,0
+test_n2,y_overload,probe logreg [replay],0.7727,0.7944,0.7834,25,22,0.8518,0
+test_n2,y_overload,raw-input hgb,0.9062,0.271,0.4173,3,78,0.6995,0
+test_n2,y_overload,raw-input logreg,0.76,0.5327,0.6264,18,50,0.755,0
+test_n2,y_overload,residual routing [original],0.9292,0.9813,0.9545,8,2,,0.45
+test_n2,y_overload,residual routing [replay],0.9895,0.8785,0.9307,1,13,,0
+test_n2,y_voltage,limit check (PtC) [original],0.8974,0.9628,0.929,68,23,,0
+test_n2,y_voltage,limit check (PtC) [replay],0.9983,0.9725,0.9852,1,17,,0
+test_n2,y_voltage,probe MLP [original],0.9349,0.8139,0.8702,35,115,0.9667,0
+test_n2,y_voltage,probe MLP [replay],0.9168,0.9272,0.922,52,45,0.9829,0
+test_n2,y_voltage,probe logreg [original],0.9415,0.8333,0.8841,32,103,0.9726,0
+test_n2,y_voltage,probe logreg [replay],0.9312,0.8981,0.9143,41,63,0.9735,0
+test_n2,y_voltage,raw-input hgb,0.9317,0.6181,0.7432,28,236,0.9338,0
+test_n2,y_voltage,raw-input logreg,0.9317,0.4854,0.6383,22,318,0.9103,0
+test_n2,y_voltage,residual routing [original],0.9852,0.9676,0.9763,9,20,,0.45
+test_n2,y_voltage,residual routing [replay],0.9983,0.9725,0.9852,1,17,,0

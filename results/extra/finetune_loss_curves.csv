@@ -1,0 +1,111 @@
+run,kind,epoch,step,loss
+hard,validation,1,78,0.00133627
+hard,validation,2,157,0.000911163
+hard,validation,3,236,0.000743201
+hard,validation,4,315,0.000687224
+hard,validation,5,394,0.000580605
+hard,validation,6,473,0.000519749
+hard,validation,7,552,0.000472107
+hard,validation,8,631,0.00043775
+hard,validation,9,710,0.000421245
+hard,validation,10,789,0.000381404
+hard,validation,11,868,0.000369396
+hard,validation,12,947,0.000347416
+hard,validation,13,1026,0.000322125
+hard,validation,14,1105,0.000321763
+hard,validation,15,1184,0.000298099
+hard,validation,16,1263,0.000280086
+hard,validation,17,1342,0.000278023
+hard,validation,18,1421,0.000264758
+hard,validation,19,1500,0.000252605
+hard,validation,20,1579,0.000242232
+hard,validation,21,1658,0.000235186
+hard,validation,22,1737,0.000239449
+hard,validation,23,1816,0.000222628
+hard,validation,24,1895,0.000214829
+hard,validation,25,1974,0.000208352
+hard,validation,26,2053,0.000212859
+hard,validation,27,2132,0.000199189
+hard,validation,28,2211,0.000199121
+hard,validation,29,2290,0.0001942
+hard,validation,30,2369,0.000183693
+hard,train (every 1000 steps),12.6582,999,0.000382132
+hard,train (every 1000 steps),25.3165,1999,0.000323196
+random,validation,1,78,0.0013358
+random,validation,2,157,0.000928919
+random,validation,3,236,0.000752475
+random,validation,4,315,0.000637604
+random,validation,5,394,0.000561249
+random,validation,6,473,0.000515541
+random,validation,7,552,0.000459225
+random,validation,8,631,0.00042418
+random,validation,9,710,0.0003955
+random,validation,10,789,0.000368723
+random,validation,11,868,0.000375298
+random,validation,12,947,0.000326465
+random,validation,13,1026,0.000313599
+random,validation,14,1105,0.000298444
+random,validation,15,1184,0.000282374
+random,validation,16,1263,0.000270697
+random,validation,17,1342,0.000259576
+random,validation,18,1421,0.000267901
+random,validation,19,1500,0.000256284
+random,validation,20,1579,0.000231889
+random,validation,21,1658,0.000227358
+random,validation,22,1737,0.000222889
+random,validation,23,1816,0.000212094
+random,validation,24,1895,0.000210698
+random,validation,25,1974,0.000212971
+random,validation,26,2053,0.000205229
+random,validation,27,2132,0.000195913
+random,validation,28,2211,0.000189401
+random,validation,29,2290,0.000183031
+random,validation,30,2369,0.000181685
+random,train (every 1000 steps),12.6582,999,0.000260626
+random,train (every 1000 steps),25.3165,1999,0.000172713
+replay,validation,1,156,0.000780387
+replay,validation,2,313,0.000516215
+replay,validation,3,470,0.000420575
+replay,validation,4,627,0.000360587
+replay,validation,5,784,0.000319241
+replay,validation,6,941,0.000288832
+replay,validation,7,1098,0.000268251
+replay,validation,8,1255,0.00024679
+replay,validation,9,1412,0.000226613
+replay,validation,10,1569,0.000218998
+replay,validation,11,1726,0.000202723
+replay,validation,12,1883,0.000190286
+replay,validation,13,2040,0.000180616
+replay,validation,14,2197,0.000176249
+replay,validation,15,2354,0.000169843
+replay,validation,16,2511,0.0001565
+replay,validation,17,2668,0.000149906
+replay,validation,18,2825,0.000151713
+replay,validation,19,2982,0.000145786
+replay,validation,20,3139,0.00013706
+replay,validation,21,3296,0.000137862
+replay,validation,22,3453,0.000139305
+replay,validation,23,3610,0.000129131
+replay,validation,24,3767,0.000121241
+replay,validation,25,3924,0.000119897
+replay,validation,26,4081,0.000116632
+replay,validation,27,4238,0.000113994
+replay,validation,28,4395,0.00011258
+replay,validation,29,4552,0.0001062
+replay,validation,30,4709,0.000108954
+replay,validation,31,4866,0.000104338
+replay,validation,32,5023,9.94664e-05
+replay,validation,33,5180,0.000101333
+replay,validation,34,5337,9.75716e-05
+replay,validation,35,5494,9.14323e-05
+replay,validation,36,5651,9.18153e-05
+replay,validation,37,5808,8.86366e-05
+replay,validation,38,5965,9.57547e-05
+replay,validation,39,6122,8.57256e-05
+replay,validation,40,6279,9.5116e-05
+replay,train (every 1000 steps),6.36943,999,0.000300973
+replay,train (every 1000 steps),12.7389,1999,0.000132145
+replay,train (every 1000 steps),19.1083,2999,0.000118489
+replay,train (every 1000 steps),25.4777,3999,0.000124535
+replay,train (every 1000 steps),31.8471,4999,7.86375e-05
+replay,train (every 1000 steps),38.2166,5999,7.63978e-05

@@ -1,0 +1,3 @@
+model,n PQ bus values,RMSE (pu),median |err| (pu),max |err| (pu),share on wrong side of a limit
+original,9284,0.066784,0.0085745,0.45793,0.19905
+replay,9284,0.00094699,0.00015053,0.01592,0.0045239

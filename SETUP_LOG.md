@@ -500,3 +500,30 @@ cd scripts && ../venv/Scripts/python.exe make_presentation_figures.py && cd ..  
 - IG: 64-step trapezoid. The completeness error is at most 1.6 % of the logit gap (max/min pooling and ReLU make the path
   piecewise); the script asserts < 2 %.
 - The case14 layout in `explain_ig.POS` is hand-placed (no coordinates in the data).
+
+---
+
+## Phase 12: Extra report analyses, additive only (2026-11-24)
+
+Frozen pipeline untouched: new code only in `scripts/extra/`, new outputs only in `results/extra/` (summary:
+`results/extra/extra_summary.md`, lookups: `results/extra/report_facts.md`). No retraining, no probe refit, no threshold
+change; N-2 used only for final evaluation of the new baseline. Seeds fixed (sklearn `random_state=0`, torch/numpy 0).
+
+```bash
+./venv/Scripts/python.exe -B scripts/extra/baseline_raw_inputs.py      # Part 1, raw-input logreg + HGB on the frozen probe split
+./venv/Scripts/python.exe -B scripts/extra/loss_curves.py              # Part 3, reads mlruns/ only
+./venv/Scripts/python.exe -B scripts/extra/qualitative.py              # Part 4, saved predictions only
+../venv_extra/Scripts/python.exe -B scripts/extra/solver_pandapower.py sanity   # Part 2, 20 samples per test set
+../venv_extra/Scripts/python.exe -B scripts/extra/solver_pandapower.py time     # 3 x 1,000 samples, ~15 min
+./venv/Scripts/python.exe -B scripts/extra/genco_timing.py --work <scratch dir outside the repo>
+./venv/Scripts/python.exe -B scripts/extra/solver_timing_table.py
+```
+- Separate venv for pandapower: `D:/school/DeepLearning/venv_extra` (outside the repo; `venv/` unchanged). pandapower
+  3.1.2 + numba; pandas pinned to 2.2.3 (pandapower 3.1.2 breaks on pandas 3.x). Package list:
+  `scripts/extra/requirements_extra.txt`.
+- `-B` / `sys.dont_write_bytecode`: importing the frozen modules writes no `__pycache__` into `scripts/`.
+- `genco_timing.py` copies the test raw data to a scratch folder and builds its config in memory, so graphkit writes
+  nothing into `data/`, `configs/` or `mlruns/`. Its predictions match the saved replay predictions (≤ 1e-5).
+- pandapower `from_ppc` ignores the status of transformer branches; the first sanity check caught it (datakit #11,
+  N-2 #19, both with an outaged transformer). Fixed in `solver_pandapower.build`; afterwards max |ΔVm| ≤ 5e-7 p.u.
+- NR timing was repeated on an idle CPU (run 1, slowed 3–4 % by a concurrent file-listing job, kept as `*_run1.*`).

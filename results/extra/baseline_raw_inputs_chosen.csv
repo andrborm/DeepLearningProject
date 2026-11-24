@@ -1,0 +1,5 @@
+model,label,hp,val PR-AUC,decision threshold
+logreg,y_voltage,"{""C"": 0.01}",0.9222,0.6714
+logreg,y_overload,"{""C"": 1}",0.9761,0.8048
+hgb,y_voltage,"{""learning_rate"": 0.05, ""max_leaf_nodes"": 15}",0.9609,0.3826
+hgb,y_overload,"{""learning_rate"": 0.1, ""max_leaf_nodes"": 15}",0.9819,0.7365

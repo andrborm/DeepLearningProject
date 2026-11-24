@@ -1,0 +1,17 @@
+model,label,hp,val PR-AUC
+logreg,y_voltage,"{""C"": 0.001}",0.9069
+logreg,y_voltage,"{""C"": 0.01}",0.9222
+logreg,y_voltage,"{""C"": 0.1}",0.9197
+logreg,y_voltage,"{""C"": 1}",0.9188
+logreg,y_overload,"{""C"": 0.001}",0.8699
+logreg,y_overload,"{""C"": 0.01}",0.9519
+logreg,y_overload,"{""C"": 0.1}",0.9729
+logreg,y_overload,"{""C"": 1}",0.9761
+hgb,y_voltage,"{""learning_rate"": 0.05, ""max_leaf_nodes"": 15}",0.9609
+hgb,y_voltage,"{""learning_rate"": 0.05, ""max_leaf_nodes"": 31}",0.9602
+hgb,y_voltage,"{""learning_rate"": 0.1, ""max_leaf_nodes"": 15}",0.9597
+hgb,y_voltage,"{""learning_rate"": 0.1, ""max_leaf_nodes"": 31}",0.9607
+hgb,y_overload,"{""learning_rate"": 0.05, ""max_leaf_nodes"": 15}",0.9808
+hgb,y_overload,"{""learning_rate"": 0.05, ""max_leaf_nodes"": 31}",0.9814
+hgb,y_overload,"{""learning_rate"": 0.1, ""max_leaf_nodes"": 15}",0.9819
+hgb,y_overload,"{""learning_rate"": 0.1, ""max_leaf_nodes"": 31}",0.9811

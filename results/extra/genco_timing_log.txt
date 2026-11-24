@@ -1,0 +1,158 @@
+Processing...
+CPU: Intel64 Family 6 Model 183 Stepping 1, GenuineIntel, 28 logical cores, torch 2.12.0+cpu
+[config] Converted v0 config -> v1 in memory (file on disk unchanged).
+Loaded normalizer stats from D:\school\DeepLearning\gridfm-anomaly\checkpoints\genco-pf-datakit\case14_ieee\base\seed0\normalizer_stats.pt
+LOADING DATA
+Processing scenarios:   0%|          | 0/1000 [00:00<?, ?it/s]Processing scenarios:   0%|          | 1/1000 [00:00<04:53,  3.40it/s]Processing scenarios:   2%|▏         | 20/1000 [00:00<00:15, 64.07it/s]Processing scenarios:   4%|▎         | 36/1000 [00:00<00:10, 93.27it/s]Processing scenarios:   6%|▌         | 56/1000 [00:00<00:07, 124.71it/s]Processing scenarios:   7%|▋         | 74/1000 [00:00<00:06, 140.21it/s]Processing scenarios:   9%|▉         | 93/1000 [00:00<00:05, 153.82it/s]Processing scenarios:  11%|█         | 110/1000 [00:00<00:05, 155.93it/s]Processing scenarios:  13%|█▎        | 128/1000 [00:01<00:05, 163.00it/s]Processing scenarios:  15%|█▍        | 147/1000 [00:01<00:05, 170.13it/s]Processing scenarios:  17%|█▋        | 167/1000 [00:01<00:04, 178.17it/s]Processing scenarios:  19%|█▊        | 187/1000 [00:01<00:04, 182.23it/s]Processing scenarios:  21%|██        | 206/1000 [00:01<00:04, 177.47it/s]Processing scenarios:  23%|██▎       | 226/1000 [00:01<00:04, 182.02it/s]Processing scenarios:  25%|██▍       | 246/1000 [00:01<00:04, 184.55it/s]Processing scenarios:  26%|██▋       | 265/1000 [00:01<00:04, 179.53it/s]Processing scenarios:  28%|██▊       | 284/1000 [00:01<00:03, 180.66it/s]Processing scenarios:  30%|███       | 304/1000 [00:01<00:03, 184.20it/s]Processing scenarios:  32%|███▏      | 323/1000 [00:02<00:03, 180.69it/s]Processing scenarios:  34%|███▍      | 342/1000 [00:02<00:03, 166.08it/s]Processing scenarios:  36%|███▌      | 359/1000 [00:02<00:03, 163.75it/s]Processing scenarios:  38%|███▊      | 376/1000 [00:02<00:03, 164.31it/s]Processing scenarios:  40%|███▉      | 395/1000 [00:02<00:03, 169.47it/s]Processing scenarios:  42%|████▏     | 415/1000 [00:02<00:03, 177.97it/s]Processing scenarios:  43%|████▎     | 434/1000 [00:02<00:03, 180.68it/s]Processing scenarios:  45%|████▌     | 454/1000 [00:02<00:02, 185.82it/s]Processing scenarios:  47%|████▋     | 474/1000 [00:02<00:02, 189.52it/s]Processing scenarios:  50%|████▉     | 495/1000 [00:03<00:02, 191.71it/s]Processing scenarios:  52%|█████▏    | 515/1000 [00:03<00:02, 187.49it/s]Processing scenarios:  54%|█████▎    | 535/1000 [00:03<00:02, 189.19it/s]Processing scenarios:  55%|█████▌    | 554/1000 [00:03<00:02, 189.37it/s]Processing scenarios:  57%|█████▋    | 573/1000 [00:03<00:02, 189.24it/s]Processing scenarios:  59%|█████▉    | 594/1000 [00:03<00:02, 193.49it/s]Processing scenarios:  62%|██████▏   | 615/1000 [00:03<00:01, 197.20it/s]Processing scenarios:  64%|██████▎   | 635/1000 [00:03<00:01, 189.22it/s]Processing scenarios:  66%|██████▌   | 655/1000 [00:03<00:01, 189.89it/s]Processing scenarios:  68%|██████▊   | 675/1000 [00:03<00:01, 186.78it/s]Processing scenarios:  70%|██████▉   | 695/1000 [00:04<00:01, 189.19it/s]Processing scenarios:  71%|███████▏  | 714/1000 [00:04<00:01, 187.81it/s]Processing scenarios:  73%|███████▎  | 734/1000 [00:04<00:01, 188.86it/s]Processing scenarios:  75%|███████▌  | 753/1000 [00:04<00:01, 178.63it/s]Processing scenarios:  77%|███████▋  | 772/1000 [00:04<00:01, 179.77it/s]Processing scenarios:  79%|███████▉  | 792/1000 [00:04<00:01, 183.68it/s]Processing scenarios:  81%|████████  | 812/1000 [00:04<00:01, 186.32it/s]Processing scenarios:  83%|████████▎ | 832/1000 [00:04<00:00, 188.41it/s]Processing scenarios:  85%|████████▌ | 852/1000 [00:04<00:00, 189.42it/s]Processing scenarios:  87%|████████▋ | 872/1000 [00:05<00:00, 191.61it/s]Processing scenarios:  89%|████████▉ | 892/1000 [00:05<00:00, 193.27it/s]Processing scenarios:  91%|█████████ | 912/1000 [00:05<00:00, 191.56it/s]Processing scenarios:  93%|█████████▎| 932/1000 [00:05<00:00, 193.52it/s]Processing scenarios:  95%|█████████▌| 952/1000 [00:05<00:00, 195.39it/s]Processing scenarios:  97%|█████████▋| 973/1000 [00:05<00:00, 198.71it/s]Processing scenarios:  99%|█████████▉| 994/1000 [00:05<00:00, 198.83it/s]Processing scenarios: 100%|██████████| 1000/1000 [00:05<00:00, 175.81it/s]
+Done!
+D:\school\DeepLearning\gridfm-anomaly\venv\Lib\site-packages\gridfm_graphkit\datasets\hetero_powergrid_datamodule.py:235: UserWarning: Requested number of scenarios (250000) exceeds dataset size (1000). Using the full dataset instead.
+  warnings.warn(
+D:\school\DeepLearning\gridfm-anomaly\venv\Lib\site-packages\gridfm_graphkit\datasets\hetero_powergrid_datamodule.py:245: UserWarning: `data.scenarios` is ignored when `split_from_existing_files` is set; train/val/test scenario ids are loaded from the provided split files.
+  warnings.warn(
+split='train' len(split_indices)=0
+split='val' len(split_indices)=0
+split='test' len(split_indices)=1000
+Restoring normalizer for case14_ieee from saved stats
+{'max |Vm_pred - saved replay Vm_pred|': 0.0, 'dataset': 'test_datakit', 'batch size': 1, 'threads': 20, 'batches timed': 995, 'samples timed': 995, 'forward ms/sample': np.float64(30.165), 'predict_step ms/sample': np.float64(32.398), 'predict_step ms/batch median': np.float64(33.367), 'throughput samples/s (predict_step)': np.float64(30.866)}
+D:\school\DeepLearning\gridfm-anomaly\venv\Lib\site-packages\gridfm_graphkit\datasets\hetero_powergrid_datamodule.py:235: UserWarning: Requested number of scenarios (250000) exceeds dataset size (1000). Using the full dataset instead.
+  warnings.warn(
+D:\school\DeepLearning\gridfm-anomaly\venv\Lib\site-packages\gridfm_graphkit\datasets\hetero_powergrid_datamodule.py:245: UserWarning: `data.scenarios` is ignored when `split_from_existing_files` is set; train/val/test scenario ids are loaded from the provided split files.
+  warnings.warn(
+[config] Converted v0 config -> v1 in memory (file on disk unchanged).
+Loaded normalizer stats from D:\school\DeepLearning\gridfm-anomaly\checkpoints\genco-pf-datakit\case14_ieee\base\seed0\normalizer_stats.pt
+split='train' len(split_indices)=0
+split='val' len(split_indices)=0
+split='test' len(split_indices)=1000
+Restoring normalizer for case14_ieee from saved stats
+{'max |Vm_pred - saved replay Vm_pred|': 0.0, 'dataset': 'test_datakit', 'batch size': 64, 'threads': 20, 'batches timed': 11, 'samples timed': 680, 'forward ms/sample': np.float64(1.839), 'predict_step ms/sample': np.float64(1.876), 'predict_step ms/batch median': np.float64(117.881), 'throughput samples/s (predict_step)': np.float64(533.091)}
+Processing...
+[config] Converted v0 config -> v1 in memory (file on disk unchanged).
+Loaded normalizer stats from D:\school\DeepLearning\gridfm-anomaly\checkpoints\genco-pf-datakit\case14_ieee\base\seed0\normalizer_stats.pt
+LOADING DATA
+Processing scenarios:   0%|          | 0/1000 [00:00<?, ?it/s]Processing scenarios:   1%|          | 11/1000 [00:00<00:09, 106.71it/s]Processing scenarios:   3%|▎         | 28/1000 [00:00<00:06, 142.36it/s]Processing scenarios:   5%|▍         | 47/1000 [00:00<00:05, 161.59it/s]Processing scenarios:   7%|▋         | 66/1000 [00:00<00:05, 172.41it/s]Processing scenarios:   9%|▊         | 86/1000 [00:00<00:05, 181.44it/s]Processing scenarios:  11%|█         | 106/1000 [00:00<00:04, 184.99it/s]Processing scenarios:  12%|█▎        | 125/1000 [00:00<00:04, 180.43it/s]Processing scenarios:  14%|█▍        | 144/1000 [00:00<00:04, 176.63it/s]Processing scenarios:  16%|█▌        | 162/1000 [00:00<00:04, 176.67it/s]Processing scenarios:  18%|█▊        | 181/1000 [00:01<00:04, 178.03it/s]Processing scenarios:  20%|██        | 201/1000 [00:01<00:04, 182.17it/s]Processing scenarios:  22%|██▏       | 220/1000 [00:01<00:04, 181.90it/s]Processing scenarios:  24%|██▍       | 239/1000 [00:01<00:04, 179.83it/s]Processing scenarios:  26%|██▌       | 258/1000 [00:01<00:04, 179.96it/s]Processing scenarios:  28%|██▊       | 277/1000 [00:01<00:03, 181.15it/s]Processing scenarios:  30%|██▉       | 296/1000 [00:01<00:03, 179.56it/s]Processing scenarios:  32%|███▏      | 315/1000 [00:01<00:03, 180.82it/s]Processing scenarios:  34%|███▎      | 336/1000 [00:01<00:03, 186.91it/s]Processing scenarios:  36%|███▌      | 355/1000 [00:01<00:03, 187.29it/s]Processing scenarios:  38%|███▊      | 375/1000 [00:02<00:03, 188.43it/s]Processing scenarios:  40%|███▉      | 395/1000 [00:02<00:03, 187.88it/s]Processing scenarios:  42%|████▏     | 415/1000 [00:02<00:03, 189.65it/s]Processing scenarios:  43%|████▎     | 434/1000 [00:02<00:03, 186.31it/s]Processing scenarios:  45%|████▌     | 454/1000 [00:02<00:02, 188.21it/s]Processing scenarios:  47%|████▋     | 473/1000 [00:02<00:02, 187.45it/s]Processing scenarios:  49%|████▉     | 492/1000 [00:02<00:02, 186.52it/s]Processing scenarios:  51%|█████     | 511/1000 [00:02<00:02, 184.40it/s]Processing scenarios:  53%|█████▎    | 530/1000 [00:02<00:02, 178.77it/s]Processing scenarios:  55%|█████▍    | 548/1000 [00:03<00:02, 156.95it/s]Processing scenarios:  56%|█████▋    | 565/1000 [00:03<00:02, 158.39it/s]Processing scenarios:  58%|█████▊    | 582/1000 [00:03<00:02, 161.24it/s]Processing scenarios:  60%|█████▉    | 599/1000 [00:03<00:02, 163.41it/s]Processing scenarios:  62%|██████▏   | 617/1000 [00:03<00:02, 165.44it/s]Processing scenarios:  64%|██████▎   | 635/1000 [00:03<00:02, 169.56it/s]Processing scenarios:  65%|██████▌   | 654/1000 [00:03<00:01, 173.98it/s]Processing scenarios:  67%|██████▋   | 673/1000 [00:03<00:01, 175.93it/s]Processing scenarios:  69%|██████▉   | 691/1000 [00:03<00:01, 170.42it/s]Processing scenarios:  71%|███████   | 710/1000 [00:04<00:01, 173.25it/s]Processing scenarios:  73%|███████▎  | 729/1000 [00:04<00:01, 176.67it/s]Processing scenarios:  75%|███████▍  | 748/1000 [00:04<00:01, 178.25it/s]Processing scenarios:  77%|███████▋  | 766/1000 [00:04<00:01, 177.71it/s]Processing scenarios:  78%|███████▊  | 784/1000 [00:04<00:01, 175.66it/s]Processing scenarios:  80%|████████  | 802/1000 [00:04<00:01, 174.85it/s]Processing scenarios:  82%|████████▏ | 821/1000 [00:04<00:01, 177.24it/s]Processing scenarios:  84%|████████▍ | 839/1000 [00:04<00:00, 172.32it/s]Processing scenarios:  86%|████████▌ | 858/1000 [00:04<00:00, 175.31it/s]Processing scenarios:  88%|████████▊ | 876/1000 [00:04<00:00, 172.33it/s]Processing scenarios:  90%|████████▉ | 895/1000 [00:05<00:00, 175.58it/s]Processing scenarios:  91%|█████████▏| 913/1000 [00:05<00:00, 176.65it/s]Processing scenarios:  93%|█████████▎| 931/1000 [00:05<00:00, 177.35it/s]Processing scenarios:  95%|█████████▍| 949/1000 [00:05<00:00, 173.64it/s]Processing scenarios:  97%|█████████▋| 967/1000 [00:05<00:00, 172.96it/s]Processing scenarios:  98%|█████████▊| 985/1000 [00:05<00:00, 161.28it/s]Processing scenarios: 100%|██████████| 1000/1000 [00:05<00:00, 175.24it/s]
+Done!
+D:\school\DeepLearning\gridfm-anomaly\venv\Lib\site-packages\gridfm_graphkit\datasets\hetero_powergrid_datamodule.py:235: UserWarning: Requested number of scenarios (250000) exceeds dataset size (1000). Using the full dataset instead.
+  warnings.warn(
+D:\school\DeepLearning\gridfm-anomaly\venv\Lib\site-packages\gridfm_graphkit\datasets\hetero_powergrid_datamodule.py:245: UserWarning: `data.scenarios` is ignored when `split_from_existing_files` is set; train/val/test scenario ids are loaded from the provided split files.
+  warnings.warn(
+split='train' len(split_indices)=0
+split='val' len(split_indices)=0
+split='test' len(split_indices)=1000
+Restoring normalizer for case14_ieee from saved stats
+{'max |Vm_pred - saved replay Vm_pred|': 0.0, 'dataset': 'test_pfdelta', 'batch size': 1, 'threads': 20, 'batches timed': 995, 'samples timed': 995, 'forward ms/sample': np.float64(31.608), 'predict_step ms/sample': np.float64(34.377), 'predict_step ms/batch median': np.float64(35.469), 'throughput samples/s (predict_step)': np.float64(29.089)}
+D:\school\DeepLearning\gridfm-anomaly\venv\Lib\site-packages\gridfm_graphkit\datasets\hetero_powergrid_datamodule.py:235: UserWarning: Requested number of scenarios (250000) exceeds dataset size (1000). Using the full dataset instead.
+  warnings.warn(
+D:\school\DeepLearning\gridfm-anomaly\venv\Lib\site-packages\gridfm_graphkit\datasets\hetero_powergrid_datamodule.py:245: UserWarning: `data.scenarios` is ignored when `split_from_existing_files` is set; train/val/test scenario ids are loaded from the provided split files.
+  warnings.warn(
+[config] Converted v0 config -> v1 in memory (file on disk unchanged).
+Loaded normalizer stats from D:\school\DeepLearning\gridfm-anomaly\checkpoints\genco-pf-datakit\case14_ieee\base\seed0\normalizer_stats.pt
+split='train' len(split_indices)=0
+split='val' len(split_indices)=0
+split='test' len(split_indices)=1000
+Restoring normalizer for case14_ieee from saved stats
+{'max |Vm_pred - saved replay Vm_pred|': 0.0, 'dataset': 'test_pfdelta', 'batch size': 64, 'threads': 20, 'batches timed': 11, 'samples timed': 680, 'forward ms/sample': np.float64(1.809), 'predict_step ms/sample': np.float64(1.905), 'predict_step ms/batch median': np.float64(119.731), 'throughput samples/s (predict_step)': np.float64(524.876)}
+Processing...
+[config] Converted v0 config -> v1 in memory (file on disk unchanged).
+Loaded normalizer stats from D:\school\DeepLearning\gridfm-anomaly\checkpoints\genco-pf-datakit\case14_ieee\base\seed0\normalizer_stats.pt
+LOADING DATA
+Processing scenarios:   0%|          | 0/1000 [00:00<?, ?it/s]Processing scenarios:   1%|          | 12/1000 [00:00<00:08, 116.45it/s]Processing scenarios:   3%|▎         | 33/1000 [00:00<00:05, 170.66it/s]Processing scenarios:   5%|▌         | 54/1000 [00:00<00:05, 186.96it/s]Processing scenarios:   8%|▊         | 76/1000 [00:00<00:04, 195.26it/s]Processing scenarios:  10%|▉         | 97/1000 [00:00<00:04, 199.93it/s]Processing scenarios:  12%|█▏        | 118/1000 [00:00<00:04, 202.14it/s]Processing scenarios:  14%|█▍        | 139/1000 [00:00<00:04, 203.83it/s]Processing scenarios:  16%|█▌        | 160/1000 [00:00<00:04, 205.69it/s]Processing scenarios:  18%|█▊        | 182/1000 [00:00<00:03, 208.60it/s]Processing scenarios:  20%|██        | 204/1000 [00:01<00:03, 210.01it/s]Processing scenarios:  23%|██▎       | 226/1000 [00:01<00:03, 207.75it/s]Processing scenarios:  25%|██▍       | 247/1000 [00:01<00:03, 205.39it/s]Processing scenarios:  27%|██▋       | 268/1000 [00:01<00:03, 204.02it/s]Processing scenarios:  29%|██▉       | 290/1000 [00:01<00:03, 205.72it/s]Processing scenarios:  31%|███       | 311/1000 [00:01<00:03, 194.79it/s]Processing scenarios:  33%|███▎      | 332/1000 [00:01<00:03, 198.22it/s]Processing scenarios:  35%|███▌      | 354/1000 [00:01<00:03, 204.46it/s]Processing scenarios:  38%|███▊      | 375/1000 [00:01<00:03, 205.53it/s]Processing scenarios:  40%|███▉      | 396/1000 [00:01<00:02, 206.70it/s]Processing scenarios:  42%|████▏     | 418/1000 [00:02<00:02, 209.04it/s]Processing scenarios:  44%|████▍     | 442/1000 [00:02<00:02, 216.26it/s]Processing scenarios:  46%|████▋     | 464/1000 [00:02<00:02, 216.47it/s]Processing scenarios:  49%|████▊     | 486/1000 [00:02<00:02, 217.14it/s]Processing scenarios:  51%|█████     | 508/1000 [00:02<00:02, 214.15it/s]Processing scenarios:  53%|█████▎    | 531/1000 [00:02<00:02, 217.67it/s]Processing scenarios:  55%|█████▌    | 554/1000 [00:02<00:02, 219.18it/s]Processing scenarios:  58%|█████▊    | 576/1000 [00:02<00:01, 217.85it/s]Processing scenarios:  60%|█████▉    | 598/1000 [00:02<00:01, 218.32it/s]Processing scenarios:  62%|██████▏   | 620/1000 [00:02<00:01, 218.13it/s]Processing scenarios:  64%|██████▍   | 643/1000 [00:03<00:01, 218.99it/s]Processing scenarios:  67%|██████▋   | 666/1000 [00:03<00:01, 218.94it/s]Processing scenarios:  69%|██████▉   | 689/1000 [00:03<00:01, 219.92it/s]Processing scenarios:  71%|███████   | 711/1000 [00:03<00:01, 219.72it/s]Processing scenarios:  73%|███████▎  | 733/1000 [00:03<00:01, 219.52it/s]Processing scenarios:  76%|███████▌  | 755/1000 [00:03<00:01, 217.58it/s]Processing scenarios:  78%|███████▊  | 777/1000 [00:03<00:01, 210.62it/s]Processing scenarios:  80%|███████▉  | 799/1000 [00:03<00:01, 200.18it/s]Processing scenarios:  82%|████████▏ | 820/1000 [00:03<00:00, 200.54it/s]Processing scenarios:  84%|████████▍ | 841/1000 [00:04<00:00, 201.70it/s]Processing scenarios:  86%|████████▋ | 863/1000 [00:04<00:00, 205.79it/s]Processing scenarios:  88%|████████▊ | 885/1000 [00:04<00:00, 208.23it/s]Processing scenarios:  91%|█████████ | 907/1000 [00:04<00:00, 209.71it/s]Processing scenarios:  93%|█████████▎| 929/1000 [00:04<00:00, 210.47it/s]Processing scenarios:  95%|█████████▌| 951/1000 [00:04<00:00, 210.52it/s]Processing scenarios:  97%|█████████▋| 973/1000 [00:04<00:00, 210.94it/s]Processing scenarios: 100%|█████████▉| 995/1000 [00:04<00:00, 212.42it/s]Processing scenarios: 100%|██████████| 1000/1000 [00:04<00:00, 208.68it/s]
+Done!
+D:\school\DeepLearning\gridfm-anomaly\venv\Lib\site-packages\gridfm_graphkit\datasets\hetero_powergrid_datamodule.py:235: UserWarning: Requested number of scenarios (250000) exceeds dataset size (1000). Using the full dataset instead.
+  warnings.warn(
+D:\school\DeepLearning\gridfm-anomaly\venv\Lib\site-packages\gridfm_graphkit\datasets\hetero_powergrid_datamodule.py:245: UserWarning: `data.scenarios` is ignored when `split_from_existing_files` is set; train/val/test scenario ids are loaded from the provided split files.
+  warnings.warn(
+split='train' len(split_indices)=0
+split='val' len(split_indices)=0
+split='test' len(split_indices)=1000
+Restoring normalizer for case14_ieee from saved stats
+{'max |Vm_pred - saved replay Vm_pred|': 0.0, 'dataset': 'test_n2', 'batch size': 1, 'threads': 20, 'batches timed': 995, 'samples timed': 995, 'forward ms/sample': np.float64(31.483), 'predict_step ms/sample': np.float64(33.856), 'predict_step ms/batch median': np.float64(34.75), 'throughput samples/s (predict_step)': np.float64(29.537)}
+D:\school\DeepLearning\gridfm-anomaly\venv\Lib\site-packages\gridfm_graphkit\datasets\hetero_powergrid_datamodule.py:235: UserWarning: Requested number of scenarios (250000) exceeds dataset size (1000). Using the full dataset instead.
+  warnings.warn(
+D:\school\DeepLearning\gridfm-anomaly\venv\Lib\site-packages\gridfm_graphkit\datasets\hetero_powergrid_datamodule.py:245: UserWarning: `data.scenarios` is ignored when `split_from_existing_files` is set; train/val/test scenario ids are loaded from the provided split files.
+  warnings.warn(
+[config] Converted v0 config -> v1 in memory (file on disk unchanged).
+Loaded normalizer stats from D:\school\DeepLearning\gridfm-anomaly\checkpoints\genco-pf-datakit\case14_ieee\base\seed0\normalizer_stats.pt
+split='train' len(split_indices)=0
+split='val' len(split_indices)=0
+split='test' len(split_indices)=1000
+Restoring normalizer for case14_ieee from saved stats
+{'max |Vm_pred - saved replay Vm_pred|': 0.0, 'dataset': 'test_n2', 'batch size': 64, 'threads': 20, 'batches timed': 11, 'samples timed': 680, 'forward ms/sample': np.float64(1.792), 'predict_step ms/sample': np.float64(1.8), 'predict_step ms/batch median': np.float64(112.947), 'throughput samples/s (predict_step)': np.float64(555.528)}
+D:\school\DeepLearning\gridfm-anomaly\venv\Lib\site-packages\gridfm_graphkit\datasets\hetero_powergrid_datamodule.py:235: UserWarning: Requested number of scenarios (250000) exceeds dataset size (1000). Using the full dataset instead.
+  warnings.warn(
+D:\school\DeepLearning\gridfm-anomaly\venv\Lib\site-packages\gridfm_graphkit\datasets\hetero_powergrid_datamodule.py:245: UserWarning: `data.scenarios` is ignored when `split_from_existing_files` is set; train/val/test scenario ids are loaded from the provided split files.
+  warnings.warn(
+[config] Converted v0 config -> v1 in memory (file on disk unchanged).
+Loaded normalizer stats from D:\school\DeepLearning\gridfm-anomaly\checkpoints\genco-pf-datakit\case14_ieee\base\seed0\normalizer_stats.pt
+split='train' len(split_indices)=0
+split='val' len(split_indices)=0
+split='test' len(split_indices)=1000
+Restoring normalizer for case14_ieee from saved stats
+{'max |Vm_pred - saved replay Vm_pred|': 0.0, 'dataset': 'test_datakit', 'batch size': 1, 'threads': 1, 'batches timed': 995, 'samples timed': 995, 'forward ms/sample': np.float64(25.339), 'predict_step ms/sample': np.float64(26.502), 'predict_step ms/batch median': np.float64(25.383), 'throughput samples/s (predict_step)': np.float64(37.734)}
+D:\school\DeepLearning\gridfm-anomaly\venv\Lib\site-packages\gridfm_graphkit\datasets\hetero_powergrid_datamodule.py:235: UserWarning: Requested number of scenarios (250000) exceeds dataset size (1000). Using the full dataset instead.
+  warnings.warn(
+D:\school\DeepLearning\gridfm-anomaly\venv\Lib\site-packages\gridfm_graphkit\datasets\hetero_powergrid_datamodule.py:245: UserWarning: `data.scenarios` is ignored when `split_from_existing_files` is set; train/val/test scenario ids are loaded from the provided split files.
+  warnings.warn(
+[config] Converted v0 config -> v1 in memory (file on disk unchanged).
+Loaded normalizer stats from D:\school\DeepLearning\gridfm-anomaly\checkpoints\genco-pf-datakit\case14_ieee\base\seed0\normalizer_stats.pt
+split='train' len(split_indices)=0
+split='val' len(split_indices)=0
+split='test' len(split_indices)=1000
+Restoring normalizer for case14_ieee from saved stats
+{'max |Vm_pred - saved replay Vm_pred|': 0.0, 'dataset': 'test_datakit', 'batch size': 64, 'threads': 1, 'batches timed': 11, 'samples timed': 680, 'forward ms/sample': np.float64(5.343), 'predict_step ms/sample': np.float64(5.306), 'predict_step ms/batch median': np.float64(335.463), 'throughput samples/s (predict_step)': np.float64(188.472)}
+D:\school\DeepLearning\gridfm-anomaly\venv\Lib\site-packages\gridfm_graphkit\datasets\hetero_powergrid_datamodule.py:235: UserWarning: Requested number of scenarios (250000) exceeds dataset size (1000). Using the full dataset instead.
+  warnings.warn(
+D:\school\DeepLearning\gridfm-anomaly\venv\Lib\site-packages\gridfm_graphkit\datasets\hetero_powergrid_datamodule.py:245: UserWarning: `data.scenarios` is ignored when `split_from_existing_files` is set; train/val/test scenario ids are loaded from the provided split files.
+  warnings.warn(
+[config] Converted v0 config -> v1 in memory (file on disk unchanged).
+Loaded normalizer stats from D:\school\DeepLearning\gridfm-anomaly\checkpoints\genco-pf-datakit\case14_ieee\base\seed0\normalizer_stats.pt
+split='train' len(split_indices)=0
+split='val' len(split_indices)=0
+split='test' len(split_indices)=1000
+Restoring normalizer for case14_ieee from saved stats
+{'max |Vm_pred - saved replay Vm_pred|': 0.0, 'dataset': 'test_pfdelta', 'batch size': 1, 'threads': 1, 'batches timed': 995, 'samples timed': 995, 'forward ms/sample': np.float64(28.254), 'predict_step ms/sample': np.float64(29.516), 'predict_step ms/batch median': np.float64(27.915), 'throughput samples/s (predict_step)': np.float64(33.88)}
+D:\school\DeepLearning\gridfm-anomaly\venv\Lib\site-packages\gridfm_graphkit\datasets\hetero_powergrid_datamodule.py:235: UserWarning: Requested number of scenarios (250000) exceeds dataset size (1000). Using the full dataset instead.
+  warnings.warn(
+D:\school\DeepLearning\gridfm-anomaly\venv\Lib\site-packages\gridfm_graphkit\datasets\hetero_powergrid_datamodule.py:245: UserWarning: `data.scenarios` is ignored when `split_from_existing_files` is set; train/val/test scenario ids are loaded from the provided split files.
+  warnings.warn(
+[config] Converted v0 config -> v1 in memory (file on disk unchanged).
+Loaded normalizer stats from D:\school\DeepLearning\gridfm-anomaly\checkpoints\genco-pf-datakit\case14_ieee\base\seed0\normalizer_stats.pt
+split='train' len(split_indices)=0
+split='val' len(split_indices)=0
+split='test' len(split_indices)=1000
+Restoring normalizer for case14_ieee from saved stats
+{'max |Vm_pred - saved replay Vm_pred|': 0.0, 'dataset': 'test_pfdelta', 'batch size': 64, 'threads': 1, 'batches timed': 11, 'samples timed': 680, 'forward ms/sample': np.float64(5.582), 'predict_step ms/sample': np.float64(5.709), 'predict_step ms/batch median': np.float64(351.575), 'throughput samples/s (predict_step)': np.float64(175.169)}
+D:\school\DeepLearning\gridfm-anomaly\venv\Lib\site-packages\gridfm_graphkit\datasets\hetero_powergrid_datamodule.py:235: UserWarning: Requested number of scenarios (250000) exceeds dataset size (1000). Using the full dataset instead.
+  warnings.warn(
+D:\school\DeepLearning\gridfm-anomaly\venv\Lib\site-packages\gridfm_graphkit\datasets\hetero_powergrid_datamodule.py:245: UserWarning: `data.scenarios` is ignored when `split_from_existing_files` is set; train/val/test scenario ids are loaded from the provided split files.
+  warnings.warn(
+[config] Converted v0 config -> v1 in memory (file on disk unchanged).
+Loaded normalizer stats from D:\school\DeepLearning\gridfm-anomaly\checkpoints\genco-pf-datakit\case14_ieee\base\seed0\normalizer_stats.pt
+split='train' len(split_indices)=0
+split='val' len(split_indices)=0
+split='test' len(split_indices)=1000
+Restoring normalizer for case14_ieee from saved stats
+{'max |Vm_pred - saved replay Vm_pred|': 0.0, 'dataset': 'test_n2', 'batch size': 1, 'threads': 1, 'batches timed': 995, 'samples timed': 995, 'forward ms/sample': np.float64(28.867), 'predict_step ms/sample': np.float64(30.147), 'predict_step ms/batch median': np.float64(27.586), 'throughput samples/s (predict_step)': np.float64(33.171)}
+D:\school\DeepLearning\gridfm-anomaly\venv\Lib\site-packages\gridfm_graphkit\datasets\hetero_powergrid_datamodule.py:235: UserWarning: Requested number of scenarios (250000) exceeds dataset size (1000). Using the full dataset instead.
+  warnings.warn(
+D:\school\DeepLearning\gridfm-anomaly\venv\Lib\site-packages\gridfm_graphkit\datasets\hetero_powergrid_datamodule.py:245: UserWarning: `data.scenarios` is ignored when `split_from_existing_files` is set; train/val/test scenario ids are loaded from the provided split files.
+  warnings.warn(
+[config] Converted v0 config -> v1 in memory (file on disk unchanged).
+Loaded normalizer stats from D:\school\DeepLearning\gridfm-anomaly\checkpoints\genco-pf-datakit\case14_ieee\base\seed0\normalizer_stats.pt
+split='train' len(split_indices)=0
+split='val' len(split_indices)=0
+split='test' len(split_indices)=1000
+Restoring normalizer for case14_ieee from saved stats
+{'max |Vm_pred - saved replay Vm_pred|': 0.0, 'dataset': 'test_n2', 'batch size': 64, 'threads': 1, 'batches timed': 11, 'samples timed': 680, 'forward ms/sample': np.float64(6.788), 'predict_step ms/sample': np.float64(6.812), 'predict_step ms/batch median': np.float64(393.159), 'throughput samples/s (predict_step)': np.float64(146.789)}
+ max |Vm_pred - saved replay Vm_pred|      dataset  batch size  threads  batches timed  samples timed  forward ms/sample  predict_step ms/sample  predict_step ms/batch median  throughput samples/s (predict_step)
+                         8.344650e-07 test_datakit           1       20            995            995          30.165454               32.397936                       33.3673                            30.866164
+                         0.000000e+00 test_datakit          64       20             11            680           1.839183                1.875853                      117.8814                           533.090704
+                         9.536743e-07 test_pfdelta           1       20            995            995          31.607922               34.377100                       35.4692                            29.089132
+                         0.000000e+00 test_pfdelta          64       20             11            680           1.808995                1.905214                      119.7306                           524.875510
+                         5.245209e-06      test_n2           1       20            995            995          31.482911               33.856278                       34.7501                            29.536619
+                         0.000000e+00      test_n2          64       20             11            680           1.791527                1.800088                      112.9471                           555.528415
+                         1.192093e-06 test_datakit           1        1            995            995          25.338809               26.501528                       25.3830                            37.733673
+                         1.072884e-06 test_datakit          64        1             11            680           5.343053                5.305839                      335.4628                           188.471608
+                         1.668930e-06 test_pfdelta           1        1            995            995          28.254267               29.515831                       27.9145                            33.880124
+                         7.152557e-07 test_pfdelta          64        1             11            680           5.581502                5.708763                      351.5748                           175.169294
+                         9.298325e-06      test_n2           1        1            995            995          28.867388               30.146554                       27.5864                            33.171288
+                         7.152557e-07      test_n2          64        1             11            680           6.787506                6.812498                      393.1586                           146.789029
