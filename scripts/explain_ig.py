@@ -51,6 +51,7 @@ PROBE_KINDS = ["logreg", "mlp"]
 
 
 # --------------------------------------------------------------------------- probe in torch
+# frozen sklearn probe (scaler + logreg / MLP) rebuilt in torch, so gradients w.r.t. embeddings exist
 class TorchProbe:
     def __init__(self, path):
         d = joblib.load(path)
@@ -71,6 +72,7 @@ class TorchProbe:
         return E.flatten(-2)
 
     def logit(self, E):
+        """Probe logit (before the sigmoid) for embeddings E of shape (..., 14, 384)."""
         h = (self.features(E) - self.mu) / self.sd
         for i, (W, b) in enumerate(self.layers):
             h = h @ W + b
@@ -91,6 +93,7 @@ def integrated_gradients(probe, E, base):
 
 # --------------------------------------------------------------------------- data
 def embeddings(name):
+    """Scenario ids and (n, 14, 384) replay bus embeddings of one block."""
     e = pd.read_parquet(PRED / MODEL / name / "case14_ieee_bus_embeddings.parquet").sort_values(["scenario", "bus"])
     scen = np.sort(e.scenario.unique())
     return scen, e.drop(columns=["scenario", "bus"]).to_numpy(np.float64).reshape(len(scen), 14, -1)
@@ -111,6 +114,7 @@ def baseline_embeddings(label):
 
 
 def element_truth(raw):
+    """Per-bus voltage-violation and per-branch overload flags from the solved power flow."""
     bus = pd.read_parquet(raw / "bus_data.parquet")
     br = pd.read_parquet(raw / "branch_data.parquet")
     bus["v_violation"] = np.maximum(bus.min_vm_pu - bus.Vm, bus.Vm - bus.max_vm_pu)
@@ -121,17 +125,20 @@ def element_truth(raw):
 
 
 def topk_hit(score, true_mask, k=3):
+    """Does the top k of `score` contain a true element?"""
     order = np.argsort(-score, kind="stable")[:k]
     return bool(true_mask[order].any())
 
 
 def chance_hit(n_true, n_total, k=3):
+    """Probability that a random top k holds at least one of n_true true elements."""
     from math import comb
     return 1 - comb(n_total - n_true, k) / comb(n_total, k)
 
 
 # --------------------------------------------------------------------------- localize
 def stage_localize(args):
+    """IG on every correct probe alarm; top-3 localization vs residual, PtC and chance."""
     probes = {(p, lab): TorchProbe(PROBES / f"{MODEL}_{p}_{lab}.joblib") for p in PROBE_KINDS for lab in LABELS}
     bases = {lab: torch.tensor(baseline_embeddings(lab)) for lab in LABELS}
     rows, summary = [], []
@@ -152,6 +159,7 @@ def stage_localize(args):
                 lt = probe.logit(torch.tensor(E)).numpy()
             pk = probe.sk.predict_proba(np.asarray(probe.features(torch.tensor(E)).numpy()))[:, 1]
             assert np.allclose(1 / (1 + np.exp(-lt)), pk, atol=1e-6), (p, lab)
+            # correct alarms only: the probe fires and the truth is positive
             tp = samples.index[samples[lab] & samples[f"{lab}_{p}"]]
             for s in tp:
                 i = int(np.searchsorted(scen, s))
@@ -165,6 +173,7 @@ def stage_localize(args):
                 row = {"dataset": ds, "probe": p, "label": lab, "scenario": s, "logit gap": gap,
                        "completeness err": abs(bus_attr.sum() - gap),
                        "top3 buses": ",".join(map(str, np.argsort(-bus_attr, kind="stable")[:3]))}
+                # voltage: rank buses; overload: rank in-service branches by the sum of their end buses
                 if lab == "y_voltage":
                     true = b.violating.to_numpy()
                     row.update({"n true": int(true.sum()), "n candidates": 14,
@@ -209,6 +218,7 @@ GEN_BUSES = {0, 1, 2, 5, 7}
 
 
 def draw_grid(ax, bus_val, br, title, cmap, vlim, bus_true=None, label_fmt=None, colorbar_label=""):
+    """Draw case14: buses coloured by bus_val; outaged, overloaded and normal branches styled apart."""
     import matplotlib.pyplot as plt
     from matplotlib.colors import TwoSlopeNorm, Normalize
 
@@ -259,6 +269,7 @@ def pick_examples():
 
 
 def stage_examples(args):
+    """Grid figure: residual and IG attribution for four rule-picked example scenarios."""
     import matplotlib
     matplotlib.use("Agg")
     import matplotlib.pyplot as plt
@@ -310,6 +321,7 @@ def stage_examples(args):
 
 
 def main():
+    """CLI: run one stage."""
     sys.stdout.reconfigure(encoding="utf-8")
     warnings.filterwarnings("ignore")
     p = argparse.ArgumentParser()

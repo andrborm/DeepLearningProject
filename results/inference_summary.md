@@ -119,7 +119,7 @@ Residuals are tiny because the model runs a physics-residual correction in every
 indicator of accuracy here** (Spearman(overall score, per-sample PBE max) = 0.25). For anomaly scoring, prediction
 error and residual carry different information.
 
-## Per-sample table: `results/inference_per_sample.csv` (base) · `inference_per_sample_tiny_n1000.csv` (tiny)
+## Per-sample table: `results/inference_per_sample.csv` (base)
 
 One row per sample (`sample_id` = subset id 0..999):
 
@@ -133,7 +133,7 @@ One row per sample (`sample_id` = subset id 0..999):
 | `pbe_mean`, `pbe_max`, `res_P_mean`, `res_Q_mean` | power-balance residuals from graphkit (MVA / MW / MVAr) |
 
 Aggregate tables: `inference_by_bus_type.csv`, `inference_by_outage_type.csv`, `inference_by_variable.csv`,
-`inference_rmse_vs_card.csv`, `inference_residuals.csv` (+ `_tiny_n1000` versions). Raw predictions (per bus and per branch,
+`inference_rmse_vs_card.csv`, `inference_residuals.csv`. Raw predictions (per bus and per branch,
 incl. predicted branch flows and `thermal_excess`) are in `mlruns/.../artifacts/test/*.parquet` (gitignored).
 
 ## Notes for the next stages

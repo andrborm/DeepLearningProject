@@ -527,3 +527,15 @@ change; N-2 used only for final evaluation of the new baseline. Seeds fixed (skl
 - pandapower `from_ppc` ignores the status of transformer branches; the first sanity check caught it (datakit #11,
   N-2 #19, both with an outaged transformer). Fixed in `solver_pandapower.build`; afterwards max |ΔVm| ≤ 5e-7 p.u.
 - NR timing was repeated on an idle CPU (run 1, slowed 3–4 % by a concurrent file-listing job, kept as `*_run1.*`).
+
+---
+
+## Phase 13: Readability pass and repo cleanup (2026-11-24)
+
+- Comments and docstrings added to every script in `scripts/` and `scripts/extra/` (not `scripts/vendor/`). Comment-only:
+  the AST of each file with docstrings removed is identical before and after, and the diff only adds lines.
+- Removed from the repo: the console logs (`results/*_log.txt`, `results/extra/*_log.txt`), the superseded early
+  inference tables (`results/inference_*_tiny_n1000.csv`, `results/inference_*_base_n50.csv`), the first NR timing run
+  (`results/extra/*_run1.*`), the empty `notebooks/` folder and the `.gitkeep` placeholders. Every number those files
+  held is in the markdown summaries and CSVs that remain. The commands in earlier phases still show the `> ..._log.txt`
+  redirects as they were run.

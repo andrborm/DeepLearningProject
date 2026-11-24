@@ -1,6 +1,6 @@
 # Explainability: Integrated Gradients on the replay-model probes (analysis only, no retraining)
 
-Script: `scripts/explain_ig.py` (`localize`, `examples`). Log: `explain_ig_log.txt`. Tables: `explain_ig_localization.csv`
+Script: `scripts/explain_ig.py` (`localize`, `examples`). Tables: `explain_ig_localization.csv`
 (aggregate), `explain_ig_samples.csv` (per alarm), `explain_ig_examples.csv`. Figures: `figures/fig_explain_*`.
 
 ## Method

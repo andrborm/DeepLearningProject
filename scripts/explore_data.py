@@ -72,16 +72,19 @@ COLUMN_MEANING = {
 
 
 def read(name, columns=None):
+    """Read (some columns of) one Hive-partitioned datakit table."""
     table = ds.dataset(RAW / f"{name}.parquet", format="parquet", partitioning="hive")
     return table.to_table(columns=columns).to_pandas()
 
 
 def section(title):
+    """Print a section header."""
     print(f"\n{'=' * 80}\n{title}\n{'=' * 80}")
 
 
 # --------------------------------------------------------------------------- A
 def part_a():
+    """Sizes, columns, bus-type encoding and contingency mix of datakit case14."""
     section("A. datakit case14 (gridfm/pf_small_case14_ieee): format")
     bus = read("bus_data", ["scenario", "bus", "PQ", "PV", "REF", "load_scenario_idx"])
     gen = read("gen_data", ["scenario", "idx", "bus", "in_service", "is_slack_gen"])
@@ -129,6 +132,7 @@ def part_a():
 
 # --------------------------------------------------------------------------- B
 def part_b():
+    """Which inputs graphkit's PowerFlow mask hides per bus type, on one real scenario."""
     section("B. graphkit PowerFlow masking (AddPFHeteroMask) on one real scenario")
     from gridfm_graphkit.datasets.graph_builder import BUS_FEATURES, GEN_FEATURES, FORWARD_BRANCH_FEATURES, build_hetero_data
     from gridfm_graphkit.datasets.masking import AddPFHeteroMask
@@ -172,6 +176,7 @@ def part_b():
 
 # --------------------------------------------------------------------------- C
 def describe(df, cols, table):
+    """min / max / mean / std of some columns, tagged with the table name."""
     out = df[cols].agg(["min", "max", "mean", "std"]).T
     out.insert(0, "table", table)
     return out
@@ -202,6 +207,7 @@ def violation_counts(bus, gen, branch, scenario_subset=None):
 
 
 def part_c():
+    """Variable statistics and limit-violation counts (all, test split, test subset)."""
     section("C. per-variable statistics and limit violations (all 219,606 scenarios)")
     bus = read("bus_data", ["scenario", "bus", "Pd", "Qd", "Pg", "Qg", "Vm", "Va", "PQ", "PV", "REF", "min_vm_pu", "max_vm_pu"])
     gen = read("gen_data", ["scenario", "p_mw", "q_mvar", "min_p_mw", "max_p_mw", "min_q_mvar", "max_q_mvar", "in_service", "is_slack_gen"])
@@ -237,6 +243,7 @@ def part_c():
 
 # --------------------------------------------------------------------------- D
 def part_d():
+    """rate_a per branch: present, positive and constant across scenarios?"""
     section("D. branch flow limits (rate_a)")
     branch = read("branch_data", ["scenario", "idx", "from_bus", "to_bus", "rate_a", "tap", "br_status"])
     per_branch = branch.groupby("idx").rate_a.agg(["min", "max", "nunique"])
@@ -287,6 +294,7 @@ def pfdelta_feasible_json(tar_path, counts):
 
 
 def part_e():
+    """Category counts and violation rates of the original PFΔ case14 archive."""
     section("E. original PFΔ case14 archive (read directly from data/pfdelta_orig/case14.tar.gz)")
     if not PFDELTA_TAR.exists():
         print(f"missing {PFDELTA_TAR}: hf download pfdelta/pfdelta case14.tar.gz --repo-type dataset")
@@ -294,6 +302,7 @@ def part_e():
     counts, meta = {}, []
 
     def raw_bytes():
+        """Feasible JSON bytes; remembers (topology, file) in the same order."""
         for topo, name, raw_json in pfdelta_feasible_json(PFDELTA_TAR, counts):
             meta.append((topo, name))
             yield raw_json
@@ -336,6 +345,7 @@ def part_e():
 
 
 def main():
+    """Run the selected parts."""
     parser = argparse.ArgumentParser()
     parser.add_argument("--parts", default="ABCDE")
     args = parser.parse_args()

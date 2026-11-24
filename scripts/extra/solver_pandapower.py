@@ -50,13 +50,16 @@ TOL = 1e-6
 
 
 def load(raw):
+    """Raw tables of one test set as {table: {scenario: sorted frame}}."""
     t = {n: pd.read_parquet(raw / f"{n}.parquet") for n in ["bus_data", "gen_data", "branch_data"]}
     return {n: dict(tuple(df.sort_values([c for c in ["scenario", "bus", "idx"] if c in df]).groupby("scenario")))
             for n, df in t.items()}
 
 
 def ppc_for(bus, gen, br):
+    """PYPOWER case dict (bus / gen / branch matrices) of one sample."""
     btype = np.select([bus.REF == 1, bus.PV == 1], [3, 2], 1)
+    # bus matrix (MATPOWER column order)
     b = np.zeros((len(bus), 13))
     b[:, 0] = bus.bus.values + 1
     b[:, 1] = btype
@@ -69,6 +72,7 @@ def ppc_for(bus, gen, br):
     b[:, 10] = 1
     b[:, 11], b[:, 12] = bus.max_vm_pu.values, bus.min_vm_pu.values
     vm_bus = dict(zip(bus.bus.astype(int), bus.Vm))
+    # generator matrix
     g = np.zeros((len(gen), 10))
     g[:, 0] = gen.bus.values + 1
     g[:, 1] = gen.p_mw.values
@@ -77,6 +81,7 @@ def ppc_for(bus, gen, br):
     g[:, 6] = BASE_MVA
     g[:, 7] = gen.in_service.values
     g[:, 8], g[:, 9] = gen.max_p_mw.values, gen.min_p_mw.values
+    # branch matrix
     r = np.zeros((len(br), 13))
     r[:, 0], r[:, 1] = br.from_bus.values + 1, br.to_bus.values + 1
     r[:, 2], r[:, 3], r[:, 4] = br.r.values, br.x.values, br.b.values
@@ -90,6 +95,7 @@ def ppc_for(bus, gen, br):
 
 
 def build(t, s):
+    """pandapower net of one sample via from_ppc, with every branch outage applied."""
     with warnings.catch_warnings():
         warnings.simplefilter("ignore")
         net = from_ppc(ppc_for(t["bus_data"][s], t["gen_data"][s], t["branch_data"][s]), f_hz=60, validate_conversion=False)
@@ -103,6 +109,7 @@ def build(t, s):
 
 
 def solve(net, numba):
+    """Timed Newton-Raphson solve; returns (seconds, converged)."""
     t0 = time.perf_counter()
     try:
         pp.runpp(net, algorithm="nr", init="flat", max_iteration=50, enforce_q_lims=False, numba=numba,
@@ -114,12 +121,14 @@ def solve(net, numba):
 
 
 def compare(net, bus):
+    """Max |dVm| (p.u.) and |dVa| (deg) between the NR solution and the dataset."""
     vm = net.res_bus.vm_pu.values
     va = net.res_bus.va_degree.values
     return np.abs(vm - bus.Vm.values).max(), np.abs(va - bus.Va.values).max()
 
 
 def labels_from_net(net, bus, br):
+    """y_voltage / y_overload from the NR solution (same rule as the dataset labels)."""
     vm = net.res_bus.vm_pu.values
     yv = bool(((vm < bus.min_vm_pu.values - TOL) | (vm > bus.max_vm_pu.values + TOL)).any())
     # max end apparent power per in-service branch (ppc order) vs rate_a, same rule as true_labels_from_raw
@@ -144,6 +153,7 @@ def _ordered_flows(net):
 
 
 def true_labels(bus, br):
+    """y_voltage / y_overload from the dataset's own solved power flow."""
     yv = bool(((bus.Vm < bus.min_vm_pu - TOL) | (bus.Vm > bus.max_vm_pu + TOL)).any())
     b = br[br.br_status == 1]
     lo = np.maximum(np.hypot(b.pf, b.qf), np.hypot(b.pt, b.qt)) / b.rate_a
@@ -151,6 +161,7 @@ def true_labels(bus, br):
 
 
 def stage_sanity(args):
+    """Solve 20 samples per test set and compare with the ground truth."""
     rows = []
     for name, raw in TESTS.items():
         t = load(raw)
@@ -173,6 +184,7 @@ def stage_sanity(args):
 
 
 def stage_time(args):
+    """Time NR (numba on / off) on every sample and check convergence and labels."""
     print(f"CPU: {platform.processor()}, {os.cpu_count()} logical cores, pandapower {pp.__version__}, single process")
     rows = []
     for name, raw in TESTS.items():
@@ -220,6 +232,7 @@ def stage_time(args):
 
 
 def main():
+    """CLI: run one stage."""
     sys.stdout.reconfigure(encoding="utf-8")
     p = argparse.ArgumentParser()
     p.add_argument("stage", choices=["sanity", "time"])

@@ -1,7 +1,7 @@
 # Final N-2 test (run once, frozen pipeline)
 
 The setup frozen in `stage3_summary.md` was run once on unseen PFΔ case14 **N-2** contingencies. No design choice was
-changed afterwards. Script: `scripts/final_n2_test.py` (`extract --model <m>`, `evaluate`). Log: `final_n2_log.txt`.
+changed afterwards. Script: `scripts/final_n2_test.py` (`extract --model <m>`, `evaluate`).
 
 | Item | Value |
 |---|---|

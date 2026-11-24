@@ -44,12 +44,14 @@ def test_scenarios(topo):
 
 
 def read(topo, name, scenarios):
+    """Read one converted PFΔ table for the given scenario ids."""
     table = ds.dataset(CONVERTED / topo / "raw" / f"{name}.parquet", format="parquet", partitioning="hive")
     df = table.to_table(filter=ds.field("scenario").isin(scenarios.tolist())).to_pandas()
     return df.drop(columns=["scenario_partition"], errors="ignore")
 
 
 def main():
+    """Sample each topology's test split, renumber (N-0 first), write tables, splits and mapping."""
     parser = argparse.ArgumentParser()
     parser.add_argument("--per-topology", type=int, default=500)
     parser.add_argument("--seed", type=int, default=42)
@@ -62,6 +64,7 @@ def main():
     tables = {name: [] for name in ["bus_data", "gen_data", "branch_data"]}
     mapping = []
     next_id = 0
+    # per topology: seeded sample of PFΔ's test split, contiguous new ids
     for topo, label in TOPOLOGIES.items():
         ids, n_files = test_scenarios(topo)
         assert len(set(ids)) == PFDELTA_TEST_SIZE and ids.max() < n_files
@@ -82,11 +85,13 @@ def main():
         mapping.append(m)
         print(f"{label}: {n_files} feasible files, test split {len(ids)}, sampled {len(picked)}")
 
+    # write the combined tables
     raw_out = out / "case14_ieee/raw"
     raw_out.mkdir(parents=True, exist_ok=True)
     for name, parts in tables.items():
         pd.concat(parts, ignore_index=True).to_parquet(raw_out / f"{name}.parquet", index=False)
 
+    # graphkit split files: every sample goes to 'test'
     splits = out / "splits"
     splits.mkdir(exist_ok=True)
     torch.save(torch.arange(n_total), splits / "test.pt")

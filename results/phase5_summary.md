@@ -1,8 +1,8 @@
 # Phase 5: groundwork for hard cases, embeddings and the anomaly baseline
 
 Base model (`genco-pf-datakit/case14_ieee/base/seed0`) on the 1000-sample case14 test subset (all N-1).
-Scripts: graphkit `predict --get_embeddings` (command below) + `scripts/phase5_analysis.py`. Full console output:
-`results/phase5_analysis_log.txt`. The **datakit/Julia N-k smoke test is deferred**: PFΔ covers the data needs (see README).
+Scripts: graphkit `predict --get_embeddings` (command below) + `scripts/phase5_analysis.py`.
+The **datakit/Julia N-k smoke test is deferred**: PFΔ covers the data needs (see README).
 
 ```bash
 gridfm_graphkit predict --config configs/case14_base_infer.yaml \

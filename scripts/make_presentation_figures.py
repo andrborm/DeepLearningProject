@@ -34,6 +34,7 @@ METHODS = [("baseline PtC", "Predict-then-check"), ("A gated PtC (solver)", "A: 
 
 
 def fig_summary():
+    """Heatmap of F1 (with FP / FN) per detector, model, test set and label."""
     d = pd.read_csv(RESULTS / "final_n2_detectors.csv")
     d = d[d.scope == "all"]
     rows = [(m, mt, ml) for m in ["replay", "original"] for mt, ml in METHODS]
@@ -86,6 +87,7 @@ def fig_summary():
 
 
 def fig_residual():
+    """Per-sample residual vs true error for both models; wrong PtC labels circled."""
     fig, axes = plt.subplots(1, 2, figsize=(13, 5.6), sharex=True, sharey=True)
     for ax, model in zip(axes, ["original", "replay"]):
         for ds, name in SETS:
@@ -113,6 +115,7 @@ def fig_residual():
 
 
 def fig_localization():
+    """Bars: IG vs residual vs chance localization of correct alarms."""
     a = pd.read_csv(RESULTS / "explain_ig_localization.csv")
     a = a[(a.probe == "logreg") & a.dataset.isin(["test_pfdelta", "test_n2"])]
     groups = [("y_voltage", "voltage: top-3 buses\ncontain a violating bus", "IG", "residual", "chance"),
@@ -148,6 +151,7 @@ def fig_localization():
 
 
 def fig_grid_example():
+    """Residual and IG attribution on the grid for the N-2 overload example."""
     import torch
     import explain_ig as X
 
@@ -181,6 +185,7 @@ def fig_grid_example():
 
 
 def main():
+    """Write all four presentation figures."""
     sys.stdout.reconfigure(encoding="utf-8")
     FIG.mkdir(exist_ok=True)
     fig_summary()

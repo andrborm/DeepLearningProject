@@ -14,6 +14,7 @@ from common import EXTRA, TEST_LABEL
 
 
 def main():
+    """Build and print the combined NR / GENCO timing table."""
     nr = pd.read_csv(EXTRA / "solver_nr_summary.csv").set_index("dataset")
     g = pd.read_csv(EXTRA / "genco_timing.csv")
     rows = []

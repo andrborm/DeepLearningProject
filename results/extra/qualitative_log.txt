@@ -1,3 +1,0 @@
-   model  n PQ bus values  RMSE (pu)  median |err| (pu)  max |err| (pu)  share on wrong side of a limit
-original             9284   0.066784           0.008574        0.457933                        0.199052
-  replay             9284   0.000947           0.000151        0.015920                        0.004524

@@ -1,4 +1,0 @@
-dataset,n,NR failures (numba),NR failures (no numba),NR ms/sample median (numba),NR ms/sample mean (numba),NR ms/sample median (no numba),NR ms/sample mean (no numba),max |dVm| pu,max |dVa| deg,label agreement voltage,label agreement overload
-test_datakit,1000,0,0,8.852,10.94,13.04,15.15,8.299e-10,1.588e-07,1,1
-test_pfdelta,1000,0,0,8.614,9.946,12.82,14.55,3.097e-07,2.302e-05,1,1
-test_n2,1000,0,0,8.478,9.489,12.52,14,6.556e-07,5.72e-05,1,1

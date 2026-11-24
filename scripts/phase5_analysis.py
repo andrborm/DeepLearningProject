@@ -86,6 +86,7 @@ def labels_from_predictions(bus, branch, which, vm_tol=TOL, slack_setpoint=False
 
 
 def confusion(true, pred):
+    """TP / FP / FN / TN, precision, recall and F1 of two boolean arrays."""
     tp = int((true & pred).sum()); fp = int((~true & pred).sum())
     fn = int((true & ~pred).sum()); tn = int((~true & ~pred).sum())
     return {
@@ -98,6 +99,7 @@ def confusion(true, pred):
 
 # --------------------------------------------------------------------------- errors
 def long_errors(bus, outage):
+    """Long table of absolute errors on the unknowns, with bus type and outage type."""
     bus = bus.assign(bus_type=np.select([bus.REF == 1, bus.PV == 1], ["REF", "PV"], "PQ"))
     rows = []
     for bt, variables in TARGETS.items():
@@ -111,6 +113,7 @@ def long_errors(bus, outage):
 
 
 def robust(g):
+    """Robust error summary of one group: n, median, p95, p99, max, MAE, RMSE."""
     e = g.abs_err
     return pd.Series({"n": len(e), "median": e.median(), "p95": e.quantile(0.95), "p99": e.quantile(0.99),
                       "max": e.max(), "MAE": e.mean(), "RMSE": np.sqrt((e ** 2).mean())})
@@ -118,6 +121,7 @@ def robust(g):
 
 # --------------------------------------------------------------------------- PCA
 def pca(x, k=2):
+    """PCA via SVD: first k projections and the explained-variance ratios."""
     xc = x - x.mean(axis=0)
     u, s, vt = np.linalg.svd(xc, full_matrices=False)
     explained = s ** 2 / (s ** 2).sum()
@@ -126,6 +130,7 @@ def pca(x, k=2):
 
 # --------------------------------------------------------------------------- figures
 def fig_error_distribution(per, path):
+    """Fig 1: histogram of the per-sample overall error score (log scale)."""
     s = per.overall_score
     fig, ax = plt.subplots(figsize=(10, 5.6))
     bins = np.logspace(np.log10(s.min() * 0.9), np.log10(s.max() * 1.1), 45)
@@ -154,6 +159,7 @@ def fig_error_distribution(per, path):
 
 
 def fig_error_by_outage(long, path):
+    """Fig 2: absolute error per outage type for four key unknowns."""
     panels = [("Vm", "PQ", "Vm at PQ buses (p.u.)"), ("Va", "PQ", "Va at PQ buses (rad)"),
               ("Qg", "PV", "Qg at PV buses (MVAr)"), ("Pg", "REF", "Pg at slack bus (MW)")]
     fig, axes = plt.subplots(1, 4, figsize=(15, 5.6))
@@ -184,6 +190,7 @@ def fig_error_by_outage(long, path):
 
 
 def fig_pca(z, explained, per, labels, path):
+    """Fig 3: PCA of pooled embeddings, coloured by error, outage type and true label."""
     fig, axes = plt.subplots(1, 3, figsize=(18, 6))
     xlab = f"PC1 ({explained[0]:.0%} var.)"
     ylab = f"PC2 ({explained[1]:.0%} var.)"
@@ -233,6 +240,7 @@ def fig_pca(z, explained, per, labels, path):
 
 # --------------------------------------------------------------------------- main
 def main():
+    """Embeddings, predict-then-check, robust errors, hard cases and figures (base model)."""
     sys.stdout.reconfigure(encoding="utf-8")
     FIGS.mkdir(parents=True, exist_ok=True)
     EMB_OUT.mkdir(parents=True, exist_ok=True)
@@ -373,6 +381,7 @@ def main():
 
 
 def section(title):
+    """Print a section header."""
     print(f"\n{'=' * 80}\n{title}\n{'=' * 80}")
 
 

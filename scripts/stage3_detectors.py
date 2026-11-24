@@ -69,6 +69,7 @@ def blocks():
 
 
 def stage_extract(args):
+    """graphkit predict --get_embeddings on every block (blocks already done are skipped)."""
     from gridfm_graphkit.cli import main_cli
 
     for name, (data, ids) in blocks().items():
@@ -93,6 +94,7 @@ def stage_extract(args):
 
 # --------------------------------------------------------------------------- per-sample table
 def load_block(model, name, data):
+    """Per-sample table (truth, PtC labels, error score, residual) and (n, 14, 384) embeddings of one block."""
     d = PRED / model / name
     bus = pd.read_parquet(d / "case14_ieee_predictions.parquet")
     branch = pd.read_parquet(d / "case14_ieee_branch_predictions.parquet")
@@ -113,12 +115,14 @@ def load_block(model, name, data):
 
 
 def features(f, kind):
+    """Probe input: 'pooled' = mean/max/min over buses (1,152-d), otherwise flat 14 x 384 (5,376-d)."""
     if kind == "pooled":
         return np.concatenate([f.mean(1), f.max(1), f.min(1)], axis=1)
     return f.reshape(len(f), -1)  # case14: fixed bus order, so per-bus identity is kept
 
 
 def load_all(model):
+    """All blocks of one model, concatenated per group (pf_probe, dk_val, test_pfdelta, ...)."""
     tabs, feats = {}, {}
     for name, (data, _) in blocks().items():
         t, f = load_block(model, name, data)
@@ -130,12 +134,14 @@ def load_all(model):
 
 # --------------------------------------------------------------------------- A
 def wrong(t, label):
+    """True where the PtC label differs from the truth (one label or 'any')."""
     if label == "any":
         return (t.y_voltage != t.y_voltage_ptc) | (t.y_overload != t.y_overload_ptc)
     return t[label] != t[f"{label}_ptc"]
 
 
 def safe_auc(fn, y, s):
+    """AUC-type metric, NaN when only one class is present."""
     return fn(y, s) if 0 < y.sum() < len(y) else float("nan")
 
 
@@ -161,6 +167,7 @@ def choose_gate(val, target=0.98):
 
 
 def approach_a(tabs, val_groups, model):
+    """A: residual as trust signal; gate chosen on val; sweep over val-quantile thresholds."""
     val = pd.concat([tabs[g] for g in val_groups])
     rows, sweep = [], []
     thr = choose_gate(val)
@@ -197,6 +204,7 @@ def approach_a(tabs, val_groups, model):
 
 # --------------------------------------------------------------------------- B
 def best_threshold(y, p):
+    """Decision threshold with the highest F1 (candidates: every score and 0.5)."""
     cand = np.unique(np.r_[p, 0.5])
     f1 = [confusion(y, p >= c)["F1"] for c in cand]
     f1 = np.nan_to_num(np.array(f1, float), nan=-1)
@@ -204,6 +212,7 @@ def best_threshold(y, p):
 
 
 def approach_b(tabs, feats, train_groups, val_groups, model):
+    """B: tune and fit one probe per label on frozen embeddings, save it, score the test sets."""
     Xtr_raw = np.concatenate([feats[g] for g in train_groups])
     Xva_raw = np.concatenate([feats[g] for g in val_groups])
     ttr = pd.concat([tabs[g] for g in train_groups])
@@ -213,6 +222,7 @@ def approach_b(tabs, feats, train_groups, val_groups, model):
         "mlp": [dict(alpha=a, hidden=h) for a in [1e-4, 1e-2, 1] for h in [64, 256]],
     }
     rows, chosen = [], []
+    # grid search: feature type x hyperparameters x label, scored by val PR-AUC
     for kind in ["pooled", "flat"]:
         Xtr, Xva = features(Xtr_raw, kind), features(Xva_raw, kind)
         for probe, grid in grids.items():
@@ -225,6 +235,7 @@ def approach_b(tabs, feats, train_groups, val_groups, model):
                                  "val PR-AUC": average_precision_score(tva[lab], p)})
     tune = pd.DataFrame(rows)
     tune.insert(0, "model", model)
+    # refit the best setting per probe and label, pick the threshold on val, freeze to disk
     results, fits = [], []
     for probe in grids:
         for lab in LABELS:
@@ -248,6 +259,7 @@ def approach_b(tabs, feats, train_groups, val_groups, model):
 
 
 def make_clf(probe, hp):
+    """Standardised logistic regression or one-hidden-layer MLP probe."""
     if probe == "logreg":
         return make_pipeline(StandardScaler(), LogisticRegression(C=hp["C"], max_iter=3000, class_weight="balanced"))
     return make_pipeline(StandardScaler(), MLPClassifier(hidden_layer_sizes=(hp["hidden"],), alpha=hp["alpha"],
@@ -255,6 +267,7 @@ def make_clf(probe, hp):
 
 
 def stage_analyze(args):
+    """A and B for one model; writes results/stage3_<model>_*.csv."""
     warnings.filterwarnings("ignore")
     tabs, feats = load_all(args.model)
     train_groups = ["pf_probe"] + (["dk_probe"] if args.with_datakit else [])
@@ -292,6 +305,7 @@ def stage_analyze(args):
 
 
 def stage_compare(args):
+    """Merge the per-model detector tables into stage3_comparison.csv."""
     t = pd.concat([pd.read_csv(RESULTS / f"stage3_{m}_detectors.csv") for m in args.models])
     t["FN"] = t["FN"].astype(int)
     t["FP"] = t["FP"].astype(int)
@@ -304,6 +318,7 @@ def stage_compare(args):
 
 
 def main():
+    """CLI: run one stage."""
     sys.stdout.reconfigure(encoding="utf-8")
     p = argparse.ArgumentParser()
     p.add_argument("stage", choices=["extract", "analyze", "compare"])

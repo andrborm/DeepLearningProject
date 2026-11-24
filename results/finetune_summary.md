@@ -3,7 +3,7 @@
 Base GENCO case14 checkpoint, fine-tuned on PFΔ case14 **N-0/N-1 train positions**. Two runs: **hard cases** and an
 equal-size **random** control. Evaluated on the datakit 1,000 test subset (forgetting) and the PFΔ 1,000 test subset.
 **N-2 was not converted, read or run.** Scripts: `scripts/make_pfdelta_finetune_data.py`,
-`scripts/finetune_pipeline.py`. Full output: `finetune_*_log.txt`.
+`scripts/finetune_pipeline.py`.
 
 ## Setup
 
@@ -98,8 +98,8 @@ datakit voltage misses: 1 → 6 (hard) / 5 (random) of 28.
 # Replay fine-tuning against forgetting (and final model choice)
 
 Scripts: `scripts/make_stage3_data.py` (data folder `data/stage3`, mapping `stage3_mapping.csv`),
-`scripts/finetune_pipeline.py finetune --set replay`. Log: `finetune_replay_base_log.txt`; all four models in
-`finetune_compare_base_log.txt`, `finetune_errors_base.csv`, `finetune_predict_then_check_base.csv`.
+`scripts/finetune_pipeline.py finetune --set replay`. All four models in `finetune_errors_base.csv` and
+`finetune_predict_then_check_base.csv`.
 
 | Item | Choice |
 |---|---|

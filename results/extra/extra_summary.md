@@ -68,7 +68,7 @@ Positives per set (V / O): datakit 28 / 37, PFΔ N-0/N-1 515 / 321, N-2 618 / 10
   - Max |ΔVm| = 8e-10 (datakit), 3e-7 (PFΔ), 7e-7 p.u. (N-2).
   - Labels recomputed from the NR solution agree with the dataset labels on **100 %** of samples, for both labels.
 - **CPU:** Intel, 28 logical cores. NR and GENCO were timed one after the other, never in parallel. The NR timing
-  was repeated on an idle CPU; that run is the one reported. Run 1 (`*_run1.*`) was 3–4 % slower because a
+  was repeated on an idle CPU; that run is the one reported. The first run was 3–4 % slower because a
   file-listing job was running at the same time.
 
 ### Timing (`solver_timing.csv`), ms per sample

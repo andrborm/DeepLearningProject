@@ -23,6 +23,7 @@ LO, HI = 0.94, 1.06
 
 
 def main():
+    """Two scatter panels (original, replay) plus error statistics."""
     c = palette()
     fig, axes = plt.subplots(1, 2, figsize=(13, 6.4), sharex=True, sharey=True)
     data = {m: pd.read_parquet(PRED / m / "test_pfdelta/case14_ieee_predictions.parquet") for m in ["original", "replay"]}

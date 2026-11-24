@@ -11,7 +11,7 @@ Models: logistic regression (same C grid and pipeline as the logreg probe) and H
 
 Outputs: results/extra/baseline_raw_inputs.csv (test metrics), baseline_raw_inputs_tuning.csv,
          baseline_raw_inputs_comparison.csv (new baseline next to the existing numbers read from
-         results/final_n2_detectors.csv, scope "all"), baseline_raw_inputs_log.txt via tee.
+         results/final_n2_detectors.csv, scope "all").
 
 Usage: venv/Scripts/python.exe scripts/extra/baseline_raw_inputs.py
 """
@@ -39,12 +39,14 @@ GRIDS = {
 
 
 def make_model(kind, hp):
+    """Standardised balanced logistic regression, or gradient-boosted trees."""
     if kind == "logreg":
         return make_pipeline(StandardScaler(), LogisticRegression(C=hp["C"], max_iter=5000, class_weight="balanced"))
     return HistGradientBoostingClassifier(max_iter=300, early_stopping=False, random_state=SEED, **hp)
 
 
 def split(roles):
+    """Raw features and true labels of the stage3 samples with the given roles."""
     m = pd.read_csv(RESULTS / "stage3_mapping.csv")
     ids = np.sort(m[m.role.isin(roles)].s3_id.values)
     X = raw_features(S3_RAW, ids)
@@ -53,6 +55,7 @@ def split(roles):
 
 
 def main():
+    """Tune, fit and evaluate both baselines; write the result and comparison tables."""
     warnings.filterwarnings("ignore")
     np.random.seed(SEED)
     EXTRA.mkdir(parents=True, exist_ok=True)
@@ -65,6 +68,7 @@ def main():
         X = raw_features(raw)
         tests[name] = (X[Xtr.columns], true_labels_from_raw(raw).loc[X.index, LABELS])
 
+    # per model and label: tune on val PR-AUC, refit, F1-optimal threshold on val, score the tests
     tune, rows, chosen = [], [], []
     for kind, grid in GRIDS.items():
         for lab in LABELS:

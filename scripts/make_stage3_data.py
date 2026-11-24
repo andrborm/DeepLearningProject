@@ -33,15 +33,18 @@ SORT = {"bus_data": ["scenario", "bus"], "gen_data": ["scenario", "idx"], "branc
 
 
 def main():
+    """Build data/stage3 (six blocks) and results/stage3_mapping.csv."""
     rng = np.random.default_rng(7)
     splits = json.load(open(SPLITS_JSON))
     dk_test = set(pd.read_csv(ROOT / "results/test_subset_1000.csv").orig_scenario)
     train_ids = rng.permutation(splits["train"])
+    # datakit blocks from the checkpoint's train / val splits (seeded)
     blocks = [  # (role, source, original ids)
         ("dk_train", "datakit", np.sort(train_ids[:5000])),
         ("dk_val", "datakit", np.sort(rng.choice(splits["val"], 1000, replace=False))),
         ("dk_probe", "datakit", np.sort(train_ids[5000:7000])),
     ]
+    # PFΔ blocks: the random fine-tuning set, the val positions, 1,000 + 1,000 other mining samples
     ftmap = pd.read_csv(ROOT / "results/pfdelta_ft_mapping.csv").set_index("ft_id")
     sel = pd.read_csv(ROOT / "results/pfdelta_ft_selection.csv", index_col="ft_id")
     pf_train = sel.index[sel.random].values
@@ -54,6 +57,7 @@ def main():
         if src == "datakit":
             assert not set(ids.tolist()) & dk_test
 
+    # read every needed row once per source
     dk_all = np.concatenate([b[2] for b in blocks if b[1] == "datakit"])
     assert len(set(dk_all.tolist())) == len(dk_all)
     dk = {n: read_table(n, dk_all.tolist()) for n in NAMES}
@@ -61,6 +65,7 @@ def main():
     pfs = {n: ds.dataset(PF_FT / f"{n}.parquet").to_table(filter=ds.field("scenario").isin(pf_all.tolist())).to_pandas()
            for n in NAMES}
 
+    # renumber each block contiguously; align columns and dtypes to datakit
     tables = {n: [] for n in NAMES}
     mapping, next_id = [], 0
     for role, src, ids in blocks:
@@ -91,6 +96,7 @@ def main():
         mapping.append(m)
         print(f"{role}: {len(ids)}")
 
+    # write tables; check no overlap with the test subsets and no N-2
     raw = OUT / "case14_ieee/raw"
     raw.mkdir(parents=True, exist_ok=True)
     for n, parts in tables.items():

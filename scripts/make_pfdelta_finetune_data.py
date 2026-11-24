@@ -32,6 +32,7 @@ OUT = ROOT / "data/pfdelta_ft"
 
 
 def positions(topo):
+    """Shuffle map plus the TRAIN and VAL position ranges of one topology (test excluded)."""
     shuffle = {int(k): int(v) for k, v in json.load(open(SHUFFLE / topo / "raw_shuffle.json")).items()}
     n = len(shuffle)
     pool = n - PFDELTA_TEST_SIZE
@@ -40,6 +41,7 @@ def positions(topo):
 
 
 def main():
+    """Draw mining and validation samples per topology; write data/pfdelta_ft and its mapping."""
     parser = argparse.ArgumentParser()
     parser.add_argument("--mine-per-topology", type=int, default=7500)
     parser.add_argument("--val-per-topology", type=int, default=500)
@@ -47,6 +49,7 @@ def main():
     args = parser.parse_args()
     rng = np.random.default_rng(args.seed)
 
+    # 1. seeded positions: 'mine' from TRAIN positions, 'val' from VAL positions
     plan = []  # (role, topo, positions)
     for role, size in [("mine", args.mine_per_topology), ("val", args.val_per_topology)]:
         for topo in TOPOLOGIES:
@@ -56,6 +59,7 @@ def main():
             plan.append((role, topo, shuffle, picked))
             print(f"{role} {TOPOLOGIES[topo]}: {len(src)} positions available, picked {size}")
 
+    # 2. read the picked samples and renumber them contiguously (ft_id)
     tables = {name: [] for name in ["bus_data", "gen_data", "branch_data"]}
     mapping, next_id = [], 0
     for role, topo, shuffle, pos in plan:
@@ -80,6 +84,7 @@ def main():
         m.insert(4, "pfdelta_file", [f"case14/{topo}/raw/sample_{s + 1}.json" for s in scen])
         mapping.append(m)
 
+    # 3. write tables and mapping
     raw_out = OUT / "case14_ieee/raw"
     raw_out.mkdir(parents=True, exist_ok=True)
     for name, parts in tables.items():

@@ -39,6 +39,7 @@ BATCHES = [1, 64]
 
 
 def prepare(name, work):
+    """Copy one test set's raw data and splits to the scratch folder (graphkit caches there)."""
     src = TESTS[name][0].parent.parent  # data/<set>
     dst = Path(work) / name
     if not (dst / "case14_ieee/raw").exists():
@@ -48,6 +49,7 @@ def prepare(name, work):
 
 
 def config(splits, batch_size, work):
+    """Inference config resolved in memory from the checkpoint yaml (copy kept in scratch)."""
     from gridfm_graphkit.io.config_version import resolve_config
     from gridfm_graphkit.io.param_handler import NestedNamespace
 
@@ -62,6 +64,7 @@ def config(splits, batch_size, work):
 
 
 def load_model(cfg, data_dir):
+    """Datamodule with the checkpoint normalizer and the replay model in eval mode."""
     from gridfm_graphkit.cli import _normalize_loaded_state_dict_keys
     from gridfm_graphkit.datasets.hetero_powergrid_datamodule import LitGridHeteroDataModule
     from gridfm_graphkit.io.param_handler import get_task
@@ -76,6 +79,7 @@ def load_model(cfg, data_dir):
 
 
 def time_set(name, bs, work, warmup=5):
+    """Time forward and predict_step per batch for one test set and batch size."""
     d = prepare(name, work)
     cfg = config(d / "splits", bs, work)
     dm, model = load_model(cfg, d)
@@ -109,6 +113,7 @@ def time_set(name, bs, work, warmup=5):
 
 
 def main():
+    """Time all test sets at batch size 1 and 64, with default threads and with 1 thread."""
     p = argparse.ArgumentParser()
     p.add_argument("--work", required=True, help="scratch folder outside the repo")
     args = p.parse_args()

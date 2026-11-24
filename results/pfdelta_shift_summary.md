@@ -2,7 +2,7 @@
 
 First test of the datakit-trained GENCO case14 base model on PFΔ data. **N-2 was not converted, read or run.**
 Scripts: `scripts/vendor/batch_convert_pfdelta.py` (conversion), `scripts/make_pfdelta_subset.py`,
-`scripts/run_inference.py --dataset pfdelta`, `scripts/pfdelta_shift_eval.py`. Full output: `pfdelta_shift_eval_log.txt`.
+`scripts/run_inference.py --dataset pfdelta`, `scripts/pfdelta_shift_eval.py`.
 
 ## Data
 

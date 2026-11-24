@@ -2,7 +2,7 @@
 
 Models: **replay** (final model, `finetune_summary.md`) and the **original** checkpoint for comparison.
 Labels: multi-label `y_voltage`, `y_overload`, truth from the solved power flow; slack Vm treated as a known setpoint.
-Script: `scripts/stage3_detectors.py` (`extract`, `analyze --with-datakit`, `compare`). Logs: `stage3_<model>_log.txt`.
+Script: `scripts/stage3_detectors.py` (`extract`, `analyze --with-datakit`, `compare`).
 **N-2 was not converted, read or run.**
 
 ## Data

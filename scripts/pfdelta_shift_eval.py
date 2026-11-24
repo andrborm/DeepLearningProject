@@ -30,6 +30,7 @@ FMT = lambda v: f"{v:.3g}"
 
 
 def section(title):
+    """Print a section header."""
     print(f"\n{'=' * 80}\n{title}\n{'=' * 80}")
 
 
@@ -44,6 +45,7 @@ def auc(score, positive):
 
 
 def main():
+    """Sanity checks, error comparison, predict-then-check and wrong-label analysis."""
     sys.stdout.reconfigure(encoding="utf-8")
     art = find_run("base_n1000_pfdelta") / "artifacts/test"
     bus = pd.read_parquet(art / "case14_ieee_predictions.parquet")
@@ -73,6 +75,7 @@ def main():
     print(f"labels from converted parquet vs original JSON: y_voltage agree {agree_v:.1%}, y_overload agree {agree_o:.1%}")
 
     def load_stats(raw_dir):
+        """Per-sample total load and Vm range of a raw folder."""
         b = pd.read_parquet(raw_dir / "bus_data.parquet")
         g = b.groupby("scenario")
         return pd.DataFrame({"total_Pd": g.Pd.sum(), "total_Qd": g.Qd.sum(), "min_Vm": g.Vm.min(), "max_Vm": g.Vm.max()})

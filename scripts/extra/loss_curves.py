@@ -34,11 +34,13 @@ CARD_METRICS = ROOT / "checkpoints/genco-pf-datakit/case14_ieee/base/seed0/metri
 
 
 def metric(run, name):
+    """One MLflow metric file as a table (timestamp, value, step)."""
     m = pd.read_csv(EXP / run / "metrics" / name, sep=" ", header=None, names=["ts", "value", "step"])
     return m.sort_values(["step", "ts"]).reset_index(drop=True)
 
 
 def main():
+    """Plot validation (per epoch) and train (per 1,000 steps) loss of the three runs."""
     c = palette()
     colors = {"hard": c["BLUE"], "random": c["ORANGE"], "replay": c["AQUA"]}
     labels = {"hard": "hard cases", "random": "random control", "replay": "replay (final model)"}

@@ -50,10 +50,12 @@ EVAL_SETS = {  # name -> (data folder, subset csv)
 
 
 def rel(p):
+    """Repo-relative path with forward slashes, as graphkit configs expect."""
     return str(Path(p).relative_to(ROOT)).replace("\\", "/")
 
 
 def write_split(name, train=(), val=(), test=()):
+    """Write graphkit split files (id tensors) to data/pfdelta_ft/splits_<name>."""
     d = FT / f"splits_{name}"
     d.mkdir(parents=True, exist_ok=True)
     for k, ids in [("train", train), ("val", val), ("test", test)]:
@@ -62,6 +64,7 @@ def write_split(name, train=(), val=(), test=()):
 
 
 def make_config(size, splits, name, lr=None, epochs=None, patience=None):
+    """Checkpoint YAML -> CPU config with our split files (optional lr / epochs / patience), saved in configs/."""
     from gridfm_graphkit.io.config_version import resolve_config
 
     ckpt_yaml = CKPT_ROOT / size / "seed0" / f"case14_ieee_{size}_seed0.yaml"
@@ -81,6 +84,7 @@ def make_config(size, splits, name, lr=None, epochs=None, patience=None):
 
 
 def run(command, config, model_path, size, data_path, run_name, save_output=False):
+    """Call graphkit's CLI in-process with the checkpoint normalizer; return wall time (s)."""
     from gridfm_graphkit.cli import main_cli
 
     args = Namespace(command=command, config=rel(config), model_path=str(model_path),
@@ -113,12 +117,14 @@ def patch_sanity_check_save():
 
 
 def find_run_dir(run_name, needs):
+    """Newest MLflow run folder with this run name that contains `needs`."""
     runs = [p.parents[1] for p in (ROOT / "mlruns").glob("*/*/tags/mlflow.runName")
             if p.read_text().strip() == run_name and (p.parents[1] / needs).exists()]
     return max(runs, key=lambda r: r.stat().st_mtime)
 
 
 def base_model(size):
+    """Weights of the original checkpoint."""
     return CKPT_ROOT / size / "seed0" / "best_model_state_dict.pt"
 
 
@@ -132,6 +138,7 @@ def sample_scores(bus):
 
 # --------------------------------------------------------------------------- stages
 def stage_splits(args):
+    """Chunked mining splits (1,000 each) and the 5,000-sample timing split."""
     m = pd.read_csv(MAPPING)
     mine = m[m.role == "mine"].ft_id.values
     val = m[m.role == "val"].ft_id.values
@@ -143,12 +150,14 @@ def stage_splits(args):
 
 
 def stage_time(args):
+    """Time one fine-tuning epoch on 5,000 samples."""
     cfg = make_config(args.size, FT / "splits_time", f"ft_time_{args.size}", lr=args.lr, epochs=1, patience=5)
     wall = run("finetune", cfg, base_model(args.size), args.size, FT, f"time_{args.size}")
     print(f"\n[timing] {args.size}: 1 epoch on 5000 samples (+ 1000 val, + dataset setup): {wall:.1f} s wall")
 
 
 def stage_mine(args):
+    """Score every mining sample with the base model (error score and residual)."""
     m = pd.read_csv(MAPPING).set_index("ft_id")
     chunks = sorted(FT.glob("splits_mine*"))
     cfg = None
@@ -171,6 +180,7 @@ def stage_mine(args):
 
 
 def stage_select(args):
+    """Hard set = top k per topology by base error; random control = k per topology."""
     s = pd.read_csv(RESULTS / "pfdelta_ft_mining_scores.csv", index_col="ft_id")
     val = pd.read_csv(MAPPING).query("role == 'val'").ft_id.values
     rng = np.random.default_rng(1)
@@ -208,6 +218,7 @@ def replay_splits():
 
 
 def stage_finetune(args):
+    """Fine-tune the checkpoint on the hard, random or replay set."""
     name = f"ft_{args.set}_{args.size}"
     data, splits = (S3, replay_splits()) if args.set == "replay" else (FT, FT / f"splits_{args.set}")
     cfg = make_config(args.size, splits, name, lr=args.lr, epochs=args.epochs, patience=args.patience)
@@ -217,6 +228,7 @@ def stage_finetune(args):
 
 
 def model_path(name, size):
+    """Weights file of a model name (original / hard / random / replay)."""
     if name == "original":
         return base_model(size)
     # replay: graphkit saved its "best" model in the 2-batch sanity check (datakit-only batches, tiny loss),
@@ -229,6 +241,7 @@ MODEL_FILE = {"replay": "last_epoch_state_dict.pt"}
 
 
 def stage_eval(args):
+    """Evaluate one model on the datakit and PFΔ test subsets (saves predictions)."""
     for ds, (data, subset_csv) in EVAL_SETS.items():
         cfg = make_config(args.size, data / "splits", f"eval_{ds}_{args.size}")
         name = f"eval_{args.model}_{args.size}_{ds}"
@@ -236,6 +249,7 @@ def stage_eval(args):
 
 
 def metrics_for(model, size, ds):
+    """Errors, predict-then-check confusion and scores of one model on one test subset."""
     data, subset_csv = EVAL_SETS[ds]
     art = find_run_dir(f"eval_{model}_{size}_{ds}", "artifacts/test/case14_ieee_predictions.parquet") / "artifacts/test"
     bus = pd.read_parquet(art / "case14_ieee_predictions.parquet")
@@ -259,6 +273,7 @@ def metrics_for(model, size, ds):
 
 
 def stage_compare(args):
+    """One comparison table over models: errors, predict-then-check, scores."""
     rows_err, rows_ptc, rows_score = [], [], []
     for model in args.models:
         for ds in EVAL_SETS:
@@ -291,6 +306,7 @@ def stage_compare(args):
 
 
 def main():
+    """CLI: run one stage."""
     sys.stdout.reconfigure(encoding="utf-8")
     p = argparse.ArgumentParser()
     p.add_argument("stage", choices=["splits", "time", "mine", "select", "finetune", "eval", "compare"])

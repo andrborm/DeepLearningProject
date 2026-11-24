@@ -55,6 +55,7 @@ PROBE_KINDS = ["logreg", "mlp"]
 
 
 def stage_extract(args):
+    """One predict run with embeddings on N-2 (refuses to run twice)."""
     from gridfm_graphkit.cli import main_cli
 
     out = PRED / args.model / "test_n2"
@@ -68,6 +69,7 @@ def stage_extract(args):
 
 
 def datakit_train_max_load():
+    """Largest total Pd (MW) in the checkpoint's TRAIN split."""
     split = json.load(open(SPLITS_JSON))["train"]
     t = ds.dataset(ROOT / "data/case14_ieee/raw/bus_data.parquet", format="parquet", partitioning="hive")
     tot = t.to_table(columns=["scenario", "Pd"]).to_pandas().groupby("scenario").Pd.sum()
@@ -75,6 +77,7 @@ def datakit_train_max_load():
 
 
 def load_test(model, name):
+    """Per-sample table, embeddings and bus predictions of one test set, plus load and outage info."""
     data, subset_csv = TESTS[name]
     t, f = load_block(model, name, data)
     sub = pd.read_csv(subset_csv).set_index("subset_id")
@@ -87,6 +90,7 @@ def load_test(model, name):
 
 
 def scopes(t, max_load):
+    """Sample subsets to report: all, load within / above, topology, N-2 outage type."""
     out = {"all": t.index}
     out["load within"] = t.index[t.total_load <= max_load]
     out["load above"] = t.index[t.total_load > max_load]
@@ -100,15 +104,18 @@ def scopes(t, max_load):
 
 
 def stage_evaluate(args):
+    """Frozen A and B on all three test sets for both models -> results/final_n2_*.csv."""
     warnings.filterwarnings("ignore")
     max_load = datakit_train_max_load()
     print(f"datakit TRAIN max total load: {max_load:.1f} MW")
     det, trust, sweep, errs, scores = [], [], [], [], []
     for model in MODELS:
+        # re-derive the gate with the frozen rule and check it equals the frozen value
         val = pd.concat([load_block(model, n, d)[0] for n, (d, _) in blocks().items() if n.startswith(("pf_val", "dk_val"))])
         thr = choose_gate(val)
         assert (np.isinf(thr) and np.isinf(FROZEN_GATE[model])) or abs(thr - FROZEN_GATE[model]) < 0.01, thr
         qthr = {q: (np.inf if q == 0 else np.quantile(val.pbe_mean, 1 - q)) for q in [0, .01, .02, .05, .10, .20]}
+        # frozen probes: loaded, never refit
         probes = {(p, lab): joblib.load(PROBES / f"{model}_{p}_{lab}.joblib") for p in PROBE_KINDS for lab in LABELS}
         print(f"[{model}] gate t = {thr:.4g} (frozen {FROZEN_GATE[model]})")
         for name in TESTS:
@@ -117,6 +124,7 @@ def stage_evaluate(args):
                 t[f"{lab}_{p}_prob"] = pr["clf"].predict_proba(features(f, pr["features"]))[:, 1]
                 t[f"{lab}_{p}"] = t[f"{lab}_{p}_prob"] >= pr["threshold"]
             t.to_csv(RESULTS / f"final_n2_samples_{model}_{name}.csv", float_format="%.6g")
+            # metrics per scope: errors, scores, trust signal, detectors, gate sweep
             long = long_errors(bus, t.outage_type)
             for scope, idx in scopes(t, max_load).items():
                 s = t.loc[idx]
@@ -154,6 +162,7 @@ def stage_evaluate(args):
                         sweep.append({**base, "label": lab, "val share target": q, "threshold": th, "solver share": share,
                                       **{f"solver {k}": c[k] for k in ["precision", "recall", "FP", "FN"]},
                                       **{f"drop {k}": cd[k] for k in ["precision", "recall", "FP", "FN"]}})
+    # --- save and print
     det, trust, sweep = pd.DataFrame(det), pd.DataFrame(trust), pd.DataFrame(sweep)
     errs, scores = pd.concat(errs), pd.DataFrame(scores)
     det.to_csv(RESULTS / "final_n2_detectors.csv", index=False, float_format="%.4g")
@@ -178,6 +187,7 @@ def stage_evaluate(args):
 
 
 def main():
+    """CLI: run one stage."""
     sys.stdout.reconfigure(encoding="utf-8")
     p = argparse.ArgumentParser()
     p.add_argument("stage", choices=["extract", "evaluate"])

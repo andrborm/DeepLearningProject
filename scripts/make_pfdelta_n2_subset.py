@@ -27,12 +27,14 @@ OUT = ROOT / "data/pfdelta_n2_test1000"
 
 
 def main():
+    """Sample the N-2 test split, renumber 0..n-1, write tables, splits and mapping."""
     parser = argparse.ArgumentParser()
     parser.add_argument("--n", type=int, default=1000)
     parser.add_argument("--seed", type=int, default=42)
     args = parser.parse_args()
     assert args.n <= 1000, "course requirement: at most 1000 samples for inference"
 
+    # PFΔ N-2 test split (last 2,000 shuffle positions), seeded sample
     ids, n_files = test_scenarios("n-2")
     assert len(set(ids)) == PFDELTA_TEST_SIZE and ids.max() < n_files
     picked = np.sort(np.random.default_rng(args.seed).choice(ids, size=args.n, replace=False))
@@ -42,6 +44,7 @@ def main():
     info = outage_info(dfs["gen_data"], dfs["branch_data"])
     assert (info.contingency == "N-2").all(), info.contingency.value_counts()
 
+    # write the tables with the new ids
     raw_out = OUT / "case14_ieee/raw"
     raw_out.mkdir(parents=True, exist_ok=True)
     for name, df in dfs.items():
@@ -50,12 +53,14 @@ def main():
         df["scenario"] = df["scenario"].map(new_id)
         df.to_parquet(raw_out / f"{name}.parquet", index=False)
 
+    # graphkit split files: every sample goes to 'test'
     splits = OUT / "splits"
     splits.mkdir(exist_ok=True)
     torch.save(torch.arange(args.n), splits / "test.pt")
     torch.save(torch.tensor([], dtype=torch.long), splits / "train.pt")
     torch.save(torch.tensor([], dtype=torch.long), splits / "val.pt")
 
+    # mapping: subset_id -> PFΔ file and outage description
     m = info.rename_axis("orig_scenario").reset_index()
     m.insert(0, "subset_id", m.orig_scenario.map(new_id))
     m.insert(1, "topology", "N-2")

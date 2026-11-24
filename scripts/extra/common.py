@@ -32,6 +32,7 @@ TEST_LABEL = {"test_datakit": "datakit (N-1)", "test_pfdelta": "PFΔ N-0/N-1", "
 
 
 def read_raw(raw_dir, ids=None):
+    """Raw bus / gen / branch tables of a folder, optionally only some scenario ids."""
     out = {}
     for n in ["bus_data", "gen_data", "branch_data"]:
         df = pd.read_parquet(Path(raw_dir) / f"{n}.parquet")
@@ -53,6 +54,7 @@ def raw_features(raw_dir, ids=None):
     bus = bus.astype({"bus": int})
     gen = gen.astype({"idx": int, "bus": int})
     br = br.astype({"idx": int})
+    # one row per scenario, one column per bus / generator / branch
     pd_ = bus.pivot(index="scenario", columns="bus", values="Pd").add_prefix("Pd_b")
     qd_ = bus.pivot(index="scenario", columns="bus", values="Qd").add_prefix("Qd_b")
     vm_bus = bus.set_index(["scenario", "bus"]).Vm

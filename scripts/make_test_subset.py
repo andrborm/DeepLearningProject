@@ -66,6 +66,7 @@ def outage_info(gen, branch):
 
 
 def main():
+    """Sample the subset; write raw tables, split files and the mapping csv."""
     parser = argparse.ArgumentParser()
     parser.add_argument("--n", type=int, default=1000)
     parser.add_argument("--seed", type=int, default=42)
@@ -74,6 +75,7 @@ def main():
     assert args.n <= 1000, "course requirement: at most 1000 samples for inference"
     out = args.out or ROOT / f"data/case14_test{args.n}"
 
+    # draw N ids from the checkpoint's own test split, renumber them 0..N-1
     test_ids = json.load(open(SPLITS_JSON))["test"]
     rng = np.random.default_rng(args.seed)
     picked = np.sort(rng.choice(test_ids, size=args.n, replace=False))
@@ -82,6 +84,7 @@ def main():
     tables = {name: read_table(name, picked.tolist()) for name in ["bus_data", "gen_data", "branch_data"]}
     info = outage_info(tables["gen_data"], tables["branch_data"])
 
+    # write the three tables, sorted, with the new ids
     raw_out = out / "case14_ieee/raw"
     raw_out.mkdir(parents=True, exist_ok=True)
     for name, df in tables.items():
@@ -90,12 +93,14 @@ def main():
         df["scenario"] = df["scenario"].map(new_id)
         df.to_parquet(raw_out / f"{name}.parquet", index=False)
 
+    # graphkit split files: every sample goes to 'test'
     splits = out / "splits"
     splits.mkdir(exist_ok=True)
     torch.save(torch.arange(args.n), splits / "test.pt")
     torch.save(torch.tensor([], dtype=torch.long), splits / "train.pt")
     torch.save(torch.tensor([], dtype=torch.long), splits / "val.pt")
 
+    # mapping: subset_id -> original scenario, load profile and outage description
     mapping = info.rename_axis("orig_scenario").reset_index()
     mapping.insert(0, "subset_id", mapping.orig_scenario.map(new_id))
     load_idx = tables["bus_data"].groupby("scenario").load_scenario_idx.first()

@@ -72,6 +72,7 @@ def make_config(size, n, subset, suffix):
 
 
 def run_evaluate(config, size, n, subset, suffix):
+    """Run `gridfm_graphkit evaluate --save_output`; return the run's MLflow artifacts folder."""
     ckpt = CKPT_ROOT / size / "seed0"
     run_name = f"{size}_n{n}{suffix}"
     cmd = [
@@ -114,6 +115,7 @@ def per_bus_errors(bus):
 
 
 def metrics(group):
+    """n, MAE, RMSE and max |error| of one group of the long error table."""
     return pd.Series({
         "n": len(group),
         "MAE": group.abs_err.mean(),
@@ -123,6 +125,7 @@ def metrics(group):
 
 
 def main():
+    """Inference (or reuse of a run), error tables, per-sample scores and CSV output."""
     parser = argparse.ArgumentParser()
     parser.add_argument("--size", default="base", choices=["base", "small", "tiny"])
     parser.add_argument("--n", type=int, default=1000)
@@ -141,6 +144,7 @@ def main():
     subset = pd.read_csv(subset_csv).set_index("subset_id")
     assert bus.scenario.nunique() == args.n, f"expected {args.n} scenarios, got {bus.scenario.nunique()}"
 
+    # --- errors on the unknowns, per bus type / outage type / variable
     long = per_bus_errors(bus)
     long["outage_type"] = long.scenario.map(subset.outage_type)
 
@@ -162,6 +166,7 @@ def main():
     ref = ROOT / "results/inference_by_variable.csv"
     ref_rmse = pd.read_csv(ref, index_col="variable").RMSE if ref.exists() else by_var.RMSE
     per["overall_score_vs_datakit"] = (rmse_var / ref_rmse).mean(axis=1)
+    # physics consistency: per-sample power-balance residuals from graphkit
     res = bus.groupby("scenario").agg(pbe_mean=("PBE", "mean"), pbe_max=("PBE", "max"),
                                       res_P_mean=("active res. (MW)", "mean"),
                                       res_Q_mean=("reactive res. (MVar)", "mean"))
@@ -179,6 +184,7 @@ def main():
     compare = pd.concat({"this run": ours, "model card": card, "ratio": ours / card}, axis=1)
     residual_csv = pd.read_csv(art / "test/case14_ieee_metrics.csv")
 
+    # --- report and save
     pd.set_option("display.float_format", lambda v: f"{v:.4g}")
     print("\n=== error per variable x bus type (unknowns only) ===\n" + by_type.to_string())
     print("\n=== by outage type ===\n" + by_outage.to_string())
